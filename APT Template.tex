@@ -1,0 +1,147 @@
+\documentclass{aptpub}
+\authornames{AUTHOR NAMES} % insert the authors here for use in running head. If three or more authors please use (for example) M.~YARROW {\it et al}. Author names should follow the same M.~YARROW format and if two authors, separate by 'AND'.
+\shorttitle{Short title} % insert short title here for use in running head
+
+% Put any of your own definitions here.
+
+%\numberwithin{equation}{section}  % If you number theorems, etc. within sections,
+                                   % then please uncomment this line to number
+                                   % equations with sections too.
+\def\E{\mathbb{E}}
+\begin{document}%\recd{}{}%Do not alter this line.
+
+\title{Title} % insert title - use \\ if it requires more than one line.
+
+\authorone[Affiliation]{Author name} 
+%Affiliation is just the name of your university or institution, for example 'University of Sheffield'. Author names should be of the form 'Mark Yarrow'. 
+%Authors should be ordered alphabetically subject to the convention in that particular authors country. For example 'Remco van der Hofstad' would be listed under 'H' as is standard in the Netherlands. 
+
+
+%Please use the following format for addresses and emails. The APT office will sort this out after you submit your files.
+\addressone{Full address} % Your postal address goes here.
+\emailone{Full email address} %Authors email goes here.
+
+\begin{abstract}
+% text of abstract goes here!
+\end{abstract}
+
+\keywords{}%insert keywords separated by a semicolon. You should avoid including keywords which also appear in the title.
+
+\ams{}{}% insert the primary 2020 Maths Subject Classification number in the first bracket
+		% and the secondary ams number(s) in the second bracket
+		% e.g. \ams{60E20}{49G03;49F10}
+		%Maximum of three in each, ideally one or two in each primary and secondary.
+		%codes found here ``https://mathscinet.ams.org/msnhtml/msc2020.pdf''
+
+
+\section{Section} % Initial capital letter, then lower case. No full stop.
+
+% Write the text of your paper using normal LaTeX commands.
+% For instance, you can use the `\cite' command~\cite{ref1}.
+% When giving citations a numbering system is preferred~\cite{ref2},
+% but an author--date system is also acceptable~\cite{ref3}.
+
+\subsection{Introduction} % Initial capital letter, then lower case. No full stop.
+Let $X_1, X_2, \dots, X_N$ be i.i.d. sampled from a spherical symmetric distribution in $\mathbb{R}^d$.
+The convex hull of these $N$ points are an interrupted research topic in stochastic and integral geometry
+\cite{schneider2008stochastic}.
+The main aim of this paper is to provide a integral formula for $\E[F_N]$ and derive its asymptotic expression
+for three kinds of distribution families. Furthermore, the estimation of $\E[F_N]$ is used to obtain the upper bound
+of the probability that another sample falls outside of the random convex hull. This probability can be used to
+measure the interpolation ability of training data in machine learning
+\cite{balestriero2021learning}.
+
+\subsubsection{Subsubsection.} % Initial capital letter, then lower case. Full stop.
+
+% If you write a theorem, lemma, proposition etc please use the
+% appropriate environments. For instance:
+
+\begin{thm}[A theorem]
+Format theorems thus. \end{thm}    %Use {thm} for Theorems, {cor} for Corollaries,
+                                  %{lem} for Lemmata, {prop} for Propositions, etc.
+                                  %numbered within sections.
+
+\begin{ex}[An example]
+And format examples thus.\end{ex} %Use {rem} for a Remark, {rems} for Remarks, {defn}
+                                  %for a definition, etc. numbered within sections.
+
+                                  %If numbering theorems, etc. within sections,
+                                  %uncomment the line in the preamble to number
+                                  %equations within sections too.
+
+\begin{theorem}[Another theorem]  %Use {theorem} for Theorems, {corollary} for
+Numbered independently of         %Corollaries, {lemma} for Lemmata, {proposition} for
+the section. \end{theorem}        %Propositions, etc. numbered independently of
+                                  %sections.
+
+\begin{definition}[A definition]  %Use {remark} for Remark, {Remarks} for
+Also numbered independently of    %Remarks, {definition} for Definition, etc.
+the section. \end{definition}     %numbered independently of sections.
+
+                                  %For unnumbered Remarks, use {remnn}, {defnn}, etc.
+
+% The proof of a result should go in the proof environment:
+\begin{proof}
+The proof goes here.
+\end{proof}
+
+%If your paper includes appendices, then precede the first of them by the command
+\appendix
+%and then carry on using the \section and \subsection commands, as above.
+
+\section{The first appendix}
+
+%If you include EPS (encapsulated postscript) figures in your paper,
+%then please use the following commands:
+%\begin{figure}
+%\begin{center}
+%\includegraphics{.eps}
+%\caption{Caption text.}\label{}
+%\end{center}
+%\end{figure}
+
+%%%%%%%%%%Declarations%%%%%%%%%%
+
+\acks % Place the text of your acknowledgements after the \acks (or \Acks) command. This will generate the heading "Acknowledgements". If you wish to make only one acknowledgement, use \ack (or \Ack).
+\noindent We wish to thank...
+
+
+
+\fund % Place any funding information for this work after the \fund (or \Fund) command.
+\noindent Use this section to describe the funding bodies related to this article. If there are no funding bodies to include in this section, please say ``There are no funding bodies to thank relating to this creation of this article.''
+
+
+
+\competing % Place any information on competing interests after the \competing (or \Competing) command.
+\noindent Use this section to describe any competing interests to declare related to this article. If there are no competing interests to declare in this section, please say ``There were no competing interests to declare which arose during the preparation or publication process of this article.''
+
+
+
+\data % Place any information on data related to the work in your article after the \data (or \Data) command. Omit this command/section and text if it is not relevant to your article.
+\noindent The data related to the simulations found in Section 2 can be found at...
+
+
+
+\supp \noindent The supplementary material for this article can be found at http://doi.org/10.1017/[TO BE SET]. % Delete this line if there are no supplementary files related to this article. If there are supplementary files related to your article, leave the line unchanged.
+
+
+
+%%%%%%%%%%%%Reference list%%%%%%%%%%%%%%
+%
+% References should be in the following form (or the BibTeX file
+% apt.bst should be used):
+%
+% For a journal:
+% Surname, Initial (year). Title of paper. {\em Journal title}
+% {\bf Vol,} page--range.
+%
+% For a book:
+% Surname, Initial (year). {\em Book title}. Publisher, Address.
+%
+% Note the following example of a reference list.
+
+\bibliographystyle{APT}
+\bibliography{exportlist.bib}
+
+
+\end{document}

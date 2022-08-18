@@ -45,7 +45,8 @@
 Let $X_1, X_2, \dots, X_N$ be i.i.d. sampled from a spherical symmetric distribution in $\mathbb{R}^d$.
 The convex hull of these $N$ points are an interrupted research topic in stochastic and integral geometry
 \cite{schneider2008stochastic}.
-The main aim of this paper is to provide a integral formula for $\E[F_N]$ and derive its asymptotic expression
+The main aim of this paper is to provide a integral formula for $\E[F_N]$, the expected value of the number of $d-1$ dimensional hyperplanes,
+and derive its asymptotic expression
 for three kinds of distribution families. Furthermore, the estimation of $\E[F_N]$ is used to obtain the upper bound
 of the probability that another sample falls outside of the random convex hull. This probability can be used to
 measure the interpolation ability of training data in machine learning
@@ -57,7 +58,7 @@ In his paper the distribution considered
 is 2D standard gaussian or uniform distribution within a convex region with continuous curvature.
 Later on, Carnal \cite{carnal1970konvexe} generalized R{\'e}nyi's work,
 and studied general symmetric distribution in 2d,
-and obtained the asymptotic expression of $\E[V_N]$
+and obtained the asymptotic expression of $\E[F_N]$
 in three different distribution families.
 
 For $d>2$, the breakthrough is made firstly by
@@ -65,7 +66,12 @@ Raynaud
 \cite{raynaud1970enveloppe}.
 He obtains the asymptotic formula for uniform distribution within a hyperball
 and standard gaussian in $\mathbb{R}^d$.
+Then Dwyer \cite{dwyer1991convex} obtains the order of $\E[F_N]$ about $N$
+in three different distribution families.
 
+However, the asymptotic formula of $\E[F_N]$ is generally unknown.
+In our work, we find that the key lies at generalizing the Carnal's integral formula
+of $H(x)=P(d_{ij}\geq x)$ in 2d, which is a non-trivial work.
 % If you write a theorem, lemma, proposition etc please use the
 % appropriate environments. For instance:
 
@@ -78,9 +84,6 @@ and standard gaussian in $\mathbb{R}^d$.
      %For unnumbered Remarks, use {remnn}, {defnn}, etc.
 
 % The proof of a result should go in the proof environment:
-\begin{proof}
-The proof goes here.
-\end{proof}
 
 %If your paper includes appendices, then precede the first of them by the command
 \appendix

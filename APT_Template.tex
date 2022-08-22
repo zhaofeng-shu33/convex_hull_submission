@@ -34,21 +34,22 @@
 		%codes found here ``https://mathscinet.ams.org/msnhtml/msc2020.pdf''
 
 
-\section{Section} % Initial capital letter, then lower case. No full stop.
+\section{Introduction} % Initial capital letter, then lower case. No full stop.
 
 % Write the text of your paper using normal LaTeX commands.
 % For instance, you can use the `\cite' command~\cite{ref1}.
 % When giving citations a numbering system is preferred~\cite{ref2},
 % but an author--date system is also acceptable~\cite{ref3}.
 
-\subsection{Introduction} % Initial capital letter, then lower case. No full stop.
+%\subsection{Introduction} % Initial capital letter, then lower case. No full stop.
 Let $X_1, X_2, \dots, X_N$ be i.i.d. sampled from a spherical symmetric distribution in $\mathbb{R}^d$.
-The convex hull of these $N$ points are an interrupted research topic in stochastic and integral geometry
+The convex hull $H_N$ of these $N$ points are an interrupted research topic in stochastic and integral geometry
 \cite{schneider2008stochastic}.
-The main aim of this paper is to provide a integral formula for $\E[F_N]$, the expected value of the number of $d-1$ dimensional hyperplanes,
+The main aim of this paper is to provide a integral formula for $\E[F_N]$, the expected value of the number of $d-1$ dimensional hyperplanes
+of $H_N$,
 and derive its asymptotic expression
 for three kinds of distribution families. Furthermore, the estimation of $\E[F_N]$ is used to obtain the upper bound
-of the probability that another sample falls outside of the random convex hull. This probability can be used to
+of the probability $p_{n,d}$, another sample falls outside of the random convex hull. This probability can be used to
 measure the interpolation ability of training data in machine learning
 \cite{balestriero2021learning}.
 
@@ -70,8 +71,81 @@ Then Dwyer \cite{dwyer1991convex} obtains the order of $\E[F_N]$ about $N$
 in three different distribution families.
 
 However, the asymptotic formula of $\E[F_N]$ is generally unknown.
-In our work, we find that the key lies at generalizing the Carnal's integral formula
-of $H(x)=P(d_{ij}\geq x)$ in 2d, which is a non-trivial work.
+In our work, we obtain this formula by generalizing the Carnal's integral formula
+of $H(x)=P(d_{12}\geq x)$ to higher dimensions in Section \ref{sec:int_f}.
+Then we obtain the asymptotic
+expression for $\E[F_N]$ in three different distribution families in Section \ref{sec:three_distriutions}.
+Based on this result,
+we discuss the condition when $p_{n,d}$ converges to zero as $N,d \to \infty$
+in Section \ref{sec:sample_complexity}.
+This condition is applied to explain some dimension explosion problems
+in the field of machine learning.
+
+Without specific mention, the $d$-dimensional distribution considered in this paper is spherically symmetric.
+Below we define some notations which are to be used throughout this paper.
+Let $F(x)=P(|X|\geq x)$ represents the probability that a random point lies outside
+a d-sphere. $G(x)=P(X_1\geq x)$ is the one dimensional marginal distribution.
+Let $d$ represents the distance from the origin to the random hyperplane, spanned by $X_1, \dots, X_d$.
+In 2d, $d=d_{12}$, the distance to the random line passing $X_1, X_2$. $H(x)=P(d\geq x)$ is
+the probability outside of the random hyperplane.
+\section{Integral formula}\label{sec:int_f}
+In 2d, the integral formula for $\E[F_N]$ is given as
+\begin{align}
+     \E[F_N] &= \binom{N}{2} \int_0^{+\infty} 
+     \left[G(x)^{N-2} + (1-G(x))^{N-2} \right]|dH(x)| 
+     \label{eq:E_F_N_2_d}
+\end{align}
+The integral formula of $\E[F_N]$ involves the function $G(x)$ and $H(x)$,
+both of which can be expressed in term of $F(x)$:
+\begin{align}
+   G(x) &=\frac{1}{\pi} \arccos\frac{x}{y} |dF(y)| \\
+     H(x) &= \frac{2}{\pi} \int_x^{\infty} \arccos \frac{x}{z} |d(F^2(z))|
+     \label{eq:H_expression_2_dim}
+\end{align}
+For $d\geq 2$, the integral formula is generalized as
+\begin{align}
+     \E[F_N] &= \binom{N}{d} \int_0^{+\infty} 
+     \left[G(x)^{N-d} + (1-G(x))^{N-d} \right]|dH(x)| 
+     \label{eq:E_F_N_d}
+\end{align}
+Formula first appeared in the proof section of \cite{raynaud1970enveloppe}
+and can further to generalized to contain other integrands \cite{barany2008random}.
+Dwyer obtains the integral formula for $G(x)$ in $d\geq 2$ as:
+\begin{align}
+     G(x) & = \int_x^{+\infty} \kappa(\frac{x}{y}) |dF(y)|
+\end{align}
+where $\kappa(r)$ is the fraction of the surface area of a unit d-sphere
+cut off by a plane at distance $r$ from the origin.
+
+Our main theorem gives the integral formula for $H(x)$ in $d\geq 2$:
+\begin{theorem}\label{thm:H}
+Define the auxiliary function $\kappa(x,y)$ and $K(x)$ as follows: 
+     \begin{align}
+          \kappa(x,y) & :=(1-\frac{x^2}{y^2})^{\frac{d-2}{2}}\\
+          K(x) &:=P(\sqrt{X_1^2+X_2^2}>x)= \int_x^{+\infty} \kappa(x,y)|dF(y)|
+      \end{align}
+Then
+\begin{equation}
+     H(x) = \frac{2}{\pi}
+     \int_x^{+\infty} \arccos\frac{x}{y}
+     |d K^d(y)|\label{eq:H_expression_d_dim}
+\end{equation}
+\end{theorem}
+It is easy to observe that \eqref{eq:H_expression_d_dim} reduces to 
+\eqref{eq:H_expression_2_dim} when $d=2$.
+For standard Gaussian distributions, $X_1, X_2$ are independent 1d
+Gaussian, therefore $K(x) = e^{-x^2/2}$. In fact, $1-K(x)$ is the CDF of Rayleigh distribution.
+
+Below is experimental verification of Theorem \ref{thm:H}.
+The detailed proof is provided in Appendix \ref{app:th}.
+
+\section{Three distribution families}\label{sec:three_distriutions}
+Notice that in \eqref{eq:E_F_N_2_d}, as $G(x)<\frac{1}{2}$ for $x>0$, the integration containing the
+term $G(x)^{N-2}$ decays exponentially fast as $N\to \infty$.
+\subsection{Distributions with algebraic tails}
+\subsection{Distributions with exponential tails}
+\subsection{Distributions with truncated tails}
+\section{Sample complexity in data interpolation}\label{sec:sample_complexity}
 % If you write a theorem, lemma, proposition etc please use the
 % appropriate environments. For instance:
 
@@ -89,7 +163,7 @@ of $H(x)=P(d_{ij}\geq x)$ in 2d, which is a non-trivial work.
 \appendix
 %and then carry on using the \section and \subsection commands, as above.
 
-\section{The first appendix}
+\section{Proof of Theorem \ref{thm:H}}\label{app:th}
 
 %If you include EPS (encapsulated postscript) figures in your paper,
 %then please use the following commands:

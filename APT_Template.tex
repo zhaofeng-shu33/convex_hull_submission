@@ -1,4 +1,5 @@
 \documentclass{aptpub}
+\usepackage{graphicx}
 \authornames{AUTHOR NAMES} % insert the authors here for use in running head. If three or more authors please use (for example) M.~YARROW {\it et al}. Author names should follow the same M.~YARROW format and if two authors, separate by 'AND'.
 \shorttitle{Short title} % insert short title here for use in running head
 
@@ -8,6 +9,7 @@
                                    % then please uncomment this line to number
                                    % equations with sections too.
 \def\E{\mathbb{E}}
+\def\R{\mathbb{R}}
 \begin{document}%\recd{}{}%Do not alter this line.
 
 \title{Title} % insert title - use \\ if it requires more than one line.
@@ -135,9 +137,8 @@ It is easy to observe that \eqref{eq:H_expression_d_dim} reduces to
 \eqref{eq:H_expression_2_dim} when $d=2$.
 For standard Gaussian distributions, $X_1, X_2$ are independent 1d
 Gaussian, therefore $K(x) = e^{-x^2/2}$. In fact, $1-K(x)$ is the CDF of Rayleigh distribution.
-
-Below is experimental verification of Theorem \ref{thm:H}.
-The detailed proof is provided in Appendix \ref{app:th}.
+The detailed proof of Theorem \ref{thm:H}
+is provided in Appendix \ref{app:th}.
 
 \section{Three distribution families}\label{sec:three_distriutions}
 Notice that in \eqref{eq:E_F_N_2_d}, as $G(x)<\frac{1}{2}$ for $x>0$, the integration containing the
@@ -164,7 +165,30 @@ term $G(x)^{N-2}$ decays exponentially fast as $N\to \infty$.
 %and then carry on using the \section and \subsection commands, as above.
 
 \section{Proof of Theorem \ref{thm:H}}\label{app:th}
-
+\begin{lemma}
+     Let $F_0$ represent the
+probability that the distance from the origin to the straight line
+$X_1X_2$ is larger than $x$. Then 
+\begin{equation}
+     F_0(x)=\frac{2\Gamma(\frac{d}{2})}
+     {\sqrt{\pi}\Gamma(\frac{d-1}{2})}
+     \int_x^{+\infty} |dF(y)|
+     \int_x^{y} |dF(z)|dz \int_{a_2/z}^{a_1 /z} (1-u^2)^{\frac{d-3}{2}}du
+ \end{equation}
+where
+\begin{align}
+     a_1 & =\frac{x^2}{y}+\sqrt{z^2-x^2}\sqrt{1-\frac{x^2}{y^2}} > 0 \\
+a_2 & =\frac{x^2}{y}-\sqrt{z^2-x^2}\sqrt{1-\frac{x^2}{y^2}} < 0
+\end{align}
+\end{lemma}
+Lemma gives the integral formula for $P(d_{12}\geq x)$ in $\R^d$.
+The geometric meaning of $a_1, |a_2|$ is illustrated in Figure
+\begin{figure}[!ht]
+     \centering
+     \includegraphics[width=0.8\textwidth]{dessin.pdf}
+\end{figure}
+\begin{proof}
+\end{proof}
 %If you include EPS (encapsulated postscript) figures in your paper,
 %then please use the following commands:
 %\begin{figure}

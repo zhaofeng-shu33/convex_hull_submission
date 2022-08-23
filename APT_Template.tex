@@ -113,7 +113,7 @@ For $d\geq 2$, the integral formula is generalized as
 Formula first appeared in the proof section of \cite{raynaud1970enveloppe}
 and can further to generalized to contain other integrands \cite{barany2008random}.
 Dwyer obtains the integral formula for $G(x)$ in $d\geq 2$ as:
-\begin{align}
+\begin{align}\label{eq:G_d_kappa}
      G(x) & = \int_x^{+\infty} \kappa(\frac{x}{y}) |dF(y)|
 \end{align}
 where $\kappa(r)$ is the fraction of the surface area of a unit d-sphere
@@ -165,14 +165,14 @@ term $G(x)^{N-2}$ decays exponentially fast as $N\to \infty$.
 %and then carry on using the \section and \subsection commands, as above.
 
 \section{Proof of Theorem \ref{thm:H}}\label{app:th}
-\begin{lemma}
+\begin{lemma}\label{lem:F_0}
      Let $F_0$ represent the
 probability that the distance from the origin to the straight line
 $X_1X_2$ is larger than $x$. Then 
-\begin{equation}
+\begin{equation}\label{eq:F_0_expression}
      F_0(x)=\frac{2\Gamma(\frac{d}{2})}
      {\sqrt{\pi}\Gamma(\frac{d-1}{2})}
-     \int_x^{+\infty} |dF(y)|
+     \int_x^{\infty} |dF(y)|
      \int_x^{y} |dF(z)|dz \int_{a_2/z}^{a_1 /z} (1-u^2)^{\frac{d-3}{2}}du
  \end{equation}
 where
@@ -183,11 +183,39 @@ a_2 & =\frac{x^2}{y}-\sqrt{z^2-x^2}\sqrt{1-\frac{x^2}{y^2}} < 0
 \end{lemma}
 Lemma gives the integral formula for $P(d_{12}\geq x)$ in $\R^d$.
 The geometric meaning of $a_1, |a_2|$ is illustrated in Figure
+\ref{fig:a1a2}. That is, if we assume $\cos\theta_1=\frac{x}{z}$,
+and $\cos\theta_2=\frac{x}{y}$.
+then $\frac{a_1}{z} = \cos(\theta_2 - \theta_1),
+\frac{a_2}{z} = \cos(\theta_2+\theta_1)$.
+
 \begin{figure}[!ht]
      \centering
      \includegraphics[width=0.8\textwidth]{dessin.pdf}
+     \caption{The red line represents $a_1$ while the green line is the length of $|a_2|$.}
+     \label{fig:a1a2}
 \end{figure}
-\begin{proof}
+When $d=2$, using $\int \frac{dx}{\sqrt{1-x^2}} = -\arccos x + C$,
+we obtain
+$$
+F_0(x)=\frac{4}{\pi} \int_x^{\infty} \arccos\frac{x}{z}|dF(y)|
+\int_x^{y} |dF(z)|dz
+$$
+which reduces to \eqref{eq:H_expression_2_dim}.
+\begin{proof}[Proof of Lemma \ref{lem:F_0}]
+For $d\geq 2$ and $x<z<y$, we follow the geometric approach adopted to derive
+$H(x)$ in \cite{carnal1970konvexe}.
+Then we only need to compute the ratio of surface area
+on the sphere with radius $z$. This is the area between
+two planes at distance $\frac{a_1}{z}$ and $\frac{a_2}{z}$
+on a unit sphere. From (1.1) of \cite{dwyer1991convex},
+this ratio equals $\kappa(\frac{a_2}{z}) - \kappa(\frac{a_1}{z})$
+where
+\begin{equation}
+     \kappa(r) = \frac{\Gamma(\frac{d}{2})}
+     {\sqrt{\pi}\Gamma(\frac{d-1}{2})}\int_r^{1}
+     (1-u^2)^{(d-3)/2}du
+\end{equation}
+Notice that $\kappa$ has been used in \eqref{eq:G_d_kappa}.
 \end{proof}
 %If you include EPS (encapsulated postscript) figures in your paper,
 %then please use the following commands:

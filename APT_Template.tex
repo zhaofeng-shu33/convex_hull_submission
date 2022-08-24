@@ -1,5 +1,6 @@
 \documentclass{aptpub}
 \usepackage{graphicx}
+\usepackage{bookmark}
 \authornames{AUTHOR NAMES} % insert the authors here for use in running head. If three or more authors please use (for example) M.~YARROW {\it et al}. Author names should follow the same M.~YARROW format and if two authors, separate by 'AND'.
 \shorttitle{Short title} % insert short title here for use in running head
 
@@ -123,8 +124,12 @@ Our main theorem gives the integral formula for $H(x)$ in $d\geq 2$:
 \begin{theorem}\label{thm:H}
 Define the auxiliary function $\kappa(x,y)$ and $K(x)$ as follows: 
      \begin{align}
-          \kappa(x,y) & :=(1-\frac{x^2}{y^2})^{\frac{d-2}{2}}\\
-          K(x) &:=P(\sqrt{X_1^2+X_2^2}>x)= \int_x^{+\infty} \kappa(x,y)|dF(y)|
+          \lambda(r) & :=(1-r^2)^{\frac{d-2}{2}}
+          \label{eq:lambda_r}\\
+          K(x) &:=P(\sqrt{X_1^2+X_2^2}>x)=
+          \int_x^{+\infty}
+          \lambda \left(\frac{x}{y} \right)|dF(y)|
+          \label{eq:K_x}
       \end{align}
 Then
 \begin{equation}
@@ -173,20 +178,29 @@ $X_1X_2$ is larger than $x$. Then
      F_0(x)=\frac{2\Gamma(\frac{d}{2})}
      {\sqrt{\pi}\Gamma(\frac{d-1}{2})}
      \int_x^{\infty} |dF(y)|
-     \int_x^{y} |dF(z)|dz \int_{a_2/z}^{a_1 /z} (1-u^2)^{\frac{d-3}{2}}du
+     \int_x^{y} |dF(z)| \int_{a_2/z}^{a_1 /z} (1-u^2)^{\frac{d-3}{2}}du
  \end{equation}
 where
 \begin{align}
-     a_1 & =\frac{x^2}{y}+\sqrt{z^2-x^2}\sqrt{1-\frac{x^2}{y^2}} > 0 \\
+     a_1 & =\frac{x^2}{y}+\sqrt{z^2-x^2}\sqrt{1-\frac{x^2}{y^2}} > 0
+     \label{eq:a_1} \\
 a_2 & =\frac{x^2}{y}-\sqrt{z^2-x^2}\sqrt{1-\frac{x^2}{y^2}} < 0
+\label{eq:a_2}
 \end{align}
 \end{lemma}
 Lemma gives the integral formula for $P(d_{12}\geq x)$ in $\R^d$.
 The geometric meaning of $a_1, |a_2|$ is illustrated in Figure
-\ref{fig:a1a2}. That is, if we assume $\cos\theta_1=\frac{x}{z}$,
-and $\cos\theta_2=\frac{x}{y}$.
-then $\frac{a_1}{z} = \cos(\theta_2 - \theta_1),
-\frac{a_2}{z} = \cos(\theta_2+\theta_1)$.
+\ref{fig:a1a2}. That is, if we assume
+\begin{equation}\label{eq:theta_1_theta_2}
+     \cos\theta_1=\frac{x}{z},
+     \textrm{ and } \cos\theta_2=\frac{x}{y} 
+\end{equation}
+then
+\begin{equation}\label{eq:a_1_a_2}
+     \frac{a_1}{z} = \cos(\theta_2 - \theta_1),
+     \quad
+     \frac{a_2}{z} = \cos(\theta_2+\theta_1)           
+\end{equation}
 
 \begin{figure}[!ht]
      \centering
@@ -216,6 +230,168 @@ where
      (1-u^2)^{(d-3)/2}du
 \end{equation}
 Notice that $\kappa$ has been used in \eqref{eq:G_d_kappa}.
+\end{proof}
+To show 
+$K(x) = \int_x^{+\infty} \lambda(\frac{x}{y})|dF(y)|$
+in \eqref{eq:K_x},
+we only need to connect $\lambda(r)$ with its geometric meaning,
+which is given in the following lemma:
+\begin{lemma}
+     The ratio of surface area of a unit sphere,
+     satisfying $x_1^2+x_2^2\geq r$ is $\lambda(r)$,
+     defined in \eqref{eq:lambda_r}.
+\end{lemma}
+\begin{proof}
+     Following \cite{dwyer1991convex}, we use $\kappa_d = 2\pi^{d/2}/\Gamma(d/2)$
+     to represent the surface area of the unit d-sphere. Then
+     \begin{align}
+          \lambda(r) &=\frac{1}{\kappa_d} 
+          \cdot 2\int_{\substack{x_1^2+x_2^2\geq r^2\\
+          x_1^2+\dots+x_{d-1}^2\leq 1 }} 
+          \frac{1}{\sqrt{1-x_1^2-\dots -x_{d-1}^2}} dx_1 \dots dx_{d-1}\\
+      &= \frac{4\pi}{\kappa_d} \int_r^1 xdx \int_{x_3^2+\dots + x_{d-1}^2 \leq 1-x^2} \frac{dx_3\dots dx_{d-1}}
+      {\sqrt{1-x^2-x_3^2-\dots -x_{d-1}^2}} \\
+      &=\frac{4\pi \kappa_{d-3}}{\kappa_d} \int_r^1 xdx \int_0^{\sqrt{1-x^2}} \frac{y^{d-4}dy}{\sqrt{1-x^2-y^2}}\\
+      &=\frac{4\pi \kappa_{d-3}}{\kappa_d} \int_0^{\sqrt{1-r^2}} y^{d-4}dy \int_r^{\sqrt{1-y^2}} \frac{xdx}{\sqrt{1-x^2-y^2}}\\
+      &=\frac{4\pi \kappa_{d-3}}{\kappa_d} \int_0^{\sqrt{1-r^2}} y^{d-4}\sqrt{1-r^2-y^2} dy\\
+      &=\frac{4\pi \kappa_{d-3}}{\kappa_d}  \frac{B(\frac{3}{2 }, \frac{d-3}{2})}{2}(1-r^2)^{(d-2)/2}\\
+      &=  (1-r^2)^{(d-2)/2}
+      \end{align}
+\end{proof}
+
+\begin{lemma}\label{lem:cn_integration}
+For $0<c<1$ and $n$ is a non-negative positive integer,   
+\begin{equation}
+    \int_0^{c}
+    [\frac{1}{(1-t)^{n+2}}+\frac{1}{(1+t)^{n+2}}]
+    (c^2- t^2)^{(n-1)/2}dt
+    =B(\frac{n+1}{2}, \frac{1}{2})
+    \frac{c^n}{(1-c^2)^{(n+3)/2}}
+    \end{equation}\label{eq:c_int_eq}
+\end{lemma}
+\begin{proof}[Proof of Lemma \ref{lem:cn_integration}]
+     When $n=0$, the left hand side equals
+     \begin{align*}
+          \int_0^c \frac{2(1+t^2)}{(1-t^2)^2 \sqrt{c^2-t^2}} dt
+          = \int_0^{\sqrt{c}} \frac{1+t}{(1-t)^2 \sqrt{t} \sqrt{c^2-t} }dt
+     \end{align*}     
+     We make change of variables $x=\sqrt{t/(c^2-t)}$ and obtain
+     the value $\frac{\pi}{(1-c^2)^{3/2}}$, which equals
+     the right hand side.
+     When $n=1$, we can use integration
+     to show \eqref{eq:c_int_eq} holds.
+
+     Let
+\begin{equation}\label{eq:f_n_c_def}
+ f(n,c)=   \int_0^{c}
+    [\frac{1}{(1-t)^{n+2}}+\frac{1}{(1+t)^{n+2}}]
+    (c^2- t^2)^{(n-1)/2}dt
+\end{equation}
+When $n\geq 2$, by integration by parts 
+we have 
+\begin{equation}\label{eq:tmp_n_u_d_f_n}
+    \frac{n+1}{n-1}f(n,c)
+    =\int_0^{c}
+    \left[\frac{1}{(1-t)^{n+1}}
+    -\frac{1}{(1+t)^{n+1}}
+    \right]
+    t(c^2- t^2)^{(n-3)/2}
+    dt
+\end{equation}
+Let $t=\frac{(1+t)-(1-t)}{2}$ in the right hand side
+of \eqref{eq:tmp_n_u_d_f_n}, then
+\begin{equation}
+    2\frac{n+1}{n-1}f(n,c)
+=    -f(n-2,c)  
++ \int_0^{c}
+\left[\frac{1+t}{(1-t)^{n+1}}
++\frac{1-t}{(1+t)^{n+1}}
+\right]
+(c^2- t^2)^{(n-3)/2}
+dt
+\end{equation}
+On the other hand,
+From \eqref{eq:f_n_c_def},
+$(c^2-t^2)^{(n-1)/2}
+=[(c^2-1)+(1-t^2)](c^2-t^2)^{(n-3)/2}$
+\begin{equation}
+    f(n, c) = \frac{c^2-1}{2c}\frac{2}{n-1}\frac{\partial f(n,c)}{\partial c}
+    +  \int_0^{c}
+    \left[\frac{1+t}{(1-t)^{n+1}}
+    +\frac{1-t}{(1+t)^{n+1}}
+    \right]
+    (c^2- t^2)^{(n-3)/2}
+    dt
+\end{equation}
+Therefore,
+\begin{equation}\label{eq:sim_1tc}
+    f(n,c)=\frac{c^2-1}{2c}\frac{2}{n-1}\frac{\partial f(n,c)}{\partial c}
+    + [2\frac{n+1}{n-1} f(n,c) + f(n-2, c)]
+\end{equation}
+then we can use induction and solve this
+first order linear ODE about $f(n,c)$.
+With initial condition $f(n,0)=0$ and
+suppose
+$f(n-2,c)=B(\frac{n-1}{2}, \frac{1}{2})
+\frac{c^{n-2}}{(1-c^2)^{(n+1)/2}}$.
+Then \eqref{eq:sim_1tc} is simplified as
+\begin{equation}
+    \frac{\partial f(n,c)}{\partial c}
+    - \frac{(n+3)c}{1-c^2} f(n,c)
+    = B((n-1)/2, 1/2)\frac{(n-1)c^{n-1}}{(1-c^2)^{(n+3)/2}}
+\end{equation}
+Using the integration factor $I(c)=(1-c^2)^{(n+3)/2}$, we obtain
+\begin{equation}
+    f(n,c)= B(\frac{n+1}{2}, \frac{1}{2})
+    \frac{c^n}{(1-c^2)^{(n+3)/2}}
+\end{equation}
+
+\end{proof}
+
+Having defined $K(x), F_0(x)$, we find the following relationship holds:
+\begin{lemma}\label{lem:K_F_relationship}
+\begin{equation}\label{eq:F_0_integration}
+     \int_u^{+\infty}
+     (1-\frac{u^2}{x^2})^{\frac{d-3}{2}} |dF_0(x)| = K^2(u)
+\end{equation}
+\end{lemma}
+\begin{proof}[Proof of Lemma \ref{lem:K_F_relationship}]
+     By the chain rule, from \eqref{eq:a_1_a_2} we obtain
+\begin{align*}
+    \frac{d}{dx}\frac{a_1}{z} &
+    = \sin(\theta_2 - \theta_1)
+    \left(\frac{-1}{z\sin\theta_1}
+    +\frac{1}{y\sin \theta_2}\right)\\
+    \frac{d}{dx}\frac{a_2}{z} &
+    = \sin(\theta_2 + \theta_1)
+    \left(\frac{1}{z\sin\theta_1}
+    +\frac{1}{y\sin \theta_2}\right)
+\end{align*}
+where $\theta_1, \theta_2$ are defined in \eqref{eq:theta_1_theta_2}.
+Then from \eqref{eq:F_0_expression}
+\begin{align*}
+    \frac{d F_0(x)}{dx} & =\frac{2\Gamma(\frac{d}{2})}
+    {\sqrt{\pi}\Gamma(\frac{d-1}{2})}
+    \int_x^{+\infty} |dF(y)| \int_x^y |f(x,y,z)| |dF(z)| 
+    \textrm{ where }\\
+    f(x,y,z) & = \sin^{d-2} (\theta_2 - \theta_1)
+    \left(\frac{-1}{z\sin\theta_1}
+    +\frac{1}{y\sin \theta_2}\right)
+    - \sin^{d-2}(\theta_1 + \theta_2)
+    \left(\frac{1}{z\sin\theta_1}
+    +\frac{1}{y\sin \theta_2}\right)
+\end{align*}
+Compared with the expression of $K(x)$ in
+\eqref{eq:K_x},
+we only need to prove
+\begin{equation}\label{eq:ref_prove_integration}    
+    \frac{2\Gamma(\frac{d}{2})}
+    {\sqrt{\pi}\Gamma(\frac{d-1}{2})}
+    \int_u^z (1-\frac{u^2}{x^2})^{\frac{d-3}{2}}
+    f(x,y,z)dx =
+    2(1-\frac{u^2}{y^2})^{\frac{d-2}{2}}
+    (1-\frac{u^2}{z^2})^{\frac{d-2}{2}}
+\end{equation}
 \end{proof}
 %If you include EPS (encapsulated postscript) figures in your paper,
 %then please use the following commands:

@@ -341,7 +341,7 @@ Then \eqref{eq:sim_1tc} is simplified as
     = B((n-1)/2, 1/2)\frac{(n-1)c^{n-1}}{(1-c^2)^{(n+3)/2}}
 \end{equation}
 Using the integration factor $I(c)=(1-c^2)^{(n+3)/2}$, we obtain
-\begin{equation}
+\begin{equation}\label{eq:f_n_c_expression}
     f(n,c)= B(\frac{n+1}{2}, \frac{1}{2})
     \frac{c^n}{(1-c^2)^{(n+3)/2}}
 \end{equation}
@@ -388,10 +388,66 @@ we only need to prove
     \frac{2\Gamma(\frac{d}{2})}
     {\sqrt{\pi}\Gamma(\frac{d-1}{2})}
     \int_u^z (1-\frac{u^2}{x^2})^{\frac{d-3}{2}}
-    f(x,y,z)dx =
+    |f(x,y,z)|dx =
     2(1-\frac{u^2}{y^2})^{\frac{d-2}{2}}
     (1-\frac{u^2}{z^2})^{\frac{d-2}{2}}
 \end{equation}
+We can expand $f(x,y,z)$ as follows:
+\begin{align*}
+-f(x,y,z)&=\frac{\sin^{d-2}(\theta_2+\theta_1)
++ \sin^{d-2}(\theta_2 - \theta_1)}{z\sin\theta_1}
++\frac{\sin^{d-2}(\theta_2+\theta_1)
+- \sin^{d-2}(\theta_2 - \theta_1)}{y\sin\theta_2} \\
+&=\frac{2}{z\sin\theta_1}\sum_{k \textrm{ is even}}
+\binom{d-2}{k} (\sin\theta_2\cos\theta_1)^{d-2-k}
+(\cos\theta_2 \sin\theta_1)^k \\
+&+\frac{2}{y\sin\theta_2} \sum_{k \textrm{ is odd}}
+\binom{d-2}{k} (\sin\theta_2\cos\theta_1)^{d-2-k}
+(\cos\theta_2 \sin\theta_1)^k
+\end{align*}
+Therefore,
+\begin{align*}
+|f(x,y,z)|
+= \frac{2x^{d-2}}{y^{d-2}z^{d-2}}
+\left[
+     \sum_{k \textrm{ is even}}
+     \binom{d-2}{k} (z^2-x^2)^{\frac{k-1}{2}}
+     (y^2-x^2)^{\frac{d-2-k}{2}}
+    + \sum_{k \textrm{ is odd}}
+    \binom{d-2}{k}    (z^2-x^2)^{\frac{k}{2}}
+    (y^2-x^2)^{\frac{d-3-k}{2}}
+\right]
+\end{align*}
+Let $a=z^2-u^2, b=y^2-u^2$, then
+\begin{align*}
+     \int_u^z (1-\frac{u^2}{x^2})^{\frac{d-3}{2}}
+     |f(x,y,z)|dx
+     &=\frac{1}{y^{d-2}z^{d-2}}
+     \int_0^a x^{\frac{d-3}{2}}\Big[\sum_{k \textrm{ is even}}
+     \binom{d-2}{k} (a-x)^{\frac{k-1}{2}}
+     (b-x)^{\frac{d-2-k}{2}}\\
+     &+ \sum_{k \textrm{ is odd}}
+     \binom{d-2}{k} (a-x)^{\frac{k}{2}}
+     (b-x)^{\frac{d-3-k}{2}}
+     \Big]dx\\
+     &=\frac{1}{2y^{d-2}z^{d-2}}
+     \int_0^a x^{\frac{d-3}{2}}\Big[\frac{(\sqrt{b-x} + \sqrt{a-x})^{d-2}+(\sqrt{b-x} - \sqrt{a-x})^{d-2}}{\sqrt{a-x}}\\
+     &+\frac{(\sqrt{b-x} + \sqrt{a-x})^{d-2}-(\sqrt{b-x} - \sqrt{a-x})^{d-2}}{\sqrt{b-x}}\Big] dx
+\end{align*}
+Let $t=\sqrt{\frac{a-x}{b-x}}$, we then obtain
+\begin{align*}
+     \int_u^z (1-\frac{u^2}{x^2})^{\frac{d-3}{2}}
+     |f(x,y,z)|dx
+     =\frac{(b-a)^{\frac{d-1}{2}}}{y^{d-2}z^{d-2}}\int_0^{\sqrt{a/b}}
+     \left[\frac{1}{(1-t)^{d-1}}+\frac{1}{(1+t)^{d-1}}\right](a-bt^2)^{\frac{d-3}{2}}dt
+\end{align*}
+Let $c=\sqrt{a/b}$ and $d=n+2$ in the expression of $f(n,c)$ in \eqref{eq:f_n_c_expression},
+we obtain
+\begin{align*}
+     \int_u^z (1-\frac{u^2}{x^2})^{\frac{d-3}{2}}
+     |f(x,y,z)|dx
+     =
+\end{align*}
 \end{proof}
 %If you include EPS (encapsulated postscript) figures in your paper,
 %then please use the following commands:

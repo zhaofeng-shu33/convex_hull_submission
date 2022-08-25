@@ -124,11 +124,11 @@ Our main theorem gives the integral formula for $H(x)$ in $d\geq 2$:
 \begin{theorem}\label{thm:H}
 Define the auxiliary function $\kappa(x,y)$ and $K(x)$ as follows: 
      \begin{align}
-          \lambda(r) & :=(1-r^2)^{\frac{d-2}{2}}
+          \lambda_d(r) & :=(1-r^2)^{\frac{d-2}{2}}
           \label{eq:lambda_r}\\
           K(x) &:=P(\sqrt{X_1^2+X_2^2}>x)=
           \int_x^{+\infty}
-          \lambda \left(\frac{x}{y} \right)|dF(y)|
+          \lambda_d \left(\frac{x}{y} \right)|dF(y)|
           \label{eq:K_x}
       \end{align}
 Then
@@ -142,6 +142,7 @@ It is easy to observe that \eqref{eq:H_expression_d_dim} reduces to
 \eqref{eq:H_expression_2_dim} when $d=2$.
 For standard Gaussian distributions, $X_1, X_2$ are independent 1d
 Gaussian, therefore $K(x) = e^{-x^2/2}$. In fact, $1-K(x)$ is the CDF of Rayleigh distribution.
+%For general spherical distributions, the function $K(x)$ itself is irreverent with the dimension $d$.
 The detailed proof of Theorem \ref{thm:H}
 is provided in Appendix \ref{app:th}.
 
@@ -232,20 +233,20 @@ where
 Notice that $\kappa$ has been used in \eqref{eq:G_d_kappa}.
 \end{proof}
 To show 
-$K(x) = \int_x^{+\infty} \lambda(\frac{x}{y})|dF(y)|$
+$K(x) = \int_x^{+\infty} \lambda_d(\frac{x}{y})|dF(y)|$
 in \eqref{eq:K_x},
-we only need to connect $\lambda(r)$ with its geometric meaning,
+we only need to connect $\lambda_d(r)$ with its geometric meaning,
 which is given in the following lemma:
 \begin{lemma}
-     The ratio of surface area of a unit sphere,
-     satisfying $x_1^2+x_2^2\geq r$ is $\lambda(r)$,
+     The ratio of surface area of a unit d-sphere,
+     satisfying $x_1^2+x_2^2\geq r$ is $\lambda_d(r)$,
      defined in \eqref{eq:lambda_r}.
 \end{lemma}
 \begin{proof}
      Following \cite{dwyer1991convex}, we use $\kappa_d = 2\pi^{d/2}/\Gamma(d/2)$
      to represent the surface area of the unit d-sphere. Then
      \begin{align}
-          \lambda(r) &=\frac{1}{\kappa_d} 
+          \lambda_d(r) &=\frac{1}{\kappa_d} 
           \cdot 2\int_{\substack{x_1^2+x_2^2\geq r^2\\
           x_1^2+\dots+x_{d-1}^2\leq 1 }} 
           \frac{1}{\sqrt{1-x_1^2-\dots -x_{d-1}^2}} dx_1 \dots dx_{d-1}\\
@@ -449,6 +450,54 @@ we obtain
      = \frac{1}{y^{d-2}z^{d-2}}h(d-2, \sqrt{a/b}) (1-c^2)^{\frac{n+1}{2}}b^{\frac{n}{2}}
 \end{align}
 After simplification of \eqref{eq:int_u_x_f_x}, we obtain \eqref{eq:ref_prove_integration}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:H}]
+     
+We use $F_1(x)$ to represent the probability that
+the distance from the origin to the plane $P_1P_2\dots P_{d-1}$
+is larger than $x$.
+
+
+Firstly we show that $F_1(x)=K^{d-1}(x)$.
+For $d=2$, it is trivial.
+by induction we suppose $F_1(x)=K^{d'-1}(x)$ is true for
+$d'\leq d-1$. In $d'$ dimensional space, suppose $|P_1|=y>x$,
+then the conditional probability that $P_1P_2\dots P_{d'-1}$ is larger than
+$x$ is given by $K^{d'-2}(x)\lambda_{d'}(x/y)$ by the definition of $K(x)$.
+For $d'=d$, 
+we firstly specify a straight line passing through $P_{d-2}P_{d-1}$,
+the space perpendicular 
+to this line has $d-1$ dimension while the straight line shrinks to a single point $P'_{d-2}$
+in this subspace. Given $|P'_{d-2}|=y$,
+the conditional probability $P_1P_2\dots P'_{d-2}$ is larger than
+$x$ is
+$K^{d-3}(x)\lambda_{d-1}(x/y)$.
+Then we have
+\begin{align*}
+    F_1(x) &= \int_x^{+\infty} K^{d-3}(x) \lambda_{d-1}(\frac{x}{y})|dF_0(y)| \\
+\end{align*}
+From Lemma \ref{lem:K_F_relationship} we obtain $F_1(x) = K^{d-1}(x)$.
+
+To finish the proof and compute $H(x)$, we first specify a hyperplane $P_2P_3\dots P_{d}$,
+whose distance to the origin is $y$. The subspace perpendicular to this plane is a 2d subspace,
+and this hyperplane shrinks to a point $P'_2$ in this 2d plane.
+Similar to (1.9) of \cite{carnal1970konvexe}, we have
+\begin{align}\label{eq:H_eq_n_arccos_geometric}
+     H(x) &= \frac{2}{\pi}\int_x^{+\infty}|dF_1(y)|
+     \left[ \int_x^y \arccos\frac{x}{z}|dK(z)|
+     +\int_y^{+\infty}\arccos\frac{x}{y} |dK(z)|\right]\\
+     &=\frac{2}{\pi}\int_x^{+\infty} \arccos\frac{x}{z}
+     F_1(z)|dK(z)|+\frac{2}{\pi}\int_{x}^{+\infty} K(y)F_1(y)\arccos\frac{x}{y}|dF_1(y)| \notag 
+ \end{align}
+Using $F_1(x)=K^{d-1}(x)$,
+We reduce \eqref{eq:H_eq_n_arccos_geometric} to
+ $$
+ H(x) = \frac{2}{\pi}\int_x^{+\infty}  \arccos\frac{x}{y}\cdot
+ d\cdot  K^{d-1}(y) |dK(y)|
+ $$
+ which is exactly \eqref{eq:H_expression_d_dim}.
+ 
 \end{proof}
 %If you include EPS (encapsulated postscript) figures in your paper,
 %then please use the following commands:

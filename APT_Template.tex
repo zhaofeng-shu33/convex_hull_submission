@@ -52,7 +52,7 @@ The main aim of this paper is to provide a integral formula for $\E[F_N]$, the e
 of $H_N$,
 and derive its asymptotic expression
 for three kinds of distribution families. Furthermore, the estimation of $\E[F_N]$ is used to obtain the upper bound
-of the probability $p_{n,d}$, another sample falls outside of the random convex hull. This probability can be used to
+of the probability $p_{N,d}$, another sample falls outside of the random convex hull. This probability can be used to
 measure the interpolation ability of training data in machine learning
 \cite{balestriero2021learning}.
 
@@ -79,7 +79,7 @@ of $H(x)=P(d_{12}\geq x)$ to higher dimensions in Section \ref{sec:int_f}.
 Then we obtain the asymptotic
 expression for $\E[F_N]$ in three different distribution families in Section \ref{sec:three_distriutions}.
 Based on this result,
-we discuss the condition when $p_{n,d}$ converges to zero as $N,d \to \infty$
+we discuss the condition when $p_{N,d}$ converges to zero as $N,d \to \infty$
 in Section \ref{sec:sample_complexity}.
 This condition is applied to explain some dimension explosion problems
 in the field of machine learning.
@@ -91,6 +91,10 @@ a d-sphere. $G(x)=P(X_1\geq x)$ is the one dimensional marginal distribution.
 Let $d$ represents the distance from the origin to the random hyperplane, spanned by $X_1, \dots, X_d$.
 In 2d, $d=d_{12}$, the distance to the random line passing $X_1, X_2$. $H(x)=P(d\geq x)$ is
 the probability outside of the random hyperplane.
+\section{Related work}
+
+Distributions with Algebraic tails are related with Poisson random process.
+
 \section{Integral formula}\label{sec:int_f}
 In 2d, the integral formula for $\E[F_N]$ is given as
 \begin{align}
@@ -147,9 +151,65 @@ The detailed proof of Theorem \ref{thm:H}
 is provided in Appendix \ref{app:th}.
 
 \section{Three distribution families}\label{sec:three_distriutions}
-Notice that in \eqref{eq:E_F_N_2_d}, as $G(x)<\frac{1}{2}$ for $x>0$, the integration containing the
-term $G(x)^{N-2}$ decays exponentially fast as $N\to \infty$.
+Notice that in \eqref{eq:E_F_N_d}, as $G(x)<\frac{1}{2}$ for $x>0$, the integration containing the
+term $G(x)^{N-d}$ decays exponentially fast as $N-d\to \infty$.
+Therefore, we obtain
+\begin{align}
+     \E[F_N] \sim \binom{N}{d} \int_0^{+\infty} 
+      (1-G(x))^{N-d} |dH(x)| 
+     \label{eq:E_F_N_d_sim}
+\end{align}
+Let $\E[V_N]$ represent the expectation of the number of
+vertices of $H_N$.
+By far we haven't found any explicit relation between $\E[F_N]$ and $\E[V_N]$
+for general spherical symmetric distribution.
+Using Corollary 19.6 of \cite{brondsted2012introduction}, we have the following
+inequality:
+\begin{equation}\label{eq:F_V_upper}
+     F_N \geq (d-1) V_N - (d+1)(d-2)
+ \end{equation}
+Combined with $p_{N,d} = \frac{\E[V_{N+1}]}{N+1}$, which comes from
+\cite{efron1965convex}, we have the following upper bound for $p_{N,d}$:
+\begin{equation}
+    p_{N,d} \leq \frac{\E[F_N]}{d N} \textrm{ as } N \gg d
+\end{equation}
+Based on \eqref{eq:E_F_N_d_sim}, in the following
+we derive the asymptotic expression of $\E[F_N]$
+for three different distribution families.
 \subsection{Distributions with algebraic tails}
+In this section, we deal with the distribution with the form
+\begin{equation}
+     F(x) = x^{-k} L(x), k\geq 0
+\end{equation}
+Dwyer\cite{dwyer1991convex} has obtained $G(x)$ as:
+\begin{equation}
+     G(x) \sim \frac{\Gamma(\frac{d}{2})}{2\sqrt{\pi} \Gamma(\frac{d-1}{2})}
+     B\left(\frac{k+1}{2}, \frac{d-1}{2}\right) F(x)  \textrm{ as } x\to \infty
+\end{equation}
+From Theorem \ref{thm:H}, we obtain the asymptotic
+expression of $H(x)$ as
+\begin{equation}
+     H(x) \sim \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
+     \Gamma(\frac{dk+1}{2})}{
+         \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)} G(x)^d 
+         \textrm{ as } x\to \infty
+\end{equation}
+and from \eqref{eq:E_F_N_d_sim}
+\begin{equation}\label{eq:efn_poly_second_deri}
+    \E[F_N] \sim \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
+    \Gamma(\frac{dk+1}{2})}{
+        \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)}
+        \textrm{ as } N \to \infty, d \textrm { is fixed}
+\end{equation}
+When we allow $d\to \infty$ while keeping $N-d\to \infty$,
+\begin{equation}
+\E[F_N] \sim \sqrt{\frac{2}{\pi}}\frac{1}{d}\left(
+          \frac{\sqrt{\pi}k \Gamma(k/2)}
+          {\Gamma(\frac{k+1}{2})}
+      \right)^d     \exp
+      \left(\frac{2d^2+d}{2(N-d)} \right)  
+\end{equation}
+
 \subsection{Distributions with exponential tails}
 \subsection{Distributions with truncated tails}
 \section{Sample complexity in data interpolation}\label{sec:sample_complexity}

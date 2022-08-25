@@ -176,11 +176,13 @@ Combined with $p_{N,d} = \frac{\E[V_{N+1}]}{N+1}$, which comes from
 Based on \eqref{eq:E_F_N_d_sim}, in the following
 we derive the asymptotic expression of $\E[F_N]$
 for three different distribution families.
-\subsection{Distributions with algebraic tails}
+\subsection{Distributions with polynomial tails}
 In this section, we deal with the distribution with the form
-\begin{equation}
+\begin{equation}\label{eq:F_poly_tail}
      F(x) = x^{-k} L(x), k\geq 0
 \end{equation}
+where $L(x)$ is a slowly varying function.
+
 Dwyer\cite{dwyer1991convex} has obtained $G(x)$ as:
 \begin{equation}
      G(x) \sim \frac{\Gamma(\frac{d}{2})}{2\sqrt{\pi} \Gamma(\frac{d-1}{2})}
@@ -201,15 +203,19 @@ and from \eqref{eq:E_F_N_d_sim}
         \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)}
         \textrm{ as } N \to \infty, d \textrm { is fixed}
 \end{equation}
-When we allow $d\to \infty$ while keeping $N-d\to \infty$,
-\begin{equation}
-\E[F_N] \sim \sqrt{\frac{2}{\pi}}\frac{1}{d}\left(
-          \frac{\sqrt{\pi}k \Gamma(k/2)}
-          {\Gamma(\frac{k+1}{2})}
-      \right)^d     \exp
+When we allow $d\to \infty$ while requiring $N/d \to \infty$,
+\begin{equation}\label{eq:poly_E_F_N_d_infty}
+\E[F_N] \sim \sqrt{\frac{2}{\pi dk}}\left(
+     \frac{\sqrt{\pi}k \Gamma(k/2)}
+     {\Gamma(\frac{k+1}{2})}
+ \right)^d
+    \exp
       \left(\frac{2d^2+d}{2(N-d)} \right)  
 \end{equation}
-
+Equation \eqref{eq:efn_poly_second_deri} tells
+us that $\E[F_N]$ converges to a constant as $N \to \infty$.
+When $d=2$, the result has been obtained in (2.4) of \cite{carnal1970konvexe}
+and Theorem 4.4 of \cite{davis1987convex}.
 \subsection{Distributions with exponential tails}
 \subsection{Distributions with truncated tails}
 \section{Sample complexity in data interpolation}\label{sec:sample_complexity}
@@ -559,6 +565,82 @@ We reduce \eqref{eq:H_eq_n_arccos_geometric} to
  which is exactly \eqref{eq:H_expression_d_dim}.
  
 \end{proof}
+\section{Computation involved in three different tails}
+\subsection{Computation involved in polynomial tails}
+The techniques used in this subsection are similar to the derivation of $G(x)$
+in (2.3) of \cite{carnal1970konvexe}. Here, we use a less rigorous approach and omit the split
+of interval of integration.
+
+For polynomial tails defined in \eqref{eq:F_poly_tail},
+we first compute the asymptotic value of $K(x)$
+as follows:
+\begin{align*}
+     K(x) & = \int_x^{\infty} (1-\frac{x^2}{y^2})^{\frac{d-2}{2}} |dF(y)| \\
+     &= (d-2)\int_x^{\infty} F(y)\frac{x^2}{y^3} (1-\frac{x^2}{y^2})^{\frac{d-4}{2}} dy\\
+     (y=x/t) &= (d-2)x^{-k} \int_0^{1} L(x/t) t^{k+1} (1-t^2)^{(d-4)/2}dt \\
+     & \sim F(x) \frac{d-2}{2} B\left(\frac{k+2}{2}, \frac{d}{2}-1\right) 
+\end{align*}
+\begin{align*}
+     H(x) &= \frac{2}{\pi}
+     \int_x^{\infty} \arccos\frac{x}{y}
+     |d K^d(y)| \\
+     &\sim \frac{2}{\pi}\left(\frac{d-2}{2}\right)^d
+     B^d\left(\frac{k+2}{2}, \frac{d}{2}-1\right)
+     \int_x^{\infty} \frac{x}{y \sqrt{y^2-x^2}} F^d(y) dy \\
+     &\sim \frac{2}{\pi}\left(\frac{d-2}{2}\right)^d
+     B^d\left(\frac{k+2}{2}, \frac{d}{2}-1\right) \frac{1}{2}
+     B\left(\frac{1}{2}, \frac{dk+1}{2}\right)L^d(x) x^{-dk} \\
+     &\sim \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
+     \Gamma(\frac{dk+1}{2})}{
+         \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)} G(x)^d 
+\end{align*}
+To simplify the notation, denote $g(d)=\frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
+\Gamma(\frac{dk+1}{2})}{
+    \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)}$.
+Let $G(x)=w$, then
+\begin{align}
+     \E[F_N] &\sim g(d)\binom{N}{d} \int_0^{+\infty} 
+      (1-G(x))^{N-d} |dH(x)| \notag \\
+      &\sim g(d)\binom{N}{d}d\int_0^{1/2} \exp(-(N-d)w)w^{d-1}dw
+      \notag \\
+      &\sim \frac{N!}{(N-d)! (N-d)^d}g(d) \label{eq:Ngd}
+\end{align}
+\eqref{eq:efn_poly_second_deri} is obtained from \eqref{eq:Ngd}.
+
+The following lemma is useful to handle the case when $d\to \infty$.
+\begin{lemma}
+     For fixed $v>0$, we have
+     \begin{equation}\label{eq:Gamma_ratio}
+         \frac{\Gamma(n+v)}{\Gamma(n)} \sim
+         n^v
+         \textrm{ as } n \to \infty             
+     \end{equation}
+ \end{lemma}
+ \begin{proof}
+     We use Beta function to proceed.
+     \eqref{eq:Gamma_ratio} is equivalent to
+     $B(n, v) \sim \Gamma(v) n^{-v}$.
+     From the definition of beta function,
+     we have
+     \begin{align*}
+         B(n,v) &=\int_0^1 (1-x)^{n-1} x^{v-1} dx \\
+         &\sim \int_0^{\epsilon} \exp(-nx) x^{v-1}dx \textrm{ for given } \epsilon>0\\
+         & \sim n^{-v} \int_0^{n\epsilon} \exp(-x)x^{v-1}dx\\
+         &\sim \Gamma(v) n^{-v}
+     \end{align*}
+ \end{proof}
+We use Stirling's formula to 
+obtain
+\begin{equation}
+     \frac{N!}{(N-d)! (N-d)^d}
+     = \exp
+     \left(\frac{2d^2+d}{2(N-d)} \right)  
+\end{equation}
+when $N/d\to \infty$.
+Combined with \eqref{eq:Gamma_ratio}, we obtain \eqref{eq:poly_E_F_N_d_infty}.
+\subsection{Computation involved in exponential tails}
+\subsection{Computation involved in truncated tails}
+
 %If you include EPS (encapsulated postscript) figures in your paper,
 %then please use the following commands:
 %\begin{figure}

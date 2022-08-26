@@ -191,7 +191,7 @@ Based on \eqref{eq:E_F_N_d_sim}, in the following
 we derive the asymptotic expression of $\E[F_N]$
 for three different distribution families.
 \subsection{Distributions with polynomial tails}
-In this section, we deal with the distribution with the form
+In this subsection, we deal with the distribution with the form
 \begin{equation}\label{eq:F_poly_tail}
      F(x) = x^{-k} L(x), k\geq 0
 \end{equation}
@@ -224,12 +224,13 @@ When we allow $d\to \infty$ while requiring $N/d \to \infty$,
      {\Gamma(\frac{k+1}{2})}
  \right)^d
     \exp
-      \left(\frac{2d^2+d}{2(N-d)} \right)  
+      \left(\frac{d^2}{N} \right)  
 \end{equation}
 Equation \eqref{eq:efn_poly_second_deri} tells
 us that $\E[F_N]$ converges to a constant as $N \to \infty$.
 When $d=2$, the result has been obtained in (2.4) of \cite{carnal1970konvexe}
 and Theorem 4.4 of \cite{davis1987convex}.
+
 \subsection{Distributions with exponential tails}
 In this subsection, we consider distribution satisfying
 $x = L(1/F(x)) $. $L(x)$ is slowly varying. Following Carnal \cite{carnal1970konvexe},
@@ -261,7 +262,60 @@ We obtain
  From \eqref{eq:epsilon_s}, $\epsilon(s) = (2\log s)^{-1}$. And we obtain from \eqref{eq:exp_e_f_n}
  $\E[F_N]\sim \frac{2^d}{\sqrt{d}}(\pi \log N)^{\frac{d-1}{2}}$,
  which is consistent with (1.11) of \cite{raynaud1970enveloppe}.
+
+ If $d\to\infty$ and $N/d^2\to \infty$, we have
+\begin{align}\label{eq:d_infty_exp_E_F_N}
+      \E[F_N]\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} \epsilon(N-d)^{\frac{-d+1}{2}}
+\end{align}
 \subsection{Distributions with truncated tails}
+In this subsection, we consider the distribution which satisfying the following conditions:
+\begin{equation}\label{eq:F_truncated}
+     F(1-x) \sim x^k L(\frac{1}{x})  \text{ as } x \to 0^+,
+     F(x) = 0 \text{ for } x \geq 1
+\end{equation}
+In \eqref{eq:F_truncated}, $x \to 0^+$ means that $x\to 0$ from the right hand side of $0$.
+
+As mentioned by Dwyer \cite{dwyer1991convex}, the uniform distribution
+in the unit ball as $F(1-x) \sim dx$.
+
+After simplification of (4.1) in \cite{dwyer1991convex}, we obtain
+\begin{align}
+    G(1-x) &\sim a
+    L\left(\frac{1}{x} \right)
+    x^{k+\frac{d-1}{2}} \textrm{ as } x \to 0^+ \\
+    \textrm{ where } a &=\frac{2^{\frac{d-1}{2}} k \Gamma(\frac{d}{2})}
+    {(d-1) \sqrt{\pi} \Gamma(\frac{d-1}{2})}
+    B\left(k, \frac{d+1}{2}\right) \notag \\
+    &= \frac{2^{\frac{d-3}{2}} k \Gamma(\frac{d}{2})\Gamma(k)}
+    {\sqrt{\pi} \Gamma\left(k+\frac{d+1}{2}\right)}
+\end{align}
+In this paper, we obtain
+\begin{align}
+     H(1-x)  & \sim b
+     L^d(1/x) x^{d(k+\frac{d}{2}-1)+\frac{1}{2}} 
+     \textrm{ as } x \to 0^+ \\
+     \textrm{ where } b &=  \frac{k^d}{\pi}
+     2^{\frac{1}{2} + d(\frac{d}{2}-1)} B^d(k, \frac{d}{2})
+     B\left( \frac{1}{2},
+     d(k+\frac{d}{2} -1)+1 \right)
+ \end{align}
+and then
+ \begin{align}\label{eq:efn_truncated_formula}
+     \E[F_N] &\sim \frac{b}{d!}a^{-d+\frac{d-1}{2k+d-1}}
+     \Gamma\left(d+1-\frac{d-1}{2k+d-1}\right)n^{\frac{d-1}{2k+d-1}}
+     L(n)
+     ^{\frac{d-1}{2k+d-1}}
+ \end{align}
+ When $d=2$, \eqref{eq:efn_truncated_formula} reduces to (3.4) of \cite{carnal1970konvexe}.
+ When $k=1, L(n)=d$, we can verify that
+ \eqref{eq:efn_truncated_formula} is equivalent with (1.1)
+ of \cite{raynaud1970enveloppe}.
+ 
+ When $k=q+1, L(n)=\frac{2^{q+1}}{(q+1)B(d/2,q+1)}$,
+ we can verify that
+ \eqref{eq:efn_truncated_formula} is equivalent with the expression of $c_3$
+ in (3.3) of \cite{affentranger1991convex}.
+ 
 \section{Sample complexity in data interpolation}\label{sec:sample_complexity}
 % If you write a theorem, lemma, proposition etc please use the
 % appropriate environments. For instance:
@@ -678,7 +732,7 @@ obtain
 \begin{equation}
      \frac{N!}{(N-d)! (N-d)^d}
      = \exp
-     \left(\frac{2d^2+d}{2(N-d)} \right)  
+     \left(\frac{d^2}{N} \right)  
 \end{equation}
 when $N/d\to \infty$.
 Combined with \eqref{eq:Gamma_ratio}, we obtain \eqref{eq:poly_E_F_N_d_infty}.
@@ -720,12 +774,15 @@ Similar techniques can be applied to compute the asymptotic value of $H(x)$.
 From \eqref{eq:G_x_exp}, we obtain \eqref{eq:H_x_exp}.
 
 Dywer has shown that for exponential tails, $v(x) \sim \epsilon(1/G(x))$ as $x\to \infty$.
-From \eqref{eq:F_N_H_G_d_3}
+From \eqref{eq:E_F_N_d_sim}
 and use Abel-Tauber theorem
 \cite{omey1989abelian} we obtain
-\begin{equation}
-    \E[F_N] = \frac{4\pi}{\sqrt{3}} \epsilon^{-1}(N)
-\end{equation}
+\begin{align*}
+    \E[F_N] & \sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}}\int_0^{1/2} \exp(-(N-d)w) d[w^d \epsilon(1/w)^{\frac{-d+1}{2}}] \\
+    &\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} \binom{N}{d}\frac{\Gamma(d+1)}{(N-d)^d} \epsilon(N-d)^{\frac{-d+1}{2}}
+\end{align*}
+When $d\to\infty$ and $N/d^2\to \infty$, we further obtain \eqref{eq:d_infty_exp_E_F_N}.
+ 
 \subsection{Computation involved in truncated tails}
 
 %If you include EPS (encapsulated postscript) figures in your paper,

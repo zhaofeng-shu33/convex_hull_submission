@@ -93,7 +93,17 @@ In 2d, $d=d_{12}$, the distance to the random line passing $X_1, X_2$. $H(x)=P(d
 the probability outside of the random hyperplane.
 \section{Related work}
 
-Distributions with Algebraic tails are related with Poisson random process.
+Efron \cite{efron1965convex} obtains explicit integral formula for $\E[F_N]$ and $p_{n,d}$ 
+for spherical symmetric distribution in 2d and 3d.
+
+Distributions with algebraic tails $F(x) \sim x^{-k}$ are related with Poisson random process.
+It is shown that in 2d for $k>0$ the convex hull converges to a Poisson random process and $\E[F_N]$ is
+computed from this random process \cite{davis1987convex}. The special case $k=0$ is treated in a later paper
+\cite{aldous1991number}.
+
+Study related with distribution with exponential tails mainly focus on the special Gaussian distribution.
+For Gaussian distribution, \cite{kabluchko2020absorption} obtains explicit formula for $p_{n,d}$.
+Affentranger \cite{affentranger1991convex} derives $\E[F_N]$ from some general expressions for truncated tail and Gaussian tails.
 
 \section{Integral formula}\label{sec:int_f}
 In 2d, the integral formula for $\E[F_N]$ is given as
@@ -217,6 +227,36 @@ us that $\E[F_N]$ converges to a constant as $N \to \infty$.
 When $d=2$, the result has been obtained in (2.4) of \cite{carnal1970konvexe}
 and Theorem 4.4 of \cite{davis1987convex}.
 \subsection{Distributions with exponential tails}
+In this subsection, we consider distribution satisfying
+$x = L(1/F(x)) $. $L(x)$ is slowly varying. Following Carnal \cite{carnal1970konvexe},
+the following utility functions are defined:
+\begin{align}
+     \epsilon(s) & = s (\log (L(s)))' \label{eq:epsilon_s}\\
+     v(u) &= -\frac{1}{u} \frac{1}{(\log F(u))'}    
+\end{align}
+The prime represents the symbol for differentiation. When $v(u)$ satisfying
+(2.15) of \cite{carnal1970konvexe},
+we can obtain $\epsilon(s)$ is a slowly varying function.
+Dywer \cite{dwyer1991convex} obtains the expression of $G(x)$:
+\begin{equation}\label{eq:G_x_exp}
+     G(x) \sim \frac{2^{(d-3)/2}}{\sqrt{\pi}}\Gamma(\frac{d}{2}) v^{(d-1)/2}(x) F(x)
+      \textrm{ as } x\to \infty
+\end{equation}
+We obtain 
+\begin{equation}\label{eq:H_x_exp}
+     H(x) \sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}}v^{\frac{-d+1}{2}}(x)G^d(x)
+     \textrm{ as } x\to \infty
+\end{equation}
+ and then
+ \begin{equation}\label{eq:exp_e_f_n}
+     \E[F_N]\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} (\epsilon(N))^{-\frac{d-1}{2}}
+     \textrm{ as } N \to \infty, d \textrm { is fixed}
+ \end{equation}
+ When $d=2$, \eqref{eq:exp_e_f_n} is consistent with (2.20) of \cite{carnal1970konvexe}.
+ When $L(s)=\sqrt{2\log s}$, the distribution is standard Gaussian in $\R^d$.
+ From \eqref{eq:epsilon_s}, $\epsilon(s) = (2\log s)^{-1}$. And we obtain from \eqref{eq:exp_e_f_n}
+ $\E[F_N]\sim \frac{2^d}{\sqrt{d}}(\pi \log N)^{\frac{d-1}{2}}$,
+ which is consistent with (1.11) of \cite{raynaud1970enveloppe}.
 \subsection{Distributions with truncated tails}
 \section{Sample complexity in data interpolation}\label{sec:sample_complexity}
 % If you write a theorem, lemma, proposition etc please use the
@@ -639,6 +679,49 @@ obtain
 when $N/d\to \infty$.
 Combined with \eqref{eq:Gamma_ratio}, we obtain \eqref{eq:poly_E_F_N_d_infty}.
 \subsection{Computation involved in exponential tails}
+For exponential tails, following Carnal, we make
+the substitution $x=L(s), y=L(\sigma)$, then $\sigma=1/F(y)$.
+Substituting them into \eqref{eq:K_x}
+\begin{align*}
+    K(x)  & = \int_s^{\infty} (1-\frac{L(s)^2}{L(\sigma)^2})^{\frac{d-2}{2}} \frac{d\sigma}{\sigma^2} \\
+\end{align*}
+As $x\to \infty$, $s\to \infty$, $L(s)/L(\sigma) \to 1$ for $\sigma <As$
+for an arbitrary constant.
+\begin{align*}
+     K(x)& \sim 2^{\frac{d-2}{2}} 
+     \int_s^{As} (1-\frac{L(s)}{L(\sigma)})^{\frac{d-2}{2}}
+     \frac{d\sigma}{\sigma^2} \\
+     \textrm{ (3.6) of \cite{dwyer1991convex} }& 
+     \sim  2^{\frac{d-2}{2}}  \int_s^{As} (\epsilon(s) \log\frac{\sigma}{s})^{\frac{d-2}{2}}\frac{d\sigma}{\sigma^2}\\
+     &\sim 2^{\frac{d-2}{2}} \epsilon(s)^{\frac{d}{2}-1} \frac{1}{s} \int_1^{A} (\log x )^{\frac{d-2}{2}}\frac{dx}{x^2}\\
+     & \sim 2^{\frac{d}{2}-1} \Gamma\left(\frac{d}{2}\right)F(x) v(x)^{\frac{d}{2}-1}    
+\end{align*}
+Similar techniques can be applied to compute the asymptotic value of $H(x)$.
+\begin{align*}
+    H(x) & = \frac{2}{\pi} \int_x^{+\infty}\frac{x K^d(y)}{y^2 \sqrt{1-\frac{x^2}{y^2}}}dy\\
+    &=\frac{2}{\pi}\left[2^{\frac{d}{2}-1} \Gamma\left(\frac{d}{2}\right)\right]^d
+    \int_s^{+\infty}\frac{L(s) \epsilon^{1+\frac{d(d-2)}{2}}(\sigma)}{L(\sigma) \sqrt{1-\frac{L^2(s)}{L^2(\sigma)}}\sigma^{d+1}} d\sigma
+    \textrm{ since } dy=L(\sigma)\frac{\epsilon(\sigma)}{\sigma}d\sigma \\
+    &\sim  \frac{\sqrt{2}}{\pi}
+    \left[2^{\frac{d}{2}-1} \Gamma\left(\frac{d}{2}\right)\right]^d
+    \epsilon^{\frac{d(d-2)+1}{2}}(s)
+    \int_s^{+\infty} \left(\log\frac{\sigma}{s}
+    \right)^{-\frac{1}{2}}
+    \sigma^{-(d+1)}d\sigma \\
+    &= \frac{\sqrt{2}}{\sqrt{\pi d}}\left[2^{\frac{d}{2}-1} \Gamma\left(\frac{d}{2}\right)\right]^d
+    \epsilon^{\frac{d(d-2)+1}{2}}(s)s^{-d}\\
+    &= \frac{2^{\frac{d(d-2)+1}{2}}}{\sqrt{\pi d}}\Gamma^d\left(\frac{d}{2}\right)
+    v^{\frac{d(d-2)+1}{2}}(x)F^d(x)
+\end{align*}
+From \eqref{eq:G_x_exp}, we obtain \eqref{eq:H_x_exp}.
+
+Dywer has shown that for exponential tails, $v(x) \sim \epsilon(1/G(x))$ as $x\to \infty$.
+From \eqref{eq:F_N_H_G_d_3}
+and use Abel-Tauber theorem
+\cite{omey1989abelian} we obtain
+\begin{equation}
+    \E[F_N] = \frac{4\pi}{\sqrt{3}} \epsilon^{-1}(N)
+\end{equation}
 \subsection{Computation involved in truncated tails}
 
 %If you include EPS (encapsulated postscript) figures in your paper,

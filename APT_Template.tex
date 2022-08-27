@@ -282,28 +282,33 @@ After simplification of (4.1) in \cite{dwyer1991convex}, we obtain
 \begin{align}
     G(1-x) &\sim a
     L\left(\frac{1}{x} \right)
-    x^{k+\frac{d-1}{2}} \textrm{ as } x \to 0^+ \\
+    x^{k+\frac{d-1}{2}} \textrm{ as } x \to 0^+ 
+    \label{eq:truncated_G_1_x}\\
     \textrm{ where } a &=\frac{2^{\frac{d-1}{2}} k \Gamma(\frac{d}{2})}
     {(d-1) \sqrt{\pi} \Gamma(\frac{d-1}{2})}
     B\left(k, \frac{d+1}{2}\right) \notag \\
     &= \frac{2^{\frac{d-3}{2}} k \Gamma(\frac{d}{2})\Gamma(k)}
     {\sqrt{\pi} \Gamma\left(k+\frac{d+1}{2}\right)}
+    \label{eq:a}
 \end{align}
 In this paper, we obtain
 \begin{align}
      H(1-x)  & \sim b
      L^d(1/x) x^{d(k+\frac{d}{2}-1)+\frac{1}{2}} 
-     \textrm{ as } x \to 0^+ \\
+     \textrm{ as } x \to 0^+ \label{eq:truncated_H_1_x}\\
      \textrm{ where } b &=  \frac{k^d}{\pi}
      2^{\frac{1}{2} + d(\frac{d}{2}-1)} B^d(k, \frac{d}{2})
      B\left( \frac{1}{2},
      d(k+\frac{d}{2} -1)+1 \right)
+     \label{eq:b}
  \end{align}
 and then
  \begin{align}\label{eq:efn_truncated_formula}
      \E[F_N] &\sim \frac{b}{d!}a^{-d+\frac{d-1}{2k+d-1}}
-     \Gamma\left(d+1-\frac{d-1}{2k+d-1}\right)n^{\frac{d-1}{2k+d-1}}
-     L(n)
+     \Gamma 
+     \left(d+1-\frac{d-1}{2k+d-1}\right)
+     N^{\frac{d-1}{2k+d-1}}
+     L(N)
      ^{\frac{d-1}{2k+d-1}}
  \end{align}
  When $d=2$, \eqref{eq:efn_truncated_formula} reduces to (3.4) of \cite{carnal1970konvexe}.
@@ -315,7 +320,11 @@ and then
  we can verify that
  \eqref{eq:efn_truncated_formula} is equivalent with the expression of $c_3$
  in (3.3) of \cite{affentranger1991convex}.
- 
+
+ When we allow $d\to \infty$ and $N/d^2 \to \infty$, we obtain
+ \begin{equation}\label{eq:truncated_d_inf}
+  \E[F_N] \sim 2^{\frac{d+2k}{2}}\pi^{\frac{d-2}{2}} k\Gamma(k)e^k d^{\frac{d-3}{2}-k}  N L(N)     
+ \end{equation}
 \section{Sample complexity in data interpolation}\label{sec:sample_complexity}
 % If you write a theorem, lemma, proposition etc please use the
 % appropriate environments. For instance:
@@ -706,7 +715,7 @@ Let $G(x)=w$, then
 \eqref{eq:efn_poly_second_deri} is obtained from \eqref{eq:Ngd}.
 
 The following lemma is useful to handle the case when $d\to \infty$.
-\begin{lemma}
+\begin{lemma}\label{lem:Gamma_ratio}
      For fixed $v>0$, we have
      \begin{equation}\label{eq:Gamma_ratio}
          \frac{\Gamma(n+v)}{\Gamma(n)} \sim
@@ -784,7 +793,83 @@ and use Abel-Tauber theorem
 When $d\to\infty$ and $N/d^2\to \infty$, we further obtain \eqref{eq:d_infty_exp_E_F_N}.
  
 \subsection{Computation involved in truncated tails}
+First we compute $K(x)$ as follows
+\begin{align*}
+    K(1-x)  & = \int_{1-x}^1 (1-\frac{(1-x)^2}{y^2})^{\frac{d-2}{2}} |dF(y)| \\
+    & \sim 2^{\frac{d-2}{2}} \int_{1-x}^1 (y-1+x)^{\frac{d-2}{2}} |dF(y)| \\
+    & \sim 2^{\frac{d-2}{2}} \int_0^x (x-y)^{\frac{d-2}{2}} |dF(1-y)| \\
+    & \sim 2^{\frac{d-2}{2}} \frac{d-2}{2} \int_0^x y^k L(\frac{1}{y}) (x-y)^{\frac{d-4}{2}} dy\\
+    & \sim (d-2)2^{\frac{d}{2}-2} B(k+1,\frac{d}{2}-1)x^{k+\frac{d}{2}-1}L(\frac{1}{x})\\
+    & = k 2^{\frac{d}{2}-1} B(k, \frac{d}{2}) x^{k+\frac{d}{2}-1} L(1/x) 
+\end{align*}
+Then using $\arccos x \sim \sqrt{2(1-x)}$ as $x\to 0^+$,
+we have
+\begin{align*}
+     H(1-x) & = \frac{2}{\pi} \int_{1-x}^{1}
+     \arccos\frac{1-x}{y}
+     |d K^d(y)| \\
+     &\sim \frac{2}{\pi}\int_0^x \sqrt{2}\sqrt{x-y} |dK^d(1-y)| \\
+     &\sim \frac{\sqrt{2}}{\pi} k^d
+     2^{d(\frac{d}{2}-1)} B^d(k, \frac{d}{2})
+      \int_0^x \frac{1}{\sqrt{x-y}} y^{d(k+\frac{d}{2}-1)} L^d(1/y) dy\\
+     &\sim \frac{k^d}{\pi}
+     2^{\frac{1}{2} + d(\frac{d}{2}-1)} B^d(k, \frac{d}{2})
+     B\left( \frac{1}{2},
+     d(k+\frac{d}{2} -1)+1 \right) L^d(1/x) x^{d(k+\frac{d}{2}-1)+\frac{1}{2}}
+\end{align*}
+which reduces to \eqref{eq:truncated_H_1_x}.
 
+Combined with \eqref{eq:truncated_G_1_x} with \eqref{eq:truncated_H_1_x}, we obtain
+\begin{equation}
+    H(1-x) \sim ba^{-d} G(1-x)^d x^{\frac{1-d}{2}}
+\end{equation}
+Let $G(1-x)=w$, similar to the analysis in (2.7) of
+\cite{carnal1970konvexe}, we obtain
+\begin{equation*}
+     x = [\frac{w}{a} L(w^{-1})]^{\frac{2}{2k+d-1}} 
+\end{equation*}
+Finally, from \eqref{eq:E_F_N_d_sim}
+and use Abel-Tauber theorem
+\cite{omey1989abelian} we obtain
+\begin{align}
+    \E[F_N] &= \binom{N}{d}\int_0^1 (1 - G(1-x))^{N-d} |dH(1-x)| 
+    \notag \\
+    & \sim \binom{N}{d} \frac{b}{a^d} \int_0^{1/2} \exp(-(N-d)w) d[w^d (\frac{w}{a} L(w^{-1}))^{\frac{1-d}{2k+d-1}} ]
+    \notag \\
+    &\sim \frac{\binom{N}{d}}{(N-d)^d} ba^{-d+\frac{d-1}{2k+d-1}}
+    \Gamma 
+    \left(d+1-\frac{d-1}{2k+d-1}\right)
+    (N-d)^{\frac{d-1}{2k+d-1}}
+    L(N-d)
+    ^{\frac{d-1}{2k+d-1}}
+    \label{eq:intermediate_efn_truncated}
+\end{align}
+When $N\to \infty$ and $d$ is a constant, we obtain \eqref{eq:efn_truncated_formula}.
+
+From \eqref{eq:a} and \eqref{eq:b}
+\begin{equation}
+     ba^{-d}
+     = \frac{\pi^{(d-1)/2} 2^{(d+1)/2}
+     \Gamma^d(k+\frac{d+1}{2})
+     \Gamma(d(k+\frac{d}{2}-1)+1)}{\Gamma^d(k+\frac{d}{2})\Gamma(d(k+\frac{d}{2}-1)+ \frac{3}{2})}
+ \end{equation}
+ When $d\to \infty$, using Lemma \ref{lem:Gamma_ratio},
+ we obtain the asymptotic value of $ba^{-d}$ as
+ \begin{equation}
+     ba^{-d} \sim 2\pi^{(d-1)/2}
+     d^{-1}e^kd^{d/2}
+ \end{equation}
+ From \eqref{eq:a}, the asymptotic value of $a$ is given as
+ \begin{equation}
+     a \sim \pi^{-1/2} 2^{\frac{d-2+2k}{2}} k \Gamma(k) d^{-k-\frac{1}{2}}
+ \end{equation}
+
+When $d\to \infty$ and $N/d^2\to \infty$,
+from \eqref{eq:intermediate_efn_truncated}
+we have $\E[F_N] \sim ba^{-d} a N L(N)$.
+After simplification,
+\eqref{eq:truncated_d_inf} is obtained.
+ 
 %If you include EPS (encapsulated postscript) figures in your paper,
 %then please use the following commands:
 %\begin{figure}

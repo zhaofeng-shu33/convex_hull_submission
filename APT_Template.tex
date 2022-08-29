@@ -28,11 +28,17 @@
 \addresstwo{Tsinghua Berkeley Shenzhen Institute}
 \emailtwo{txy18@mails.tsinghua.edu.cn}
 
+\authorthree[Tsinghua Berkeley Shenzhen Institute]{Shao-Lun Huang}
+\addressthree{Tsinghua Berkeley Shenzhen Institute}
+\emailtwo{shaolun.huang@sz.tsinghua.edu.cn}
+
 \begin{abstract}
  text of abstract goes here!
 \end{abstract}
 
-\keywords{}%insert keywords separated by a semicolon. You should avoid including keywords which also appear in the title.
+\keywords{Convell hull; spherically symmetric distribution; average number of faces}
+%insert keywords separated by a semicolon.
+%You should avoid including keywords which also appear in the title.
 
 \ams{}{}% insert the primary 2020 Maths Subject Classification number in the first bracket
 		% and the secondary ams number(s) in the second bracket
@@ -184,7 +190,7 @@ inequality:
  \end{equation}
 Combined with $p_{N,d} = \frac{\E[V_{N+1}]}{N+1}$, which comes from
 \cite{efron1965convex}, we have the following upper bound for $p_{N,d}$:
-\begin{equation}
+\begin{equation}\label{eq:p_N_d_bound}
     p_{N,d} \leq \frac{\E[F_N]}{d N} \textrm{ as } N \gg d
 \end{equation}
 
@@ -265,7 +271,7 @@ We obtain
 
  If $d\to\infty$ and $N/d^2\to \infty$, we have
 \begin{align}\label{eq:d_infty_exp_E_F_N}
-      \E[F_N]\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} \epsilon(N-d)^{\frac{-d+1}{2}}
+      \E[F_N]\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} \epsilon(N)^{\frac{-d+1}{2}}
 \end{align}
 \subsection{Distributions with truncated tails}
 In this subsection, we consider the distribution which satisfying the following conditions:
@@ -355,6 +361,18 @@ Our result can be summarized in the following table:
      \caption{Condition for $p_{N,d}\to 0$ when $d\to \infty$ and $N(d)$ is a function of $d$}
      \label{tab:cond}
  \end{table}
+ The condition for each tails are obtained
+ from the estimation \eqref{eq:d_infty_exp_E_F_N}
+ combined with \eqref{eq:poly_E_F_N_d_infty},
+ \eqref{eq:p_N_d_bound},
+ \eqref{eq:truncated_d_inf}.
+
+For the special case of Gaussian distribution, we can estimate that
+$N(d)$ is faster than any $c^d$ (algebraic tails) but slower than $\exp(d^2)$.
+While for uniform distribution, $N\gg \exp(c' d^2 \log d)$ for some constant $c'$.
+We see that the sample complexity of $N$ is smallest for algebraic tails and the largest
+for truncated tails. That is, to guarantee the training error is small for high-dimensional data,
+we need more samples for the learning algorithm.
 % If you write a theorem, lemma, proposition etc please use the
 % appropriate environments. For instance:
 
@@ -765,14 +783,24 @@ The following lemma is useful to handle the case when $d\to \infty$.
          &\sim \Gamma(v) n^{-v}
      \end{align*}
  \end{proof}
-We use Stirling's formula to 
-obtain
-\begin{equation}
-     \frac{N!}{(N-d)! (N-d)^d}
-     = \exp
-     \left(\frac{d^2}{N} \right)  
+We can use Stirling's formula to prove that
+\begin{lemma}
+\begin{equation}\label{eq:N_N_d_d}
+     \frac{N!}{(N-d)! (N-d)^d} \sim 1
 \end{equation}
-when $N/d\to \infty$.
+when $N/d^2 \to \infty$.
+\end{lemma}
+\begin{proof}
+     \begin{align*}
+          \frac{N!}{(N-d)! (N-d)^d}
+          &\sim \sqrt{\frac{N}{N-d}}\frac{N^N}{ e^d (N-d)^{N}}\\
+          &\sim e^{-d} (1+\frac{d}{N-d})^{N} \\
+          &\sim e^{-d} \exp(\frac{Nd}{N-d}) \\
+          & \sim \exp(\frac{d^2}{N-d})
+     \end{align*}
+From the condition $N/d^2 \to \infty$,
+we obtain \eqref{eq:N_N_d_d}.
+\end{proof}
 Combined with \eqref{eq:Gamma_ratio}, we obtain \eqref{eq:poly_E_F_N_d_infty}.
 \subsection{Computation involved in exponential tails}
 For exponential tails, following Carnal, we make
@@ -819,6 +847,33 @@ and use Abel-Tauber theorem
     \E[F_N] & \sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}}\int_0^{1/2} \exp(-(N-d)w) d[w^d \epsilon(1/w)^{\frac{-d+1}{2}}] \\
     &\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} \binom{N}{d}\frac{\Gamma(d+1)}{(N-d)^d} \epsilon(N-d)^{\frac{-d+1}{2}}
 \end{align*}
+
+\begin{lemma}\label{lem:ratio_epsilon}
+     Suppose $\epsilon(x)$ is a slowly varying function
+     and $N(d)\gg d^2$,
+     then $\epsilon(N-d)^{d} \sim \epsilon(N)^d$.
+\end{lemma}
+\begin{proof}
+     Since $\epsilon(x)$ is slowly varying, there exists
+     a bounded function $u(x)$ such that
+     $\epsilon(y)/\epsilon(x)=\exp(\int_{x}^y \frac{u(t)}{t}dt)$.
+     Besides, $\lim_{x\to \infty} u(x) = 0$.
+     By mean value theorem, there exists $\xi \in [x,y]$ such that
+     $\epsilon(y)/\epsilon(x)=\exp(u(\xi)\int_{x}^y \frac{1}{t}dt)
+     =\exp(u(\xi)\log(y/x))$. Let $x=N-d, y=N$, and we obtain
+     \begin{equation*}
+          \frac{\epsilon(N)^d}{\epsilon(N-d)^d}
+          = \exp(d u(\xi) \log(\frac{N}{N-d}))
+     \end{equation*}
+     As $N-d\to \infty$, $u(\xi)\to 0$. In addition,
+     $\log(\frac{N}{N-d}) \sim \frac{d}{N-d} \sim \frac{d}{N}$.
+     Therefore,
+     $\frac{\epsilon(N)^d}{\epsilon(N-d)^d}\sim \exp(\frac{u(\xi)d^2}{N})
+     $. Since $N/d^2 \to \infty, \frac{u(\xi)d^2}{N} \to 0$ and
+     $\frac{\epsilon(N)^d}{\epsilon(N-d)^d}\to 1$.
+\end{proof}
+By Lemma \ref{lem:ratio_epsilon}, we can show that
+$\epsilon(N-d)^{\frac{-d+1}{2}}\sim \epsilon(N)^{\frac{-d+1}{2}}$.
 When $d\to\infty$ and $N/d^2\to \infty$, we further obtain \eqref{eq:d_infty_exp_E_F_N}.
  
 \subsection{Computation involved in truncated tails}
@@ -895,7 +950,9 @@ From \eqref{eq:a} and \eqref{eq:b}
 
 When $d\to \infty$ and $N/d^2\to \infty$,
 from \eqref{eq:intermediate_efn_truncated}
-we have $\E[F_N] \sim ba^{-d} a N L(N)$.
+we have $\E[F_N] \sim ba^{-d} a N^{\frac{d-1}{2k+d-1}}
+L(N)
+^{\frac{d-1}{2k+d-1}}$.
 After simplification,
 \eqref{eq:truncated_d_inf} is obtained.
  
@@ -908,32 +965,8 @@ After simplification,
 %\end{center}
 %\end{figure}
 
-\section{Asymptotic result of Table \ref{tab:cond}}
-\begin{lemma}\label{lem:ratio_epsilon}
-     Suppose $\epsilon(x)$ is a slowly varying function
-     and $N(d)\gg d^2$,
-     then $\epsilon(N-d)^{d} \sim \epsilon(N)^d$.
-\end{lemma}
-\begin{proof}
-     Since $\epsilon(x)$ is slowly varying, there exists
-     a bounded function $u(x)$ such that
-     $\epsilon(y)/\epsilon(x)=\exp(\int_{x}^y \frac{u(t)}{t}dt)$.
-     Besides, $\lim_{x\to \infty} u(x) = 0$.
-     By mean value theorem, there exists $\xi \in [x,y]$ such that
-     $\epsilon(y)/\epsilon(x)=\exp(u(\xi)\int_{x}^y \frac{1}{t}dt)
-     =\exp(u(\xi)\log(y/x))$. Let $x=N-d, y=N$, and we obtain
-     \begin{equation*}
-          \frac{\epsilon(N)^d}{\epsilon(N-d)^d}
-          = \exp(d u(\xi) \log(\frac{N}{N-d}))
-     \end{equation*}
-     As $N-d\to \infty$, $u(\xi)\to 0$. In addition,
-     $\log(\frac{N}{N-d}) \sim \frac{d}{N-d} \sim \frac{d}{N}$.
-     Therefore,
-     $\frac{\epsilon(N)^d}{\epsilon(N-d)^d}\sim \exp(\frac{u(\xi)d^2}{N})
-     $. Since $N/d^2 \to \infty, \frac{u(\xi)d^2}{N} \to 0$ and
-     $\frac{\epsilon(N)^d}{\epsilon(N-d)^d}\to 1$.
-\end{proof}
-By Lemma \ref{lem:ratio_epsilon}, we can show that 
+%\section{Asymptotic result of Table \ref{tab:cond}}
+
 %%%%%%%%%%Declarations%%%%%%%%%%
 
 \acks % Place the text of your acknowledgements after the \acks (or \Acks) command. This will generate the heading "Acknowledgements". If you wish to make only one acknowledgement, use \ack (or \Ack).

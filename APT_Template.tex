@@ -1,8 +1,8 @@
 \documentclass{aptpub}
 \usepackage{graphicx}
 \usepackage{bookmark}
-\authornames{Feng Zhao {\it et al}} % insert the authors here for use in running head. If three or more authors please use (for example) M.~YARROW {\it et al}. Author names should follow the same M.~YARROW format and if two authors, separate by 'AND'.
-\shorttitle{On the expected number of hyperplanes for convex hulls of samples} % insert short title here for use in running head
+\authornames{Feng Zhao {\it et al.}} % insert the authors here for use in running head. If three or more authors please use (for example) M.~YARROW {\it et al}. Author names should follow the same M.~YARROW format and if two authors, separate by 'AND'.
+\shorttitle{On the expectation of hyperplanes for convex hulls of samples} % insert short title here for use in running head
 
 % Put any of your own definitions here.
 
@@ -13,7 +13,7 @@
 \def\R{\mathbb{R}}
 \begin{document}%\recd{}{}%Do not alter this line.
 
-\title{On the expected number of hyperplanes for convex hulls of samples from spherically symmetric distributions} % insert title - use \\ if it requires more than one line.
+\title{On the expectation of hyperplanes for convex hulls of samples from spherically symmetric distributions} % insert title - use \\ if it requires more than one line.
 
 \authorone[Department of Electronics, Tsinghua University]{Feng Zhao} 
 %Affiliation is just the name of your university or institution, for example 'University of Sheffield'. Author names should be of the form 'Mark Yarrow'. 
@@ -106,7 +106,7 @@ computed from this random process \cite{davis1987convex}. The special case $k=0$
 \cite{aldous1991number}.
 
 Study related with distribution with exponential tails mainly focus on the special Gaussian distribution.
-For Gaussian distribution, \cite{kabluchko2020absorption} obtains explicit formula for $p_{n,d}$.
+For Gaussian distribution, Kabluchko et al. \cite{kabluchko2020absorption} obtain explicit formula for $p_{n,d}$.
 Affentranger \cite{affentranger1991convex} derives $\E[F_N]$ from some general expressions for truncated tail and Gaussian tails.
 
 \section{Integral formula}\label{sec:int_f}
@@ -187,6 +187,8 @@ Combined with $p_{N,d} = \frac{\E[V_{N+1}]}{N+1}$, which comes from
 \begin{equation}
     p_{N,d} \leq \frac{\E[F_N]}{d N} \textrm{ as } N \gg d
 \end{equation}
+
+We use the symbol $a \gg b$ if $\lim_{b\to \infty} \frac{a(b)}{b} = \infty$.
 Based on \eqref{eq:E_F_N_d_sim}, in the following
 we derive the asymptotic expression of $\E[F_N]$
 for three different distribution families.
@@ -217,14 +219,12 @@ and from \eqref{eq:E_F_N_d_sim}
         \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)}
         \textrm{ as } N \to \infty, d \textrm { is fixed}
 \end{equation}
-When we allow $d\to \infty$ while requiring $N/d \to \infty$,
+When we allow $d\to \infty$ while requiring $N/d^2 \to \infty$,
 \begin{equation}\label{eq:poly_E_F_N_d_infty}
 \E[F_N] \sim \sqrt{\frac{2}{\pi dk}}\left(
      \frac{\sqrt{\pi}k \Gamma(k/2)}
      {\Gamma(\frac{k+1}{2})}
  \right)^d
-    \exp
-      \left(\frac{d^2}{N} \right)  
 \end{equation}
 Equation \eqref{eq:efn_poly_second_deri} tells
 us that $\E[F_N]$ converges to a constant as $N \to \infty$.
@@ -323,9 +323,38 @@ and then
 
  When we allow $d\to \infty$ and $N/d^2 \to \infty$, we obtain
  \begin{equation}\label{eq:truncated_d_inf}
-  \E[F_N] \sim 2^{\frac{d+2k}{2}}\pi^{\frac{d-2}{2}} k\Gamma(k)e^k d^{\frac{d-3}{2}-k}  N L(N)     
+  \E[F_N] \sim 2^{\frac{d+2k}{2}}\pi^{\frac{d-2}{2}} k\Gamma(k)e^k d^{\frac{d-3}{2}-k}
+  N^{\frac{d-1}{2k+d-1}} L(N)^{\frac{d-1}{2k+d-1}}
  \end{equation}
 \section{Sample complexity in data interpolation}\label{sec:sample_complexity}
+In the field of machine learning,
+Balestriero et al. \cite{balestriero2021learning}
+argues that interpolation almost surely never occurs in high-dimensional spaces.
+This argument can be modeled with $p_{N,d} \to 0$ when $N,d$ satisfying certain conditions.
+The randomly sampled points in $\R^d$ represents training dataset while the interpolation
+symbolizes the learning algorithm. This section explores the condition for $p_{N,d} \to 0$,
+which is dependent on the distribution from which the data are sampled.
+
+Our result can be summarized in the following table:
+\begin{table}
+     \centering
+     \begin{tabular}{|c|c|}
+         \hline
+         distribution family &  Condition for $p_{N,d} \to 0$ \\
+         \hline
+        Algebraic tails & $N \gg \frac{c^d}{d^{3/2}}, c=\frac{\sqrt{\pi}k\Gamma(k/2)}{\Gamma(\frac{k+1}{2})}>1$ \\
+        \hline
+        Exponential tails 
+        & $ N\cdot \epsilon(N)^{(d-1)/2} \gg \frac{(2\pi)^{d/2}}{d^{3/2}}$ \\
+        \hline
+        Truncated tails 
+        & $\frac{N^{2k/d}}{L(N)^{\frac{d-1}{2k+d-1}}}
+        \gg (2\pi)^{d/2}d^{(d-5)/2}$\\
+        \hline
+     \end{tabular}
+     \caption{Condition for $p_{N,d}\to 0$ when $d\to \infty$ and $N(d)$ is a function of $d$}
+     \label{tab:cond}
+ \end{table}
 % If you write a theorem, lemma, proposition etc please use the
 % appropriate environments. For instance:
 
@@ -879,6 +908,32 @@ After simplification,
 %\end{center}
 %\end{figure}
 
+\section{Asymptotic result of Table \ref{tab:cond}}
+\begin{lemma}\label{lem:ratio_epsilon}
+     Suppose $\epsilon(x)$ is a slowly varying function
+     and $N(d)\gg d^2$,
+     then $\epsilon(N-d)^{d} \sim \epsilon(N)^d$.
+\end{lemma}
+\begin{proof}
+     Since $\epsilon(x)$ is slowly varying, there exists
+     a bounded function $u(x)$ such that
+     $\epsilon(y)/\epsilon(x)=\exp(\int_{x}^y \frac{u(t)}{t}dt)$.
+     Besides, $\lim_{x\to \infty} u(x) = 0$.
+     By mean value theorem, there exists $\xi \in [x,y]$ such that
+     $\epsilon(y)/\epsilon(x)=\exp(u(\xi)\int_{x}^y \frac{1}{t}dt)
+     =\exp(u(\xi)\log(y/x))$. Let $x=N-d, y=N$, and we obtain
+     \begin{equation*}
+          \frac{\epsilon(N)^d}{\epsilon(N-d)^d}
+          = \exp(d u(\xi) \log(\frac{N}{N-d}))
+     \end{equation*}
+     As $N-d\to \infty$, $u(\xi)\to 0$. In addition,
+     $\log(\frac{N}{N-d}) \sim \frac{d}{N-d} \sim \frac{d}{N}$.
+     Therefore,
+     $\frac{\epsilon(N)^d}{\epsilon(N-d)^d}\sim \exp(\frac{u(\xi)d^2}{N})
+     $. Since $N/d^2 \to \infty, \frac{u(\xi)d^2}{N} \to 0$ and
+     $\frac{\epsilon(N)^d}{\epsilon(N-d)^d}\to 1$.
+\end{proof}
+By Lemma \ref{lem:ratio_epsilon}, we can show that 
 %%%%%%%%%%Declarations%%%%%%%%%%
 
 \acks % Place the text of your acknowledgements after the \acks (or \Acks) command. This will generate the heading "Acknowledgements". If you wish to make only one acknowledgement, use \ack (or \Ack).
@@ -921,6 +976,5 @@ After simplification,
 
 \bibliographystyle{APT}
 \bibliography{exportlist.bib}
-
 
 \end{document}

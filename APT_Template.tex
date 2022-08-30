@@ -36,9 +36,9 @@
  For the convex hull of d-dimensional samples from spherically symmetric distributions,
  we derive the integral formula for the expectation of its facets.
  As the number of samples approach infinity,
- the integral formula enables us to investigate the asymptotic behavior of the expectation of facets
+ the integral formula enables us to obtain the precise asymptotic value of the expectation of facets
  for three types of spherically symmetric distributions.
- The asymptotic result is applied to estimate the sample complexity for machine learning algorithms.
+ The asymptotic result is applied to estimate the sample complexity for the interpolation of random points.
 \end{abstract}
 
 \keywords{Convell hull; spherically symmetric distribution; expectation of facets}
@@ -60,83 +60,98 @@
 % but an author--date system is also acceptable~\cite{ref3}.
 
 %\subsection{Introduction} % Initial capital letter, then lower case. No full stop.
-Let $X_1, X_2, \dots, X_N$ be i.i.d. sampled from a spherical symmetric distribution in $\mathbb{R}^d$.
-The convex hull $H_N$ of these $N$ points are an interrupted research topic in stochastic and integral geometry
+Let $X_1, X_2, \dots, X_N$ be i.i.d. random points from a spherical symmetric distribution in $\mathbb{R}^d$.
+The convex hull $H_N$ of these $N$ points are an uninterrupted research topic in stochastic and integral geometry
 \cite{schneider2008stochastic}.
-The main aim of this paper is to provide a integral formula for $\E[F_N]$, the expected value of the number of $d-1$ dimensional hyperplanes
+The main aim of this paper is to provide a integral formula for $\E[F_N]$, the mathematical expectation
+of the number of $d-1$ dimensional facets
 of $H_N$,
 and derive its asymptotic expression
-for three kinds of distribution families. Furthermore, the estimation of $\E[F_N]$ is used to obtain the upper bound
-of the probability $p_{N,d}$, another sample falls outside of the random convex hull. This probability can be used to
-measure the interpolation ability of training data in machine learning
-\cite{balestriero2021learning}.
+for three kinds of distribution families. Furthermore,
+let $X$ be a d-dimensional random vector from the same distribution but independent with $X_1, \dots, X_N$.
+The estimation of $\E[F_N]$ is used to obtain the upper bound
+of the probability $p_{N,d}=P(X \not\in H_N)$, the probability content outside of the random convex hull.
+When the training data are sampled from the Gaussian distribution,
+the upper bound of this probability can be applied to
+explain the dimensional curse \cite{balestriero2021learning}.
+That is,
+to maintain $p_{N,d} \to 0$, $N(d)$ grows faster than an exponential function of $d$.
 
 The asymptotic expression of $\E[F_N]$ as $N\to \infty$
-was studied firstly by R{\'e}nyi \cite{renyi1963konvexe}.
-In his paper the distribution considered
-is 2D standard gaussian or uniform distribution within a convex region with continuous curvature.
-Later on, Carnal \cite{carnal1970konvexe} generalized R{\'e}nyi's work,
-and studied general symmetric distribution in 2d,
-and obtained the asymptotic expression of $\E[F_N]$
-in three different distribution families.
+was studied firstly by R{\'e}nyi and Sulanke \cite{renyi1963konvexe}.
+The distributions they considered
+are 2D gaussian and uniform distribution in a convex region with continuous curvature.
+Later on, Carnal \cite{carnal1970konvexe} generalized R{\'e}nyi's work.
+He classified symmetric distribution in 2d
+into three types with different tails:
+polynomial, exponential and truncated,
+and he obtained the asymptotic expression of $\E[F_N]$
+for each type.
 
-For $d>2$, the breakthrough is made firstly by
+The study of $\E[F_N]$ for $d>2$ is made firstly by
 Raynaud
 \cite{raynaud1970enveloppe}.
-He obtains the asymptotic formula for uniform distribution within a hyperball
+He obtained the asymptotic formula of $\E[F_N]$
+for uniform distribution in a hyperball
 and standard gaussian in $\mathbb{R}^d$.
-Then Dwyer \cite{dwyer1991convex} obtains the order of $\E[F_N]$ about $N$
-in three different distribution families.
+Afterwards, following Carnal, Dwyer \cite{dwyer1991convex}
+estimated the order of $\E[F_N]$ in big Theta
+notation
+for three different distribution families.
 
-However, the asymptotic formula of $\E[F_N]$ is generally unknown.
-In our work, we obtain this formula by generalizing the Carnal's integral formula
-of $H(x)=P(d_{12}\geq x)$ to higher dimensions in Section \ref{sec:int_f}.
-Then we obtain the asymptotic
+The existing work has not revealed the asymptotic formula of $\E[F_N]$ in $\R^d$.
+In Section \ref{sec:int_f}, we obtain this formula by generalizing Carnal's integral formula
+of $H(x)=P(d_{12}\geq x)$ from $d=2$ to higher dimensions.
+Then we derive the asymptotic
 expression for $\E[F_N]$ in three different distribution families in Section \ref{sec:three_distriutions}.
-Based on this result,
-we discuss the condition when $p_{N,d}$ converges to zero as $N,d \to \infty$
+Based on the asymptotic result of $\E[F_N]$,
+we discuss the condition for the convergence of $p_{N,d}$ to zero as $N,d \to \infty$
 in Section \ref{sec:sample_complexity}.
-This condition is applied to explain some dimension explosion problems
-in the field of machine learning.
+
 
 Without specific mention, the $d$-dimensional distribution considered in this paper is spherically symmetric.
 Below we define some notations which are to be used throughout this paper.
 Let $F(x)=P(|X|\geq x)$ represents the probability that a random point lies outside
-a d-sphere. $G(x)=P(X_1\geq x)$ is the one dimensional marginal distribution.
+a d-sphere. $G(x)=P(X_1\geq x)$ corresponds to the one dimensional marginal distribution.
 Let $d$ represents the distance from the origin to the random hyperplane, spanned by $X_1, \dots, X_d$.
-In 2d, $d=d_{12}$, the distance to the random line passing $X_1, X_2$. $H(x)=P(d\geq x)$ is
-the probability outside of the random hyperplane.
-\section{Related work}
+In 2d, $d=d_{12}$, the distance to the random line passing $X_1$ and $X_2$. $H(x)=P(d\geq x)$ is
+the probability that the distance $d(X_1, \dots, X_d)$ is larger than $x$.
 
-Efron \cite{efron1965convex} obtains explicit integral formula for $\E[F_N]$ and $p_{n,d}$ 
-for spherical symmetric distribution in 2d and 3d.
+\section{Related work}
+We list some other related works which have
+not been mentioned in the previous section.
+Efron \cite{efron1965convex} obtains the explicit integral formula for $\E[F_N]$ and $p_{N,d}$ 
+for Gaussian distribution and uniform distribution within a sphere in 2d and 3d.
 
 Distributions with algebraic tails $F(x) \sim x^{-k}$ are related with Poisson random process.
-It is shown that in 2d for $k>0$ the convex hull converges to a Poisson random process and $\E[F_N]$ is
-computed from this random process \cite{davis1987convex}. The special case $k=0$ is treated in a later paper
-\cite{aldous1991number}.
+It is shown that in 2d for $k>0$ the convex hull converges to a Poisson random process and $\E[F_N]$
+equals the limit of this random process \cite{davis1987convex}.
+The special case $k=0, d=2$ is treated in a later paper, in which the
+limit distribution of $F_N$ is computed \cite{aldous1991number}.
 
-Study related with distribution with exponential tails mainly focus on the special Gaussian distribution.
-For Gaussian distribution, Kabluchko et al. \cite{kabluchko2020absorption} obtain explicit formula for $p_{n,d}$.
-Affentranger \cite{affentranger1991convex} derives $\E[F_N]$ from some general expressions for truncated tail and Gaussian tails.
+Studies related with distribution with exponential tails mainly focus on the special Gaussian distribution.
+For Gaussian distribution, Kabluchko et al. \cite{kabluchko2020absorption} obtain explicit formula for $p_{N,d}$.
+Affentranger \cite{affentranger1991convex} derives $\E[F_N]$
+for beta-typed distribution (belonging to truncated tail)
+and Gaussian distribution (belonging to exponential tail).
 
 \section{Integral formula}\label{sec:int_f}
 In 2d, the integral formula for $\E[F_N]$ is given as
 \begin{align}
-     \E[F_N] &= \binom{N}{2} \int_0^{+\infty} 
+     \E[F_N] &= \binom{N}{2} \int_0^{\infty} 
      \left[G(x)^{N-2} + (1-G(x))^{N-2} \right]|dH(x)| 
      \label{eq:E_F_N_2_d}
 \end{align}
 The integral formula of $\E[F_N]$ involves the function $G(x)$ and $H(x)$,
 both of which can be expressed in term of $F(x)$:
 \begin{align}
-   G(x) &=\frac{1}{\pi} \arccos\frac{x}{y} |dF(y)| \\
+   G(x) &=\frac{1}{\pi} \int_x^{\infty}\arccos\frac{x}{y} |dF(y)| \\
      H(x) &= \frac{2}{\pi} \int_x^{\infty} \arccos \frac{x}{z} |d(F^2(z))|
      \label{eq:H_expression_2_dim}
 \end{align}
 For $d\geq 2$, the integral formula is generalized as
 \begin{align}
-     \E[F_N] &= \binom{N}{d} \int_0^{+\infty} 
+     \E[F_N] &= \binom{N}{d} \int_0^{\infty} 
      \left[G(x)^{N-d} + (1-G(x))^{N-d} \right]|dH(x)| 
      \label{eq:E_F_N_d}
 \end{align}

@@ -845,13 +845,14 @@ we make
 the substitution $x=L(s), y=L(\sigma)$, then $\sigma=1/F(y)$.
 Substituting them into \eqref{eq:K_x}, we have
 \begin{align*}
-    K(x)  & = \int_s^{\infty} (1-\frac{L(s)^2}{L(\sigma)^2})^{\frac{d-2}{2}} \frac{d\sigma}{\sigma^2} \\
+    K(x)  & = \int_s^{\infty} \left(1-\frac{L(s)^2}{L(\sigma)^2} \right)^{\frac{d-2}{2}} \frac{d\sigma}{\sigma^2} \\
 \end{align*}
-As $x\to \infty$, $s\to \infty$, $L(s)/L(\sigma) \to 1$ for $\sigma <As$
-for an arbitrary constant.
+As $x\to \infty$, $s\to \infty$,
+then $L(s)/L(\sigma) \to 1$ for $\sigma <As$,
+where $A$ is an arbitrary constant.
 \begin{align*}
      K(x)& \sim 2^{\frac{d-2}{2}} 
-     \int_s^{As} (1-\frac{L(s)}{L(\sigma)})^{\frac{d-2}{2}}
+     \int_s^{As} \left(1-\frac{L(s)}{L(\sigma)}\right)^{\frac{d-2}{2}}
      \frac{d\sigma}{\sigma^2} \\
      \textrm{ (3.6) of \cite{dwyer1991convex} }& 
      \sim  2^{\frac{d-2}{2}}  \int_s^{As} (\epsilon(s) \log\frac{\sigma}{s})^{\frac{d-2}{2}}\frac{d\sigma}{\sigma^2}\\
@@ -877,15 +878,16 @@ Similar techniques can be applied to compute the asymptotic value of $H(x)$.
 \end{align*}
 From \eqref{eq:G_x_exp}, we obtain \eqref{eq:H_x_exp}.
 
-Dywer has shown that for exponential tails, $v(x) \sim \epsilon(1/G(x))$ as $x\to \infty$.
-From \eqref{eq:E_F_N_d_sim}
-, we use Abel-Tauber theorem
+Dywer \cite{dwyer1991convex} has shown that for exponential tails, $v(x) \sim \epsilon(1/G(x))$ as $x\to \infty$.
+From \eqref{eq:E_F_N_d_sim},
+we use the Abel-Tauber theorem
 \cite{omey1989abelian} and obtain
 \begin{align*}
     \E[F_N] & \sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}}\int_0^{1/2} \exp(-(N-d)w) d[w^d \epsilon(1/w)^{\frac{-d+1}{2}}] \\
     &\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} \binom{N}{d}\frac{\Gamma(d+1)}{(N-d)^d} \epsilon(N-d)^{\frac{-d+1}{2}}
 \end{align*}
 
+To further simplify $\E[F_N]$, we need the following lemma.
 \begin{lemma}\label{lem:ratio_epsilon}
      Suppose $\epsilon(x)$ is a slowly varying function
      and $N(d)\gg d^2$,
@@ -896,12 +898,12 @@ From \eqref{eq:E_F_N_d_sim}
      a bounded function $u(x)$ such that
      $\epsilon(y)/\epsilon(x)=\exp(\int_{x}^y \frac{u(t)}{t}dt)$.
      Besides, $\lim_{x\to \infty} u(x) = 0$.
-     By mean value theorem, there exists $\xi \in [x,y]$ such that
+     By the mean value theorem, there exists $\xi \in [x,y]$ such that
      $\epsilon(y)/\epsilon(x)=\exp(u(\xi)\int_{x}^y \frac{1}{t}dt)
      =\exp(u(\xi)\log(y/x))$. Let $x=N-d, y=N$, and we obtain
      \begin{equation*}
           \frac{\epsilon(N)^d}{\epsilon(N-d)^d}
-          = \exp(d u(\xi) \log(\frac{N}{N-d}))
+          = \exp \left(u(\xi) \log\left(\frac{N}{N-d} \right)d \right)
      \end{equation*}
      As $N-d\to \infty$, $u(\xi)\to 0$. In addition,
      $\log(\frac{N}{N-d}) \sim \frac{d}{N-d} \sim \frac{d}{N}$.
@@ -921,7 +923,7 @@ First we compute $K(x)$ as follows
     & \sim 2^{\frac{d-2}{2}} \int_{1-x}^1 (y-1+x)^{\frac{d-2}{2}} |dF(y)| \\
     & \sim 2^{\frac{d-2}{2}} \int_0^x (x-y)^{\frac{d-2}{2}} |dF(1-y)| \\
     & \sim 2^{\frac{d-2}{2}} \frac{d-2}{2} \int_0^x y^k L(\frac{1}{y}) (x-y)^{\frac{d-4}{2}} dy\\
-    & \sim (d-2)2^{\frac{d}{2}-2} B(k+1,\frac{d}{2}-1)x^{k+\frac{d}{2}-1}L(\frac{1}{x})\\
+    & \sim (d-2)2^{\frac{d}{2}-2} B(k+1,\frac{d}{2}-1)x^{k+\frac{d}{2}-1}L(1/x)\\
     & = k 2^{\frac{d}{2}-1} B(k, \frac{d}{2}) x^{k+\frac{d}{2}-1} L(1/x) 
 \end{align*}
 Then using $\arccos x \sim \sqrt{2(1-x)}$ as $x\to 0^+$,
@@ -939,20 +941,20 @@ we have
      B\left( \frac{1}{2},
      d(k+\frac{d}{2} -1)+1 \right) L^d(1/x) x^{d(k+\frac{d}{2}-1)+\frac{1}{2}}
 \end{align*}
-which reduces to \eqref{eq:truncated_H_1_x}.
+which is \eqref{eq:truncated_H_1_x}.
 
-From \eqref{eq:truncated_G_1_x} with \eqref{eq:truncated_H_1_x}, it follows that
+From \eqref{eq:truncated_G_1_x} and \eqref{eq:truncated_H_1_x}, it follows that
 \begin{equation}
     H(1-x) \sim ba^{-d} G(1-x)^d x^{\frac{1-d}{2}}
 \end{equation}
 Let $G(1-x)=w$, similar to the analysis in (2.7) of
 \cite{carnal1970konvexe}, we obtain
 \begin{equation*}
-     x = [\frac{w}{a} L(w^{-1})]^{\frac{2}{2k+d-1}} 
+     x \sim [\frac{w}{a} L(w^{-1})]^{\frac{2}{2k+d-1}} \textrm{ as } w \to 0
 \end{equation*}
-Finally, from \eqref{eq:E_F_N_d_sim}
-and use Abel-Tauber theorem
-\cite{omey1989abelian} we obtain
+Finally, 
+we apply the Abel-Tauber theorem
+\cite{omey1989abelian}, and from \eqref{eq:E_F_N_d_sim} we obtain
 \begin{align}
     \E[F_N] &= \binom{N}{d}\int_0^1 (1 - G(1-x))^{N-d} |dH(1-x)| 
     \notag \\
@@ -968,7 +970,7 @@ and use Abel-Tauber theorem
 \end{align}
 When $N\to \infty$ and $d$ is a constant, we obtain \eqref{eq:efn_truncated_formula}.
 
-From \eqref{eq:a} and \eqref{eq:b}
+From \eqref{eq:a} and \eqref{eq:b}, it follows that
 \begin{equation}
      ba^{-d}
      = \frac{\pi^{(d-1)/2} 2^{(d+1)/2}
@@ -991,7 +993,7 @@ from \eqref{eq:intermediate_efn_truncated}
 we have $\E[F_N] \sim ba^{-d} a N^{\frac{d-1}{2k+d-1}}
 L(N)
 ^{\frac{d-1}{2k+d-1}}$.
-After simplification,
+Then by a slight simplification,
 \eqref{eq:truncated_d_inf} is obtained.
  
 %If you include EPS (encapsulated postscript) figures in your paper,

@@ -430,7 +430,8 @@ to guarantee $p_{N,d}\to 0$.
 \begin{lemma}\label{lem:F_0}
      Let $F_0$ represent the
 probability that the distance from the origin to the straight line
-$X_1X_2$ is larger than $x$. Then 
+$X_1X_2$ is larger than $x$, where $X_1, X_2$ follow the distribution with $F(x)=P(|X|\geq x)$.
+Then 
 \begin{equation}\label{eq:F_0_expression}
      F_0(x)=\frac{2\Gamma(\frac{d}{2})}
      {\sqrt{\pi}\Gamma(\frac{d-1}{2})}
@@ -445,11 +446,11 @@ a_2 & =\frac{x^2}{y}-\sqrt{z^2-x^2}\sqrt{1-\frac{x^2}{y^2}} < 0
 \label{eq:a_2}
 \end{align}
 \end{lemma}
-Lemma gives the integral formula for $P(d_{12}\geq x)$ in $\R^d$.
+Lemma \ref{lem:F_0} gives the integral formula for $P(d_{12}\geq x)$ in $\R^d$.
 The geometric meaning of $a_1, |a_2|$ is illustrated in Figure
 \ref{fig:a1a2}. That is, if we assume
 \begin{equation}\label{eq:theta_1_theta_2}
-     \cos\theta_1=\frac{x}{z},
+     \cos\theta_1=\frac{x}{z}
      \textrm{ and } \cos\theta_2=\frac{x}{y} 
 \end{equation}
 then
@@ -462,7 +463,7 @@ then
 \begin{figure}[!ht]
      \centering
      \includegraphics[width=0.8\textwidth]{dessin.pdf}
-     \caption{The red line represents $a_1$ while the green line is the length of $|a_2|$.}
+     \caption{The length of red line represents $a_1$ while the green line corresponds to $|a_2|$.}
      \label{fig:a1a2}
 \end{figure}
 When $d=2$, using $\int \frac{dx}{\sqrt{1-x^2}} = -\arccos x + C$,
@@ -471,14 +472,15 @@ $$
 F_0(x)=\frac{4}{\pi} \int_x^{\infty} \arccos\frac{x}{z}|dF(y)|
 \int_x^{y} |dF(z)|dz
 $$
-which reduces to \eqref{eq:H_expression_2_dim}.
+which is the same with \eqref{eq:H_expression_2_dim}.
 \begin{proof}[Proof of Lemma \ref{lem:F_0}]
-For $d\geq 2$ and $x<z<y$, we follow the geometric approach adopted to derive
+For $d\geq 2$ and $x<z<y$, we follow the geometric approach
+which is adopted to derive
 $H(x)$ in \cite{carnal1970konvexe}.
 Then we only need to compute the ratio of surface area
 on the sphere with radius $z$. This is the area between
 two planes at distance $\frac{a_1}{z}$ and $\frac{a_2}{z}$
-on a unit sphere. From (1.1) of \cite{dwyer1991convex},
+respectively on the unit sphere. From (1.1) of \cite{dwyer1991convex},
 this ratio equals $\kappa(\frac{a_2}{z}) - \kappa(\frac{a_1}{z})$
 where $\kappa$ is defined in \eqref{eq:kappa_r}.
 
@@ -489,14 +491,14 @@ in \eqref{eq:K_x},
 we only need to connect $\lambda_d(r)$ with its geometric meaning,
 which is given in the following lemma:
 \begin{lemma}
-     The ratio of surface area of a unit d-sphere,
+     The ratio of surface area on a unit d-sphere,
      satisfying $x_1^2+x_2^2\geq r$ is $\lambda_d(r)$,
      defined in \eqref{eq:lambda_r}.
 \end{lemma}
 \begin{proof}
      Following \cite{dwyer1991convex}, we use $\kappa_d = 2\pi^{d/2}/\Gamma(d/2)$
      to represent the surface area of the unit d-sphere. Then
-     \begin{align}
+     \begin{align*}
           \lambda_d(r) &=\frac{1}{\kappa_d} 
           \cdot 2\int_{\substack{x_1^2+x_2^2\geq r^2\\
           x_1^2+\dots+x_{d-1}^2\leq 1 }} 
@@ -508,11 +510,11 @@ which is given in the following lemma:
       &=\frac{4\pi \kappa_{d-3}}{\kappa_d} \int_0^{\sqrt{1-r^2}} y^{d-4}\sqrt{1-r^2-y^2} dy\\
       &=\frac{4\pi \kappa_{d-3}}{\kappa_d}  \frac{B(\frac{3}{2 }, \frac{d-3}{2})}{2}(1-r^2)^{(d-2)/2}\\
       &=  (1-r^2)^{(d-2)/2}
-      \end{align}
+      \end{align*}
 \end{proof}
 
 \begin{lemma}\label{lem:cn_integration}
-For $0<c<1$ and $n$ is a non-negative positive integer,   
+For $0<c<1$ and $n$ is a non-negative positive integer, we have
 \begin{equation}
     \int_0^{c}
     [\frac{1}{(1-t)^{n+1}}+\frac{1}{(1+t)^{n+1}}]
@@ -530,8 +532,8 @@ For $0<c<1$ and $n$ is a non-negative positive integer,
      We make change of variables $x=\sqrt{t/(c^2-t)}$ and obtain
      the value $\frac{\pi}{(1-c^2)^{1/2}}$, which equals
      the right hand side.
-     When $n=1$, we can use integration
-     to show \eqref{eq:c_int_eq} holds.
+     When $n=1$, we can use integration directly
+     to show that \eqref{eq:c_int_eq} holds.
 
      Let
 \begin{equation}\label{eq:f_n_c_def}
@@ -567,7 +569,7 @@ From \eqref{eq:f_n_c_def},
 $(c^2-t^2)^{(n-1)/2}
 =[(c^2-1)+(1-t^2)](c^2-t^2)^{(n-3)/2}$
 \begin{equation}
-    f(n, c) = \frac{c^2-1}{2c}\frac{2}{n-1}\frac{\partial h(n,c)}{\partial c}
+    h(n, c) = \frac{c^2-1}{2c}\frac{2}{n-1}\frac{\partial h(n,c)}{\partial c}
     +  \int_0^{c}
     \left[\frac{1+t}{(1-t)^{n}}
     +\frac{1-t}{(1+t)^{n}}
@@ -582,7 +584,7 @@ Therefore,
 \end{equation}
 then we can use induction and solve this
 first order linear ODE about $h(n,c)$.
-With initial condition $h(n,0)=0$ and
+The initial condition is $h(n,0)=0$ and
 suppose
 $h(n-2,c)=B(\frac{n-1}{2}, \frac{1}{2})
 \frac{c^{n-2}}{(1-c^2)^{(n-1)/2}}$.
@@ -633,7 +635,8 @@ Then from \eqref{eq:F_0_expression}
     \left(\frac{1}{z\sin\theta_1}
     +\frac{1}{y\sin \theta_2}\right)
 \end{align*}
-Compared with the expression of $K(x)$ in
+Comparing $dF_0(x)$
+with the expression of $K(x)$ in
 \eqref{eq:K_x},
 we only need to prove
 \begin{equation}\label{eq:ref_prove_integration}    
@@ -705,26 +708,28 @@ After simplification of \eqref{eq:int_u_x_f_x}, we obtain \eqref{eq:ref_prove_in
 
 \begin{proof}[Proof of Theorem \ref{thm:H}]
      
-We use $F_1(x)$ to represent the probability that
-the distance from the origin to the plane $P_1P_2\dots P_{d-1}$
-is larger than $x$.
+We use $d(P_1,\dots, P_{d-1})$ to represent
+the distance from the origin to the hyperplane passing $P_1,P_2,\dots, P_{d-1}$,
+and let $F_1(x)=P(d(P_1,\dots, P_{d-1})\geq x)$.
 
 
 Firstly we show that $F_1(x)=K^{d-1}(x)$.
 For $d=2$, it is trivial.
-by induction we suppose $F_1(x)=K^{d'-1}(x)$ is true for
-$d'\leq d-1$. In $d'$ dimensional space, suppose $|P_1|=y>x$,
-then the conditional probability that $P_1P_2\dots P_{d'-1}$ is larger than
-$x$ is given by $K^{d'-2}(x)\lambda_{d'}(x/y)$ by the definition of $K(x)$.
+By induction we suppose that $F_1(x)=K^{d'-1}(x)$ is true for
+$d'\leq d-1$. In $d'$-dimensional space,
+from the definition of $K(x)$ we have $
+P(d(P_1, \dots, P_{d-1})) = \int_{y}^x K^{d'-2}(x)\lambda_{d'}(x/y)|dF(y)|
+$.
+Then then conditional probability $P(d(P_1,\dots, P_{d'-1})\geq x \Big\vert |OP_1|=y)
+=K^{d'-2}(x)\lambda_{d'}(x/y)$.
 For $d'=d$, 
 we firstly specify a straight line passing through $P_{d-2}P_{d-1}$,
 the space perpendicular 
 to this line has $d-1$ dimension while the straight line shrinks to a single point $P'_{d-2}$
-in this subspace. Given $|P'_{d-2}|=y$,
-the conditional probability $P_1P_2\dots P'_{d-2}$ is larger than
-$x$ is
-$K^{d-3}(x)\lambda_{d-1}(x/y)$.
-Then we have
+in this subspace. Since
+$P(d(P_1,\dots,P'_{d-2})\geq x \Big\vert |P'_{d-2}|=y)=
+K^{d-3}(x)\lambda_{d-1}(x/y)$,
+we have
 \begin{align*}
     F_1(x) &= \int_x^{+\infty} K^{d-3}(x) \lambda_{d-1}(\frac{x}{y})|dF_0(y)| \\
 \end{align*}
@@ -742,7 +747,7 @@ Similar to (1.9) of \cite{carnal1970konvexe}, we have
      F_1(z)|dK(z)|+\frac{2}{\pi}\int_{x}^{+\infty} K(y)F_1(y)\arccos\frac{x}{y}|dF_1(y)| \notag 
  \end{align}
 Using $F_1(x)=K^{d-1}(x)$,
-We reduce \eqref{eq:H_eq_n_arccos_geometric} to
+we reduce \eqref{eq:H_eq_n_arccos_geometric} to
  $$
  H(x) = \frac{2}{\pi}\int_x^{+\infty}  \arccos\frac{x}{y}\cdot
  d\cdot  K^{d-1}(y) |dK(y)|
@@ -750,11 +755,10 @@ We reduce \eqref{eq:H_eq_n_arccos_geometric} to
  which is exactly \eqref{eq:H_expression_d_dim}.
  
 \end{proof}
-\section{Computation involved in three different tails}
-\subsection{Computation involved in polynomial tails}
+\section{Computations involved in three distribution tails}
+\subsection{Computations involved in polynomial tails}
 The techniques used in this subsection are similar to the derivation of $G(x)$
-in (2.3) of \cite{carnal1970konvexe}. Here, we use a less rigorous approach and omit the split
-of interval of integration.
+in (2.3) of \cite{carnal1970konvexe}.
 
 For polynomial tails defined in \eqref{eq:F_poly_tail},
 we first compute the asymptotic value of $K(x)$
@@ -779,7 +783,7 @@ as follows:
      \Gamma(\frac{dk+1}{2})}{
          \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)} G(x)^d 
 \end{align*}
-To simplify the notation, denote $g(d)=\frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
+To simplify the notation, we denote $g(d)=\frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
 \Gamma(\frac{dk+1}{2})}{
     \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)}$.
 Let $G(x)=w$, then
@@ -790,9 +794,9 @@ Let $G(x)=w$, then
       \notag \\
       &\sim \frac{N!}{(N-d)! (N-d)^d}g(d) \label{eq:Ngd}
 \end{align}
-\eqref{eq:efn_poly_second_deri} is obtained from \eqref{eq:Ngd}.
+And \eqref{eq:efn_poly_second_deri} is obtained from \eqref{eq:Ngd}.
 
-The following lemma is useful to handle the case when $d\to \infty$.
+The following two lemmas are useful to handle the case when $d\to \infty$.
 \begin{lemma}\label{lem:Gamma_ratio}
      For fixed $v>0$, we have
      \begin{equation}\label{eq:Gamma_ratio}
@@ -802,7 +806,7 @@ The following lemma is useful to handle the case when $d\to \infty$.
      \end{equation}
  \end{lemma}
  \begin{proof}
-     We use Beta function to proceed.
+     We use Beta function to prove \eqref{eq:Gamma_ratio}.
      \eqref{eq:Gamma_ratio} is equivalent to
      $B(n, v) \sim \Gamma(v) n^{-v}$.
      From the definition of beta function,
@@ -832,11 +836,14 @@ when $N/d^2 \to \infty$.
 From the condition $N/d^2 \to \infty$,
 we obtain \eqref{eq:N_N_d_d}.
 \end{proof}
-Combined with \eqref{eq:Gamma_ratio}, we obtain \eqref{eq:poly_E_F_N_d_infty}.
-\subsection{Computation involved in exponential tails}
-For exponential tails, following Carnal, we make
+Combining \eqref{eq:Gamma_ratio} with \eqref{eq:N_N_d_d}, we obtain \eqref{eq:poly_E_F_N_d_infty}
+from \eqref{eq:Ngd}.
+
+\subsection{Computations involved in exponential tails}
+For exponential tails, following Carnal \cite{carnal1970konvexe},
+we make
 the substitution $x=L(s), y=L(\sigma)$, then $\sigma=1/F(y)$.
-Substituting them into \eqref{eq:K_x}
+Substituting them into \eqref{eq:K_x}, we have
 \begin{align*}
     K(x)  & = \int_s^{\infty} (1-\frac{L(s)^2}{L(\sigma)^2})^{\frac{d-2}{2}} \frac{d\sigma}{\sigma^2} \\
 \end{align*}
@@ -872,8 +879,8 @@ From \eqref{eq:G_x_exp}, we obtain \eqref{eq:H_x_exp}.
 
 Dywer has shown that for exponential tails, $v(x) \sim \epsilon(1/G(x))$ as $x\to \infty$.
 From \eqref{eq:E_F_N_d_sim}
-and use Abel-Tauber theorem
-\cite{omey1989abelian} we obtain
+, we use Abel-Tauber theorem
+\cite{omey1989abelian} and obtain
 \begin{align*}
     \E[F_N] & \sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}}\int_0^{1/2} \exp(-(N-d)w) d[w^d \epsilon(1/w)^{\frac{-d+1}{2}}] \\
     &\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} \binom{N}{d}\frac{\Gamma(d+1)}{(N-d)^d} \epsilon(N-d)^{\frac{-d+1}{2}}
@@ -907,7 +914,7 @@ By Lemma \ref{lem:ratio_epsilon}, we can show that
 $\epsilon(N-d)^{\frac{-d+1}{2}}\sim \epsilon(N)^{\frac{-d+1}{2}}$.
 When $d\to\infty$ and $N/d^2\to \infty$, we further obtain \eqref{eq:d_infty_exp_E_F_N}.
  
-\subsection{Computation involved in truncated tails}
+\subsection{Computations involved in truncated tails}
 First we compute $K(x)$ as follows
 \begin{align*}
     K(1-x)  & = \int_{1-x}^1 (1-\frac{(1-x)^2}{y^2})^{\frac{d-2}{2}} |dF(y)| \\
@@ -934,7 +941,7 @@ we have
 \end{align*}
 which reduces to \eqref{eq:truncated_H_1_x}.
 
-Combined with \eqref{eq:truncated_G_1_x} with \eqref{eq:truncated_H_1_x}, we obtain
+From \eqref{eq:truncated_G_1_x} with \eqref{eq:truncated_H_1_x}, it follows that
 \begin{equation}
     H(1-x) \sim ba^{-d} G(1-x)^d x^{\frac{1-d}{2}}
 \end{equation}

@@ -146,7 +146,7 @@ The integral formula of $\E[F_N]$ involves the function $G(x)$ and $H(x)$,
 both of which can be expressed in term of $F(x)$:
 \begin{align}
    G(x) &=\frac{1}{\pi} \int_x^{\infty}\arccos\frac{x}{y} |dF(y)| \\
-     H(x) &= \frac{2}{\pi} \int_x^{\infty} \arccos \frac{x}{z} |d(F^2(z))|
+     H(x) &= \frac{2}{\pi} \int_x^{\infty} \arccos \frac{x}{y} |d(F^2(y))|
      \label{eq:H_expression_2_dim}
 \end{align}
 For $d\geq 2$, the integral formula is generalized as
@@ -155,20 +155,24 @@ For $d\geq 2$, the integral formula is generalized as
      \left[G(x)^{N-d} + (1-G(x))^{N-d} \right]|dH(x)| 
      \label{eq:E_F_N_d}
 \end{align}
-Formula first appeared in the proof section of \cite{raynaud1970enveloppe}
-and can further to generalized to contain other integrands \cite{barany2008random}.
+Formula \eqref{eq:E_F_N_d} first appeared in the proof section of \cite{raynaud1970enveloppe}
+and can further to generalized to compute other combinatorial property of $H_N$ (like surface area and volume)
+\cite{barany2008random}.
 Dwyer obtains the integral formula for $G(x)$ in $d\geq 2$ as:
 \begin{align}\label{eq:G_d_kappa}
-     G(x) & = \int_x^{+\infty} \kappa(\frac{x}{y}) |dF(y)|
+     G(x) & = \int_x^{+\infty} \kappa \left(\frac{x}{y} \right) |dF(y)| \\
+     \kappa(r) & = \frac{\Gamma(\frac{d}{2})}
+     {\sqrt{\pi}\Gamma(\frac{d-1}{2})}\int_r^{1}
+     (1-u^2)^{(d-3)/2}du\label{eq:kappa_r}
 \end{align}
 where $\kappa(r)$ is the fraction of the surface area of a unit d-sphere
 cut off by a plane at distance $r$ from the origin.
 
 Our main theorem gives the integral formula for $H(x)$ in $d\geq 2$:
 \begin{theorem}\label{thm:H}
-Define the auxiliary function $\kappa(x,y)$ and $K(x)$ as follows: 
+Define the auxiliary function $\lambda_d(x)$ and $K(x)$ as follows: 
      \begin{align}
-          \lambda_d(r) & :=(1-r^2)^{\frac{d-2}{2}}
+          \lambda_d(x) & :=(1-x^2)^{\frac{d-2}{2}}
           \label{eq:lambda_r}\\
           K(x) &:=P(\sqrt{X_1^2+X_2^2}>x)=
           \int_x^{+\infty}
@@ -184,10 +188,10 @@ Then
 \end{theorem}
 It is easy to observe that \eqref{eq:H_expression_d_dim} reduces to 
 \eqref{eq:H_expression_2_dim} when $d=2$.
-For standard Gaussian distributions, $X_1, X_2$ are independent 1d
-Gaussian, therefore $K(x) = e^{-x^2/2}$. In fact, $1-K(x)$ is the CDF of Rayleigh distribution.
+For standard Gaussian distributions, $X_1, X_2$ are independent
+Gaussian random variables, then $K(x) = e^{-x^2/2}$. In fact, $1-K(x)$ is the CDF of Rayleigh distribution.
 %For general spherical distributions, the function $K(x)$ itself is irreverent with the dimension $d$.
-The detailed proof of Theorem \ref{thm:H}
+The proof of Theorem \ref{thm:H}
 is provided in Appendix \ref{app:th}.
 
 \section{Three distribution families}\label{sec:three_distriutions}
@@ -201,9 +205,9 @@ Therefore, we obtain
 \end{align}
 Let $\E[V_N]$ represent the expectation of the number of
 vertices of $H_N$.
-By far we haven't found any explicit relation between $\E[F_N]$ and $\E[V_N]$
+By far it is not clear whether there exists the explicit relation between $\E[F_N]$ and $\E[V_N]$
 for general spherical symmetric distribution.
-Using Corollary 19.6 of \cite{brondsted2012introduction}, we have the following
+However, we have some inequality estimations. Using Corollary 19.6 of \cite{brondsted2012introduction}, we have the following
 inequality:
 \begin{equation}\label{eq:F_V_upper}
      F_N \geq (d-1) V_N - (d+1)(d-2)
@@ -464,13 +468,8 @@ on the sphere with radius $z$. This is the area between
 two planes at distance $\frac{a_1}{z}$ and $\frac{a_2}{z}$
 on a unit sphere. From (1.1) of \cite{dwyer1991convex},
 this ratio equals $\kappa(\frac{a_2}{z}) - \kappa(\frac{a_1}{z})$
-where
-\begin{equation}
-     \kappa(r) = \frac{\Gamma(\frac{d}{2})}
-     {\sqrt{\pi}\Gamma(\frac{d-1}{2})}\int_r^{1}
-     (1-u^2)^{(d-3)/2}du
-\end{equation}
-Notice that $\kappa$ has been used in \eqref{eq:G_d_kappa}.
+where $\kappa$ is defined in \eqref{eq:kappa_r}.
+
 \end{proof}
 To show 
 $K(x) = \int_x^{+\infty} \lambda_d(\frac{x}{y})|dF(y)|$

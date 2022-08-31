@@ -195,9 +195,9 @@ The proof of Theorem \ref{thm:H}
 is provided in Appendix \ref{app:th}.
 
 \section{Three distribution families}\label{sec:three_distriutions}
-Notice that in \eqref{eq:E_F_N_d}, as $G(x)<\frac{1}{2}$ for $x>0$, the integration containing the
+Notice that in \eqref{eq:E_F_N_d}, $G(x)<\frac{1}{2}$ for $x>0$, therefore the
 term $G(x)^{N-d}$ decays exponentially fast as $N-d\to \infty$.
-Therefore, we obtain
+As a result, we obtain
 \begin{align}
      \E[F_N] \sim \binom{N}{d} \int_0^{+\infty} 
       (1-G(x))^{N-d} |dH(x)| 
@@ -205,9 +205,11 @@ Therefore, we obtain
 \end{align}
 Let $\E[V_N]$ represent the expectation of the number of
 vertices of $H_N$.
-By far it is not clear whether there exists the explicit relation between $\E[F_N]$ and $\E[V_N]$
+By far it is not clear whether there exist explicit relations
+between $\E[F_N]$ and $\E[V_N]$
 for general spherical symmetric distribution.
-However, we have some inequality estimations. Using Corollary 19.6 of \cite{brondsted2012introduction}, we have the following
+However, we can give some inequality estimations.
+Using Corollary 19.6 of \cite{brondsted2012introduction}, we have the following
 inequality:
 \begin{equation}\label{eq:F_V_upper}
      F_N \geq (d-1) V_N - (d+1)(d-2)
@@ -258,19 +260,19 @@ When we allow $d\to \infty$ while requiring $N/d^2 \to \infty$,
 \end{equation}
 Equation \eqref{eq:efn_poly_second_deri} tells
 us that $\E[F_N]$ converges to a constant as $N \to \infty$.
-When $d=2$, the result has been obtained in (2.4) of \cite{carnal1970konvexe}
+When $d=2$, the result was obtained in (2.4) of \cite{carnal1970konvexe}
 and Theorem 4.4 of \cite{davis1987convex}.
 
 \subsection{Distributions with exponential tails}
-In this subsection, we consider distribution satisfying
+In this subsection, we consider distributions satisfying
 $x = L(1/F(x)) $. $L(x)$ is slowly varying. Following Carnal \cite{carnal1970konvexe},
 the following utility functions are defined:
 \begin{align}
      \epsilon(s) & = s (\log (L(s)))' \label{eq:epsilon_s}\\
      v(u) &= -\frac{1}{u} \frac{1}{(\log F(u))'}    
 \end{align}
-The prime represents the symbol for differentiation. When $v(u)$ satisfying
-(2.15) of \cite{carnal1970konvexe},
+The prime notation represents the symbol for differentiation. When $v(u)$ satisfies
+conditions prescribed in (2.15) of \cite{carnal1970konvexe},
 we can obtain $\epsilon(s)$ is a slowly varying function.
 Dywer \cite{dwyer1991convex} obtains the expression of $G(x)$:
 \begin{equation}\label{eq:G_x_exp}
@@ -290,7 +292,7 @@ We obtain
  When $d=2$, \eqref{eq:exp_e_f_n} is consistent with (2.20) of \cite{carnal1970konvexe}.
  When $L(s)=\sqrt{2\log s}$, the distribution is standard Gaussian in $\R^d$.
  From \eqref{eq:epsilon_s}, $\epsilon(s) = (2\log s)^{-1}$. And we obtain from \eqref{eq:exp_e_f_n}
- $\E[F_N]\sim \frac{2^d}{\sqrt{d}}(\pi \log N)^{\frac{d-1}{2}}$,
+ that $\E[F_N]\sim \frac{2^d}{\sqrt{d}}(\pi \log N)^{\frac{d-1}{2}}$,
  which is consistent with (1.11) of \cite{raynaud1970enveloppe}.
 
  If $d\to\infty$ and $N/d^2\to \infty$, we have
@@ -298,15 +300,17 @@ We obtain
       \E[F_N]\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} \epsilon(N)^{\frac{-d+1}{2}}
 \end{align}
 \subsection{Distributions with truncated tails}
-In this subsection, we consider the distribution which satisfying the following conditions:
+In this subsection, we consider the distribution which satisfies
+the following conditions:
 \begin{equation}\label{eq:F_truncated}
-     F(1-x) \sim x^k L(\frac{1}{x})  \text{ as } x \to 0^+,
+     F(1-x) \sim x^k L\left(\frac{1}{x} \right)  \text{ as } x \to 0^+,
      F(x) = 0 \text{ for } x \geq 1
 \end{equation}
 In \eqref{eq:F_truncated}, $x \to 0^+$ means that $x\to 0$ from the right hand side of $0$.
 
 As mentioned by Dwyer \cite{dwyer1991convex}, the uniform distribution
-in the unit ball as $F(1-x) \sim dx$.
+in the unit ball satisfies \eqref{eq:F_truncated} with
+$F(1-x) \sim d\cdot x$.
 
 After simplification of (4.1) in \cite{dwyer1991convex}, we obtain
 \begin{align}
@@ -332,7 +336,7 @@ In this paper, we obtain
      d(k+\frac{d}{2} -1)+1 \right)
      \label{eq:b}
  \end{align}
-and then
+When $N\to \infty$ and $d$ is fixed, we have
  \begin{align}\label{eq:efn_truncated_formula}
      \E[F_N] &\sim \frac{b}{d!}a^{-d+\frac{d-1}{2k+d-1}}
      \Gamma 
@@ -345,7 +349,6 @@ and then
  When $k=1, L(n)=d$, we can verify that
  \eqref{eq:efn_truncated_formula} is equivalent with (1.1)
  of \cite{raynaud1970enveloppe}.
- 
  When $k=q+1, L(n)=\frac{2^{q+1}}{(q+1)B(d/2,q+1)}$,
  we can verify that
  \eqref{eq:efn_truncated_formula} is equivalent with the expression of $c_3$
@@ -360,13 +363,27 @@ and then
 In the field of machine learning,
 Balestriero et al. \cite{balestriero2021learning}
 argues that interpolation almost surely never occurs in high-dimensional spaces.
-This argument can be modeled with $p_{N,d} \to 0$ when $N,d$ satisfying certain conditions.
-The randomly sampled points in $\R^d$ represents training dataset while the interpolation
-symbolizes the learning algorithm. This section explores the condition for $p_{N,d} \to 0$,
-which is dependent on the distribution from which the data are sampled.
+Therefore we could not think machine learning algorithm works well because they can interpolate training data
+well.
+This argument can be modeled with the probability content $p_{N,d}$.
+The randomly sampled points in $\R^d$ represents training data
+while the interpolation
+symbolizes the learning algorithm. Then $p_{N,d}$ represents
+the probability of region not learnt by the algorithm.
+When we expect $p_{N,d} \to 0$ for large $d$,
+in this section
+we find that we need
+at least exponentially large $N(d)$, which is impractical to prepare.
 
-Our result can be summarized in the following table:
-\begin{table}
+The condition for $p_{N,d} \to 0$ is summarized in Table \ref{tab:cond},
+which are obtained
+from the estimation inequality \eqref{eq:d_infty_exp_E_F_N}
+combined with \eqref{eq:poly_E_F_N_d_infty},
+\eqref{eq:p_N_d_bound},
+\eqref{eq:truncated_d_inf}.
+
+
+\begin{table}[!ht]
      \centering
      \begin{tabular}{|c|c|}
          \hline
@@ -382,21 +399,16 @@ Our result can be summarized in the following table:
         \gg (2\pi)^{d/2}d^{(d-5)/2}$\\
         \hline
      \end{tabular}
-     \caption{Condition for $p_{N,d}\to 0$ when $d\to \infty$ and $N(d)$ is a function of $d$}
+     \caption{Condition for $p_{N,d}\to 0$ when $d\to \infty$ and $N$ is a function of $d$}
      \label{tab:cond}
  \end{table}
- The condition for each tails are obtained
- from the estimation \eqref{eq:d_infty_exp_E_F_N}
- combined with \eqref{eq:poly_E_F_N_d_infty},
- \eqref{eq:p_N_d_bound},
- \eqref{eq:truncated_d_inf}.
 
 For the special case of Gaussian distribution, we can estimate that
-$N(d)$ is faster than any $c^d$ (algebraic tails) but slower than $\exp(d^2)$.
+$N(d)$ grows faster than any $c^d$ (algebraic tails) but slower than $\exp(d^2)$.
 While for uniform distribution, $N\gg \exp(c' d^2 \log d)$ for some constant $c'$.
-We see that the sample complexity of $N$ is smallest for algebraic tails and the largest
-for truncated tails. That is, to guarantee the training error is small for high-dimensional data,
-we need more samples for the learning algorithm.
+We see that the sample complexity of $N$ is the smallest for algebraic tails and the largest
+for truncated tails. Even for algebraic tails, we need $N\gg \frac{c^d}{d^{3/2}}$,
+to guarantee $p_{N,d}\to 0$.
 % If you write a theorem, lemma, proposition etc please use the
 % appropriate environments. For instance:
 
@@ -999,16 +1011,16 @@ After simplification,
 
 
 \competing % Place any information on competing interests after the \competing (or \Competing) command.
-\noindent Use this section to describe any competing interests to declare related to this article. If there are no competing interests to declare in this section, please say ``There were no competing interests to declare which arose during the preparation or publication process of this article.''
+\noindent There were no competing interests to declare which arose during the preparation or publication process of this article.
 
 
 
-\data % Place any information on data related to the work in your article after the \data (or \Data) command. Omit this command/section and text if it is not relevant to your article.
-\noindent The data related to the simulations found in Section 2 can be found at...
+%\data % Place any information on data related to the work in your article after the \data (or \Data) command. Omit this command/section and text if it is not relevant to your article.
+%\noindent The data related to the simulations found in Section 2 can be found at...
 
 
 
-\supp \noindent The supplementary material for this article can be found at http://doi.org/10.1017/[TO BE SET]. % Delete this line if there are no supplementary files related to this article. If there are supplementary files related to your article, leave the line unchanged.
+%\supp \noindent The supplementary material for this article can be found at http://doi.org/10.1017/[TO BE SET]. % Delete this line if there are no supplementary files related to this article. If there are supplementary files related to your article, leave the line unchanged.
 
 
 

@@ -34,11 +34,13 @@
 
 \begin{abstract}
  For the convex hull of d-dimensional samples from spherically symmetric distributions,
- we derive the integral formula for the expectation of its facets.
+ we derive the complete integral formula for the expectation of its facets. The formula is
+ in term of the CDF of the 1D marginal distribution.
  As the number of samples approach infinity,
  the integral formula enables us to obtain the precise asymptotic value of the expectation of facets
  for three types of spherically symmetric distributions.
- The asymptotic result is applied to estimate the sample complexity for the interpolation of random points.
+ As a byproduct, the asymptotic result is applied to estimate the sample complexity when the probability measure of convex hull
+ tends to 1.
 \end{abstract}
 
 \keywords{Convell hull; spherically symmetric distribution; expectation of facets}
@@ -114,19 +116,19 @@ in Section \ref{sec:sample_complexity}.
 Without specific mention, the $d$-dimensional distribution considered in this paper is spherically symmetric.
 Below we define some notations which are to be used throughout this paper.
 Let $F(x)=P(|X|\geq x)$ represents the probability that a random point lies outside
-a d-sphere. $G(x)=P(X_1\geq x)$ corresponds to the one dimensional marginal distribution.
-Let $d$ represents the distance from the origin to the random hyperplane, spanned by $X_1, \dots, X_d$.
-In 2d, $d=d_{12}$, the distance to the random line passing $X_1$ and $X_2$. $H(x)=P(d\geq x)$ is
+a d-sphere (d dimensional sphere centered at origin) with radius $x$.
+The marginal distribution of each component of $X$ is determined by $G(x)=P(X_1\geq x)$.
+Let $d$ represent the distance from the origin to the random hyperplane spanned by $X_1, \dots, X_d$.
+In 2d, $d=d_{12}$ is the distance to the random line passing $X_1$ and $X_2$. $H(x)=P(d\geq x)$ is
 the probability that the distance $d(X_1, \dots, X_d)$ is larger than $x$.
 
 \section{Related work}
-We list some other related works which have
-not been mentioned in the previous section.
+We list some other related works which are not mentioned in the previous section.
 Efron \cite{efron1965convex} obtains the explicit integral formula for $\E[F_N]$ and $p_{N,d}$ 
 for Gaussian distribution and uniform distribution within a sphere in 2d and 3d.
 
 Distributions with algebraic tails $F(x) \sim x^{-k}$ are related with Poisson random process.
-It is shown that in 2d for $k>0$ the convex hull converges to a Poisson random process and $\E[F_N]$
+It is shown that in 2d for $k>0$, $H_N$ converges to the convex hull of a Poisson random process and $\E[F_N]$
 equals the limit of this random process \cite{davis1987convex}.
 The special case $k=0, d=2$ is treated in a later paper, in which the
 limit distribution of $F_N$ is computed \cite{aldous1991number}.
@@ -134,10 +136,10 @@ limit distribution of $F_N$ is computed \cite{aldous1991number}.
 Studies related with distribution with exponential tails mainly focus on the special Gaussian distribution.
 For Gaussian distribution, Kabluchko et al. \cite{kabluchko2020absorption} obtain explicit formula for $p_{N,d}$.
 Affentranger \cite{affentranger1991convex} derives $\E[F_N]$
-for beta-typed distribution (belonging to truncated tail)
-and Gaussian distribution (belonging to exponential tail).
+for beta-typed distribution (belonging to truncated tail),
+as well as Gaussian distribution (belonging to exponential tail).
 
-\section{Integral formula}\label{sec:int_f}
+ j\section{Integral formula}\label{sec:int_f}
 In 2d, the integral formula for $\E[F_N]$ is given as
 \begin{align}
      \E[F_N] &= \binom{N}{2} \int_0^{\infty} 

@@ -61,19 +61,20 @@
 
 %\subsection{Introduction} % Initial capital letter, then lower case. No full stop.
 Let $X_1, X_2, \dots, X_N$ be i.i.d. random points from a spherical symmetric distribution in $\mathbb{R}^d$.
-The convex hull $H_N$ of these $N$ points are an uninterrupted research topic in stochastic and integral geometry
-\cite{schneider2008stochastic}.
-The main aim of this paper is to provide a integral formula for $\E[F_N]$, the mathematical expectation
-of the number of $d-1$ dimensional facets
-of $H_N$,
+The convex hull $H_N$ of these $N$ points is the smallest convex set containing them.
+Various quantities related with $H_N$, including the number of vertices and facets, its volume, surface area,
+were investigated
+extensively by previous researchers \cite{schneider2008stochastic, barany2008random, hueter1999limit}.
+The main aim of this paper is to provide a complete integral formula for $\E[F_N]$, the mathematical expectation
+of the number of facets ($d-1$ dimensional faces) in $H_N$,
 and derive its asymptotic expression
 for three kinds of distribution families. Furthermore,
 let $X$ be a d-dimensional random vector from the same distribution but independent with $X_1, \dots, X_N$.
-The estimation of $\E[F_N]$ is used to obtain the upper bound
+The estimation of $\E[F_N]$ can be used to give an upper bound
 of the probability $p_{N,d}=P(X \not\in H_N)$, the probability content outside of the random convex hull.
 When the training data are sampled from the Gaussian distribution,
-the upper bound of this probability can be applied to
-explain the dimensional curse \cite{balestriero2021learning}.
+the upper bound of this probability is applied to
+explain the phenomena of dimensional curse \cite{balestriero2021learning}.
 That is,
 to maintain $p_{N,d} \to 0$, $N(d)$ grows faster than an exponential function of $d$.
 
@@ -82,7 +83,7 @@ was studied firstly by R{\'e}nyi and Sulanke \cite{renyi1963konvexe}.
 The distributions they considered
 are 2D gaussian and uniform distribution in a convex region with continuous curvature.
 Later on, Carnal \cite{carnal1970konvexe} generalized R{\'e}nyi's work.
-He classified symmetric distribution in 2d
+He classified symmetric 2d distribution
 into three types with different tails:
 polynomial, exponential and truncated,
 and he obtained the asymptotic expression of $\E[F_N]$
@@ -95,17 +96,18 @@ He obtained the asymptotic formula of $\E[F_N]$
 for uniform distribution in a hyperball
 and standard gaussian in $\mathbb{R}^d$.
 Afterwards, following Carnal, Dwyer \cite{dwyer1991convex}
-estimated the order of $\E[F_N]$ in big Theta
-notation
+estimated the order of $\E[F_N]$ 
 for three different distribution families.
 
-The existing work has not revealed the asymptotic formula of $\E[F_N]$ in $\R^d$.
-In Section \ref{sec:int_f}, we obtain this formula by generalizing Carnal's integral formula
-of $H(x)=P(d_{12}\geq x)$ from $d=2$ to higher dimensions.
-Then we derive the asymptotic
-expression for $\E[F_N]$ in three different distribution families in Section \ref{sec:three_distriutions}.
+Dwyer's work on the estimation of $\E[F_N]$ only captured its relationship with $N$ but lost its
+dependence on $d$. By far, no previous works revealed the general asymptotic expression of $\E[F_N]$ in $\R^d$.
+In Section \ref{sec:int_f}, we develop the method to obtain $\E[F_N]$ by generalizing Carnal's integral formula
+% of $H(x)=P(d_{12}\geq x)$ 
+from $d=2$ to higher dimensions.
+Then we derive the explicit asymptotic
+expressions of $\E[F_N]$ for three different distribution families in Section \ref{sec:three_distriutions}.
 Based on the asymptotic result of $\E[F_N]$,
-we discuss the condition for the convergence of $p_{N,d}$ to zero as $N,d \to \infty$
+we discuss a sufficient condition for the convergence of $p_{N,d}$ to zero as $N,d \to \infty$
 in Section \ref{sec:sample_complexity}.
 
 

@@ -1,6 +1,10 @@
 \documentclass{aptpub}
 \usepackage{graphicx}
+\usepackage[normalem]{ulem}
 \usepackage{bookmark}
+\usepackage{color}
+\newcommand{\tedit}[1]{\textcolor{red}{\##1\#}}
+\newcommand{\tdel}[1]{\tedit{\sout{#1}}}
 \authornames{Feng Zhao {\it et al.}} % insert the authors here for use in running head. If three or more authors please use (for example) M.~YARROW {\it et al}. Author names should follow the same M.~YARROW format and if two authors, separate by 'AND'.
 \shorttitle{On the expectation of facets in the convex hull of samples} % insert short title here for use in running head
 
@@ -33,17 +37,18 @@
 \emailtwo{shaolun.huang@sz.tsinghua.edu.cn}
 
 \begin{abstract}
- For the convex hull of d-dimensional samples from spherically symmetric distributions,
- we derive the complete integral formula for the expectation of its facets. The formula is
- in term of the CDF of the 1D marginal distribution.
+This paper studies the convex hull of $d$-dimensional samples i.i.d. generated from spherically symmetric distributions. Specifically, we derive a complete integral formula for
+computing the expected facet numbers.
+This formula is
+with respect to the CDF of the radial distribution.
  As the number of samples approach infinity,
- the integral formula enables us to obtain the precise asymptotic value of the expectation of facets
- for three types of spherically symmetric distributions.
- As a byproduct, the asymptotic result is applied to estimate the sample complexity when the probability measure of convex hull
+ the integral formula enables us to obtain the asymptotic value of the expected facet numbers
+ for three types \tedit{categories} of spherically symmetric distributions.
+ As a byproduct \tedit{Additionally}, the asymptotic result is \tedit {can be} applied to estimating the sample complexity when the probability measure of the convex hull
  tends to 1.
 \end{abstract}
 
-\keywords{Convell hull; spherically symmetric distribution; expectation of facets}
+\keywords{Convell hull; spherically symmetric distribution; expectation of facet number}
 %insert keywords separated by a semicolon.
 %You should avoid including keywords which also appear in the title.
 
@@ -62,11 +67,11 @@
 % but an author--date system is also acceptable~\cite{ref3}.
 
 %\subsection{Introduction} % Initial capital letter, then lower case. No full stop.
-Let $X_1, X_2, \dots, X_N$ be i.i.d. random points from a spherical symmetric distribution in $\mathbb{R}^d$.
-The convex hull $H_N$ of these $N$ points is the smallest convex set containing them.
-Various quantities related with $H_N$, including the number of vertices and facets, its volume, surface area,
+Let $X_1, X_2, \dots, X_N$ be i.i.d. random points generated from a spherical symmetric distribution in $\mathbb{R}^d$.
+The convex hull $H_N$ of these $N$ points is defined as the smallest convex set containing them \tedit{cite}.
+Various quantities related with $H_N$, including the number of vertices, the number of facets, the volume, and the surface area,
 were investigated
-extensively by previous researchers \cite{schneider2008stochastic, barany2008random, hueter1999limit}.
+extensively by previous works \cite{schneider2008stochastic, barany2008random, hueter1999limit}.
 The main aim of this paper is to provide a complete integral formula for $\E[F_N]$, the mathematical expectation
 of the number of facets ($d-1$ dimensional faces) in $H_N$,
 and derive its asymptotic expression
@@ -139,7 +144,7 @@ Affentranger \cite{affentranger1991convex} derives $\E[F_N]$
 for beta-typed distribution (belonging to truncated tail),
 as well as Gaussian distribution (belonging to exponential tail).
 
- j\section{Integral formula}\label{sec:int_f}
+ \section{Integral formula}\label{sec:int_f}
 In 2d, the integral formula for $\E[F_N]$ is given as
 \begin{align}
      \E[F_N] &= \binom{N}{2} \int_0^{\infty} 

@@ -45,7 +45,7 @@ with respect to the CDF of the radial distribution.
  the integral formula enables us to obtain the asymptotic value of the expected facet numbers
  for three categories of spherically symmetric distributions.
  Additionally, the asymptotic result can then be applied to estimating the sample complexity when the probability measure of the convex hull
- tends to 1.
+ tends to one.
 \end{abstract}
 
 
@@ -68,20 +68,25 @@ with respect to the CDF of the radial distribution.
 % but an author--date system is also acceptable~\cite{ref3}.
 
 %\subsection{Introduction} % Initial capital letter, then lower case. No full stop.
-Let $X_1, X_2, \dots, X_N$ be i.i.d. random points generated from a spherical symmetric distribution in $\mathbb{R}^d$.
-The number of facets $F_N$ in the convex hull $H_N$ of these $N$ points is the 
-The main aim of this paper is to provide a complete integral formula for $\E[F_N]$, the mathematical expectation
-of the number of facets ($(d-1)$-dimensional faces) in $H_N$,
-and derive its asymptotic expression
-for three kinds of distribution families. Furthermore,
-let $X$ be a $d$-dimensional random vector from the same distribution but independent with $X_1, \dots, X_N$.
-The estimation of $\E[F_N]$ can be used to give an upper bound
-of the probability $p_{N,d}=P(X \not\in H_N)$, the probability content outside of the random convex hull.
-When the training data are sampled from a Gaussian distribution,
-the upper bound of this probability is applied to
-explaining the phenomena of the dimensional curse \cite{balestriero2021learning}.
-xxThat is?,
-to achieve $p_{N,d} \to 0$, the number of samples $N$ grows faster than an exponential function of $d$.
+Let $X_1, X_2, \dots, X_N$ be i.i.d. random points generated from
+a spherical symmetric distribution in $\mathbb{R}^d$.
+The number of facets ($(d-1)$-dimensional faces) $F_N$ is a combinatorial property of the convex hull $H_N$ of these $N$ points.
+The main contribution of this paper is to provide a complete integral formula for $\E[F_N]$,
+the mathematical expectation
+of $F_N$ in $H_N$, and derive its asymptotic expression
+for three categories of distributions.
+
+Our motivation to study $\E[F_N]$
+is using it to give an upper bound of
+the probability $p_{N,d}=P(X_{N+1} \not\in H_N)$,
+which is the probability content outside of the random convex hull.
+This probability comes from an approach to explain
+why interpolation is extremely difficult in high dimensions \cite{balestriero2021learning}.
+In other words, we need at least exponentially large quantities of samples $N$
+to guarantee that all newly generated point falls within $H_N$.
+In our work, the asymptotic result on $\E[F_N]$ can be directly used directly to obtain
+a sufficient condition on $N,d$ for $p_{N,d} \to 0$.
+
 
 The asymptotic expression of $\E[F_N]$ as $N\to \infty$
 was studied firstly by R{\'e}nyi and Sulanke \cite{renyi1963konvexe}.

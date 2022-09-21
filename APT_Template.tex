@@ -43,10 +43,11 @@ This formula is
 with respect to the CDF of the radial distribution.
  As the number of samples approach infinity,
  the integral formula enables us to obtain the asymptotic value of the expected facet numbers
- for three types \tedit{categories} of spherically symmetric distributions.
- As a byproduct \tedit{Additionally}, the asymptotic result is \tedit {can be} applied to estimating the sample complexity when the probability measure of the convex hull
+ for three categories of spherically symmetric distributions.
+ Additionally, the asymptotic result can then be applied to estimating the sample complexity when the probability measure of the convex hull
  tends to 1.
 \end{abstract}
+
 
 \keywords{Convell hull; spherically symmetric distribution; expectation of facet number}
 %insert keywords separated by a semicolon.
@@ -68,33 +69,35 @@ with respect to the CDF of the radial distribution.
 
 %\subsection{Introduction} % Initial capital letter, then lower case. No full stop.
 Let $X_1, X_2, \dots, X_N$ be i.i.d. random points generated from a spherical symmetric distribution in $\mathbb{R}^d$.
-The convex hull $H_N$ of these $N$ points is defined as the smallest convex set containing them \tedit{cite}.
-Various quantities related with $H_N$, including the number of vertices, the number of facets, the volume, and the surface area,
-were investigated
-extensively by previous works \cite{schneider2008stochastic, barany2008random, hueter1999limit}.
+The number of facets $F_N$ in the convex hull $H_N$ of these $N$ points is the 
 The main aim of this paper is to provide a complete integral formula for $\E[F_N]$, the mathematical expectation
-of the number of facets ($d-1$ dimensional faces) in $H_N$,
+of the number of facets ($(d-1)$-dimensional faces) in $H_N$,
 and derive its asymptotic expression
 for three kinds of distribution families. Furthermore,
-let $X$ be a d-dimensional random vector from the same distribution but independent with $X_1, \dots, X_N$.
+let $X$ be a $d$-dimensional random vector from the same distribution but independent with $X_1, \dots, X_N$.
 The estimation of $\E[F_N]$ can be used to give an upper bound
 of the probability $p_{N,d}=P(X \not\in H_N)$, the probability content outside of the random convex hull.
-When the training data are sampled from the Gaussian distribution,
+When the training data are sampled from a Gaussian distribution,
 the upper bound of this probability is applied to
-explain the phenomena of dimensional curse \cite{balestriero2021learning}.
-That is,
-to maintain $p_{N,d} \to 0$, $N(d)$ grows faster than an exponential function of $d$.
+explaining the phenomena of the dimensional curse \cite{balestriero2021learning}.
+xxThat is?,
+to achieve $p_{N,d} \to 0$, the number of samples $N$ grows faster than an exponential function of $d$.
 
 The asymptotic expression of $\E[F_N]$ as $N\to \infty$
 was studied firstly by R{\'e}nyi and Sulanke \cite{renyi1963konvexe}.
-The distributions they considered
-are 2D gaussian and uniform distribution in a convex region with continuous curvature.
-Later on, Carnal \cite{carnal1970konvexe} generalized R{\'e}nyi's work.
-He classified symmetric 2d distribution
-into three types with different tails:
-polynomial, exponential and truncated,
-and he obtained the asymptotic expression of $\E[F_N]$
-for each type.
+they considered
+2-D Gaussian distribution and uniform distribution
+in a convex region with an continuous curvature.
+Later on,  R{\'e}nyi's work was generalized by
+Carnal \cite{carnal1970konvexe}, who
+classified symmetric 2-D distributions
+into three categories according to different tails:
+polynomial, exponential, and truncated tails.
+Then he obtained the asymptotic expression of $\E[F_N]$
+for each category.
+
+
+
 
 The study of $\E[F_N]$ for $d>2$ is made firstly by
 Raynaud
@@ -143,6 +146,12 @@ For Gaussian distribution, Kabluchko et al. \cite{kabluchko2020absorption} obtai
 Affentranger \cite{affentranger1991convex} derives $\E[F_N]$
 for beta-typed distribution (belonging to truncated tail),
 as well as Gaussian distribution (belonging to exponential tail).
+\cite{hueter1999limit} studied the concentration property of $F_N$ and obtain
+an upper bound for $E[F_N]$ shaper than the one given in \cite{dwyer1991convex}.
+
+In recent years, various quantities related with $H_N$, including the number of vertices, the number of facets, the volume, and the surface area,
+were systematically investigated in a general framework involving the function of facets
+see works \cite{schneider2008stochastic, barany2008random}.
 
  \section{Integral formula}\label{sec:int_f}
 In 2d, the integral formula for $\E[F_N]$ is given as

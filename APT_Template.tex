@@ -5,6 +5,8 @@
 \usepackage{color}
 \newcommand{\tedit}[1]{\textcolor{red}{\##1\#}}
 \newcommand{\tdel}[1]{\tedit{\sout{#1}}}
+
+
 \authornames{Feng Zhao {\it et al.}} % insert the authors here for use in running head. If three or more authors please use (for example) M.~YARROW {\it et al}. Author names should follow the same M.~YARROW format and if two authors, separate by 'AND'.
 \shorttitle{On the expectation of facets in the convex hull of samples} % insert short title here for use in running head
 
@@ -71,21 +73,21 @@ with respect to the CDF of the radial distribution.
 %\subsection{Introduction} % Initial capital letter, then lower case. No full stop.
 Let $X_1, X_2, \dots, X_N$ be i.i.d. random points generated from
 a spherical symmetric distribution in $\mathbb{R}^d$.
-For the convex hull $\mathrm{H}_N$ of these $N$ points, we study its number of facets $F_N$.
-We note that a facet of a $d$-dimensional object is one of its $(d-1)$-dimensional faces.
+For the convex hull $\mathrm{H}_N$ of these $N$ points, we study the number of its facets $F_N$,
+where a facet of a $d$-dimensional object is one of its $(d-1)$-dimensional faces.
 The main contribution of this paper is to provide a complete integral formula for $\E[F_N]$,
 the mathematical expectation
 of $F_N$, and derive its asymptotic expression
-for three categories of distributions.
+for \textcolor{red}{three categories of distributions.}
 
 Our motivation to study $\E[F_N]$
 is to give an upper bound of
 the probability $p_{N,d}=P(X_{N+1} \not\in \mathrm{H}_N)$,
-which is the probability content outside the random convex hull.
+which is the \textcolor{red}{probability content} outside the random convex hull.
 This probability can be applied to explain
-why interpolation almost surely never occurs in high dimensions \cite{balestriero2021learning}.
-In other words, for a large $d$, we need at least exponentially large quantities of samples $N$
-to guarantee that the newly generated point falls in the interpolation region $\mathrm{H}_N$.
+why \textcolor{red}{interpolation} almost surely never occurs in high dimensional space \cite{balestriero2021learning}.
+In other words, for a large $d$, we need at least exponentially large sample size $N$
+to guarantee that the newly generated point falls in the \textcolor{red}{interpolation region} $\mathrm{H}_N$.
 Using the asymptotic result on $\E[F_N]$, we obtain
 a sufficient condition under which the interpolation almost surely occurs.
 
@@ -113,29 +115,29 @@ He obtained the asymptotic formula of $\E[F_N]$
 for uniform distribution in a hyperball
 and standard Gaussian distribution in $\mathbb{R}^d$.
 Afterwards, following Carnal, Dwyer \cite{dwyer1991convex}
-estimated the order of $\E[F_N]$ 
+estimated the order of $\E[F_N]$ about $N$
 for three different distribution families.
 
-Dwyer's work on the estimation of $\E[F_N]$ only captured its relationship with $N$ but lost its
-dependence on $d$. As far as we know, no previous works revealed the general asymptotic expression of $\E[F_N]$ in $\R^d$.
-In Section \ref{sec:int_f}, we develop the method to obtain $\E[F_N]$ by generalizing Carnal's integral formula
+Dwyer's work on the estimation of $\E[F_N]$ only captured its relationship with $N$ but ignored its
+dependence on $d$. To our best knowledge, previous works have not revealed the general asymptotic expression of $\E[F_N]$ in $\R^d$.
+In Section \ref{sec:int_f}, we develop a method of obtaining $\E[F_N]$ by generalizing Carnal's integral formula
 % of $H(x)=P(d_{12}\geq x)$ 
 from $d=2$ to higher dimensions.
 Then we derive the explicit asymptotic
 expressions of $\E[F_N]$ for three different distribution families in Section \ref{sec:three_distriutions}.
 Based on the asymptotic result of $\E[F_N]$,
-we discuss a sufficient condition for the convergence of $p_{N,d}$ to zero as $N,d \to \infty$
+we provide a sufficient condition for the convergence of $p_{N,d}$ to zero as $N,d \to \infty$
 in Section \ref{sec:sample_complexity}.
 
 
-Without specific mention, the $d$-dimensional distribution considered in this paper is spherically symmetric.
-Below we define some notations which are to be used throughout this paper.
+\textcolor{red}{Without specific mention}, the $d$-dimensional distribution considered in this paper is spherically symmetric.
+Below we define some notations to be used throughout this paper.
 Let $F(x)=P(|X|\geq x)$ denote the probability that a random point lies outside
-a d-sphere ($d$-dimensional sphere centered at origin) with radius $x$.
+a $d$-sphere ($d$-dimensional sphere centered at origin) with radius $x$.
 The marginal distribution of each component of $X$ is determined by $G(x)=P(X_1\geq x)$.
-Let $d$ represent the distance from the origin to the hyperplane spanned by $X_1, \dots, X_d$.
-Specifically, in 2-D, $d=d_{12}$ is the distance to the line passing $X_1$ and $X_2$.
-The probability $H(x)=P(d\geq x)$ represents the event that the distance $d$ is larger than $x$.
+Let $dist$ represent the distance from the origin to the hyperplane spanned by $X_1, \dots, X_d$.
+Specifically, in 2-D, $dist$ is the distance to the line passing $X_1$ and $X_2$.
+The probability $H(x)=P(dist\geq x)$ represents the event that the distance $d$ is larger than $x$.
 
 \section{Related work}
 Below we list some other related works which are not mentioned in the previous section.

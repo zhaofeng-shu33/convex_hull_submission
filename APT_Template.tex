@@ -17,7 +17,7 @@
 \def\R{\mathbb{R}}
 \begin{document}%\recd{}{}%Do not alter this line.
 
-\title{On the expected number of facets in the convex hull of samples from spherically symmetric distributions} % insert title - use \\ if it requires more than one line.
+\title{On the expected number of facets for the convex hull of samples from spherically symmetric distributions} % insert title - use \\ if it requires more than one line.
 
 \authorone[Department of Electronics, Tsinghua University]{Feng Zhao} 
 %Affiliation is just the name of your university or institution, for example 'University of Sheffield'. Author names should be of the form 'Mark Yarrow'. 
@@ -70,46 +70,47 @@ with respect to the CDF of the radial distribution.
 %\subsection{Introduction} % Initial capital letter, then lower case. No full stop.
 Let $X_1, X_2, \dots, X_N$ be i.i.d. random points generated from
 a spherical symmetric distribution in $\mathbb{R}^d$.
-The number of facets ($(d-1)$-dimensional faces) $F_N$ is a combinatorial property of the convex hull $H_N$ of these $N$ points.
+For the convex hull $H_N$ of these $N$ points, we study its number of facets $F_N$.
+We note that a facet of a $d$-dimensional object is one of its $(d-1)$-dimensional faces.
 The main contribution of this paper is to provide a complete integral formula for $\E[F_N]$,
 the mathematical expectation
-of $F_N$ in $H_N$, and derive its asymptotic expression
+of $F_N$, and derive its asymptotic expression
 for three categories of distributions.
 
 Our motivation to study $\E[F_N]$
-is using it to give an upper bound of
+is to give an upper bound of
 the probability $p_{N,d}=P(X_{N+1} \not\in H_N)$,
-which is the probability content outside of the random convex hull.
-This probability comes from an approach to explain
-why interpolation is extremely difficult in high dimensions \cite{balestriero2021learning}.
-In other words, we need at least exponentially large quantities of samples $N$
-to guarantee that all newly generated point falls within $H_N$.
-In our work, the asymptotic result on $\E[F_N]$ can be directly used directly to obtain
-a sufficient condition on $N,d$ for $p_{N,d} \to 0$.
+which is the probability content outside the random convex hull.
+This probability can be applied to explain
+why interpolation almost surely never occurs in high dimensions \cite{balestriero2021learning}.
+In other words, for a large $d$, we need at least exponentially large quantities of samples $N$
+to guarantee that the newly generated point falls in the interpolation region $H_N$.
+Using the asymptotic result on $\E[F_N]$, we obtain
+a sufficient condition under which the interpolation almost surely occurs.
 
 
 The asymptotic expression of $\E[F_N]$ as $N\to \infty$
 was studied firstly by R{\'e}nyi and Sulanke \cite{renyi1963konvexe}.
-they considered
-2-D Gaussian distribution and uniform distribution
-in a convex region with an continuous curvature.
+They considered
+bivariate Gaussian distribution and uniform distribution
+in a planar convex region.
 Later on,  R{\'e}nyi's work was generalized by
 Carnal \cite{carnal1970konvexe}, who
 classified symmetric 2-D distributions
 into three categories according to different tails:
 polynomial, exponential, and truncated tails.
 Then he obtained the asymptotic expression of $\E[F_N]$
-for each category.
+for each category of distributions.
 
 
 
 
-The study of $\E[F_N]$ for $d>2$ is made firstly by
+The study of $\E[F_N]$ for $d>2$ was made firstly by
 Raynaud
 \cite{raynaud1970enveloppe}.
 He obtained the asymptotic formula of $\E[F_N]$
 for uniform distribution in a hyperball
-and standard gaussian in $\mathbb{R}^d$.
+and standard Gaussian distribution in $\mathbb{R}^d$.
 Afterwards, following Carnal, Dwyer \cite{dwyer1991convex}
 estimated the order of $\E[F_N]$ 
 for three different distribution families.
@@ -128,12 +129,12 @@ in Section \ref{sec:sample_complexity}.
 
 Without specific mention, the $d$-dimensional distribution considered in this paper is spherically symmetric.
 Below we define some notations which are to be used throughout this paper.
-Let $F(x)=P(|X|\geq x)$ represents the probability that a random point lies outside
-a d-sphere (d dimensional sphere centered at origin) with radius $x$.
+Let $F(x)=P(|X|\geq x)$ denote the probability that a random point lies outside
+a d-sphere ($d$-dimensional sphere centered at origin) with radius $x$.
 The marginal distribution of each component of $X$ is determined by $G(x)=P(X_1\geq x)$.
 Let $d$ represent the distance from the origin to the random hyperplane spanned by $X_1, \dots, X_d$.
-In 2d, $d=d_{12}$ is the distance to the random line passing $X_1$ and $X_2$. $H(x)=P(d\geq x)$ is
-the probability that the distance $d(X_1, \dots, X_d)$ is larger than $x$.
+Specifically, in 2-D, $d=d_{12}$ is the distance to the random line passing $X_1$ and $X_2$.
+The probability $H(x)=P(d\geq x)$ represents the event that the distance $d(X_1, \dots, X_d)$ is larger than $x$.
 
 \section{Related work}
 We list some other related works which are not mentioned in the previous section.
@@ -159,7 +160,7 @@ were systematically investigated in a general framework involving the function o
 see works \cite{schneider2008stochastic, barany2008random}.
 
  \section{Integral formula}\label{sec:int_f}
-In 2d, the integral formula for $\E[F_N]$ is given as
+In 2-D, the integral formula for $\E[F_N]$ is given as \cite{carnal1970konvexe}
 \begin{align}
      \E[F_N] &= \binom{N}{2} \int_0^{\infty} 
      \left[G(x)^{N-2} + (1-G(x))^{N-2} \right]|dH(x)| 
@@ -179,7 +180,7 @@ For $d\geq 2$, the integral formula is generalized as
      \label{eq:E_F_N_d}
 \end{align}
 Formula \eqref{eq:E_F_N_d} first appeared in the proof section of \cite{raynaud1970enveloppe}
-and can further to generalized to compute other combinatorial property of $H_N$ (like surface area and volume)
+and can further be generalized to compute other combinatorial property of $H_N$ (like surface area and volume)
 \cite{barany2008random}.
 Dwyer obtains the integral formula for $G(x)$ in $d\geq 2$ as:
 \begin{align}\label{eq:G_d_kappa}

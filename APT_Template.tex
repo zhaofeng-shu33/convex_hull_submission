@@ -67,7 +67,7 @@ with respect to the CDF of the radial distribution.
 		%codes found here ``https://mathscinet.ams.org/msnhtml/msc2020.pdf''
 
 
-\section{Introduction} % Initial capital letter, then lower case. No full stop.
+\section{Introduction}\label{sec:intro} % Initial capital letter, then lower case. No full stop.
 
 % Write the text of your paper using normal LaTeX commands.
 % For instance, you can use the `\cite' command~\cite{ref1}.
@@ -152,8 +152,9 @@ for Gaussian distribution and uniform distribution within a unit sphere.
 
 Davis et al. \cite{davis1987convex} found the relationship between the distributions with algebraic tails $F(x) \sim x^{-k}$ and Poisson random process.
 They showed that for $k>0, d=2$,
-$\mathrm{H}_N$ converges to the convex hull of a Poisson random process and $\E[F_N]$
-equals the limit of \textcolor{red}{this random process} .
+$\mathrm{H}_N$ converges to the convex hull of a Poisson random process,
+and
+the limit of $\E[F_N]$ and this random process are equal.
 The special case $k=0, d=2$ is treated in a later paper, in which the
 limit distribution of $F_N$ is computed \cite{aldous1991number}.
 
@@ -184,7 +185,8 @@ this formula in 2-D, which is given as follows:
      \label{eq:E_F_N_2_d}
 \end{align}
 The integral formula of $\E[F_N]$ involves the function $G(x)$ and $H(x)$,
-both of which are expressed with $F(x)$ in the following way:
+whose definitions are given at the end of Section \ref{sec:intro}.
+Both functions are expressed with $F(x)$ in the following way:
 \begin{align}
    G(x) &=\frac{1}{\pi} \int_x^{\infty}\arccos\frac{x}{y} |\mathrm{d} F(y)| \\
      H(x) &= \frac{2}{\pi} \int_x^{\infty} \arccos \frac{x}{y} |\mathrm{d}(F^2(y))|
@@ -213,21 +215,21 @@ cut off by a plane at distance $r$ from the origin.
 We cannot compute $\E[F_N]$ from $F(x)$ yet, since no formula for $H(x)$ with respect to $F(x)$ is given in previous studies.
 Our main theorem solves this problem by giving the integral formula for $H(x)$ in $d\geq 2$:
 \begin{theorem}\label{thm:H}
-We define the auxiliary function $\lambda_d(x)$ and $K(x)$ as follows: 
-     \begin{align}
-          \lambda_d(x) & :=(1-x^2)^{\frac{d-2}{2}}
-          \label{eq:lambda_r}\\
-          K(x) &:=P\left(\sqrt{X_1^2+X_2^2}>x \right)=
-          \int_x^{+\infty}
-          \lambda_d \left(\frac{x}{y} \right)|\d F(y)|
-          \label{eq:K_x}
-      \end{align}
-Then
+For $d\geq 2$, the integral formula for $H(x)$ is given as
 \begin{equation}
      H(x) = \frac{2}{\pi}
      \int_x^{+\infty} \arccos\frac{x}{y}
      |\mathrm{d} (K^d(y))|\label{eq:H_expression_d_dim}
 \end{equation}
+where the auxiliary function $K(x)$ is defined in the following way:
+\begin{align}
+     \lambda_d(x) & :=(1-x^2)^{\frac{d-2}{2}}
+     \label{eq:lambda_r}\\
+     K(x) &:=P\left(\sqrt{X_1^2+X_2^2}>x \right)=
+     \int_x^{+\infty}
+     \lambda_d \left(\frac{x}{y} \right)|\d F(y)|
+     \label{eq:K_x}
+\end{align}
 \end{theorem}
 It is easy to observe that \eqref{eq:H_expression_d_dim} reduces to 
 \eqref{eq:H_expression_2_dim} when $d=2$.
@@ -244,7 +246,7 @@ term $G(x)^{N-d}$ decays at an exponential rate as $N-d\to \infty$.
 As a result, we obtain
 \begin{align}
      \E[F_N] \sim \binom{N}{d} \int_0^{+\infty} 
-      (1-G(x))^{N-d} |dH(x)| \textrm{ as } N-d\to \infty
+      (1-G(x))^{N-d} |\d H(x)| \textrm{ as } N-d\to \infty
      \label{eq:E_F_N_d_sim}
 \end{align}
 Let $\E[V_N]$ represent the expectation of the number of
@@ -268,20 +270,37 @@ We use the symbol $a \gg b$ if $\lim_{b\to \infty} \frac{a(b)}{b} = \infty$.
 Based on \eqref{eq:E_F_N_d_sim}, in the following
 we derive the asymptotic expression of $\E[F_N]$
 for three different distribution families.
+
+To precisely define these distribution families, we introduce the concept of slowly varying function.
+\begin{definition}
+A function $L(x)$ is
+slowly varying as $x\to \infty$
+if for all $\lambda>0$,
+$\lim_{x\to\infty}\frac{L(\lambda x)}{L(x)}=1$
+holds.
+\end{definition}
+
 \subsection{Distributions with polynomial tails}
-In this subsection, we deal with the distribution with the form
+
+With the help of a slowly varying function $L(x)$,
+distributions with polynomial tails can be written
+in the following form:
 \begin{equation}\label{eq:F_poly_tail}
      F(x) = x^{-k} L(x), k\geq 0
 \end{equation}
-where $L(x)$ is a slowly varying function.\textcolor{red}{Define what is a slowly varying function}
 
 Dwyer\cite{dwyer1991convex} has obtained $G(x)$ as:
 \begin{equation}
      G(x) \sim \frac{\Gamma(\frac{d}{2})}{2\sqrt{\pi} \Gamma(\frac{d-1}{2})}
      B\left(\frac{k+1}{2}, \frac{d-1}{2}\right) F(x)  \textrm{ as } x\to \infty
 \end{equation}
+
 From Theorem \ref{thm:H}, we obtain the asymptotic
-expression of $H(x)$ as
+expression of $H(x)$ and $\E[F_N]$, which is
+summarized in the following theorem:
+\begin{theorem}
+     For distributions with polynomial tails defined in \eqref{eq:F_poly_tail},
+     we have
 \begin{equation}
      H(x) \sim \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
      \Gamma(\frac{dk+1}{2})}{
@@ -295,6 +314,7 @@ and from \eqref{eq:E_F_N_d_sim}
         \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)}
         \textrm{ as } N \to \infty, d \textrm { is fixed}
 \end{equation}
+\end{theorem}
 When we allow $d\to \infty$ while requiring $N/d^2 \to \infty$,
 \begin{equation}\label{eq:poly_E_F_N_d_infty}
 \E[F_N] \sim \sqrt{\frac{2}{\pi dk}}\left(
@@ -309,7 +329,7 @@ and Theorem 4.4 of \cite{davis1987convex}.
 
 \subsection{Distributions with exponential tails}
 In this subsection, we consider distributions satisfying
-$x = L(1/F(x)) $. $L(x)$ is slowly varying. Following Carnal \cite{carnal1970konvexe},
+$x = L(1/F(x)) $, where $L(x)$ is slowly varying. Following Carnal \cite{carnal1970konvexe},
 the following utility functions are defined:
 \begin{align}
      \epsilon(s) & = s (\log (L(s)))' \label{eq:epsilon_s}\\
@@ -317,22 +337,28 @@ the following utility functions are defined:
 \end{align}
 The prime notation represents the symbol for differentiation. When $v(u)$ satisfies
 conditions prescribed in (2.15) of \cite{carnal1970konvexe},
-we can obtain $\epsilon(s)$ is a slowly varying function.
+we can obtain that $\epsilon(s)$ is a slowly varying function.
 Dywer \cite{dwyer1991convex} obtains the expression of $G(x)$:
 \begin{equation}\label{eq:G_x_exp}
-     G(x) \sim \frac{2^{(d-3)/2}}{\sqrt{\pi}}\Gamma(\frac{d}{2}) v^{(d-1)/2}(x) F(x)
+     G(x) \sim \frac{2^{(d-3)/2}}{\sqrt{\pi}}\Gamma\left(\frac{d}{2}\right)
+     v^{(d-1)/2}(x) F(x)
       \textrm{ as } x\to \infty
 \end{equation}
-We obtain 
+We obtain
+\begin{theorem}
+     Suppose there exists a slowly
+     varying function $L(x)$ such that $x=L(1/F(x))$,
+     and $\epsilon(s)$ is defined in \eqref{eq:epsilon_s}, then
 \begin{equation}\label{eq:H_x_exp}
      H(x) \sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}}v^{\frac{-d+1}{2}}(x)G^d(x)
      \textrm{ as } x\to \infty
 \end{equation}
- and then
+ and
  \begin{equation}\label{eq:exp_e_f_n}
      \E[F_N]\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} (\epsilon(N))^{-\frac{d-1}{2}}
      \textrm{ as } N \to \infty, d \textrm { is fixed}
  \end{equation}
+\end{theorem}
  When $d=2$, \eqref{eq:exp_e_f_n} is consistent with (2.20) of \cite{carnal1970konvexe}.
  When $L(s)=\sqrt{2\log s}$, the distribution is standard Gaussian in $\R^d$.
  From \eqref{eq:epsilon_s}, $\epsilon(s) = (2\log s)^{-1}$. And we obtain from \eqref{eq:exp_e_f_n}
@@ -344,7 +370,7 @@ We obtain
       \E[F_N]\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} \epsilon(N)^{\frac{-d+1}{2}}
 \end{align}
 \subsection{Distributions with truncated tails}
-In this subsection, we consider the distribution which satisfies
+In this subsection, let $L(x)$ also represent a slowly varying function, and we consider the distribution which satisfies
 the following conditions:
 \begin{equation}\label{eq:F_truncated}
      F(1-x) \sim x^k L\left(\frac{1}{x} \right)  \text{ as } x \to 0^+,
@@ -369,16 +395,20 @@ After simplification of (4.1) in \cite{dwyer1991convex}, we obtain
     {\sqrt{\pi} \Gamma\left(k+\frac{d+1}{2}\right)}
     \label{eq:a}
 \end{align}
-In this paper, we obtain
+In this subsection, we obtain the following theorem in regards to the asymptotic value of $H(1-x)$ and $\E[F_N]$:
+\begin{theorem}
+     For distributions with truncated tails
+     defined in \eqref{eq:F_truncated},
+     we have
 \begin{align}
      H(1-x)  \sim b
      L^d(1/x) x^{d(k+\frac{d}{2}-1)+\frac{1}{2}} 
      \textrm{ as } x \to 0^+ \label{eq:truncated_H_1_x}
- \end{align}
+\end{align}
 where
 \begin{align}
      b =  \frac{k^d}{\pi}
-     2^{\frac{1}{2} + d(\frac{d}{2}-1)} B^d(k, \frac{d}{2})
+     2^{\frac{1}{2} + d(\frac{d}{2}-1)} B^d\left(k, \frac{d}{2}\right)
      B\left( \frac{1}{2},
      d(k+\frac{d}{2} -1)+1 \right)
      \label{eq:b}
@@ -392,6 +422,7 @@ When $N\to \infty$ and $d$ is fixed, we have
      L(N)
      ^{\frac{d-1}{2k+d-1}}
  \end{align}
+\end{theorem}
  When $d=2$, \eqref{eq:efn_truncated_formula} reduces to (3.4) of \cite{carnal1970konvexe}.
  When $k=1, L(n)=d$, we can verify that
  \eqref{eq:efn_truncated_formula} is equivalent with (1.1)

@@ -3,6 +3,9 @@
 \usepackage[normalem]{ulem}
 \usepackage{bookmark}
 \usepackage{color}
+\usepackage{amsmath}
+\DeclareMathOperator{\dist}{dist}
+
 \newcommand{\tedit}[1]{\textcolor{red}{\##1\#}}
 \newcommand{\tdel}[1]{\tedit{\sout{#1}}}
 
@@ -17,6 +20,7 @@
                                    % equations with sections too.
 \def\E{\mathbb{E}}
 \def\R{\mathbb{R}}
+\def\d{\mathrm{d}}
 \begin{document}%\recd{}{}%Do not alter this line.
 
 \title{On the expected number of facets for the convex hull of samples from spherically symmetric distributions} % insert title - use \\ if it requires more than one line.
@@ -129,118 +133,126 @@ Based on the asymptotic result of $\E[F_N]$,
 we provide a sufficient condition for the convergence of $p_{N,d}$ to zero as $N,d \to \infty$
 in Section \ref{sec:sample_complexity}.
 
-
-\textcolor{red}{Without specific mention}, the $d$-dimensional distribution considered in this paper is spherically symmetric.
 Below we define some notations to be used throughout this paper.
-Let $F(x)=P(|X|\geq x)$ denote the probability that a random point lies outside
+Without specific emphasis, all $d$-dimensional distribution considered in this paper is spherically symmetric.
+Let $X=(X^{(1)},\dots, X^{(d)})$ follow this distribution.
+Then we use $F(x)=P(|X|\geq x)$ to denote the probability that a random point lies outside
 a $d$-sphere ($d$-dimensional sphere centered at origin) with radius $x$.
-The marginal distribution of each component of $X$ is determined by $G(x)=P(X_1\geq x)$.
+The marginal distribution of each component of $X$ is determined by $G(x)=P(X^{(1)}\geq x)$.
 Let $dist$ represent the distance from the origin to the hyperplane spanned by $X_1, \dots, X_d$.
-Specifically, in 2-D, $dist$ is the distance to the line passing $X_1$ and $X_2$.
-The probability $H(x)=P(dist\geq x)$ represents the event that the distance $d$ is larger than $x$.
+Specifically, in 2-D, $\dist$ is the distance to the line passing through $X_1$ and $X_2$.
+We use $H(x)=P(\dist\geq x)$ to denote the probability that the distance $d$ is larger than $x$.
+When $n$ tends to infinity, two functions $f(n)$ and $g(n)$ are asymptotic equivalent if $\lim_{n\to \infty} \frac{f(n)}{g(n)}=1$,
+denoted as $f(n) \sim g(n)$.
 
 \section{Related work}
 Below we list some other related works which are not mentioned in the previous section.
 For $d=2,3$, Efron \cite{efron1965convex} obtained the explicit integral formula for $\E[F_N]$ and $p_{N,d}$ 
-for the Gaussian distribution and the uniform distribution within a unit sphere.
+for Gaussian distribution and uniform distribution within a unit sphere.
 
-Distributions with algebraic tails $F(x) \sim x^{-k}$ are related with Poisson random process.
-It is shown that for $k>0, d=2$,
+Davis et al. \cite{davis1987convex} found the relationship between the distributions with algebraic tails $F(x) \sim x^{-k}$ and Poisson random process.
+They showed that for $k>0, d=2$,
 $\mathrm{H}_N$ converges to the convex hull of a Poisson random process and $\E[F_N]$
-equals the limit of this random process \cite{davis1987convex}.
+equals the limit of \textcolor{red}{this random process} .
 The special case $k=0, d=2$ is treated in a later paper, in which the
 limit distribution of $F_N$ is computed \cite{aldous1991number}.
 
-Studies related with distribution with exponential tails mainly focus on the Gaussian distribution.
-For this special distribution, Kabluchko et al. \cite{kabluchko2020absorption} obtained explicit formula for $p_{N,d}$;
+Studies related to distributions with exponential tails mainly focus on Gaussian distribution.
+Kabluchko et al. \cite{kabluchko2020absorption} obtained explicit formula for $p_{N,d}$;
 Affentranger \cite{affentranger1991convex} derived $\E[F_N]$;
 Hueter et al. \cite{hueter1999limit} studied the concentration property of $F_N$ and obtained
-an upper bound for $E[F_N]$ shaper than the one given in \cite{dwyer1991convex}.
+an upper bound for $\E[F_N]$ sharper than the one in \cite{dwyer1991convex}.
 
 For truncated tail,
-Affentranger \cite{affentranger1991convex} studied a sub-category called beta-typed distribution and obtained
+Affentranger \cite{affentranger1991convex} studied its sub-category called beta-typed distribution and obtained
 the asymptotic value of $\E[F_N]$.
 
 Beside the number of facets $\E[F_N]$,
 the asymptotic value of other quantities related with $\mathrm{H}_N$, such as the volume, and the surface area,
-were systematically investigated in a general framework involving the function of facets
+were systematically investigated in a general framework involving the property of facets
 \cite{schneider2008stochastic, barany2008random}.
 
  \section{Integral formula}\label{sec:int_f}
-In 2-D, the integral formula for $\E[F_N]$ is given as \cite{carnal1970konvexe}
+In this section, we give the formula of $\E[F_N]$ with respect to the radial CDF $1-F(x)$.
+
+Carnal \cite{carnal1970konvexe}
+obtained
+this formula in 2-D, which is given as follows:
 \begin{align}
      \E[F_N] &= \binom{N}{2} \int_0^{\infty} 
-     \left[G(x)^{N-2} + (1-G(x))^{N-2} \right]|dH(x)| 
+     \left[G(x)^{N-2} + (1-G(x))^{N-2} \right]|\mathrm{d} H(x)| 
      \label{eq:E_F_N_2_d}
 \end{align}
 The integral formula of $\E[F_N]$ involves the function $G(x)$ and $H(x)$,
-both of which can be expressed in term of $F(x)$:
+both of which are expressed with $F(x)$ in the following way:
 \begin{align}
-   G(x) &=\frac{1}{\pi} \int_x^{\infty}\arccos\frac{x}{y} |dF(y)| \\
-     H(x) &= \frac{2}{\pi} \int_x^{\infty} \arccos \frac{x}{y} |d(F^2(y))|
+   G(x) &=\frac{1}{\pi} \int_x^{\infty}\arccos\frac{x}{y} |\mathrm{d} F(y)| \\
+     H(x) &= \frac{2}{\pi} \int_x^{\infty} \arccos \frac{x}{y} |\mathrm{d}(F^2(y))|
      \label{eq:H_expression_2_dim}
 \end{align}
+
 For $d\geq 2$, the integral formula is generalized as
 \begin{align}
      \E[F_N] &= \binom{N}{d} \int_0^{\infty} 
-     \left[G(x)^{N-d} + (1-G(x))^{N-d} \right]|dH(x)| 
+     \left[G(x)^{N-d} + (1-G(x))^{N-d} \right]|\mathrm{d} H(x)| 
      \label{eq:E_F_N_d}
 \end{align}
 Formula \eqref{eq:E_F_N_d} first appeared in the proof section of \cite{raynaud1970enveloppe}
-and can further be generalized to compute other combinatorial property of $\mathrm{H}_N$ (like surface area and volume)
+and can further be generalized to compute other combinatorial properties of $\mathrm{H}_N$ (like surface area and volume)
 \cite{barany2008random}.
-Dwyer obtains the integral formula for $G(x)$ in $d\geq 2$ as:
+Dwyer obtained the integral formula for $G(x)$ in $d\geq 2$ as:
 \begin{align}\label{eq:G_d_kappa}
-     G(x) & = \int_x^{+\infty} \kappa \left(\frac{x}{y} \right) |dF(y)| \\
+     G(x) & = \int_x^{+\infty} \kappa \left(\frac{x}{y} \right) |\mathrm{d}F(y)| \\
      \kappa(r) & = \frac{\Gamma(\frac{d}{2})}
      {\sqrt{\pi}\Gamma(\frac{d-1}{2})}\int_r^{1}
-     (1-u^2)^{(d-3)/2}du\label{eq:kappa_r}
+     (1-u^2)^{(d-3)/2}\mathrm{d}u\label{eq:kappa_r}
 \end{align}
 where $\kappa(r)$ is the fraction of the surface area of a unit d-sphere
 cut off by a plane at distance $r$ from the origin.
 
-Our main theorem gives the integral formula for $H(x)$ in $d\geq 2$:
+We cannot compute $\E[F_N]$ from $F(x)$ yet, since no formula for $H(x)$ with respect to $F(x)$ is given in previous studies.
+Our main theorem solves this problem by giving the integral formula for $H(x)$ in $d\geq 2$:
 \begin{theorem}\label{thm:H}
-Define the auxiliary function $\lambda_d(x)$ and $K(x)$ as follows: 
+We define the auxiliary function $\lambda_d(x)$ and $K(x)$ as follows: 
      \begin{align}
           \lambda_d(x) & :=(1-x^2)^{\frac{d-2}{2}}
           \label{eq:lambda_r}\\
-          K(x) &:=P(\sqrt{X_1^2+X_2^2}>x)=
+          K(x) &:=P\left(\sqrt{X_1^2+X_2^2}>x \right)=
           \int_x^{+\infty}
-          \lambda_d \left(\frac{x}{y} \right)|dF(y)|
+          \lambda_d \left(\frac{x}{y} \right)|\d F(y)|
           \label{eq:K_x}
       \end{align}
 Then
 \begin{equation}
      H(x) = \frac{2}{\pi}
      \int_x^{+\infty} \arccos\frac{x}{y}
-     |d K^d(y)|\label{eq:H_expression_d_dim}
+     |\mathrm{d} (K^d(y))|\label{eq:H_expression_d_dim}
 \end{equation}
 \end{theorem}
 It is easy to observe that \eqref{eq:H_expression_d_dim} reduces to 
 \eqref{eq:H_expression_2_dim} when $d=2$.
 For standard Gaussian distributions, $X_1, X_2$ are independent
-Gaussian random variables, then $K(x) = e^{-x^2/2}$.
-In fact, $1-K(x)$ is the CDF of the Rayleigh distribution.
+Gaussian random variables, and then $K(x) = e^{-x^2/2}$.
+In fact, $1-K(x)$ is the CDF of Rayleigh distribution.
 %For general spherical distributions, the function $K(x)$ itself is irreverent with the dimension $d$.
 The proof of Theorem \ref{thm:H}
 is provided in Appendix \ref{app:th}.
 
 \section{Three distribution families}\label{sec:three_distriutions}
-Notice that in \eqref{eq:E_F_N_d}, $G(x)<\frac{1}{2}$ for $x>0$, therefore the
-term $G(x)^{N-d}$ decays exponentially fast as $N-d\to \infty$.
+Notice that in \eqref{eq:E_F_N_d}, $G(x)<\frac{1}{2}$ for $x>0$. Therefore the
+term $G(x)^{N-d}$ decays at an exponential rate as $N-d\to \infty$.
 As a result, we obtain
 \begin{align}
      \E[F_N] \sim \binom{N}{d} \int_0^{+\infty} 
-      (1-G(x))^{N-d} |dH(x)| 
+      (1-G(x))^{N-d} |dH(x)| \textrm{ as } N-d\to \infty
      \label{eq:E_F_N_d_sim}
 \end{align}
 Let $\E[V_N]$ represent the expectation of the number of
 vertices of $\mathrm{H}_N$.
 By far it is not clear whether there exist explicit relations
 between $\E[F_N]$ and $\E[V_N]$
-for general spherical symmetric distribution.
-However, we can give some inequality estimations.
+for general spherical symmetric distributions.
+However, we can give some estimations by inequality.
 Using Corollary 19.6 of \cite{brondsted2012introduction}, we have the following
 inequality:
 \begin{equation}\label{eq:F_V_upper}
@@ -261,7 +273,7 @@ In this subsection, we deal with the distribution with the form
 \begin{equation}\label{eq:F_poly_tail}
      F(x) = x^{-k} L(x), k\geq 0
 \end{equation}
-where $L(x)$ is a slowly varying function.
+where $L(x)$ is a slowly varying function.\textcolor{red}{Define what is a slowly varying function}
 
 Dwyer\cite{dwyer1991convex} has obtained $G(x)$ as:
 \begin{equation}
@@ -359,10 +371,13 @@ After simplification of (4.1) in \cite{dwyer1991convex}, we obtain
 \end{align}
 In this paper, we obtain
 \begin{align}
-     H(1-x)  & \sim b
+     H(1-x)  \sim b
      L^d(1/x) x^{d(k+\frac{d}{2}-1)+\frac{1}{2}} 
-     \textrm{ as } x \to 0^+ \label{eq:truncated_H_1_x}\\
-     \textrm{ where } b &=  \frac{k^d}{\pi}
+     \textrm{ as } x \to 0^+ \label{eq:truncated_H_1_x}
+ \end{align}
+where
+\begin{align}
+     b =  \frac{k^d}{\pi}
      2^{\frac{1}{2} + d(\frac{d}{2}-1)} B^d(k, \frac{d}{2})
      B\left( \frac{1}{2},
      d(k+\frac{d}{2} -1)+1 \right)
@@ -391,7 +406,7 @@ When $N\to \infty$ and $d$ is fixed, we have
   \E[F_N] \sim 2^{\frac{d+2k}{2}}\pi^{\frac{d-2}{2}} k\Gamma(k)e^k d^{\frac{d-3}{2}-k}
   N^{\frac{d-1}{2k+d-1}} L(N)^{\frac{d-1}{2k+d-1}}
  \end{equation}
-\section{Sample complexity in data interpolation}\label{sec:sample_complexity}
+\section{Sample complexity in data interpolation and conclusion}\label{sec:sample_complexity}
 In the field of machine learning,
 Balestriero et al. \cite{balestriero2021learning}
 argues that interpolation almost surely never occurs in high-dimensional spaces.
@@ -417,7 +432,7 @@ combined with \eqref{eq:poly_E_F_N_d_infty},
 
 \begin{table}[!ht]
      \centering
-     \begin{tabular}{|c|c|}
+     \begin{tabular}{cc}
          \hline
          distribution family &  Condition for $p_{N,d} \to 0$ \\
          \hline
@@ -695,15 +710,15 @@ We can expand $f(x,y,z)$ as follows:
 Therefore,
 \begin{align*}
 |f(x,y,z)|
-= \frac{2x^{d-2}}{y^{d-2}z^{d-2}}
-\left[
+&= \frac{2x^{d-2}}{y^{d-2}z^{d-2}}
+\Big[
      \sum_{k \textrm{ is even}}
      \binom{d-2}{k} (z^2-x^2)^{\frac{k-1}{2}}
-     (y^2-x^2)^{\frac{d-2-k}{2}}
-    + \sum_{k \textrm{ is odd}}
+     (y^2-x^2)^{\frac{d-2-k}{2}}\\
+    &+ \sum_{k \textrm{ is odd}}
     \binom{d-2}{k}    (z^2-x^2)^{\frac{k}{2}}
     (y^2-x^2)^{\frac{d-3-k}{2}}
-\right]
+\Big]
 \end{align*}
 Let $a=z^2-u^2, b=y^2-u^2$, then
 \begin{align*}
@@ -801,6 +816,7 @@ as follows:
      (y=x/t) &= (d-2)x^{-k} \int_0^{1} L(x/t) t^{k+1} (1-t^2)^{(d-4)/2}dt \\
      & \sim F(x) \frac{d-2}{2} B\left(\frac{k+2}{2}, \frac{d}{2}-1\right) 
 \end{align*}
+add a sentence
 \begin{align*}
      H(x) &= \frac{2}{\pi}
      \int_x^{\infty} \arccos\frac{x}{y}
@@ -903,9 +919,9 @@ Similar techniques can be applied to compute the asymptotic value of $H(x)$.
     \int_s^{+\infty} \left(\log\frac{\sigma}{s}
     \right)^{-\frac{1}{2}}
     \sigma^{-(d+1)}d\sigma \\
-    &= \frac{\sqrt{2}}{\sqrt{\pi d}}\left[2^{\frac{d}{2}-1} \Gamma\left(\frac{d}{2}\right)\right]^d
+    &\sim \frac{\sqrt{2}}{\sqrt{\pi d}}\left[2^{\frac{d}{2}-1} \Gamma\left(\frac{d}{2}\right)\right]^d
     \epsilon^{\frac{d(d-2)+1}{2}}(s)s^{-d}\\
-    &= \frac{2^{\frac{d(d-2)+1}{2}}}{\sqrt{\pi d}}\Gamma^d\left(\frac{d}{2}\right)
+    &\sim \frac{2^{\frac{d(d-2)+1}{2}}}{\sqrt{\pi d}}\Gamma^d\left(\frac{d}{2}\right)
     v^{\frac{d(d-2)+1}{2}}(x)F^d(x)
 \end{align*}
 From \eqref{eq:G_x_exp}, we obtain \eqref{eq:H_x_exp}.

@@ -134,8 +134,8 @@ we provide a sufficient condition for the convergence of $p_{N,d}$ to zero as $N
 in Section \ref{sec:sample_complexity}.
 
 Below we define some notations to be used throughout this paper.
-Without specific emphasis, all $d$-dimensional distribution considered in this paper is spherically symmetric.
-Let $X=(X^{(1)},\dots, X^{(d)})$ follow this distribution.
+Without specific emphasis, all $d$-dimensional distributions considered in this paper are spherically symmetric.
+Let $X=(X^{(1)},\dots, X^{(d)})$ follow one of such a distribution.
 Then we use $F(x)=P(|X|\geq x)$ to denote the probability that a random point lies outside
 a $d$-sphere ($d$-dimensional sphere centered at origin) with radius $x$.
 The marginal distribution of each component of $X$ is determined by $G(x)=P(X^{(1)}\geq x)$.
@@ -233,7 +233,7 @@ where the auxiliary function $K(x)$ is defined in the following way:
 \end{theorem}
 It is easy to observe that \eqref{eq:H_expression_d_dim} reduces to 
 \eqref{eq:H_expression_2_dim} when $d=2$.
-For standard Gaussian distributions, $X_1, X_2$ are independent
+For standard Gaussian distribution, $X_1, X_2$ are independent
 Gaussian random variables, and then $K(x) = e^{-x^2/2}$.
 In fact, $1-K(x)$ is the CDF of Rayleigh distribution.
 %For general spherical distributions, the function $K(x)$ itself is irreverent with the dimension $d$.
@@ -360,7 +360,7 @@ We obtain
  \end{equation}
 \end{theorem}
  When $d=2$, \eqref{eq:exp_e_f_n} is consistent with (2.20) of \cite{carnal1970konvexe}.
- When $L(s)=\sqrt{2\log s}$, the distribution is standard Gaussian in $\R^d$.
+ For standard $d-$ dimensional Gaussian distribution, we have $L(s)=\sqrt{2\log s}$.
  From \eqref{eq:epsilon_s}, $\epsilon(s) = (2\log s)^{-1}$. And we obtain from \eqref{eq:exp_e_f_n}
  that $\E[F_N]\sim \frac{2^d}{\sqrt{d}}(\pi \log N)^{\frac{d-1}{2}}$,
  which is consistent with (1.11) of \cite{raynaud1970enveloppe}.
@@ -378,7 +378,7 @@ the following conditions:
 \end{equation}
 In \eqref{eq:F_truncated}, $x \to 0^+$ means that $x\to 0$ from the right hand side of $0$.
 
-As mentioned by Dwyer \cite{dwyer1991convex}, the uniform distribution
+As mentioned by Dwyer \cite{dwyer1991convex}, uniform distribution
 in the unit ball satisfies \eqref{eq:F_truncated} with
 $F(1-x) \sim d\cdot x$.
 

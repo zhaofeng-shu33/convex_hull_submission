@@ -79,19 +79,16 @@ Let $X_1, X_2, \dots, X_N$ be i.i.d. random points generated from
 a spherical symmetric distribution in $\mathbb{R}^d$.
 For the convex hull $\mathrm{H}_N$ of these $N$ points, we study the number of its facets $F_N$,
 where a facet of a $d$-dimensional object is one of its $(d-1)$-dimensional faces.
-The main contribution of this paper is to provide a complete integral formula for $\E[F_N]$,
-the mathematical expectation
-of $F_N$, and derive its asymptotic expression
-for \textcolor{red}{three categories of distributions.}
+In this paper, we study the mathematical expectation
+of $F_N$, denoted as $\E[F_N]$, and derive its asymptotic value as $N\to \infty$.
 
-Our motivation to study $\E[F_N]$
-is to give an upper bound of
+Our motivation to study $\E[F_N]$ is to give an upper bound of
 the probability $p_{N,d}=P(X_{N+1} \not\in \mathrm{H}_N)$,
-which is the \textcolor{red}{probability content} outside the random convex hull.
-This probability can be applied to explain
-why \textcolor{red}{interpolation} almost surely never occurs in high dimensional space \cite{balestriero2021learning}.
-In other words, for a large $d$, we need at least exponentially large sample size $N$
-to guarantee that the newly generated point falls in the \textcolor{red}{interpolation region} $\mathrm{H}_N$.
+which is the probability that the $(N+1)$-th point falls outside the convex hull.
+If we accept the concept that interpolation occurs when $X_{N+1}$ belongs to $H_N$,
+$p_{N,d}$ can be applied to explain
+why interpolation almost surely never occurs in high dimensional space \cite{balestriero2021learning}.
+In other words, for a large $d$, $p_{N,d}$ is near $1$, unless exponentially large sample size $N$ is available.
 Using the asymptotic result on $\E[F_N]$, we obtain
 a sufficient condition under which the interpolation almost surely occurs.
 
@@ -127,23 +124,26 @@ dependence on $d$. To our best knowledge, previous works have not revealed the g
 In Section \ref{sec:int_f}, we develop a method of obtaining $\E[F_N]$ by generalizing Carnal's integral formula
 % of $H(x)=P(d_{12}\geq x)$ 
 from $d=2$ to higher dimensions.
-Then we derive the explicit asymptotic
-expressions of $\E[F_N]$ for three different distribution families in Section \ref{sec:three_distriutions}.
-Based on the asymptotic result of $\E[F_N]$,
-we provide a sufficient condition for the convergence of $p_{N,d}$ to zero as $N,d \to \infty$
-in Section \ref{sec:sample_complexity}.
+In Section \ref{sec:three_distriutions}, we then derive the explicit asymptotic
+expressions of $\E[F_N]$ for three different distribution families.
+In Section \ref{sec:sample_complexity}, based on the asymptotic result of $\E[F_N]$,
+we provide a sufficient condition for the convergence of $p_{N,d}$ to zero as $N,d \to \infty$.
+The main contribution of this paper is to provide a complete integral formula for $\E[F_N]$,
+and following the classification of distributions of previous authors \cite{carnal1970konvexe,dwyer1991convex},
+we derive the asymptotic expression
+of $\E[F_N]$ for each category.
 
 Below we define some notations to be used throughout this paper.
 Without specific emphasis, all $d$-dimensional distributions considered in this paper are spherically symmetric.
-Let $X=(X^{(1)},\dots, X^{(d)})$ follow one of such a distribution.
+Let $X=(X^{(1)},\dots, X^{(d)})$ follow such a distribution.
 Then we use $F(x)=P(|X|\geq x)$ to denote the probability that a random point lies outside
 a $d$-sphere ($d$-dimensional sphere centered at origin) with radius $x$.
 The marginal distribution of each component of $X$ is determined by $G(x)=P(X^{(1)}\geq x)$.
 Let $dist$ represent the distance from the origin to the hyperplane spanned by $X_1, \dots, X_d$.
 Specifically, in 2-D, $\dist$ is the distance to the line passing through $X_1$ and $X_2$.
-We use $H(x)=P(\dist\geq x)$ to denote the probability that the distance $d$ is larger than $x$.
-When $n$ tends to infinity, two functions $f(n)$ and $g(n)$ are asymptotic equivalent if $\lim_{n\to \infty} \frac{f(n)}{g(n)}=1$,
-denoted as $f(n) \sim g(n)$.
+We use $H(x)=P(\dist\geq x)$ to denote the probability that the distance $\dist$ is larger than $x$.
+When $n$ tends to infinity, the functions $f(n)$ and $g(n)$ are asymptotic equivalent if $\lim_{n\to \infty} \frac{f(n)}{g(n)}=1$.
+We denote this relationship as $f(n) \sim g(n)$.
 
 \section{Related work}
 Below we list some other related works which are not mentioned in the previous section.
@@ -209,7 +209,7 @@ Dwyer obtained the integral formula for $G(x)$ in $d\geq 2$ as:
      {\sqrt{\pi}\Gamma(\frac{d-1}{2})}\int_r^{1}
      (1-u^2)^{(d-3)/2}\mathrm{d}u\label{eq:kappa_r}
 \end{align}
-where $\kappa(r)$ is the fraction of the surface area of a unit d-sphere
+where $\kappa(r)$ is the fraction of the surface area of a unit $d$-sphere
 cut off by a plane at distance $r$ from the origin.
 
 We cannot compute $\E[F_N]$ from $F(x)$ yet, since no formula for $H(x)$ with respect to $F(x)$ is given in previous studies.
@@ -573,13 +573,13 @@ in \eqref{eq:K_x},
 we only need to connect $\lambda_d(r)$ with its geometric meaning,
 which is given in the following lemma:
 \begin{lemma}
-     The ratio of surface area on a unit d-sphere,
+     The ratio of surface area on a unit $d$-sphere,
      satisfying $x_1^2+x_2^2\geq r$ is $\lambda_d(r)$,
      defined in \eqref{eq:lambda_r}.
 \end{lemma}
 \begin{proof}
      Following \cite{dwyer1991convex}, we use $\kappa_d = 2\pi^{d/2}/\Gamma(d/2)$
-     to represent the surface area of the unit d-sphere. Then
+     to represent the surface area of the unit $d$-sphere. Then
      \begin{align*}
           \lambda_d(r) &=\frac{1}{\kappa_d} 
           \cdot 2\int_{\substack{x_1^2+x_2^2\geq r^2\\
@@ -706,11 +706,13 @@ Having defined $K(x), F_0(x)$, we find the following relationship holds:
 where $\theta_1, \theta_2$ are defined in \eqref{eq:theta_1_theta_2}.
 Then from \eqref{eq:F_0_expression}
 \begin{align*}
-    \frac{\d F_0(x)}{\d x} & =\frac{2\Gamma(\frac{d}{2})}
+    \frac{\d F_0(x)}{\d x}  =\frac{2\Gamma(\frac{d}{2})}
     {\sqrt{\pi}\Gamma(\frac{d-1}{2})}
     \int_x^{+\infty} |\d F(y)| \int_x^y |f(x,y,z)| |\d F(z)| 
-    \textrm{ where }\\
-    f(x,y,z) & = \sin^{d-2} (\theta_2 - \theta_1)
+\end{align*}
+where
+\begin{align*}
+    f(x,y,z) = \sin^{d-2} (\theta_2 - \theta_1)
     \left(\frac{-1}{z\sin\theta_1}
     +\frac{1}{y\sin \theta_2}\right)
     - \sin^{d-2}(\theta_1 + \theta_2)
@@ -760,10 +762,11 @@ Let $a=z^2-u^2, b=y^2-u^2$, then
      &\int_u^z (1-\frac{u^2}{x^2})^{\frac{d-3}{2}}
      |f(x,y,z)|\d x
      =\frac{1}{y^{d-2}z^{d-2}}
-     \int_0^a x^{\frac{d-3}{2}}\Big[\sum_{k \textrm{ is even}}
+     \int_0^a x^{\frac{d-3}{2}}\Big[ \\
+     &\sum_{k \textrm{ is even}}
      \binom{d-2}{k} (a-x)^{\frac{k-1}{2}}
-     (b-x)^{\frac{d-2-k}{2}}\\
-     &+ \sum_{k \textrm{ is odd}}
+     (b-x)^{\frac{d-2-k}{2}}
+     + \sum_{k \textrm{ is odd}}
      \binom{d-2}{k} (a-x)^{\frac{k}{2}}
      (b-x)^{\frac{d-3-k}{2}}
      \Big]\d x\\
@@ -773,9 +776,9 @@ Let $a=z^2-u^2, b=y^2-u^2$, then
 \end{align*}
 Let $t=\sqrt{\frac{a-x}{b-x}}$, we then obtain
 \begin{align*}
-     \int_u^z (1-\frac{u^2}{x^2})^{\frac{d-3}{2}}
-     |f(x,y,z)|\d x
-     =\frac{(b-a)^{\frac{d-1}{2}}}{y^{d-2}z^{d-2}}\int_0^{\sqrt{a/b}}
+     &\int_u^z (1-\frac{u^2}{x^2})^{\frac{d-3}{2}}
+     |f(x,y,z)|\d x \\
+     &=\frac{(b-a)^{\frac{d-1}{2}}}{y^{d-2}z^{d-2}}\int_0^{\sqrt{a/b}}
      \left[\frac{1}{(1-t)^{d-1}}+\frac{1}{(1+t)^{d-1}}\right](a-bt^2)^{\frac{d-3}{2}}\d t
 \end{align*}
 Let $c=\sqrt{a/b}$ and $n=d-2\geq 0$ in the expression of $h(n,c)$ in \eqref{eq:f_n_c_expression},
@@ -792,7 +795,7 @@ After simplification of \eqref{eq:int_u_x_f_x}, we obtain \eqref{eq:ref_prove_in
      
 We use $\dist(P_1,\dots, P_{d-1})$ to represent
 the distance from the origin to the hyperplane passing $P_1,P_2,\dots, P_{d-1}$,
-and let $F_1(x)=P(\dist(P_1,\dots, P_{d-1})\geq x)$.
+and let $F_1(x)=P(\dist(P_1,\dots, P_{d-1})\linebreak\geq x)$.
 
 
 Firstly we show that $F_1(x)=K^{d-1}(x)$.
@@ -800,7 +803,7 @@ For $d=2$, it is trivial.
 By induction we suppose that $F_1(x)=K^{d'-1}(x)$ is true for
 $d'\leq d-1$. In $d'$-dimensional space,
 from the definition of $K(x)$ we have $
-P(\dist(P_1, \dots, P_{d-1})) = \int_{y}^x K^{d'-2}(x)\lambda_{d'}(x/y)|\d F(y)|
+P(\dist(P_1, \dots, P_{d'-1})\geq x) = \int_{y}^x K^{d'-2}(x)\lambda_{d'}(x/y)|\d F(y)|
 $.
 Then then conditional probability $P(\dist(P_1,\dots, P_{d'-1})\geq x \Big\vert |OP_1|=y)
 =K^{d'-2}(x)\lambda_{d'}(x/y)$.
@@ -813,7 +816,7 @@ $P(\dist(P_1,\dots,P'_{d-2})\geq x \Big\vert |P'_{d-2}|=y)=
 K^{d-3}(x)\lambda_{d-1}(x/y)$,
 we have
 \begin{align*}
-    F_1(x) &= \int_x^{+\infty} K^{d-3}(x) \lambda_{d-1}(\frac{x}{y})|\d F_0(y)| \\
+    F_1(x) = \int_x^{+\infty} K^{d-3}(x) \lambda_{d-1}(\frac{x}{y})|\d F_0(y)|
 \end{align*}
 From Lemma \ref{lem:K_F_relationship} we obtain $F_1(x) = K^{d-1}(x)$.
 

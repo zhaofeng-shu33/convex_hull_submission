@@ -154,7 +154,7 @@ Davis et al. \cite{davis1987convex} found the relationship between the distribut
 They showed that for $k>0, d=2$,
 $\mathrm{H}_N$ converges to the convex hull of a Poisson random process,
 and
-the limit of $\E[F_N]$ and this random process are equal.
+the limit of $\E[F_N]$ can be derived from this random process.
 The special case $k=0, d=2$ is treated in a later paper, in which the
 limit distribution of $F_N$ is computed \cite{aldous1991number}.
 
@@ -164,8 +164,8 @@ Affentranger \cite{affentranger1991convex} derived $\E[F_N]$;
 Hueter et al. \cite{hueter1999limit} studied the concentration property of $F_N$ and obtained
 an upper bound for $\E[F_N]$ sharper than the one in \cite{dwyer1991convex}.
 
-For truncated tail,
-Affentranger \cite{affentranger1991convex} studied its sub-category called beta-typed distribution and obtained
+For truncated tails,
+Affentranger \cite{affentranger1991convex} studied one sub-category called beta-typed distribution and obtained
 the asymptotic value of $\E[F_N]$.
 
 Beside the number of facets $\E[F_N]$,
@@ -174,11 +174,12 @@ were systematically investigated in a general framework involving the property o
 \cite{schneider2008stochastic, barany2008random}.
 
  \section{Integral formula}\label{sec:int_f}
-In this section, we give the formula of $\E[F_N]$ with respect to the radial CDF $1-F(x)$.
+In this section, we give the formula of $\E[F_N]$ with respect to the radial function $F(x)$.
 
 Carnal \cite{carnal1970konvexe}
 obtained
-this formula in 2-D, which is given as follows:
+this formula for 2-D distributions,
+which is given as follows:
 \begin{align}
      \E[F_N] &= \binom{N}{2} \int_0^{\infty} 
      \left[G(x)^{N-2} + (1-G(x))^{N-2} \right]|\mathrm{d} H(x)| 
@@ -225,7 +226,7 @@ where the auxiliary function $K(x)$ is defined in the following way:
 \begin{align}
      \lambda_d(x) & :=(1-x^2)^{\frac{d-2}{2}}
      \label{eq:lambda_r}\\
-     K(x) &:=P\left(\sqrt{X_1^2+X_2^2}>x \right)=
+     K(x) &:=P\left(\sqrt{(X^{(1)})^2+(X^{(2)})^2}>x \right)=
      \int_x^{+\infty}
      \lambda_d \left(\frac{x}{y} \right)|\d F(y)|
      \label{eq:K_x}
@@ -233,8 +234,9 @@ where the auxiliary function $K(x)$ is defined in the following way:
 \end{theorem}
 It is easy to observe that \eqref{eq:H_expression_d_dim} reduces to 
 \eqref{eq:H_expression_2_dim} when $d=2$.
-For standard Gaussian distribution, $X_1, X_2$ are independent
-Gaussian random variables, and then $K(x) = e^{-x^2/2}$.
+For standard Gaussian distribution in $\R^d$,
+$X_1, X_2$ are independent
+Gaussian random variables, and we can verify that \eqref{eq:K_x} holds with $K(x) = e^{-x^2/2}$.
 In fact, $1-K(x)$ is the CDF of Rayleigh distribution.
 %For general spherical distributions, the function $K(x)$ itself is irreverent with the dimension $d$.
 The proof of Theorem \ref{thm:H}
@@ -801,18 +803,23 @@ and let $F_1(x)=P(\dist(P_1,\dots, P_{d-1})\linebreak\geq x)$.
 Firstly we show that $F_1(x)=K^{d-1}(x)$.
 For $d=2$, it is trivial.
 By induction we suppose that $F_1(x)=K^{d'-1}(x)$ is true for
-$d'\leq d-1$. In $d'$-dimensional space,
-from the definition of $K(x)$ we have $
-P(\dist(P_1, \dots, P_{d'-1})\geq x) = \int_{y}^x K^{d'-2}(x)\lambda_{d'}(x/y)|\d F(y)|
+$d'\leq d-1$.
+Since $d'\leq d$,
+the function $K(x)=P(\sqrt{(X^{(1)})^2 + (X^{(2)})^2} \geq x)$
+only depends on $d$,
+not on $d'$.
+Therefore, in $d'$-dimensional space,
+from \eqref{eq:K_x} we have $
+P(\dist(P_1, \dots, P_{d'-1})\geq x) = \int_{x}^{\infty} K^{d'-2}(x)\lambda_{d'}(x/y)|\d F(y)|
 $.
-Then then conditional probability $P(\dist(P_1,\dots, P_{d'-1})\geq x \Big\vert |OP_1|=y)
+Then the conditional probability $P(\dist(P_1,\dots, P_{d'-1})\geq x \Big\vert |OP_1|=y)
 =K^{d'-2}(x)\lambda_{d'}(x/y)$.
-For $d'=d$, 
+For $d$-dimensional space, 
 we firstly specify a straight line passing through $P_{d-2}P_{d-1}$,
 the space perpendicular 
-to this line has $d-1$ dimension while the straight line shrinks to a single point $P'_{d-2}$
+to this line has $d'=d-1$ dimension while the straight line shrinks to a single point $P'$
 in this subspace. Since
-$P(\dist(P_1,\dots,P'_{d-2})\geq x \Big\vert |P'_{d-2}|=y)=
+$P(\dist(P_1,\dots,P_{d-3},P')\geq x \Big\vert |OP'|=y)=
 K^{d-3}(x)\lambda_{d-1}(x/y)$,
 we have
 \begin{align*}
@@ -821,8 +828,8 @@ we have
 From Lemma \ref{lem:K_F_relationship} we obtain $F_1(x) = K^{d-1}(x)$.
 
 To finish the proof and compute $H(x)$, we first specify a hyperplane $P_2P_3\dots P_{d}$,
-whose distance to the origin is $y$. The subspace perpendicular to this plane is a 2-D subspace,
-and this hyperplane shrinks to a point $P'_2$ in this 2-D plane.
+whose distance to the origin is $y$. The subspace perpendicular to this hyperplane is a 2-D subspace,
+and this hyperplane shrinks to a point $P'$ in this 2-D subspace.
 Similar to (1.9) of \cite{carnal1970konvexe}, we have
 \begin{align}\label{eq:H_eq_n_arccos_geometric}
      H(x) &= \frac{2}{\pi}\int_x^{+\infty}|\d F_1(y)|

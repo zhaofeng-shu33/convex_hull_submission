@@ -298,7 +298,7 @@ Dwyer\cite{dwyer1991convex} has obtained $G(x)$ as:
 From Theorem \ref{thm:H}, we obtain the asymptotic
 expression of $H(x)$ and $\E[F_N]$, which is
 summarized in the following theorem:
-\begin{theorem}
+\begin{theorem}\label{thm:poly_tails}
      For distributions with polynomial tails defined in \eqref{eq:F_poly_tail},
      we have
 \begin{equation}
@@ -345,7 +345,7 @@ Dwyer \cite{dwyer1991convex} obtains the expression of $G(x)$:
       \textrm{ as } x\to \infty
 \end{equation}
 We obtain
-\begin{theorem}
+\begin{theorem}\label{thm:exponential_tails}
      Suppose there exists a slowly
      varying function $L(x)$ such that $x=L(1/F(x))$,
      and $\epsilon(s)$ is defined in \eqref{eq:epsilon_s}, then
@@ -399,7 +399,7 @@ a &=\frac{2^{\frac{d-1}{2}} k \Gamma(\frac{d}{2})}
     \label{eq:a}
 \end{align}
 In this subsection, we obtain the following theorem in regards to the asymptotic value of $H(1-x)$ and $\E[F_N]$:
-\begin{theorem}
+\begin{theorem}\label{thm:truncated_tails}
      For distributions with truncated tails
      defined in \eqref{eq:F_truncated},
      we have
@@ -842,6 +842,7 @@ we reduce \eqref{eq:H_eq_n_arccos_geometric} to
 The techniques used in this subsection are similar to the derivation of $G(x)$
 in (2.3) of \cite{carnal1970konvexe}.
 
+\begin{proof}[Proof of Theorem \ref{thm:poly_tails}]
 For polynomial tails defined in \eqref{eq:F_poly_tail},
 we first compute the asymptotic value of $K(x)$
 as follows:
@@ -851,7 +852,7 @@ as follows:
      (y=x/t) &= (d-2)x^{-k} \int_0^{1} L(x/t) t^{k+1} (1-t^2)^{(d-4)/2}\d t \\
      & \sim F(x) \frac{d-2}{2} B\left(\frac{k+2}{2}, \frac{d}{2}-1\right) 
 \end{align*}
-add a sentence
+Then applying Theorem \ref{thm:H}, we obtain
 \begin{align*}
      H(x) &= \frac{2}{\pi}
      \int_x^{\infty} \arccos\frac{x}{y}
@@ -878,8 +879,10 @@ Let $G(x)=w$, then
       &\sim \frac{N!}{(N-d)! (N-d)^d}g(d) \label{eq:Ngd}
 \end{align}
 And \eqref{eq:efn_poly_second_deri} is obtained from \eqref{eq:Ngd}.
+\end{proof}
 
-The following two lemmas are useful to handle the case when $d\to \infty$.
+The following part in this subsection discusses how to derive \eqref{eq:poly_E_F_N_d_infty}.
+We first give two lemmas, which are useful to handle the case when $d\to \infty$.
 \begin{lemma}\label{lem:Gamma_ratio}
      For fixed $v>0$, we have
      \begin{equation}\label{eq:Gamma_ratio}
@@ -923,6 +926,8 @@ Combining \eqref{eq:Gamma_ratio} with \eqref{eq:N_N_d_d}, we obtain \eqref{eq:po
 from \eqref{eq:Ngd}.
 
 \subsection{Computations involved in exponential tails}
+
+\begin{proof}[Proof of Theorem \ref{thm:exponential_tails}]
 For exponential tails, following Carnal \cite{carnal1970konvexe},
 we make
 the substitution $x=L(s), y=L(\sigma)$, then $\sigma=1/F(y)$.
@@ -969,8 +974,10 @@ we use the Abel-Tauber theorem
     \E[F_N] & \sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}}\int_0^{1/2} \exp(-(N-d)w) \d [w^d \epsilon(1/w)^{\frac{-d+1}{2}}] \\
     &\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} \binom{N}{d}\frac{\Gamma(d+1)}{(N-d)^d} \epsilon(N-d)^{\frac{-d+1}{2}}
 \end{align*}
+\end{proof}
 
-To further simplify $\E[F_N]$, we need the following lemma.
+To obtain $\E[F_N]$ when $d\to \infty$,
+we need the following lemma.
 \begin{lemma}\label{lem:ratio_epsilon}
      Suppose $\epsilon(x)$ is a slowly varying function
      and $N(d)\gg d^2$,
@@ -1000,12 +1007,13 @@ $\epsilon(N-d)^{\frac{-d+1}{2}}\sim \epsilon(N)^{\frac{-d+1}{2}}$.
 When $d\to\infty$ and $N/d^2\to \infty$, we further obtain \eqref{eq:d_infty_exp_E_F_N}.
  
 \subsection{Computations involved in truncated tails}
+\begin{proof}[Proof of Theorem \ref{thm:truncated_tails}]
 First we compute $K(x)$ as follows
 \begin{align*}
     K(1-x)  & = \int_{1-x}^1 \left(1-\frac{(1-x)^2}{y^2}\right)^{\frac{d-2}{2}} |\d F(y)| \\
     & \sim 2^{\frac{d-2}{2}} \int_{1-x}^1 (y-1+x)^{\frac{d-2}{2}} |\d F(y)| \\
     & \sim 2^{\frac{d-2}{2}} \int_0^x (x-y)^{\frac{d-2}{2}} |\d F(1-y)| \\
-    & \sim 2^{\frac{d-2}{2}} \frac{d-2}{2} \int_0^x y^k L(\frac{1}{y}) (x-y)^{\frac{d-4}{2}} \d y\\
+    & \sim 2^{\frac{d-2}{2}} \frac{d-2}{2} \int_0^x y^k L(1/y) (x-y)^{\frac{d-4}{2}} \d y\\
     & \sim (d-2)2^{\frac{d}{2}-2} B(k+1,\frac{d}{2}-1)x^{k+\frac{d}{2}-1}L(1/x)\\
     & = k 2^{\frac{d}{2}-1} B(k, \frac{d}{2}) x^{k+\frac{d}{2}-1} L(1/x) 
 \end{align*}
@@ -1052,6 +1060,10 @@ we apply the Abel-Tauber theorem
     \label{eq:intermediate_efn_truncated}
 \end{align}
 When $N\to \infty$ and $d$ is a constant, we obtain \eqref{eq:efn_truncated_formula}.
+\end{proof}
+
+The asymptotic value of $\E[F_N]$ when $d\to \infty$
+is derived as follows:
 
 From \eqref{eq:a} and \eqref{eq:b}, it follows that
 \begin{equation}

@@ -11,7 +11,7 @@
 
 
 \authornames{Feng Zhao {\it et al.}} % insert the authors here for use in running head. If three or more authors please use (for example) M.~YARROW {\it et al}. Author names should follow the same M.~YARROW format and if two authors, separate by 'AND'.
-\shorttitle{On the expectation of facets in the convex hull of samples} % insert short title here for use in running head
+\shorttitle{On the expected number of facets for the convex hull of samples} % insert short title here for use in running head
 
 % Put any of your own definitions here.
 
@@ -43,12 +43,12 @@
 \emailtwo{shaolun.huang@sz.tsinghua.edu.cn}
 
 \begin{abstract}
-This paper studies the convex hull of $d$-dimensional samples i.i.d. generated from spherically symmetric distributions. Specifically, we derive a complete integral formula for
+This paper studies the convex hull of $d$-dimensional samples i.i.d. generated from spherically symmetric distributions. Specifically, we derive a complete integration formula for
 computing the expected facet numbers of the convex hull.
 This formula is
 with respect to the CDF of the radial distribution.
  As the number of samples approach infinity,
- the integral formula enables us to obtain the asymptotic value of the expected facet numbers
+ the integration formula enables us to obtain the asymptotic value of the expected facet numbers
  for three categories of spherically symmetric distributions.
  Additionally, the asymptotic result can be applied to estimating the sample complexity in order that
  the probability measure of the convex hull
@@ -121,14 +121,14 @@ for three different distribution families.
 
 Dwyer's work on the estimation of $\E[F_N]$ only captured its relationship with $N$ but ignored its
 dependence on $d$. To our best knowledge, previous works have not revealed the general asymptotic expression of $\E[F_N]$ in $\R^d$.
-In Section \ref{sec:int_f}, we develop a method of obtaining $\E[F_N]$ by generalizing Carnal's integral formula
+In Section \ref{sec:int_f}, we develop a method of obtaining $\E[F_N]$ by generalizing Carnal's integration formula
 % of $H(x)=P(d_{12}\geq x)$ 
 from $d=2$ to higher dimensions.
 In Section \ref{sec:three_distriutions}, we then derive the explicit asymptotic
 expressions of $\E[F_N]$ for three different distribution families.
 In Section \ref{sec:sample_complexity}, based on the asymptotic result of $\E[F_N]$,
 we provide a sufficient condition for the convergence of $p_{N,d}$ to zero as $N,d \to \infty$.
-The main contribution of this paper is to provide a complete integral formula for $\E[F_N]$,
+The main contribution of this paper is to provide a complete integration formula for $\E[F_N]$,
 and following the classification of distributions of previous authors \cite{carnal1970konvexe,dwyer1991convex},
 we derive the asymptotic expression
 of $\E[F_N]$ for each category.
@@ -141,14 +141,14 @@ a $d$-sphere ($d$-dimensional sphere centered at origin) with radius $x$.
 The marginal distribution of each component of $X$ is determined by $G(x)=P(X^{(1)}\geq x)$.
 Let $dist$ represent the distance from the origin to the hyperplane spanned by $X_1, \dots, X_d$.
 Specifically, in 2-D, $\dist$ is the distance to the line passing through $X_1$ and $X_2$.
-We use $H(x)=P(\dist\geq x)$ to denote the probability that the distance $\dist$ is larger than $x$.
+We use $H(x)=P(\dist\geq x)$ to denote the probability that $\dist$ is larger than $x$.
 When $n$ tends to infinity, the functions $f(n)$ and $g(n)$ are asymptotic equivalent if $\lim_{n\to \infty} \frac{f(n)}{g(n)}=1$.
 We denote this relationship as $f(n) \sim g(n)$.
 
 \section{Related work}
 Below we list some other related works which are not mentioned in the previous section.
-For $d=2,3$, Efron \cite{efron1965convex} obtained the explicit integral formula for $\E[F_N]$ and $p_{N,d}$ 
-for Gaussian distribution and uniform distribution within a unit sphere.
+For $d=2,3$, Efron \cite{efron1965convex} obtained the explicit integration formula for $\E[F_N]$ and $p_{N,d}$ 
+when samples follow Gaussian distribution or uniform distribution within a unit sphere.
 
 Davis et al. \cite{davis1987convex} found the relationship between the distributions with algebraic tails $F(x) \sim x^{-k}$ and Poisson random process.
 They showed that for $k>0, d=2$,
@@ -159,10 +159,10 @@ The special case $k=0, d=2$ is treated in a later paper, in which the
 limit distribution of $F_N$ is computed \cite{aldous1991number}.
 
 Studies related to distributions with exponential tails mainly focus on Gaussian distribution.
-Kabluchko et al. \cite{kabluchko2020absorption} obtained explicit formula for $p_{N,d}$;
+Kabluchko et al. \cite{kabluchko2020absorption} obtained explicit expressions for $p_{N,d}$;
 Affentranger \cite{affentranger1991convex} derived $\E[F_N]$;
 Hueter et al. \cite{hueter1999limit} studied the concentration property of $F_N$ and obtained
-an upper bound for $\E[F_N]$ sharper than the one in \cite{dwyer1991convex}.
+an upper bound for $\E[F_N]$ sharper than the bound in \cite{dwyer1991convex}.
 
 For truncated tails,
 Affentranger \cite{affentranger1991convex} studied one sub-category called beta-typed distribution and obtained
@@ -173,7 +173,7 @@ the asymptotic value of other quantities related with $\mathrm{H}_N$, such as th
 were systematically investigated in a general framework involving the property of facets
 \cite{schneider2008stochastic, barany2008random}.
 
- \section{Integral formula}\label{sec:int_f}
+ \section{Integration formula}\label{sec:int_f}
 In this section, we give the formula of $\E[F_N]$ with respect to the radial function $F(x)$.
 
 Carnal \cite{carnal1970konvexe}
@@ -185,7 +185,7 @@ which is given as follows:
      \left[G(x)^{N-2} + (1-G(x))^{N-2} \right]|\mathrm{d} H(x)| 
      \label{eq:E_F_N_2_d}
 \end{align}
-The integral formula of $\E[F_N]$ involves the function $G(x)$ and $H(x)$,
+The integration formula of $\E[F_N]$ involves the function $G(x)$ and $H(x)$,
 whose definitions are given at the end of Section \ref{sec:intro}.
 Both functions are expressed with $F(x)$ in the following way:
 \begin{align}
@@ -194,16 +194,16 @@ Both functions are expressed with $F(x)$ in the following way:
      \label{eq:H_expression_2_dim}
 \end{align}
 
-For $d\geq 2$, the integral formula is generalized as
+For $d\geq 2$, the integration formula is generalized as
 \begin{align}
      \E[F_N] &= \binom{N}{d} \int_0^{\infty} 
      \left[G(x)^{N-d} + (1-G(x))^{N-d} \right]|\mathrm{d} H(x)| 
-     \label{eq:E_F_N_d}
+     \textrm{ for } N \geq d+1 \label{eq:E_F_N_d}
 \end{align}
 Formula \eqref{eq:E_F_N_d} first appeared in the proof section of \cite{raynaud1970enveloppe}
 and can further be generalized to compute other combinatorial properties of $\mathrm{H}_N$ (like surface area and volume)
 \cite{barany2008random}.
-Dwyer obtained the integral formula for $G(x)$ in $d\geq 2$ as:
+Dwyer obtained the integration formula for $G(x)$ in $d\geq 2$ as:
 \begin{align}\label{eq:G_d_kappa}
      G(x) & = \int_x^{+\infty} \kappa \left(\frac{x}{y} \right) |\mathrm{d}F(y)| \\
      \kappa(r) & = \frac{\Gamma(\frac{d}{2})}
@@ -214,9 +214,9 @@ where $\kappa(r)$ is the fraction of the surface area of a unit $d$-sphere
 cut off by a plane at distance $r$ from the origin.
 
 We cannot compute $\E[F_N]$ from $F(x)$ yet, since no formula for $H(x)$ with respect to $F(x)$ is given in previous studies.
-Our main theorem solves this problem by giving the integral formula for $H(x)$ in $d\geq 2$:
+Our main theorem solves this problem by giving the integration formula for $H(x)$ in $d\geq 2$:
 \begin{theorem}\label{thm:H}
-For $d\geq 2$, the integral formula for $H(x)$ is given as
+For $d\geq 2$, the integration formula for $H(x)$ is given as
 \begin{equation}
      H(x) = \frac{2}{\pi}
      \int_x^{+\infty} \arccos\frac{x}{y}
@@ -415,7 +415,7 @@ where
      b =  \frac{k^d}{\pi}
      2^{\frac{1}{2} + d(\frac{d}{2}-1)} B^d\left(k, \frac{d}{2}\right)
      B\left( \frac{1}{2},
-     d(k+\frac{d}{2} -1)+1 \right)
+     d\left(k+\frac{d}{2} -1 \right)+1 \right)
      \label{eq:b}
  \end{align}
 When $N\to \infty$ and $d$ is fixed, we have
@@ -530,7 +530,7 @@ a_2 & =\frac{x^2}{y}-\sqrt{z^2-x^2}\sqrt{1-\frac{x^2}{y^2}} < 0
 \label{eq:a_2}
 \end{align}
 \end{lemma}
-Lemma \ref{lem:F_0} gives the integral formula for $P(d_{12}\geq x)$ in $\R^d$.
+Lemma \ref{lem:F_0} gives the integration formula for $P(d_{12}\geq x)$ in $\R^d$.
 The geometric meaning of $a_1, |a_2|$ is illustrated in Figure
 \ref{fig:a1a2}. That is, if we assume
 \begin{equation}\label{eq:theta_1_theta_2}

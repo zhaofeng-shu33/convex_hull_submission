@@ -251,7 +251,7 @@ As a result, we obtain
       (1-G(x))^{N-d} |\d H(x)| \textrm{ as } N-d\to \infty
      \label{eq:E_F_N_d_sim}
 \end{align}
-Let $\E[V_N]$ represent the expectation of the number of
+Let $\E[V_N]$ represent the expected number of
 vertices of $\mathrm{H}_N$.
 By far it is not clear whether there exist explicit relations
 between $\E[F_N]$ and $\E[V_N]$
@@ -268,7 +268,7 @@ Combined with $p_{N,d} = \frac{\E[V_{N+1}]}{N+1}$, which comes from
     p_{N,d} \leq \frac{\E[F_N]}{d N} \textrm{ as } N \gg d
 \end{equation}
 
-We use the symbol $a \gg b$ if $\lim_{b\to \infty} \frac{a(b)}{b} = \infty$.
+We use the symbol $a \gg b$ if $a$ is a function of $b$ and $\lim_{b\to \infty} \frac{a}{b} = \infty$.
 Based on \eqref{eq:E_F_N_d_sim}, in the following
 we derive the asymptotic expression of $\E[F_N]$
 for three different distribution families.
@@ -285,7 +285,7 @@ holds.
 \subsection{Distributions with polynomial tails}
 
 With the help of a slowly varying function $L(x)$,
-distributions with polynomial tails can be written
+distributions with polynomial tails are written
 in the following form:
 \begin{equation}\label{eq:F_poly_tail}
      F(x) = x^{-k} L(x), k\geq 0
@@ -309,7 +309,7 @@ summarized in the following theorem:
          \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)} G(x)^d 
          \textrm{ as } x\to \infty
 \end{equation}
-and from \eqref{eq:E_F_N_d_sim}
+and 
 \begin{equation}\label{eq:efn_poly_second_deri}
     \E[F_N] \sim \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
     \Gamma(\frac{dk+1}{2})}{
@@ -317,39 +317,41 @@ and from \eqref{eq:E_F_N_d_sim}
         \textrm{ as } N \to \infty, d \textrm { is fixed}
 \end{equation}
 \end{theorem}
-When we allow $d\to \infty$ while requiring $N/d^2 \to \infty$,
-\begin{equation}\label{eq:poly_E_F_N_d_infty}
-\E[F_N] \sim \sqrt{\frac{2}{\pi dk}}\left(
-     \frac{\sqrt{\pi}k \Gamma(k/2)}
-     {\Gamma(\frac{k+1}{2})}
- \right)^d
-\end{equation}
 Equation \eqref{eq:efn_poly_second_deri} tells
 us that $\E[F_N]$ converges to a constant as $N \to \infty$.
 When $d=2$, the result was obtained in (2.4) of \cite{carnal1970konvexe}
 and Theorem 4.4 of \cite{davis1987convex}.
 
+When we allow $d\to \infty$, we treat $N$ as a function of $d$.
+If the condition $N/d^2 \to \infty$ is satisfied, we have
+\begin{equation}\label{eq:poly_E_F_N_d_infty}
+\E[F_N] \sim \sqrt{\frac{2}{\pi dk}}\left(
+     \frac{\sqrt{\pi}k \Gamma(k/2)}
+     {\Gamma(\frac{k+1}{2})}
+ \right)^d \textrm{ for } k>0
+\end{equation}
+
 \subsection{Distributions with exponential tails}
 In this subsection, we consider distributions satisfying
 $x = L(1/F(x)) $, where $L(x)$ is slowly varying. Following Carnal \cite{carnal1970konvexe},
-the following utility functions are defined:
+we define the following utility functions:
 \begin{align}
      \epsilon(s) & = s (\log (L(s)))' \label{eq:epsilon_s}\\
      v(u) &= -\frac{1}{u} \frac{1}{(\log F(u))'}    
 \end{align}
 The prime notation represents the symbol for differentiation. When $v(u)$ satisfies
-conditions prescribed in (2.15) of \cite{carnal1970konvexe},
+certain regularity conditions prescribed in (2.15) of \cite{carnal1970konvexe},
 we can obtain that $\epsilon(s)$ is a slowly varying function.
-Dwyer \cite{dwyer1991convex} obtains the expression of $G(x)$:
+Dwyer \cite{dwyer1991convex} obtains the expression of $G(x)$ as:
 \begin{equation}\label{eq:G_x_exp}
      G(x) \sim \frac{2^{(d-3)/2}}{\sqrt{\pi}}\Gamma\left(\frac{d}{2}\right)
      v^{(d-1)/2}(x) F(x)
       \textrm{ as } x\to \infty
 \end{equation}
-We obtain
+We make the analysis complete by giving the following theorem.
 \begin{theorem}\label{thm:exponential_tails}
      Suppose there exists a slowly
-     varying function $L(x)$ such that $x=L(1/F(x))$,
+     varying function $L(x)$ such that \linebreak $x=L(1/F(x))$,
      and $\epsilon(s)$ is defined in \eqref{eq:epsilon_s}, then
 \begin{equation}\label{eq:H_x_exp}
      H(x) \sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}}v^{\frac{-d+1}{2}}(x)G^d(x)
@@ -361,8 +363,8 @@ We obtain
      \textrm{ as } N \to \infty, d \textrm { is fixed}
  \end{equation}
 \end{theorem}
- When $d=2$, \eqref{eq:exp_e_f_n} is consistent with (2.20) of \cite{carnal1970konvexe}.
- For standard $d-$ dimensional Gaussian distribution, we have $L(s)=\sqrt{2\log s}$.
+ When $d=2$, equation \eqref{eq:exp_e_f_n} is consistent with (2.20) of \cite{carnal1970konvexe}.
+ For standard $d$-dimensional Gaussian distribution, we have $L(s)=\sqrt{2\log s}$.
  From \eqref{eq:epsilon_s}, $\epsilon(s) = (2\log s)^{-1}$. And we obtain from \eqref{eq:exp_e_f_n}
  that $\E[F_N]\sim \frac{2^d}{\sqrt{d}}(\pi \log N)^{\frac{d-1}{2}}$,
  which is consistent with (1.11) of \cite{raynaud1970enveloppe}.
@@ -375,7 +377,7 @@ We obtain
 In this subsection, let $L(x)$ also represent a slowly varying function, and we consider the distribution which satisfies
 the following conditions:
 \begin{equation}\label{eq:F_truncated}
-     F(1-x) \sim x^k L\left(\frac{1}{x} \right)  \text{ as } x \to 0^+,
+     F(1-x) \sim x^k L\left(\frac{1}{x} \right)  \text{ as } x \to 0^+, k> 0,
      F(x) = 0 \text{ for } x \geq 1
 \end{equation}
 In \eqref{eq:F_truncated}, $x \to 0^+$ means that $x\to 0$ from the right hand side of $0$.
@@ -400,7 +402,7 @@ a &=\frac{2^{\frac{d-1}{2}} k \Gamma(\frac{d}{2})}
     {\sqrt{\pi} \Gamma\left(k+\frac{d+1}{2}\right)}
     \label{eq:a}
 \end{align}
-In this subsection, we obtain the following theorem in regards to the asymptotic value of $H(1-x)$ and $\E[F_N]$:
+Below, we give the theorem in regards to the asymptotic value of $H(1-x)$ and $\E[F_N]$:
 \begin{theorem}\label{thm:truncated_tails}
      For distributions with truncated tails
      defined in \eqref{eq:F_truncated},
@@ -429,11 +431,11 @@ When $N\to \infty$ and $d$ is fixed, we have
  \end{align}
  where the parameter $a$ is defined in \eqref{eq:a}.
 \end{theorem}
- When $d=2$, \eqref{eq:efn_truncated_formula} reduces to (3.4) of \cite{carnal1970konvexe}.
- When $k=1, L(n)=d$, we can verify that
+ When $d=2$, equation \eqref{eq:efn_truncated_formula} reduces to (3.4) of \cite{carnal1970konvexe}.
+ For uniform distribution with $k=1, L(N)=d$, we can verify that
  \eqref{eq:efn_truncated_formula} is equivalent with (1.1)
  of \cite{raynaud1970enveloppe}.
- When $k=q+1, L(n)=\frac{2^{q+1}}{(q+1)B(d/2,q+1)}$,
+ For beta-typed distribution with $k=q+1, L(N)=\frac{2^{q+1}}{(q+1)B(d/2,q+1)}$,
  we can verify that
  \eqref{eq:efn_truncated_formula} is equivalent with the expression of $c_3$
  in (3.3) of \cite{affentranger1991convex}.
@@ -447,23 +449,24 @@ When $N\to \infty$ and $d$ is fixed, we have
 In the field of machine learning,
 Balestriero et al. \cite{balestriero2021learning}
 argues that interpolation almost surely never occurs in high-dimensional spaces.
-Therefore we could not think machine learning algorithm works well because they can interpolate training data
+Therefore, we can not think machine learning algorithms work well because they can interpolate training data
 well.
-This argument can be modeled with the probability content $p_{N,d}$.
-The randomly sampled points in $\R^d$ represents training data
+Following the idea of Balestriero, we can further enhance this argument using the probability $p_{N,d}$ introduced previously.
+The randomly sampled points in $\R^d$ represent training data
 while the interpolation
 symbolizes the learning algorithm. Then $p_{N,d}$ represents
 the probability of region not learnt by the algorithm.
 When we expect $p_{N,d} \to 0$ for large $d$,
 in this section
 we find that we need
-at least exponentially large $N(d)$, which is impractical to prepare.
+at least exponentially large $N$,
+which is impractical for real-world dataset.
 
-The condition for $p_{N,d} \to 0$ is summarized in Table \ref{tab:cond},
+The sufficient condition for $p_{N,d} \to 0$ is summarized in Table \ref{tab:cond},
 which are obtained
-from the estimation inequality \eqref{eq:d_infty_exp_E_F_N}
-combined with \eqref{eq:poly_E_F_N_d_infty},
-\eqref{eq:p_N_d_bound},
+from the estimation inequality \eqref{eq:d_infty_exp_E_F_N},
+combined with the asymptotic expressions for three distribution families in \eqref{eq:poly_E_F_N_d_infty},
+\eqref{eq:p_N_d_bound}, and
 \eqref{eq:truncated_d_inf}.
 
 
@@ -487,12 +490,22 @@ combined with \eqref{eq:poly_E_F_N_d_infty},
      \label{tab:cond}
  \end{table}
 
-For the special case of Gaussian distribution, we can estimate that
+For algebraic tails, we need $N\gg \frac{c^d}{d^{3/2}}$,
+to guarantee $p_{N,d}\to 0$.  
+For the special case of Gaussian distribution,
+from $\epsilon(s)=(2\log s)^{-1}$ and the general formula for exponential tails in Table \ref{tab:cond},
+we can estimate that
 $N(d)$ grows faster than any $c^d$ (algebraic tails) but slower than $\exp(d^2)$.
-While for uniform distribution, $N\gg \exp(c' d^2 \log d)$ for some constant $c'$.
-We see that the sample complexity of $N$ is the smallest for algebraic tails and the largest
-for truncated tails. Even for algebraic tails, we need $N\gg \frac{c^d}{d^{3/2}}$,
-to guarantee $p_{N,d}\to 0$.
+For uniform distribution, from $L(N)=d$ and the general formula for truncated tails,
+$N\gg \exp(c' d^2 \log d)$ for some constant $c'$.
+Generally speaking, the sample complexity of $N$ is the smallest for algebraic tails and the largest
+for truncated tails. In other words, the faster $F(x)$ decays, the larger $N$ becomes.
+
+In conclusion, this section provides further theoretical justification for the argument that interpolation almost surely never occurs in high-dimensional spaces.
+This is just one application area for the asymptotic result of $\E[F_N]$ we obtained in previous sections.
+Other applications can be found in domains of complexity analysis of algorithms related with convex hulls
+\cite{seidel1997}.
+
 % If you write a theorem, lemma, proposition etc please use the
 % appropriate environments. For instance:
 
@@ -880,7 +893,7 @@ Then applying Theorem \ref{thm:H}, we obtain
 To simplify the notation, we denote $g(d)=\frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
 \Gamma(\frac{dk+1}{2})}{
     \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)}$.
-Let $G(x)=w$, then
+Let $G(x)=w$, then from \eqref{eq:E_F_N_d_sim}
 \begin{align}
      \E[F_N] &\sim g(d)\binom{N}{d} \int_0^{+\infty} 
       (1-G(x))^{N-d} |\d H(x)| \notag \\

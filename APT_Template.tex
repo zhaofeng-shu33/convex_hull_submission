@@ -291,7 +291,7 @@ in the following form:
 \end{equation}
 
 Dwyer\cite{dwyer1991convex} has obtained $G(x)$ as:
-\begin{equation}
+\begin{equation}\label{eq:g_poly_tail}
      G(x) \sim \frac{\Gamma(\frac{d}{2})}{2\sqrt{\pi} \Gamma(\frac{d-1}{2})}
      B\left(\frac{k+1}{2}, \frac{d-1}{2}\right) F(x)  \textrm{ as } x\to \infty
 \end{equation}
@@ -327,11 +327,20 @@ and Theorem 4.4 of \cite{davis1987convex}.
      Its pdf is given by
      \begin{equation}\label{eq:pxy_student_t}
           p(x) = \frac{\Gamma((k+d)/2)}{\Gamma(k/2)(k\pi)^{d/2}}
-          \left(1+\frac{1}{v}||x||^2
+          \left(1+\frac{1}{k}||x||^2
           \right)^{-\frac{k+d}{2}}, x \in \mathbb{R}^d
       \end{equation}
+      The parameter $k$ is the degree of freedom for this distribution.
       We can obtain the radius distribution
-      $F(x)$
+      $F(x)$ as $F(x) \sim \frac{2\Gamma(\frac{k+d}{2})}{\Gamma(k/2)\Gamma(d/2)} k^{k/2-1} x^{-k}$.
+      The marginal distribution is Student t distribution. To obtain $G(x)$, which is just the tail area
+of the t distribution, we use an existing asymptotic result found in \cite{andrew1976}.
+\begin{equation} \label{eq:eq_dv}
+    G(x) \sim k^{\frac{k}{2}-1} \frac{\Gamma \left(\frac{k+1}{2} \right)}
+    {\sqrt{\pi} \Gamma\left(\frac{k}{2}\right)}x^{-k}
+\end{equation}
+After simplification, \eqref{eq:eq_dv} is the same as \eqref{eq:g_poly_tail}.
+      
 \end{example}
 When we allow $d\to \infty$, we treat $N$ as a function of $d$.
 If the condition $N/d^2 \to \infty$ is satisfied, we have

@@ -322,7 +322,17 @@ Without consideration of the actual constant, the result of
 Theorem \ref{thm:poly_tails} is an refinement to Dwyer's Theorem 1 for the expected number of facets \cite{dwyer1991convex}.
 When $d=2$, the result was obtained in (2.4) of \cite{carnal1970konvexe}
 and Theorem 4.4 of \cite{davis1987convex}.
-
+\begin{example}
+     We consider a special case of polynomial tail called multivariate t distribution.
+     Its pdf is given by
+     \begin{equation}\label{eq:pxy_student_t}
+          p(x) = \frac{\Gamma((k+d)/2)}{\Gamma(k/2)(k\pi)^{d/2}}
+          \left(1+\frac{1}{v}||x||^2
+          \right)^{-\frac{k+d}{2}}, x \in \mathbb{R}^d
+      \end{equation}
+      We can obtain the radius distribution
+      $F(x)$
+\end{example}
 When we allow $d\to \infty$, we treat $N$ as a function of $d$.
 If the condition $N/d^2 \to \infty$ is satisfied, we have
 \begin{equation}\label{eq:poly_E_F_N_d_infty}
@@ -1143,7 +1153,9 @@ Then by a slight simplification,
 
 
 \fund % Place any funding information for this work after the \fund (or \Fund) command.
-\noindent This research was funded in part by the Shenzhen Science and Technology Program under Grant KQTD20170810150821146, National Key R\&D Program of China under Grant 2021YFA0715202 and High-end Foreign Expert Talent Introduction Plan under Grant G2021032013L.
+\noindent This research was funded in part by the Shenzhen Science and Technology Program under Grant KQTD20170810150821146,
+National Key R\&D Program of China under Grant 2021YFA0715202
+and High-end Foreign Expert Talent Introduction Plan under Grant G2021032013L.
 
 
 

@@ -302,7 +302,7 @@ summarized in the following theorem:
 \begin{theorem}\label{thm:poly_tails}
      For distributions with polynomial tails defined in \eqref{eq:F_poly_tail},
      we have
-\begin{equation}
+\begin{equation}\label{eq:H_poly_tail_exp}
      H(x) \sim \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
      \Gamma(\frac{dk+1}{2})}{
          \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)} G(x)^d 
@@ -333,14 +333,21 @@ and Theorem 4.4 of \cite{davis1987convex}.
       The parameter $k$ is the degree of freedom for this distribution.
       We can obtain the radius distribution
       $F(x)$ as $F(x) \sim \frac{2\Gamma(\frac{k+d}{2})}{\Gamma(k/2)\Gamma(d/2)} k^{k/2-1} x^{-k}$.
-      The marginal distribution is Student t distribution. To obtain $G(x)$, which is just the tail area
+      The marginal distribution is Student's t-distribution. To obtain $G(x)$, which is just the tail area
 of the t distribution, we use an existing asymptotic result found in \cite{andrew1976}.
 \begin{equation} \label{eq:eq_dv}
     G(x) \sim k^{\frac{k}{2}-1} \frac{\Gamma \left(\frac{k+1}{2} \right)}
     {\sqrt{\pi} \Gamma\left(\frac{k}{2}\right)}x^{-k}
 \end{equation}
 After simplification, \eqref{eq:eq_dv} is the same as \eqref{eq:g_poly_tail}.
-      
+On the other hand, using similar techniques as (1.4) in \cite{raynaud1970enveloppe},
+we can obtain the pdf of the distance of the hyperplane to the origin as
+\begin{equation}
+     \frac{\d H(x)}{\d x} =  \frac{2}{\sqrt{k} B(\frac{kd}{2},\frac{1}{2})} \left(1 + \frac{x^2}{k} \right)^{-\frac{kd+1}{2}} 
+\end{equation}
+From above, we get the asymptotic relation $H(x) \sim \frac{2 \Gamma(\frac{kd+1}{2}) k^{kd/2-1}}{d\sqrt{\pi} \Gamma(\frac{kd}{2})}
+x^{-kd}$ as $x\to \infty$, which is equivalent to \eqref{eq:H_poly_tail_exp}.
+
 \end{example}
 When we allow $d\to \infty$, we treat $N$ as a function of $d$.
 If the condition $N/d^2 \to \infty$ is satisfied, we have

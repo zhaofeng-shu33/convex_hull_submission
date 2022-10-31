@@ -1,0 +1,581 @@
+%% LaTeX Template for ISIT 2023
+%%
+%% by Stefan M. Moser, June 2022
+%% 
+%% derived from bare_conf.tex, V1.4a, 2014/09/17, by Michael Shell
+%% for use with IEEEtran.cls version 1.8b or later
+%%
+%% Support sites for IEEEtran.cls:
+%%
+%% https://www.michaelshell.org/tex/ieeetran/
+%% https://moser-isi.ethz.ch/manuals.html#eqlatex
+%% https://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
+%%
+
+\documentclass[conference,a4paper]{IEEEtran}
+
+
+%% depending on your installation, you may wish to adjust the top margin:
+\addtolength{\topmargin}{9mm}
+%% apart from this
+%% *** do not adjust lengths that control margins, column widths, etc.! ***
+%% *** do not use packages that alter fonts (such as pslatex)!          ***
+
+%%%%%
+%% Packages:
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}
+\usepackage{url}              % provides \url{...}
+%\usepackage{ifthen}          % provides \ifthenelse
+\usepackage{cite}             % improves presentation of citations
+
+\usepackage[cmex10]{amsmath}  % Use the [cmex10] option to ensure complicance
+                              % with IEEEXplore (see bare_conf.tex)
+\interdisplaylinepenalty=1000 % As explained in bare_conf.tex
+\usepackage{mleftright}       % fix to wrong spacing of \left-,
+\mleftright                   % \middle- \right-commands 
+
+\usepackage{graphicx}         % provides \includegraphics{...} to
+                              % include graphics (pdf format)
+\usepackage{booktabs}         % fixes poor spacing in tables and
+                              % provides \toprule, \midrule, \bottomrule
+
+%\usepackage{algorithmicx}    % provides an algorithmic environment for
+                              % describing algorithms. See
+                              % https://ctan.org/pkg/algorithmicx
+
+% \usepackage[caption=false,font=footnotesize]{subfig}
+                              % provides subnumbering within a
+                              % floating figure or table
+
+%% For arrays and multiple-line equations, use the
+%% IEEEeqnarray-environment. See
+%%              https://moser-isi.ethz.ch/manuals.html#eqlatex  
+%% for instructions.
+
+%% Do NOT use amsthm or hyperref!
+%% -IEEEtran provides its own versions of theorems.
+%% -IEEEXplore does not accept submissions with hyperlinks
+
+
+%%%%%
+%% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+\usepackage{amsfonts}
+\DeclareMathOperator{\dist}{dist}
+\def\E{\mathbb{E}}
+\def\R{\mathbb{R}}
+\def\d{\mathrm{d}}
+% -------------------------------------------------------------------------
+\begin{document}
+
+\title{On the Expected Number of Facets for the Convex Hull of Samples from Spherically Symmetric Distributions} 
+
+%%%%%%
+\author{%
+  \IEEEauthorblockN{Anonymous Authors}
+  %\IEEEauthorblockA{%
+  %  Please do NOT provide authors' names and affiliations\\
+  %  in the paper submitted for review, but keep this placeholder.\\
+  %  ISIT23 follows a \textbf{double-blind reviewing policy}.}
+}
+
+%%%%%% Please only add the author names and affiliations for the FINAL
+%%%%%% version of the paper, but NOT for the paper submitted for review!
+%
+%%%%%
+%%%%% Single author, or several authors with same affiliation:
+% \author{%
+%   \IEEEauthorblockN{Stefan M.~Moser}
+%   \IEEEauthorblockA{ETH Zürich\\
+%                     8092 Zürich, Switzerland\\
+%                     moser@isi.ee.ethz.ch}
+%                   }
+%
+%%%%%
+%%%%% Several authors with up to three affiliations:
+% \author{%
+%   \IEEEauthorblockN{Stefan M.~Moser}
+%   \IEEEauthorblockA{ETH Zürich\\
+%                     ISI (D-ITET), ETH Zentrum\\
+%                     8092 Zürich, Switzerland\\
+%                     moser@isi.ee.ethz.ch}
+%   \and
+%   \IEEEauthorblockN{Albus Dumbledore and Harry Potter}
+%   \IEEEauthorblockA{Hogwarts School of Witchcraft and Wizardry\\
+%                     Hogwarts Castle\\ 
+%                     1714 Hogsmeade, Scotland\\
+%                     \{dumbledore, potter\}@hogwarts.edu}
+% }
+%
+%%%%%   
+%%%%% Many authors with many affiliations:
+% \author{%
+%   \IEEEauthorblockN{Albus Dumbledore\IEEEauthorrefmark{1},
+%                     Olympe Maxime\IEEEauthorrefmark{2},
+%                     Stefan M.~Moser\IEEEauthorrefmark{3}\IEEEauthorrefmark{4},
+%                     and Harry Potter\IEEEauthorrefmark{1}}
+%   \IEEEauthorblockA{\IEEEauthorrefmark{1}%
+%                     Hogwarts School of Witchcraft and Wizardry,
+%                     1714 Hogsmeade, Scotland,
+%                     \{dumbledore, potter\}@hogwarts.edu}
+%   \IEEEauthorblockA{\IEEEauthorrefmark{2}%
+%                     Beauxbatons Academy of Magic,
+%                     1290 Pyrénées, France,
+%                     maxime@beauxbatons.fr}
+%   \IEEEauthorblockA{\IEEEauthorrefmark{3}%
+%                     ETH Zürich, ISI (D-ITET), ETH Zentrum, 
+%                     CH-8092 Zürich, Switzerland,
+%                     moser@isi.ee.ethz.ch}
+%   \IEEEauthorblockA{\IEEEauthorrefmark{4}%
+%                     National Yang Ming Chiao Tung University (NYCU), 
+%                     Hsinchu, Taiwan,
+%                     moser@isi.ee.ethz.ch}
+% }
+%
+
+\maketitle
+
+%%%%%
+%% Abstract: 
+%% If your paper is eligible for the student paper award, please add
+%% the comment "THIS PAPER IS ELIGIBLE FOR THE STUDENT PAPER
+%% AWARD." as a first line in the abstract. 
+%% For the final version of the accepted paper, please do not forget
+%% to remove this comment!
+%%
+\begin{abstract}
+  This paper estimates the sample complexity for efficient learning in high dimensional space.
+  To be specific, we model the learning task as interpolation of convex hull consisting of i.i.d. sampled data
+  , and the sample complexity is the number of training data which make the probability measure of the convex hull
+  tend to one. It is shown that the sample complexity has exponential relationship with the dimension parameter for all the distribution families
+  considered in this paper, which gives insight on why high dimensional learning is difficult in a general sense. 
+\end{abstract}
+
+
+\section{Introduction}
+\label{sec:intro}
+In machine learning, intuitively we model a learning task as interpolating the
+training data.
+Balestriero et al. \cite{balestriero2021learning}
+argues that interpolation almost surely never occurs in high-dimensional spaces.
+Therefore, we can not think machine learning algorithms work well because they can interpolate training data
+well.
+Following the idea of Balestriero, we can further enhance this argument using the probability $p_{N,d}$ introduced previously.
+The randomly sampled points in $\R^d$ represent training data
+while the interpolation
+symbolizes the learning algorithm. Then $p_{N,d}$ represents
+the probability of region not learnt by the algorithm.
+When we expect $p_{N,d} \to 0$ for large $d$,
+in this section
+we find that we need
+at least exponentially large $N$,
+which is impractical for real-world dataset.
+
+
+Let $X_1, X_2, \dots, X_N$ be i.i.d. random points generated from
+a spherically symmetric distribution in $\mathbb{R}^d$.
+For the convex hull $\mathrm{H}_N$ of these $N$ points, we study the number of its facets $F_N$,
+where a facet of a $d$-dimensional object is one of its $(d-1)$-dimensional faces.
+In this paper, we study the mathematical expectation
+of $F_N$, denoted as $\E[F_N]$, and derive its asymptotic value as $N\to \infty$.
+
+Our motivation to study $\E[F_N]$ is to give an upper bound of
+the probability $p_{N,d}=P(X_{N+1} \not\in \mathrm{H}_N)$,
+which is the probability that the $(N+1)$-th point falls outside the convex hull.
+If we accept the concept that interpolation occurs when $X_{N+1}$ belongs to $H_N$,
+$p_{N,d}$ can be applied to explain
+why interpolation almost surely never occurs in high dimensional space \cite{balestriero2021learning}.
+In other words, for a large $d$, $p_{N,d}$ is near $1$, unless exponentially large sample size $N$ is available.
+Using the asymptotic result on $\E[F_N]$, we obtain
+a sufficient condition under which the interpolation almost surely occurs.
+
+
+The asymptotic expression of $\E[F_N]$ as $N\to \infty$
+was studied initially by R{\'e}nyi and Sulanke \cite{renyi1963konvexe}.
+They considered
+bivariate Gaussian distribution and uniform distribution
+in a planar convex region.
+Later on,  R{\'e}nyi's work was generalized by
+Carnal \cite{carnal1970konvexe}, who
+classified symmetric 2-D distributions
+into three categories according to their tails:
+polynomial, exponential, and truncated tails.
+Then he obtained the asymptotic expression of $\E[F_N]$
+for each category of distributions.
+
+
+
+
+The study of $\E[F_N]$ for $d>2$ was made firstly by
+Raynaud
+\cite{raynaud1970enveloppe}.
+He obtained the asymptotic formula of $\E[F_N]$
+for uniform distribution in a hyperball
+and standard Gaussian distribution in $\mathbb{R}^d$.
+Afterwards, following Carnal, Dwyer \cite{dwyer1991convex}
+estimated the order of $\E[F_N]$ about $N$
+for three different distribution families.
+
+Dwyer's work on the estimation of $\E[F_N]$ only captured its relationship with $N$ but ignored its
+dependence on $d$. To our best knowledge, previous works have not revealed the general asymptotic expression of $\E[F_N]$ in $\R^d$.
+In Section \ref{sec:int_f}, we develop a method of obtaining $\E[F_N]$ by generalizing Carnal's integration formula
+% of $H(x)=P(d_{12}\geq x)$ 
+from $d=2$ to higher dimensions.
+In Section \ref{sec:three_distriutions}, we then derive the explicit asymptotic
+expressions of $\E[F_N]$ for three different distribution families.
+In Section \ref{sec:sample_complexity}, based on the asymptotic result of $\E[F_N]$,
+we provide a sufficient condition for the convergence of $p_{N,d}$ to zero as $N,d \to \infty$.
+The main contribution of this paper is to provide a complete integration formula for $\E[F_N]$,
+and following the classification of distributions of previous authors \cite{carnal1970konvexe,dwyer1991convex},
+we derive the asymptotic expression
+of $\E[F_N]$ for each category.
+
+Below we define some notations to be used throughout this paper.
+Without specific emphasis, all $d$-dimensional distributions considered in this paper are spherically symmetric.
+Let $X=(X^{(1)},\dots, X^{(d)})$ follow such a distribution.
+Then we use $F(x)=P(|X|\geq x)$ to denote the probability that a random point lies outside
+a $d$-sphere ($d$-dimensional sphere centered at origin) with radius $x$.
+The marginal distribution of each component of $X$ is determined by $G(x)=P(X^{(1)}\geq x)$.
+Let $dist$ represent the distance from the origin to the hyperplane spanned by $X_1, \dots, X_d$.
+Specifically, in 2-D, the hyperplane is the straight line passing through $X_1$ and $X_2$.
+We use $H(x)=P(\dist\geq x)$ to denote the probability that $\dist$ is larger than $x$.
+When $n$ tends to infinity, the functions $f(n)$ and $g(n)$ are asymptotic equivalent if $\lim_{n\to \infty} \frac{f(n)}{g(n)}=1$.
+We denote this relationship as $f(n) \sim g(n)$.
+
+\subsection{Detailed Instructions for Double-Blind Submission}
+\label{sec:deta-instr}
+
+\begin{itemize}
+\item Remove the names and affiliations of authors from the title
+  page.
+\item Remove acknowledgments.
+\item Remove project titles or names that could be used to trace back
+  to the authors via web search.  
+\item Carefully name your files to anonymize author information.
+\item Carefully refer to related work, particularly your own. Do not
+  omit references to provide anonymity, as this leaves the reviewer
+  incapable of grasping the context. Instead, reference your past work
+  in the third person, just as you would any other piece of related
+  work by another author. For example, instead of ``In prior work [1],
+  we presented a scheme that\ldots,'' sentences in the spirit of ``In
+  prior work, Moser \emph{et al.} [1] presented a scheme that\ldots''
+  should be used. In this way, the full citation of the referred paper
+  can still be given, such as ``[1] S. M. Moser, \ldots''.  It is not
+  acceptable to say ``[1] Reference deleted for double-blind review.''
+\item We recommend to delay the posting of the submitted manuscript or
+  its title/abstract on a public website, such as arXiv or on public
+  mailing lists, until after the reviewing process is completed. (This
+  is not enforced)
+\item The submitted manuscript (PDF file) should be
+  text-searchable. Any submission that does not meet this requirement
+  may be returned without review.
+\item Many of the editing tools automatically add metadata to the
+  generated PDF file containing information that may violate the
+  double-blind policy. Please remove any possible metadata that can
+  link your manuscript to you. This includes removing names,
+  affiliation, license numbers etc. from the metadata as well as from
+  the paper. Failing to meet this requirement may also lead to a
+  rejection without review.
+\end{itemize}
+
+Contact the TPC chairs if you have any questions regarding the
+double-blind reviewing policy. 
+
+
+
+\section{Page Limit}
+\label{sec:page-limit}
+
+The main body of a manuscript should not exceed \textbf{5 pages} in
+length. There can be an \textbf{optional extra page} containing
+references only. Moreover, the manuscript submitted for reviewing may
+contain an \textbf{optional 5-page appendix} with additional proofs
+and details that may be helpful for the reviewers. This appendix will
+have to be removed in the final version of an accepted paper.
+
+Summary: \textbf{5+1+5 in double-column format}.
+
+
+\section{Paper Format}
+\label{sec:paper-format}
+
+\subsection{Template}
+\label{sec:template}
+
+The paper must be formatted as shown in this sample
+\LaTeX{}-file. More help regarding \LaTeX{} can be found in
+\cite{Laport:LaTeX, GMS:LaTeXComp, oetiker_latex, typesetmoser,
+  shell15}. Note that the source of this file relies on IEEEtran.cls,
+which is part of any modern \LaTeX{}-distribution and can be found on
+\url{https://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/}
+
+The use of a text processing system other than \LaTeX{} is not
+recommended. In particular, we very strongly discourage the use of
+Microsoft Word.  Users of any text processing system other than
+\LaTeX{} should attempt to duplicate the style of this example as
+closely as possible (including font type and size).
+
+
+\subsection{Formatting}
+\label{sec:formatting}
+
+The paper must be A4 or letter size and in double-column format.  The
+style of references, equations, figures, tables, etc., should be the
+same as for the \emph{IEEE Transactions on Information Theory}.
+
+The source file of this template paper contains many more instructions
+on how to format your paper. So, example code for different numbers of
+authors, for figures and tables, and references can be found there
+(they are commented out).
+
+%%%%%%
+%% An example of a floating figure using the graphicx package.
+%% Note that \label must occur AFTER (or within) \caption.
+%% For figures, \caption should occur after the \includegraphics.
+%%
+% \begin{figure}[htbp]
+%   \centering
+%   \includegraphics[width=0.3\textwidth]{myfigure}
+%   % where a .pdf suffix will be assumed for pdflatex
+%   \caption{Simulation results.}
+%   \label{fig:sim}
+% \end{figure}
+%%%%%%
+
+%%%%%%
+%% An example of a double column floating figure using two subfigures.
+%% (The subfig package must be loaded for this to work; uncomment the
+%% corresponding line in the document header.)  The *-version of
+%% figure makes the figure use both columns. The subfigure \label
+%% commands are set within each subfloat command, the \label for the
+%% overall figure must come after \caption.  \hfil must be used as a
+%% separator to get equal spacing.
+%%
+% \begin{figure*}[htbp]
+%   \centering
+%   \subfloat[Caption of first subfigure.]{%
+%     \label{fig:subfigA}
+%     \includegraphics[width=4cm]{subfigcase1}}
+%   \hfil
+%   \subfloat[Caption of second subfigure.]{%
+%     \label{fig:subfigB}
+%     \includegraphics[width=4cm]{subfigcase1}}  
+%   \caption{Two figures showing something.}
+%   \label{fig:subfigures}
+% \end{figure*}
+% We refer to the Figures~\ref{fig:subfigA} and \ref{fig:subfigB} within
+% Figure~\ref{fig:subfigures}.
+%%%%%% 
+
+%%%%%%
+%% An example of a floating table.
+%% Note that the \caption command should come BEFORE the table. Table
+%% text will default to \footnotesize as IEEE normally uses this
+%% smaller font for tables.  The \label must come after \caption as
+%% always. The following example relies on booktabs.sty to fix poor
+%% spacing within tables and using \toprule, \midrule, and \bottomrule
+%% as proper replacement for the corresponding \hline
+%%
+% \begin{table}[htbp]
+%   \centering
+%   \caption{Recursion given by Lloyd's algorithm for the case of a
+%     Gaussian random variable represented by four values.}
+%   \label{tab:gaussfour}
+%   \begin{IEEEeqnarraybox}[\IEEEeqnarraystrutmode%
+%     % \IEEEeqnarraystrutsizeadd{2pt}{1pt}% uncomment for more spacing
+%     ]{l"l"l}
+%     \toprule
+%     \hat{x}_1 & \hat{x}_2 & \theta \\
+%     \midrule
+%     0.5 & 1 & 0.75 \\      
+%     0.3578 & 1.3288 & 0.8433 \\
+%     0.3973 & 1.4011 & 0.8992 \\
+%     0.4202 & 1.4450 & 0.9326 \\
+%     0.4336 & 1.4714 & 0.9525 \\
+%     0.4414 & 1.4872 & 0.9643 \\
+%     0.4461 & 1.4966 & 0.9714 \\
+%     0.4488 & 1.5022 & 0.9755 \\
+%     \vdots && \\
+%     0.4528 & 1.5104 & 0.9816 \\
+%     \bottomrule
+%   \end{IEEEeqnarraybox}
+% \end{table}
+%%%%%%
+
+
+For instructions on how to typeset math, especially for multiple-line
+equations with broken equations, we refer to \cite{typesetmoser}.
+
+Pages should not be numbered and there should be no footer or header
+(both will be added by us during the production of the
+proceedings). The authors' affiliation shown in the final version of
+accepted papers should constitute a sufficient mailing address for
+persons who wish to contact the authors for more details about the
+paper.
+
+
+\subsection{PDF Requirements}
+\label{sec:pdf-requirements}
+
+Only electronic submissions in form of a PDF file will be
+accepted. The PDF file has to be PDF/A compliant and text-searchable.
+
+A common problem is missing fonts. Make sure that all fonts are
+embedded. (In some cases, printing a PDF into a new PDF or creating a
+new PDF with Acrobat Distiller may do the trick.) More information is
+available from the IEEE website \cite{IEEE:AuthorToolbox}.
+
+%%%%%%
+%% See explanation in comments after Conclusion
+\enlargethispage{-1.4cm} 
+%%%%%%
+
+
+\section{Submission}
+\label{sec:submission}
+
+\subsection{Tracks}
+\label{sec:tracks}
+
+This conference features two tracks:
+\begin{itemize}
+\item For papers in the \textbf{in-person track}, one author must
+  present the work personally in Taipei.
+\item For papers in the \textbf{virtual track}, the presentations will
+  be given live via zoom in front of a mixed virtual and live
+  audience, i.e., the in-person attendees of the conference will be
+  able to join the virtual sessions live in the conference
+  center. Pre-recorded videos will not be accepted.
+
+  The number of papers in the virtual track is limited, and thus a
+  slot in the virtual track cannot be guaranteed.
+\end{itemize}
+In either track, a failure of a live presentation (in-person or via
+zoom, respectively) of their work by one of the authors will result in
+the removal of the paper from the published proceedings.
+
+
+\subsection{Submission of Papers for Review}
+\label{sec:subm-papers-revi}
+
+Papers in the form of a PDF file, formatted as described above and
+following the double-blind policy, may be submitted online at
+\begin{center}
+  \url{https://edas.info/N29759}
+\end{center}
+The deadlines for registering and uploading the paper in EDAS is
+\begin{itemize}
+\item for the virtual track: \textbf{January 3, 2023}, 23:59 Taiwan
+  time (UTC+8);
+\item for the in-person track: \textbf{January 22, 2023}, 23:59 Taiwan
+  time (UTC+8).
+\end{itemize}
+Each paper must be classified as ``eligible for student paper award''
+or ``not eligible for student paper award''. Papers that are selected
+to be eligible for the student paper award should also contain
+\emph{``THIS PAPER IS ELIGIBLE FOR THE STUDENT PAPER AWARD.''} as a
+first line in the abstract. Note that this comment must be removed
+again in the final manuscript.
+
+\subsection{Submission of Accepted Papers}
+\label{sec:subm-final-vers}
+
+Please do not forget to remove the 5-page appendix if present and to
+add authors' names and affiliations and all necessary acknowledgments.
+Also remove the sentence \emph{``THIS PAPER IS ELIGIBLE FOR THE
+  STUDENT PAPER AWARD.''} in the abstract if present.
+
+The deadline for the submission of the final version of accepted
+papers is \textbf{May 6, 2023}, 23:59 Taiwan time (UTC+8).  Accepted
+papers not submitted by that date will not appear in the ISIT
+proceedings and will not be included in the technical program of the
+ISIT.
+
+Please make sure that the meta data in EDAS (list of authors, title
+and abstract) match exactly the final version of your paper. For
+generating the program booklet, the data in EDAS is used and not the
+final version of the paper.
+
+
+%%%%%
+%%% Do not uncomment for double-blind review submission!
+% \section*{Acknowledgments}
+%
+% We are indebted to Michael Shell for maintaining and improving
+% \texttt{IEEEtran.cls}. 
+
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+We conclude by pointing out that on the last page the columns need to
+be balanced. Instructions for that purpose are given in the source
+file (they are commented out).
+
+%%%%%%
+%% To balance the columns at the last page of the paper use this
+%% command somewhere at the top of the first column of the last page:
+%%
+% \enlargethispage{-5cm} 
+%%
+%% where the exact amount of page reduction has to be adapted to the
+%% actual situation.
+%%
+%% If the balancing should occur in the middle of the references, use
+%% the following trigger:
+%%
+% \IEEEtriggeratref{3}
+%%
+%% which triggers a \newpage (i.e., new column) just before the given
+%% reference number. Note that you need to adapt this if you modify
+%% the paper. The "triggered" command can be changed if desired:
+%%
+% \IEEEtriggercmd{\enlargethispage{-20cm}}
+%%
+%%%%%%
+
+%%%%%%
+%% References:
+%% We recommend the usage of BibTeX:
+%%
+\bibliographystyle{IEEEtran}
+\bibliography{exportlist.bib}
+%\bibliography{definitions,bibliofile}
+%%
+%% where we here have assume the existence of the files
+%% definitions.bib and bibliofile.bib.
+%% BibTeX documentation can be obtained at:
+%% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
+%%%%%%
+%% Or you use manual references (pay attention to consistency and the
+%% formatting style!):
+
+
+
+%%%%%% 
+%% Appendix:
+%% If needed a single appendix is created by
+%%
+\appendix
+%%
+%% If several appendices are needed, then the command
+%%
+% \appendices
+%%
+%% in combination with further \section-commands can be used.
+%%%%%%
+
+The appendix (or appendices) are optional. For reviewing purposes
+additional 5~pages (double-column) are allowed (resulting in a maximum
+grand total of 10~pages plus one page containing only
+references). These additional 5~pages must be removed in the final
+version of an accepted paper.
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

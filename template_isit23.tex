@@ -66,10 +66,11 @@
 \def\E{\mathbb{E}}
 \def\R{\mathbb{R}}
 \def\d{\mathrm{d}}
+\newtheorem{definition}{Definition}
 % -------------------------------------------------------------------------
 \begin{document}
 
-\title{On the Expected Number of Facets for the Convex Hull of Samples from Spherically Symmetric Distributions} 
+\title{On the Sample Complexity of High Dimensional Learning with Interpolation of Dataset}
 
 %%%%%%
 \author{%
@@ -145,7 +146,7 @@
 %% to remove this comment!
 %%
 \begin{abstract}
-  This paper estimates the sample complexity for efficient learning in high dimensional space.
+  This paper estimates the sample complexity for a kind of efficient learning in high dimensional space.
   To be specific, we model the learning task as interpolation of convex hull consisting of i.i.d. sampled data
   , and the sample complexity is the number of training data which make the probability measure of the convex hull
   tend to one. It is shown that the sample complexity has exponential relationship with the dimension parameter for all the distribution families
@@ -156,40 +157,54 @@
 \section{Introduction}
 \label{sec:intro}
 In machine learning, intuitively we model a learning task as interpolating the
-training data.
-Balestriero et al. \cite{balestriero2021learning}
-argues that interpolation almost surely never occurs in high-dimensional spaces.
-Therefore, we can not think machine learning algorithms work well because they can interpolate training data
-well.
-Following the idea of Balestriero, we can further enhance this argument using the probability $p_{N,d}$ introduced previously.
-The randomly sampled points in $\R^d$ represent training data
-while the interpolation
-symbolizes the learning algorithm. Then $p_{N,d}$ represents
-the probability of region not learnt by the algorithm.
-When we expect $p_{N,d} \to 0$ for large $d$,
-in this section
-we find that we need
-at least exponentially large $N$,
-which is impractical for real-world dataset.
+training data. Under such interpretation, we are prone to think that state-of-the-art
+algorithms work well in high dimensional space because the models can interpolate training data well. 
+However, Balestriero et al. \cite{balestriero2021learning}
+argues that this is a misconception and the interpolation almost surely never occurs in high-dimensional spaces.
+In the terminology of Balestriero, the interpolation error is made whenever a sample does not belong to the convex hull of the dataset.
 
+Inspired by Balestriero, we investigate under which condition the interpolation error converges to zero,
+as the sample size and the dimension tend to infinity simultaneously. In our work, we give
+an asymptotic upper bound of the interpolation error and obtain the sample complexity of this kind of
+high dimensional learning. We show that when the training data are sampled from polynomial, exponential and truncated distribution families,
+we need exponentially large number of samples for efficient learning. Our result is consistent with the common sense
+that direct learning
+without dimension reduction is impractical. Besides the relationship between $N$ and $d$,
+we also reveal the dependency between $N$ and the decaying rate of the distribution.
 
-Let $X_1, X_2, \dots, X_N$ be i.i.d. random points generated from
-a spherically symmetric distribution in $\mathbb{R}^d$.
-For the convex hull $\mathrm{H}_N$ of these $N$ points, we study the number of its facets $F_N$,
-where a facet of a $d$-dimensional object is one of its $(d-1)$-dimensional faces.
-In this paper, we study the mathematical expectation
-of $F_N$, denoted as $\E[F_N]$, and derive its asymptotic value as $N\to \infty$.
+The study of interpolation error $p_{N,d}$ is closely related with the quantity $\E[F_N]$,
+which is the expectation of the number of facets of the convex hull. Loosely speaking,
+the inequality relationship $p_{N,d} \leq \frac{\E[F_N]}{Nd}$ holds. Therefore, the asymptotic
+value of $\E[F_N]$ gives an upper bound of $p_{N,d}$.
+The study of $\E[F_N]$
+is an old topic in stochastic geometry. The recent advance dates to Dwyer's work on the estimation of $\E[F_N]$,
+in which the order of $\E[F_N]$ about $N$ is obtained \cite{dwyer1991convex}. In our paper, we will extend Dwyer's work
+to get a more accurate asymptotic value of $\E[F_N]$ in $\R^d$.
 
-Our motivation to study $\E[F_N]$ is to give an upper bound of
-the probability $p_{N,d}=P(X_{N+1} \not\in \mathrm{H}_N)$,
-which is the probability that the $(N+1)$-th point falls outside the convex hull.
-If we accept the concept that interpolation occurs when $X_{N+1}$ belongs to $H_N$,
-$p_{N,d}$ can be applied to explain
-why interpolation almost surely never occurs in high dimensional space \cite{balestriero2021learning}.
-In other words, for a large $d$, $p_{N,d}$ is near $1$, unless exponentially large sample size $N$ is available.
-Using the asymptotic result on $\E[F_N]$, we obtain
-a sufficient condition under which the interpolation almost surely occurs.
+The organization of this paper is as follows: In Section \ref{sec:int_f}, we develop a method of obtaining $\E[F_N]$ by generalizing Carnal's integration formula
+% of $H(x)=P(d_{12}\geq x)$ 
+from $d=2$ to higher dimensions.
+In Section \ref{sec:three_distriutions}, we then derive the explicit asymptotic
+expressions of $\E[F_N]$ for three different distribution families.
+In Section \ref{sec:sample_complexity}, based on the asymptotic result of $\E[F_N]$,
+we provide a sufficient condition for the convergence of $p_{N,d}$ to zero as $N,d \to \infty$.
+The main contribution of this paper is to provide a complete integration formula for $\E[F_N]$,
+and following the classification of distributions of previous authors \cite{carnal1970konvexe,dwyer1991convex},
+we derive the asymptotic expression
+of $\E[F_N]$ for each category.
 
+Below we define some notations to be used throughout this paper.
+Without specific emphasis, all $d$-dimensional distributions considered in this paper are spherically symmetric.
+Let $X=(X^{(1)},\dots, X^{(d)})$ follow such a distribution.
+Then we use $F(x)=P(|X|\geq x)$ to denote the probability that a random point lies outside
+a $d$-sphere ($d$-dimensional sphere centered at origin) with radius $x$.
+The marginal distribution of each component of $X$ is determined by $G(x)=P(X^{(1)}\geq x)$.
+Let $dist$ represent the distance from the origin to the hyperplane spanned by $X_1, \dots, X_d$.
+Specifically, in 2-D, the hyperplane is the straight line passing through $X_1$ and $X_2$.
+We use $H(x)=P(\dist\geq x)$ to denote the probability that $\dist$ is larger than $x$.
+When $n$ tends to infinity, the functions $f(n)$ and $g(n)$ are asymptotic equivalent if $\lim_{n\to \infty} \frac{f(n)}{g(n)}=1$.
+We denote this relationship as $f(n) \sim g(n)$.
+\section{Related work}
 
 The asymptotic expression of $\E[F_N]$ as $N\to \infty$
 was studied initially by R{\'e}nyi and Sulanke \cite{renyi1963konvexe}.
@@ -217,34 +232,47 @@ Afterwards, following Carnal, Dwyer \cite{dwyer1991convex}
 estimated the order of $\E[F_N]$ about $N$
 for three different distribution families.
 
-Dwyer's work on the estimation of $\E[F_N]$ only captured its relationship with $N$ but ignored its
-dependence on $d$. To our best knowledge, previous works have not revealed the general asymptotic expression of $\E[F_N]$ in $\R^d$.
-In Section \ref{sec:int_f}, we develop a method of obtaining $\E[F_N]$ by generalizing Carnal's integration formula
-% of $H(x)=P(d_{12}\geq x)$ 
-from $d=2$ to higher dimensions.
-In Section \ref{sec:three_distriutions}, we then derive the explicit asymptotic
-expressions of $\E[F_N]$ for three different distribution families.
-In Section \ref{sec:sample_complexity}, based on the asymptotic result of $\E[F_N]$,
-we provide a sufficient condition for the convergence of $p_{N,d}$ to zero as $N,d \to \infty$.
-The main contribution of this paper is to provide a complete integration formula for $\E[F_N]$,
-and following the classification of distributions of previous authors \cite{carnal1970konvexe,dwyer1991convex},
-we derive the asymptotic expression
-of $\E[F_N]$ for each category.
+Below we list some other related works which are not mentioned in the previous section.
+For $d=2,3$, Efron \cite{efron1965convex} obtained the explicit integration formula for $\E[F_N]$ and $p_{N,d}$ 
+when samples follow Gaussian distribution or uniform distribution within a unit sphere.
 
-Below we define some notations to be used throughout this paper.
-Without specific emphasis, all $d$-dimensional distributions considered in this paper are spherically symmetric.
-Let $X=(X^{(1)},\dots, X^{(d)})$ follow such a distribution.
-Then we use $F(x)=P(|X|\geq x)$ to denote the probability that a random point lies outside
-a $d$-sphere ($d$-dimensional sphere centered at origin) with radius $x$.
-The marginal distribution of each component of $X$ is determined by $G(x)=P(X^{(1)}\geq x)$.
-Let $dist$ represent the distance from the origin to the hyperplane spanned by $X_1, \dots, X_d$.
-Specifically, in 2-D, the hyperplane is the straight line passing through $X_1$ and $X_2$.
-We use $H(x)=P(\dist\geq x)$ to denote the probability that $\dist$ is larger than $x$.
-When $n$ tends to infinity, the functions $f(n)$ and $g(n)$ are asymptotic equivalent if $\lim_{n\to \infty} \frac{f(n)}{g(n)}=1$.
-We denote this relationship as $f(n) \sim g(n)$.
+Davis et al. \cite{davis1987convex} found the relationship between the distributions with algebraic tails $F(x) \sim x^{-k}$ and Poisson random process.
+They showed that for $k>0, d=2$,
+$\mathrm{H}_N$ converges to the convex hull of a Poisson random process,
+and
+the limit of $\E[F_N]$ can be derived from this random process.
+The special case $k=0, d=2$ is treated in a later paper, in which the
+limit distribution of $F_N$ is computed \cite{aldous1991number}.
 
-\subsection{Detailed Instructions for Double-Blind Submission}
-\label{sec:deta-instr}
+Studies related to distributions with exponential tails mainly focus on Gaussian distribution.
+Kabluchko et al. \cite{kabluchko2020absorption} obtained explicit expressions for $p_{N,d}$;
+Affentranger \cite{affentranger1991convex} derived $\E[F_N]$;
+Hueter et al. \cite{hueter1999limit} studied the concentration property of $F_N$ and obtained
+an upper bound for $\E[F_N]$ sharper than the bound in \cite{dwyer1991convex}.
+
+For truncated tails,
+Affentranger \cite{affentranger1991convex} studied one sub-category called beta-typed distribution and obtained
+the asymptotic value of $\E[F_N]$.
+
+Beside the number of facets $\E[F_N]$,
+the asymptotic value of other quantities related with $\mathrm{H}_N$, such as the volume, and the surface area,
+were systematically investigated in a general framework involving the property of facets
+\cite{schneider2008stochastic, barany2008random}.
+
+\section{Mathematic Models}
+\label{sec:int_f}
+
+Let $\mathcal{X}_N = \{X_1, X_2, \dots, X_N\}$ be a set of i.i.d. random points generated from
+a spherically symmetric distribution in $\mathbb{R}^d$.
+Let $\mathrm{H}_N$ denote the convex hull of $\mathcal{X}_N$,
+and the interpolation error is defined as $p_{N,d}=P(X_{N+1} \not\in \mathrm{H}_N)$.
+
+To study $p_{N,d} \to 0$, we introduce two additional quantities of $H_N$: the number of vertices
+$V_N$ and the number of facets $F_N$.
+A facet of a $d$-dimensional object is one of its $(d-1)$-dimensional faces.
+Besides, 
+In this paper, we study the mathematical expectation
+of $F_N$, denoted as $\E[F_N]$, and derive its asymptotic value as $N\to \infty$.
 
 \begin{itemize}
 \item Remove the names and affiliations of authors from the title

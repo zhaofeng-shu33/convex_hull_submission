@@ -66,7 +66,9 @@
 \def\E{\mathbb{E}}
 \def\R{\mathbb{R}}
 \def\d{\mathrm{d}}
+\newtheorem{example}{Example}
 \newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
 % -------------------------------------------------------------------------
 \begin{document}
 
@@ -272,90 +274,302 @@ $V_N$ and the number of facets $F_N$.
 A facet of a $d$-dimensional object is one of its $(d-1)$-dimensional faces.
 Besides, 
 In this paper, we study the mathematical expectation
-of $F_N$, denoted as $\E[F_N]$, and derive its asymptotic value as $N\to \infty$.
+of $F_N$, denoted as $\E[F_N]$, and we consider its asymptotic value as $N\to \infty$.
 
-\begin{itemize}
-\item Remove the names and affiliations of authors from the title
-  page.
-\item Remove acknowledgments.
-\item Remove project titles or names that could be used to trace back
-  to the authors via web search.  
-\item Carefully name your files to anonymize author information.
-\item Carefully refer to related work, particularly your own. Do not
-  omit references to provide anonymity, as this leaves the reviewer
-  incapable of grasping the context. Instead, reference your past work
-  in the third person, just as you would any other piece of related
-  work by another author. For example, instead of ``In prior work [1],
-  we presented a scheme that\ldots,'' sentences in the spirit of ``In
-  prior work, Moser \emph{et al.} [1] presented a scheme that\ldots''
-  should be used. In this way, the full citation of the referred paper
-  can still be given, such as ``[1] S. M. Moser, \ldots''.  It is not
-  acceptable to say ``[1] Reference deleted for double-blind review.''
-\item We recommend to delay the posting of the submitted manuscript or
-  its title/abstract on a public website, such as arXiv or on public
-  mailing lists, until after the reviewing process is completed. (This
-  is not enforced)
-\item The submitted manuscript (PDF file) should be
-  text-searchable. Any submission that does not meet this requirement
-  may be returned without review.
-\item Many of the editing tools automatically add metadata to the
-  generated PDF file containing information that may violate the
-  double-blind policy. Please remove any possible metadata that can
-  link your manuscript to you. This includes removing names,
-  affiliation, license numbers etc. from the metadata as well as from
-  the paper. Failing to meet this requirement may also lead to a
-  rejection without review.
-\end{itemize}
+The starting point is the integration formula for $\E[F_N]$.
+For $d\geq 2$ and $N\geq d+1$, the formula is given as
+\begin{align}
+     \E[F_N] &= \binom{N}{d} \int_0^{\infty} 
+     \left[G(x)^{N-d} + (1-G(x))^{N-d} \right]|\mathrm{d} H(x)| 
+    \label{eq:E_F_N_d}
+\end{align}
+Formula \eqref{eq:E_F_N_d} first appeared in the proof section of \cite{raynaud1970enveloppe}
+and can further be generalized to compute other combinatorial properties of $\mathrm{H}_N$ (like surface area and volume)
+\cite{barany2008random}.
+Dwyer obtained the integration formula for $G(x)$ in $d\geq 2$ as:
+\begin{align}\label{eq:G_d_kappa}
+     G(x) & = \int_x^{+\infty} \kappa \left(\frac{x}{y} \right) |\mathrm{d}F(y)| \\
+     \kappa(r) & = \frac{\Gamma(\frac{d}{2})}
+     {\sqrt{\pi}\Gamma(\frac{d-1}{2})}\int_r^{1}
+     (1-u^2)^{(d-3)/2}\mathrm{d}u\label{eq:kappa_r}
+\end{align}
+where $\kappa(r)$ is the fraction of the surface area of a unit $d$-sphere
+cut off by a plane at distance $r$ from the origin.
 
-Contact the TPC chairs if you have any questions regarding the
-double-blind reviewing policy. 
+We cannot compute $\E[F_N]$ from $F(x)$ yet, since no formula for $H(x)$ with respect to $F(x)$ is given in previous studies.
+Our main theorem solves this problem by giving the integration formula for $H(x)$ in $d\geq 2$:
+\begin{theorem}\label{thm:H}
+For $d\geq 2$, the integration formula for $H(x)$ is given as
+\begin{equation}
+     H(x) = \frac{2}{\pi}
+     \int_x^{+\infty} \arccos\frac{x}{y}
+     |\mathrm{d} (K^d(y))|\label{eq:H_expression_d_dim}
+\end{equation}
+where the auxiliary function $K(x)$ is defined in the following way:
+\begin{align}
+     \lambda_d(x) & :=(1-x^2)^{\frac{d-2}{2}}
+     \label{eq:lambda_r}\\
+     K(x) &:=P\left(\sqrt{(X^{(1)})^2+(X^{(2)})^2}>x \right)=
+     \int_x^{+\infty}
+     \lambda_d \left(\frac{x}{y} \right)|\d F(y)|
+     \label{eq:K_x}
+\end{align}
+\end{theorem}
+%It is easy to observe that \eqref{eq:H_expression_d_dim} reduces to 
+%\eqref{eq:H_expression_2_dim} when $d=2$.
+For standard Gaussian distribution in $\R^d$,
+$X_1, X_2$ are independent
+Gaussian random variables, and we can verify that \eqref{eq:K_x} holds with $K(x) = e^{-x^2/2}$.
+In fact, $1-K(x)$ is the CDF of Rayleigh distribution.
+%For general spherical distributions, the function $K(x)$ itself is irreverent with the dimension $d$.
+The proof of Theorem \ref{thm:H}
+is provided in Appendix \ref{app:th}.
+\section{Three distribution families}\label{sec:three_distriutions}
+Notice that in \eqref{eq:E_F_N_d}, $G(x)<\frac{1}{2}$ for $x>0$. Therefore the
+term $G(x)^{N-d}$ decays at an exponential rate as $N-d\to \infty$.
+As a result, we obtain
+\begin{align}
+     \E[F_N] \sim \binom{N}{d} \int_0^{+\infty} 
+      (1-G(x))^{N-d} |\d H(x)| \textrm{ as } N-d\to \infty
+     \label{eq:E_F_N_d_sim}
+\end{align}
+Let $\E[V_N]$ represent the expected number of
+vertices of $\mathrm{H}_N$.
+By far it is not clear whether there exist explicit relations
+between $\E[F_N]$ and $\E[V_N]$
+for general spherical symmetric distributions.
+However, we can give some estimations by inequality.
+Using Corollary 19.6 of \cite{brondsted2012introduction}, we have the following
+inequality:
+\begin{equation}\label{eq:F_V_upper}
+     F_N \geq (d-1) V_N - (d+1)(d-2)
+ \end{equation}
+Combined with $p_{N,d} = \frac{\E[V_{N+1}]}{N+1}$, which comes from
+\cite{efron1965convex}, we have the following upper bound for $p_{N,d}$:
+\begin{equation}\label{eq:p_N_d_bound}
+    p_{N,d} \leq \frac{\E[F_N]}{d N} \textrm{ as } N \gg d
+\end{equation}
 
+We use the symbol $a \gg b$ if $a$ is a function of $b$ and $\lim_{b\to \infty} \frac{a}{b} = \infty$.
+Based on \eqref{eq:E_F_N_d_sim}, in the following
+we derive the asymptotic expression of $\E[F_N]$
+for three different distribution families.
 
+To precisely define these distribution families, we introduce the concept of slowly varying function.
+\begin{definition}
+A function $L(x)$ is
+slowly varying as $x\to \infty$
+if for all $\lambda>0$,
+$\lim_{x\to\infty}\frac{L(\lambda x)}{L(x)}=1$
+holds.
+\end{definition}
 
-\section{Page Limit}
-\label{sec:page-limit}
+\subsection{Distributions with polynomial tails}
 
-The main body of a manuscript should not exceed \textbf{5 pages} in
-length. There can be an \textbf{optional extra page} containing
-references only. Moreover, the manuscript submitted for reviewing may
-contain an \textbf{optional 5-page appendix} with additional proofs
-and details that may be helpful for the reviewers. This appendix will
-have to be removed in the final version of an accepted paper.
+With the help of a slowly varying function $L(x)$,
+distributions with polynomial tails are written
+in the following form:
+\begin{equation}\label{eq:F_poly_tail}
+     F(x) = x^{-k} L(x), k\geq 0
+\end{equation}
 
-Summary: \textbf{5+1+5 in double-column format}.
+Dwyer\cite{dwyer1991convex} has obtained $G(x)$ as:
+\begin{equation}\label{eq:g_poly_tail}
+     G(x) \sim \frac{\Gamma(\frac{d}{2})}{2\sqrt{\pi} \Gamma(\frac{d-1}{2})}
+     B\left(\frac{k+1}{2}, \frac{d-1}{2}\right) F(x)  \textrm{ as } x\to \infty
+\end{equation}
 
+From Theorem \ref{thm:H}, we obtain the asymptotic
+expression of $H(x)$ and $\E[F_N]$, which is
+summarized in the following theorem:
+\begin{theorem}\label{thm:poly_tails}
+     For distributions with polynomial tails defined in \eqref{eq:F_poly_tail},
+     we have
+\begin{equation}\label{eq:H_poly_tail_exp}
+     H(x) \sim \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
+     \Gamma(\frac{dk+1}{2})}{
+         \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)} G(x)^d 
+         \textrm{ as } x\to \infty
+\end{equation}
+and 
+\begin{equation}\label{eq:efn_poly_second_deri}
+    \E[F_N] \sim \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
+    \Gamma(\frac{dk+1}{2})}{
+        \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)}
+        \textrm{ as } N \to \infty, d \textrm { is fixed}
+\end{equation}
+\end{theorem}
+Equation \eqref{eq:efn_poly_second_deri} tells
+us that $\E[F_N]$ converges to a constant as $N \to \infty$.
+Without consideration of the actual constant, the result of
+Theorem \ref{thm:poly_tails} is an refinement to Dwyer's Theorem 1 for the expected number of facets \cite{dwyer1991convex}.
+When $d=2$, the result was obtained in (2.4) of \cite{carnal1970konvexe}
+and Theorem 4.4 of \cite{davis1987convex}.
+\begin{example}
+     We consider a special case of polynomial tail called multivariate t distribution.
+     Its pdf is given by
+     \begin{equation}\label{eq:pxy_student_t}
+          p(x) = \frac{\Gamma((k+d)/2)}{\Gamma(k/2)(k\pi)^{d/2}}
+          \left(1+\frac{1}{k}||x||^2
+          \right)^{-\frac{k+d}{2}}, x \in \mathbb{R}^d
+      \end{equation}
+      The parameter $k$ is the degree of freedom for this distribution.
+      We can obtain the radius distribution
+      $F(x)$ as $F(x) \sim \frac{2\Gamma(\frac{k+d}{2})}{\Gamma(k/2)\Gamma(d/2)} k^{k/2-1} x^{-k}$.
+      The marginal distribution is Student's t-distribution. To obtain $G(x)$, which is just the tail area
+of the t distribution, we use an existing asymptotic result found in \cite{andrew1976}.
+\begin{equation} \label{eq:eq_dv}
+    G(x) \sim k^{\frac{k}{2}-1} \frac{\Gamma \left(\frac{k+1}{2} \right)}
+    {\sqrt{\pi} \Gamma\left(\frac{k}{2}\right)}x^{-k}
+\end{equation}
+After simplification, \eqref{eq:eq_dv} is the same as \eqref{eq:g_poly_tail}.
+On the other hand, using similar techniques as (1.4) in \cite{raynaud1970enveloppe},
+we can obtain the pdf of the distance of the hyperplane to the origin as
+\begin{equation}
+     \frac{\d H(x)}{\d x} =  \frac{2}{\sqrt{k} B(\frac{kd}{2},\frac{1}{2})} \left(1 + \frac{x^2}{k} \right)^{-\frac{kd+1}{2}} 
+\end{equation}
+From above, we get the asymptotic relation $H(x) \sim \frac{2 \Gamma(\frac{kd+1}{2}) k^{kd/2-1}}{d\sqrt{\pi} \Gamma(\frac{kd}{2})}
+x^{-kd}$ as $x\to \infty$, which is equivalent to \eqref{eq:H_poly_tail_exp}.
 
-\section{Paper Format}
-\label{sec:paper-format}
+\end{example}
+When we allow $d\to \infty$, we treat $N$ as a function of $d$.
+If the condition $N/d^2 \to \infty$ is satisfied, we have
+\begin{equation}\label{eq:poly_E_F_N_d_infty}
+\E[F_N] \sim \sqrt{\frac{2}{\pi dk}}\left(
+     \frac{\sqrt{\pi}k \Gamma(k/2)}
+     {\Gamma(\frac{k+1}{2})}
+ \right)^d \textrm{ for } k>0
+\end{equation}
+Then the sufficient condition for $p_{N,d} \to 0$ is obtained
+from the estimation inequality \eqref{eq:p_N_d_bound},
+combined with the asymptotic expressions for polynomial distribution families in \eqref{eq:poly_E_F_N_d_infty}.
+\begin{equation}
+  N \gg \frac{c^d}{d^{3/2}}, \textrm{ where } c=\frac{\sqrt{\pi}k\Gamma(k/2)}{\Gamma(\frac{k+1}{2})}>1  
+\end{equation}
 
-\subsection{Template}
-\label{sec:template}
+\subsection{Distributions with exponential tails}
+In this subsection, we consider distributions satisfying
+$x = L(1/F(x)) $, where $L(x)$ is slowly varying. Following Carnal \cite{carnal1970konvexe},
+we define the following utility functions:
+\begin{align}
+     \epsilon(s) & = s (\log (L(s)))' \label{eq:epsilon_s}\\
+     v(u) &= -\frac{1}{u} \frac{1}{(\log F(u))'}    
+\end{align}
+The prime notation represents the symbol for differentiation. When $v(u)$ satisfies
+certain regularity conditions prescribed in (2.15) of \cite{carnal1970konvexe},
+we can obtain that $\epsilon(s)$ is a slowly varying function.
+Dwyer \cite{dwyer1991convex} obtains the expression of $G(x)$ as:
+\begin{equation}\label{eq:G_x_exp}
+     G(x) \sim \frac{2^{(d-3)/2}}{\sqrt{\pi}}\Gamma\left(\frac{d}{2}\right)
+     v^{(d-1)/2}(x) F(x)
+      \textrm{ as } x\to \infty
+\end{equation}
+We make the analysis complete by giving the following theorem.
+\begin{theorem}\label{thm:exponential_tails}
+     Suppose there exists a slowly
+     varying function $L(x)$ such that \linebreak $x=L(1/F(x))$,
+     and $\epsilon(s)$ is defined in \eqref{eq:epsilon_s}, then
+\begin{equation}\label{eq:H_x_exp}
+     H(x) \sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}}v^{\frac{-d+1}{2}}(x)G^d(x)
+     \textrm{ as } x\to \infty
+\end{equation}
+ and
+ \begin{equation}\label{eq:exp_e_f_n}
+     \E[F_N]\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} (\epsilon(N))^{-\frac{d-1}{2}}
+     \textrm{ as } N \to \infty, d \textrm { is fixed}
+ \end{equation}
+\end{theorem}
+ Using \eqref{eq:epsilon_s}, we note that the term
+ $(\epsilon(N))^{-\frac{d-1}{2}}$
+ is obtained in Dwyer's Theorem 2 \cite{dwyer1991convex}.
+ Our improvement on the asymptotic value of $\E[F_N]$ is that we obtain its preceding term only involving $d$.
+ When $d=2$, equation \eqref{eq:exp_e_f_n} is consistent with (2.20) of \cite{carnal1970konvexe}.
+ For standard $d$-dimensional Gaussian distribution, we have $L(s)=\sqrt{2\log s}$.
+ From \eqref{eq:epsilon_s}, $\epsilon(s) = (2\log s)^{-1}$. And we obtain from \eqref{eq:exp_e_f_n}
+ that $\E[F_N]\sim \frac{2^d}{\sqrt{d}}(\pi \log N)^{\frac{d-1}{2}}$,
+ which is consistent with (1.11) of \cite{raynaud1970enveloppe}.
 
-The paper must be formatted as shown in this sample
-\LaTeX{}-file. More help regarding \LaTeX{} can be found in
-\cite{Laport:LaTeX, GMS:LaTeXComp, oetiker_latex, typesetmoser,
-  shell15}. Note that the source of this file relies on IEEEtran.cls,
-which is part of any modern \LaTeX{}-distribution and can be found on
-\url{https://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/}
+ If $d\to\infty$ and $N/d^2\to \infty$, we have
+\begin{align}\label{eq:d_infty_exp_E_F_N}
+      \E[F_N]\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} \epsilon(N)^{\frac{-d+1}{2}}
+\end{align}
+\subsection{Distributions with truncated tails}
+In this subsection, let $L(x)$ also represent a slowly varying function, and we consider the distribution which satisfies
+the following conditions:
+\begin{equation}\label{eq:F_truncated}
+     F(1-x) \sim x^k L\left(\frac{1}{x} \right)  \text{ as } x \to 0^+, k> 0,
+     F(x) = 0 \text{ for } x \geq 1
+\end{equation}
+In \eqref{eq:F_truncated}, $x \to 0^+$ means that $x\to 0$ from the right hand side of $0$.
 
-The use of a text processing system other than \LaTeX{} is not
-recommended. In particular, we very strongly discourage the use of
-Microsoft Word.  Users of any text processing system other than
-\LaTeX{} should attempt to duplicate the style of this example as
-closely as possible (including font type and size).
+As mentioned by Dwyer \cite{dwyer1991convex}, uniform distribution
+in the unit ball satisfies \eqref{eq:F_truncated} with
+$F(1-x) \sim d\cdot x$.
 
+After simplification of (4.1) in \cite{dwyer1991convex}, we obtain
+\begin{align}
+    G(1-x) \sim a
+    L\left(\frac{1}{x} \right)
+    x^{k+\frac{d-1}{2}} \textrm{ as } x \to 0^+ 
+    \label{eq:truncated_G_1_x}
+\end{align}
+where
+\begin{align}
+a &=\frac{2^{\frac{d-1}{2}} k \Gamma(\frac{d}{2})}
+    {(d-1) \sqrt{\pi} \Gamma(\frac{d-1}{2})}
+    B\left(k, \frac{d+1}{2}\right) \notag \\
+    &= \frac{2^{\frac{d-3}{2}} k \Gamma(\frac{d}{2})\Gamma(k)}
+    {\sqrt{\pi} \Gamma\left(k+\frac{d+1}{2}\right)}
+    \label{eq:a}
+\end{align}
+Below, we give the theorem in regards to the asymptotic value of $H(1-x)$ and $\E[F_N]$:
+\begin{theorem}\label{thm:truncated_tails}
+     For distributions with truncated tails
+     defined in \eqref{eq:F_truncated},
+     we have
+\begin{align}
+     H(1-x)  \sim b
+     L^d(1/x) x^{d(k+\frac{d}{2}-1)+\frac{1}{2}} 
+     \textrm{ as } x \to 0^+ \label{eq:truncated_H_1_x}
+\end{align}
+where
+\begin{align}
+     b =  \frac{k^d}{\pi}
+     2^{\frac{1}{2} + d(\frac{d}{2}-1)} B^d\left(k, \frac{d}{2}\right)
+     B\left( \frac{1}{2},
+     d\left(k+\frac{d}{2} -1 \right)+1 \right)
+     \label{eq:b}
+ \end{align}
+When $N\to \infty$ and $d$ is fixed, we have
+ \begin{align}\label{eq:efn_truncated_formula}
+     \E[F_N] &\sim \frac{b}{d!}a^{-d+\frac{d-1}{2k+d-1}}
+     \Gamma 
+     \left(d+1-\frac{d-1}{2k+d-1}\right)
+     N^{\frac{d-1}{2k+d-1}}
+     L(N)
+     ^{\frac{d-1}{2k+d-1}}
+ \end{align}
+ where the parameter $a$ is defined in \eqref{eq:a}.
+\end{theorem}
+ The leading polynomial term $N^{\frac{d-1}{2k+d-1}}$ in \eqref{eq:efn_truncated_formula}
+ is the same with that in Dwyer's Theorem 3
+ but other coefficients are missing in Dwyer's result
+ \cite{dwyer1991convex}. Therefore, we say that Dwyer only made the order estimation
+ of $\E[F_N]$ while we obtain its asymptotic value.
+ When $d=2$, equation \eqref{eq:efn_truncated_formula} reduces to (3.4) of \cite{carnal1970konvexe}.
+ For uniform distribution with $k=1, L(N)=d$, we can verify that
+ \eqref{eq:efn_truncated_formula} is equivalent with (1.1)
+ of \cite{raynaud1970enveloppe}.
+ For beta-typed distribution with $k=q+1, L(N)=\frac{2^{q+1}}{(q+1)B(d/2,q+1)}$,
+ we can verify that
+ \eqref{eq:efn_truncated_formula} is equivalent with the expression of $c_3$
+ in (3.3) of \cite{affentranger1991convex}.
 
-\subsection{Formatting}
-\label{sec:formatting}
-
-The paper must be A4 or letter size and in double-column format.  The
-style of references, equations, figures, tables, etc., should be the
-same as for the \emph{IEEE Transactions on Information Theory}.
-
-The source file of this template paper contains many more instructions
-on how to format your paper. So, example code for different numbers of
-authors, for figures and tables, and references can be found there
-(they are commented out).
+ When we allow $d\to \infty$ and $N/d^2 \to \infty$, we obtain
+ \begin{equation}\label{eq:truncated_d_inf}
+  \E[F_N] \sim 2^{\frac{d+2k}{2}}\pi^{\frac{d-2}{2}} k\Gamma(k)e^k d^{\frac{d-3}{2}-k}
+  N^{\frac{d-1}{2k+d-1}} L(N)^{\frac{d-1}{2k+d-1}}
+ \end{equation}
 
 %%%%%%
 %% An example of a floating figure using the graphicx package.
@@ -431,107 +645,6 @@ authors, for figures and tables, and references can be found there
 % \end{table}
 %%%%%%
 
-
-For instructions on how to typeset math, especially for multiple-line
-equations with broken equations, we refer to \cite{typesetmoser}.
-
-Pages should not be numbered and there should be no footer or header
-(both will be added by us during the production of the
-proceedings). The authors' affiliation shown in the final version of
-accepted papers should constitute a sufficient mailing address for
-persons who wish to contact the authors for more details about the
-paper.
-
-
-\subsection{PDF Requirements}
-\label{sec:pdf-requirements}
-
-Only electronic submissions in form of a PDF file will be
-accepted. The PDF file has to be PDF/A compliant and text-searchable.
-
-A common problem is missing fonts. Make sure that all fonts are
-embedded. (In some cases, printing a PDF into a new PDF or creating a
-new PDF with Acrobat Distiller may do the trick.) More information is
-available from the IEEE website \cite{IEEE:AuthorToolbox}.
-
-%%%%%%
-%% See explanation in comments after Conclusion
-\enlargethispage{-1.4cm} 
-%%%%%%
-
-
-\section{Submission}
-\label{sec:submission}
-
-\subsection{Tracks}
-\label{sec:tracks}
-
-This conference features two tracks:
-\begin{itemize}
-\item For papers in the \textbf{in-person track}, one author must
-  present the work personally in Taipei.
-\item For papers in the \textbf{virtual track}, the presentations will
-  be given live via zoom in front of a mixed virtual and live
-  audience, i.e., the in-person attendees of the conference will be
-  able to join the virtual sessions live in the conference
-  center. Pre-recorded videos will not be accepted.
-
-  The number of papers in the virtual track is limited, and thus a
-  slot in the virtual track cannot be guaranteed.
-\end{itemize}
-In either track, a failure of a live presentation (in-person or via
-zoom, respectively) of their work by one of the authors will result in
-the removal of the paper from the published proceedings.
-
-
-\subsection{Submission of Papers for Review}
-\label{sec:subm-papers-revi}
-
-Papers in the form of a PDF file, formatted as described above and
-following the double-blind policy, may be submitted online at
-\begin{center}
-  \url{https://edas.info/N29759}
-\end{center}
-The deadlines for registering and uploading the paper in EDAS is
-\begin{itemize}
-\item for the virtual track: \textbf{January 3, 2023}, 23:59 Taiwan
-  time (UTC+8);
-\item for the in-person track: \textbf{January 22, 2023}, 23:59 Taiwan
-  time (UTC+8).
-\end{itemize}
-Each paper must be classified as ``eligible for student paper award''
-or ``not eligible for student paper award''. Papers that are selected
-to be eligible for the student paper award should also contain
-\emph{``THIS PAPER IS ELIGIBLE FOR THE STUDENT PAPER AWARD.''} as a
-first line in the abstract. Note that this comment must be removed
-again in the final manuscript.
-
-\subsection{Submission of Accepted Papers}
-\label{sec:subm-final-vers}
-
-Please do not forget to remove the 5-page appendix if present and to
-add authors' names and affiliations and all necessary acknowledgments.
-Also remove the sentence \emph{``THIS PAPER IS ELIGIBLE FOR THE
-  STUDENT PAPER AWARD.''} in the abstract if present.
-
-The deadline for the submission of the final version of accepted
-papers is \textbf{May 6, 2023}, 23:59 Taiwan time (UTC+8).  Accepted
-papers not submitted by that date will not appear in the ISIT
-proceedings and will not be included in the technical program of the
-ISIT.
-
-Please make sure that the meta data in EDAS (list of authors, title
-and abstract) match exactly the final version of your paper. For
-generating the program booklet, the data in EDAS is used and not the
-final version of the paper.
-
-
-%%%%%
-%%% Do not uncomment for double-blind review submission!
-% \section*{Acknowledgments}
-%
-% We are indebted to Michael Shell for maintaining and improving
-% \texttt{IEEEtran.cls}. 
 
 
 \section{Conclusion}

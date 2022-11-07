@@ -61,6 +61,7 @@
 %%%%%
 %% correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
+\usepackage{amsthm}
 \usepackage{amsfonts}
 \DeclareMathOperator{\dist}{dist}
 \def\E{\mathbb{E}}
@@ -187,10 +188,10 @@ The organization of this paper is as follows: In Section \ref{sec:int_f}, we dev
 % of $H(x)=P(d_{12}\geq x)$ 
 from $d=2$ to higher dimensions.
 In Section \ref{sec:three_distriutions}, we then derive the explicit asymptotic
-expressions of $\E[F_N]$ for three different distribution families.
-In Section \ref{sec:sample_complexity}, based on the asymptotic result of $\E[F_N]$,
-we provide a sufficient condition for the convergence of $p_{N,d}$ to zero as $N,d \to \infty$.
-The main contribution of this paper is to provide a complete integration formula for $\E[F_N]$,
+expressions of $\E[F_N]$ and the sufficient condition for $p_{N,d}\to 0$ as $N,d \to \infty$
+for three different distribution families.
+The main contribution of this paper, which is summarized in Section \ref{sec:conclusion},
+is to provide a complete integration formula for $\E[F_N]$,
 and following the classification of distributions of previous authors \cite{carnal1970konvexe,dwyer1991convex},
 we derive the asymptotic expression
 of $\E[F_N]$ for each category.
@@ -307,10 +308,11 @@ For $d\geq 2$, the integration formula for $H(x)$ is given as
 \end{equation}
 where the auxiliary function $K(x)$ is defined in the following way:
 \begin{align}
-     \lambda_d(x) & :=(1-x^2)^{\frac{d-2}{2}}
+     \lambda_d(x)  :&=(1-x^2)^{\frac{d-2}{2}}
      \label{eq:lambda_r}\\
-     K(x) &:=P\left(\sqrt{(X^{(1)})^2+(X^{(2)})^2}>x \right)=
-     \int_x^{+\infty}
+     K(x) :&=P\left(\sqrt{(X^{(1)})^2+(X^{(2)})^2}>x \right)\notag \\
+     &=
+     \int_x^{+\infty} 
      \lambda_d \left(\frac{x}{y} \right)|\d F(y)|
      \label{eq:K_x}
 \end{align}
@@ -436,16 +438,26 @@ When we allow $d\to \infty$, we treat $N$ as a function of $d$.
 If the condition $N/d^2 \to \infty$ is satisfied, we have
 \begin{equation}\label{eq:poly_E_F_N_d_infty}
 \E[F_N] \sim \sqrt{\frac{2}{\pi dk}}\left(
-     \frac{\sqrt{\pi}k \Gamma(k/2)}
+      \frac{\sqrt{\pi}k \Gamma(k/2)}
      {\Gamma(\frac{k+1}{2})}
  \right)^d \textrm{ for } k>0
 \end{equation}
 Then the sufficient condition for $p_{N,d} \to 0$ is obtained
 from the estimation inequality \eqref{eq:p_N_d_bound},
 combined with the asymptotic expressions for polynomial distribution families in \eqref{eq:poly_E_F_N_d_infty}.
+\begin{theorem}
+  For distribution with polynomial tails with $k>0$,
+  when the following condition is satisfied
 \begin{equation}
   N \gg \frac{c^d}{d^{3/2}}, \textrm{ where } c=\frac{\sqrt{\pi}k\Gamma(k/2)}{\Gamma(\frac{k+1}{2})}>1  
 \end{equation}
+The interpolation error $p_{N,d} \to 0$ as $N,d\to \infty$.
+\end{theorem}
+From the above theorem, we see that $N$ has exponential relationship with $d$.
+The higher the dimension is, the more samples are needed.
+Besides, the decaying rate of the distribution also has influence on the sample $N$.
+Since $c$ is an increasing function with $k$,
+larger $k$ (faster decay) also leads to more samples.
 
 \subsection{Distributions with exponential tails}
 In this subsection, we consider distributions satisfying
@@ -570,6 +582,9 @@ When $N\to \infty$ and $d$ is fixed, we have
   \E[F_N] \sim 2^{\frac{d+2k}{2}}\pi^{\frac{d-2}{2}} k\Gamma(k)e^k d^{\frac{d-3}{2}-k}
   N^{\frac{d-1}{2k+d-1}} L(N)^{\frac{d-1}{2k+d-1}}
  \end{equation}
+
+Generally speaking, the sample complexity of $N$ is the smallest for algebraic tails and the largest
+for truncated tails. In other words, the faster $F(x)$ decays, the larger $N$ becomes.
 
 %%%%%%
 %% An example of a floating figure using the graphicx package.
@@ -707,11 +722,7 @@ file (they are commented out).
 %% in combination with further \section-commands can be used.
 %%%%%%
 
-The appendix (or appendices) are optional. For reviewing purposes
-additional 5~pages (double-column) are allowed (resulting in a maximum
-grand total of 10~pages plus one page containing only
-references). These additional 5~pages must be removed in the final
-version of an accepted paper.
+\section{Proof of Theorem \ref{thm:H}}\label{app:th}
 
 
 \end{document}

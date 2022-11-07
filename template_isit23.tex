@@ -446,22 +446,27 @@ Then the sufficient condition for $p_{N,d} \to 0$ is obtained
 from the estimation inequality \eqref{eq:p_N_d_bound},
 combined with the asymptotic expressions for polynomial distribution families in \eqref{eq:poly_E_F_N_d_infty}.
 \begin{theorem}
-  For distribution with polynomial tails with $k>0$,
+  For distributions with polynomial tails with $k>0$,
   when the following condition is satisfied
 \begin{equation}
   N \gg \frac{c^d}{d^{3/2}}, \textrm{ where } c=\frac{\sqrt{\pi}k\Gamma(k/2)}{\Gamma(\frac{k+1}{2})}>1  
 \end{equation}
-The interpolation error $p_{N,d} \to 0$ as $N,d\to \infty$.
+the interpolation error $p_{N,d} \to 0$ as $N,d\to \infty$.
 \end{theorem}
 From the above theorem, we see that $N$ has exponential relationship with $d$.
 The higher the dimension is, the more samples are needed.
-Besides, the decaying rate of the distribution also has influence on the sample $N$.
+Besides, the decaying rate of the distribution also has influence on the sample size $N$.
 Since $c$ is an increasing function with $k$,
 larger $k$ (faster decay) also leads to more samples.
 
 \subsection{Distributions with exponential tails}
-In this subsection, we consider distributions satisfying
-$x = L(1/F(x)) $, where $L(x)$ is slowly varying. Following Carnal \cite{carnal1970konvexe},
+In this subsection, we first give the definition of distributions with exponential tails.
+\begin{definition}
+  For a radius distribution $F(x)$, if we could find
+  a slowly varying function $L(x)$ such that
+  $x = L(1/F(x))$, we say that the distribution has exponential tails.
+\end{definition}
+Following Carnal \cite{carnal1970konvexe},
 we define the following utility functions:
 \begin{align}
      \epsilon(s) & = s (\log (L(s)))' \label{eq:epsilon_s}\\
@@ -505,6 +510,26 @@ We make the analysis complete by giving the following theorem.
 \begin{align}\label{eq:d_infty_exp_E_F_N}
       \E[F_N]\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} \epsilon(N)^{\frac{-d+1}{2}}
 \end{align}
+
+Similar to the analysis of polynomial tails, we obtain the
+sufficient condition for $p_{N,d} \to 0$ from
+\eqref{eq:p_N_d_bound} and \eqref{eq:d_infty_exp_E_F_N}.
+\begin{theorem}\label{thm:exp_tails_sample}
+  For distributions with exponential tails, when the following condition is satisfied
+  \begin{equation}
+    N\cdot \epsilon(N)^{(d-1)/2} \gg \frac{(2\pi)^{d/2}}{d^{3/2}},
+  \end{equation}
+  the interpolation error $p_{N,d} \to 0$ as $N,d\to \infty$.
+\end{theorem}
+For the special case of exponential distribution
+of the form $F(x) \sim C(k)\exp(-x^k)$, we obtain from \eqref{eq:epsilon_s}
+that $\epsilon(s)=(k\log s)^{-1}$.
+Then from Theorem \ref{thm:exp_tails_sample},
+we can estimate that
+$N(d)$ grows faster than $c^d$ for any constant $c$ but slower than $\exp(d^2)$.
+Besides, $N$ increases with $k$ for fixed $d$.
+In other words, larger $k$ (faster decay) leads to more samples.
+
 \subsection{Distributions with truncated tails}
 In this subsection, let $L(x)$ also represent a slowly varying function, and we consider the distribution which satisfies
 the following conditions:

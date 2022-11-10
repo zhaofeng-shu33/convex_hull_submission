@@ -609,7 +609,11 @@ When $N\to \infty$ and $d$ is fixed, we have
  The so-called beta-typed distribution first appeared in \cite{affentranger1991convex}.
  In Equation (3.1) of Affentranger's formulation,
  he uses the symbol $q$, which has the relationship  $k=q+1$ with our symbol $k$.
- From \eqref{eq:pxy_beta_t} and \eqref{eq:F_truncated}, we can obtain $L(N)=\frac{2^k}{kB(d/2,k)}$.
+ From \eqref{eq:pxy_beta_t} and \eqref{eq:F_truncated}, we can obtain
+ \begin{equation}\label{eq:beta_typed_L_N}
+  L(N)=\frac{2^k}{kB(d/2,k)},
+ \end{equation}
+ which is irrelevant with $N$.
  Besides, similar to \eqref{eq:dH_dx_t_distribution},
  we can obtain the pdf of the distance of the hyperplane to the origin as
 \begin{equation}
@@ -641,9 +645,18 @@ which is equivalent to \eqref{eq:truncated_H_1_x}.
   \end{equation}
   the interpolation error $p_{N,d} \to 0$ as $N,d\to \infty$.
 \end{theorem}
- 
-Generally speaking, the sample complexity of $N$ is the smallest for algebraic tails and the largest
-for truncated tails. In other words, the faster $F(x)$ decays, the larger $N$ becomes.
+From Theorem \ref{thm:truncated_tails_sample}, as
+distributions with exponential tails, we see that
+the sample size $N$ also has super-exponential relationship
+with $d$ for distribution with truncated tails.
+For beta-typed distribution, using \eqref{eq:beta_typed_L_N},
+we obtain that $N(d)$
+grows faster than $\exp(cd^2)$ for any constant $c$.
+
+From the discussion of three kinds of tails, we see that the sample complexity of $N$ is the smallest for algebraic tails and the largest
+for truncated tails. This is directly related with its convergent rate of $F(x)$.
+For truncated tails, $F(x)$ becomes zero beyond the unit sphere, therefore it has the largest sample complexity.
+For other two tails, the faster $F(x)$ decays, the larger $N$ becomes.
 
 %%%%%%
 %% An example of a floating figure using the graphicx package.

@@ -947,29 +947,30 @@ we have
 \end{equation}
 Let $t=\frac{(1+t)-(1-t)}{2}$ in the right hand side
 of \eqref{eq:tmp_n_u_d_f_n}, then
-\begin{equation}
-    2\frac{n}{n-1}h(n,c)
-=    -h(n-2,c)  
-+ \int_0^{c}
+\begin{align}
+    \frac{2n}{n-1}h(n,c)
+&=    -h(n-2,c)  
+\notag\\
+&+ \int_0^{c}
 \left[\frac{1+t}{(1-t)^{n}}
 +\frac{1-t}{(1+t)^{n}}
 \right]
 (c^2- t^2)^{(n-3)/2}
 \d t
-\end{equation}
+\end{align}
 On the other hand,
 From \eqref{eq:f_n_c_def},
 $(c^2-t^2)^{(n-1)/2}
 =[(c^2-1)+(1-t^2)](c^2-t^2)^{(n-3)/2}$
-\begin{equation}
-    h(n, c) = \frac{c^2-1}{2c}\frac{2}{n-1}\frac{\partial h(n,c)}{\partial c}
-    +  \int_0^{c}
+\begin{align}
+    h(n, c) &= \frac{c^2-1}{2c}\frac{2}{n-1}\frac{\partial h(n,c)}{\partial c}\notag\\
+    &+  \int_0^{c}
     \left[\frac{1+t}{(1-t)^{n}}
     +\frac{1-t}{(1+t)^{n}}
     \right]
     (c^2- t^2)^{(n-3)/2}
     \d t
-\end{equation}
+\end{align}
 Therefore,
 \begin{equation}\label{eq:sim_1tc}
     h(n,c)=\frac{c^2-1}{2c}\frac{2}{n-1}\frac{\partial h(n,c)}{\partial c}
@@ -1023,10 +1024,10 @@ Then from \eqref{eq:F_0_expression}
 \end{align*}
 where
 \begin{align*}
-    f(x,y,z) = \sin^{d-2} (\theta_2 - \theta_1)
+    f(x,y,z) &= \sin^{d-2} (\theta_2 - \theta_1)
     \left(\frac{-1}{z\sin\theta_1}
-    +\frac{1}{y\sin \theta_2}\right)
-    - \sin^{d-2}(\theta_1 + \theta_2)
+    +\frac{1}{y\sin \theta_2}\right) \\
+    &- \sin^{d-2}(\theta_1 + \theta_2)
     \left(\frac{1}{z\sin\theta_1}
     +\frac{1}{y\sin \theta_2}\right)
 \end{align*}
@@ -1034,35 +1035,36 @@ Comparing $\d F_0(x)$
 with the expression of $K(x)$ in
 \eqref{eq:K_x},
 we only need to prove
-\begin{equation}\label{eq:ref_prove_integration}    
+\begin{align}
     \frac{2\Gamma(\frac{d}{2})}
     {\sqrt{\pi}\Gamma(\frac{d-1}{2})}
     \int_u^z (1-\frac{u^2}{x^2})^{\frac{d-3}{2}}
-    |f(x,y,z)|\d x =
-    2(1-\frac{u^2}{y^2})^{\frac{d-2}{2}}
-    (1-\frac{u^2}{z^2})^{\frac{d-2}{2}}
-\end{equation}
+    |f(x,y,z)|\d x &=
+    2(1-\frac{u^2}{y^2})^{\frac{d-2}{2}} \notag\\
+    &\cdot (1-\frac{u^2}{z^2})^{\frac{d-2}{2}}
+    \label{eq:ref_prove_integration}    
+\end{align}
 We can expand $f(x,y,z)$ as follows:
 \begin{align*}
 -f(x,y,z)&=\frac{\sin^{d-2}(\theta_2+\theta_1)
-+ \sin^{d-2}(\theta_2 - \theta_1)}{z\sin\theta_1}
-+\frac{\sin^{d-2}(\theta_2+\theta_1)
++ \sin^{d-2}(\theta_2 - \theta_1)}{z\sin\theta_1}\\
+&+\frac{\sin^{d-2}(\theta_2+\theta_1)
 - \sin^{d-2}(\theta_2 - \theta_1)}{y\sin\theta_2} \\
 &=\frac{2}{z\sin\theta_1}\sum_{k \textrm{ is even}}
-\binom{d-2}{k} (\sin\theta_2\cos\theta_1)^{d-2-k}
-(\cos\theta_2 \sin\theta_1)^k \\
+\binom{d-2}{k} (\sin\theta_2\cos\theta_1)^{d-2-k}\\
+&\cdot(\cos\theta_2 \sin\theta_1)^k \\
 &+\frac{2}{y\sin\theta_2} \sum_{k \textrm{ is odd}}
-\binom{d-2}{k} (\sin\theta_2\cos\theta_1)^{d-2-k}
-(\cos\theta_2 \sin\theta_1)^k
+\binom{d-2}{k} (\sin\theta_2\cos\theta_1)^{d-2-k}\\
+&\cdot(\cos\theta_2 \sin\theta_1)^k
 \end{align*}
 Therefore,
 \begin{align*}
 |f(x,y,z)|
 &= \frac{2x^{d-2}}{y^{d-2}z^{d-2}}
 \Big[
-     \sum_{k \textrm{ is even}}
-     \binom{d-2}{k} (z^2-x^2)^{\frac{k-1}{2}}
-     (y^2-x^2)^{\frac{d-2-k}{2}}\\
+     \\
+    &\sum_{k \textrm{ is even}}
+    \binom{d-2}{k} (z^2-x^2)^{\frac{k-1}{2}}(y^2-x^2)^{\frac{d-2-k}{2}}\\
     &+ \sum_{k \textrm{ is odd}}
     \binom{d-2}{k}    (z^2-x^2)^{\frac{k}{2}}
     (y^2-x^2)^{\frac{d-3-k}{2}}
@@ -1076,28 +1078,30 @@ Let $a=z^2-u^2, b=y^2-u^2$, then
      \int_0^a x^{\frac{d-3}{2}}\Big[ \\
      &\sum_{k \textrm{ is even}}
      \binom{d-2}{k} (a-x)^{\frac{k-1}{2}}
-     (b-x)^{\frac{d-2-k}{2}}
-     + \sum_{k \textrm{ is odd}}
+     (b-x)^{\frac{d-2-k}{2}}\\
+     &+ \sum_{k \textrm{ is odd}}
      \binom{d-2}{k} (a-x)^{\frac{k}{2}}
      (b-x)^{\frac{d-3-k}{2}}
      \Big]\d x\\
      &=\frac{1}{2y^{d-2}z^{d-2}}
-     \int_0^a x^{\frac{d-3}{2}}\Big[\frac{(\sqrt{b-x} + \sqrt{a-x})^{d-2}+(\sqrt{b-x} - \sqrt{a-x})^{d-2}}{\sqrt{a-x}}\\
+     \int_0^a x^{\frac{d-3}{2}}\\
+     &\cdot\Big[\frac{(\sqrt{b-x} + \sqrt{a-x})^{d-2}+(\sqrt{b-x} - \sqrt{a-x})^{d-2}}{\sqrt{a-x}}\\
      &+\frac{(\sqrt{b-x} + \sqrt{a-x})^{d-2}-(\sqrt{b-x} - \sqrt{a-x})^{d-2}}{\sqrt{b-x}}\Big] \d x
 \end{align*}
 Let $t=\sqrt{\frac{a-x}{b-x}}$, we then obtain
 \begin{align*}
      &\int_u^z (1-\frac{u^2}{x^2})^{\frac{d-3}{2}}
-     |f(x,y,z)|\d x \\
-     &=\frac{(b-a)^{\frac{d-1}{2}}}{y^{d-2}z^{d-2}}\int_0^{\sqrt{a/b}}
+     |f(x,y,z)|\d x= \frac{(b-a)^{\frac{d-1}{2}}}{y^{d-2}z^{d-2}}\\
+     &\cdot\int_0^{\sqrt{a/b}}
      \left[\frac{1}{(1-t)^{d-1}}+\frac{1}{(1+t)^{d-1}}\right](a-bt^2)^{\frac{d-3}{2}}\d t
 \end{align*}
 Let $c=\sqrt{a/b}$ and $n=d-2\geq 0$ in the expression of $h(n,c)$ in \eqref{eq:f_n_c_expression},
 we obtain
-\begin{align}\label{eq:int_u_x_f_x}
+\begin{align}
      \int_u^z (1-\frac{u^2}{x^2})^{\frac{d-3}{2}}
      |f(x,y,z)|\d x
-     = \frac{1}{y^{d-2}z^{d-2}}h(d-2, \sqrt{a/b}) (1-c^2)^{\frac{n+1}{2}}b^{\frac{n}{2}}
+     &= \frac{1}{y^{d-2}z^{d-2}}h(d-2, \sqrt{a/b}) \notag\\
+     &\cdot(1-c^2)^{\frac{n+1}{2}}b^{\frac{n}{2}}\label{eq:int_u_x_f_x}
 \end{align}
 After simplification of \eqref{eq:int_u_x_f_x}, we obtain \eqref{eq:ref_prove_integration}.
 \end{proof}
@@ -1140,12 +1144,13 @@ To finish the proof and compute $H(x)$, we first specify a hyperplane $P_2P_3\do
 whose distance to the origin is $y$. The subspace perpendicular to this hyperplane is a 2-D subspace,
 and this hyperplane shrinks to a point $P'$ in this 2-D subspace.
 Similar to (1.9) of \cite{carnal1970konvexe}, we have
-\begin{align}\label{eq:H_eq_n_arccos_geometric}
-     H(x) &= \frac{2}{\pi}\int_x^{+\infty}|\d F_1(y)|
-     \left[ \int_x^y \arccos\frac{x}{z}|\d K(z)|
-     +\int_y^{+\infty}\arccos\frac{x}{y} |\d K(z)|\right]\\
+\begin{align}
+     H(x) &= \frac{2}{\pi}\int_x^{+\infty}|\d F_1(y)|\notag\\
+     &\cdot\left[ \int_x^y \arccos\frac{x}{z}|\d K(z)|
+     +\int_y^{+\infty}\arccos\frac{x}{y} |\d K(z)|\right]\notag\\
      &=\frac{2}{\pi}\int_x^{+\infty} \arccos\frac{x}{z}
-     F_1(z)|\d K(z)|+\frac{2}{\pi}\int_{x}^{+\infty} K(y)F_1(y)\arccos\frac{x}{y}|\d F_1(y)| \notag 
+     F_1(z)|\d K(z)|\notag \\
+     &+\frac{2}{\pi}\int_{x}^{+\infty} K(y)F_1(y)\arccos\frac{x}{y}|\d F_1(y)| \label{eq:H_eq_n_arccos_geometric}
  \end{align}
 Using $F_1(x)=K^{d-1}(x)$,
 we reduce \eqref{eq:H_eq_n_arccos_geometric} to

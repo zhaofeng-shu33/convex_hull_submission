@@ -279,6 +279,23 @@ In this paper, we study the mathematical expectation
 of $F_N$, denoted as $\E[F_N]$, and we consider its asymptotic value as $N\to \infty$.
 
 The starting point is the integration formula for $\E[F_N]$.
+Carnal \cite{carnal1970konvexe}
+obtained
+this formula for 2-D distributions,
+which is given as follows:
+\begin{align}
+     \E[F_N] &= \binom{N}{2} \int_0^{\infty} 
+     \left[G(x)^{N-2} + (1-G(x))^{N-2} \right]|\mathrm{d} H(x)| 
+     \label{eq:E_F_N_2_d}
+\end{align}
+The integration formula of $\E[F_N]$ involves the function $G(x)$ and $H(x)$,
+whose definitions are given at the end of Section \ref{sec:intro}.
+Both functions are expressed with $F(x)$ in the following way:
+\begin{align}
+   G(x) &=\frac{1}{\pi} \int_x^{\infty}\arccos\frac{x}{y} |\mathrm{d} F(y)| \\
+     H(x) &= \frac{2}{\pi} \int_x^{\infty} \arccos \frac{x}{y} |\mathrm{d}(F^2(y))|
+     \label{eq:H_expression_2_dim}
+\end{align}
 For $d\geq 2$ and $N\geq d+1$, the formula is given as
 \begin{align}
      \E[F_N] &= \binom{N}{d} \int_0^{\infty} 
@@ -805,12 +822,14 @@ for constructing a representation of convex hulls.
 probability that the distance from the origin to the straight line
 $X_1X_2$ is larger than $x$, where $X_1, X_2$ follow the distribution with $F(x)=P(|X|\geq x)$.
 Then 
-\begin{equation}\label{eq:F_0_expression}
-     F_0(x)=\frac{2\Gamma(\frac{d}{2})}
+\begin{align}\label{eq:F_0_expression}
+     F_0(x)=&\frac{2\Gamma(\frac{d}{2})}
      {\sqrt{\pi}\Gamma(\frac{d-1}{2})}
      \int_x^{\infty} |\d F(y)|
-     \int_x^{y} |\d F(z)| \int_{a_2/z}^{a_1 /z} (1-u^2)^{\frac{d-3}{2}} \d u
- \end{equation}
+     \int_x^{y} |\d F(z)| 
+     \notag\\
+     &\cdot \int_{a_2/z}^{a_1 /z} (1-u^2)^{\frac{d-3}{2}} \d u
+ \end{align}
 where
 \begin{align}
      a_1 & =\frac{x^2}{y}+\sqrt{z^2-x^2}\sqrt{1-\frac{x^2}{y^2}} > 0
@@ -872,11 +891,12 @@ which is given in the following lemma:
      Following \cite{dwyer1991convex}, we use $\kappa_d = 2\pi^{d/2}/\Gamma(d/2)$
      to represent the surface area of the unit $d$-sphere. Then
      \begin{align*}
-          \lambda_d(r) &=\frac{1}{\kappa_d} 
-          \cdot 2\int_{\substack{x_1^2+x_2^2\geq r^2\\
+          \lambda_d(r) &=\frac{2}{\kappa_d} 
+          \int_{\substack{x_1^2+x_2^2\geq r^2\\
           x_1^2+\dots+x_{d-1}^2\leq 1 }} 
-          \frac{1}{\sqrt{1-x_1^2-\dots -x_{d-1}^2}} \d x_1 \dots \d x_{d-1}\\
-      &= \frac{4\pi}{\kappa_d} \int_r^1 x\d x \int_{x_3^2+\dots + x_{d-1}^2 \leq 1-x^2} \frac{\d x_3\dots \d x_{d-1}}
+          \frac{\d x_1 \dots \d x_{d-1}}{\sqrt{1-x_1^2-\dots -x_{d-1}^2}} \\
+      &= \frac{4\pi}{\kappa_d} \int_r^1 x\d x \\
+      &\cdot\int_{x_3^2+\dots + x_{d-1}^2 \leq 1-x^2} \frac{\d x_3\dots \d x_{d-1}}
       {\sqrt{1-x^2-x_3^2-\dots -x_{d-1}^2}} \\
       &=\frac{4\pi \kappa_{d-3}}{\kappa_d} \int_r^1 x\d x \int_0^{\sqrt{1-x^2}} \frac{y^{d-4}\d y}{\sqrt{1-x^2-y^2}}\\
       &=\frac{4\pi \kappa_{d-3}}{\kappa_d} \int_0^{\sqrt{1-r^2}} y^{d-4}\d y \int_r^{\sqrt{1-y^2}} \frac{x\d x}{\sqrt{1-x^2-y^2}}\\
@@ -888,13 +908,13 @@ which is given in the following lemma:
 
 \begin{lemma}\label{lem:cn_integration}
 For $0<c<1$ and $n$ is a non-negative positive integer, we have
-\begin{equation}
-    \int_0^{c}
+\begin{align}
+    &\int_0^{c}
     [\frac{1}{(1-t)^{n+1}}+\frac{1}{(1+t)^{n+1}}]
-    (c^2- t^2)^{(n-1)/2}\d t
-    =B(\frac{n+1}{2}, \frac{1}{2})
-    \frac{c^n}{(1-c^2)^{(n+1)/2}}
-    \end{equation}\label{eq:c_int_eq}
+    (c^2- t^2)^{(n-1)/2}\d t\notag\\
+    &=B(\frac{n+1}{2}, \frac{1}{2})
+    \frac{c^n}{(1-c^2)^{(n+1)/2}}\label{eq:c_int_eq}
+    \end{align}
 \end{lemma}
 \begin{proof}[Proof of Lemma \ref{lem:cn_integration}]
      When $n=0$, the left hand side equals

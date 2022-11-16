@@ -1046,11 +1046,11 @@ we only need to prove
 \end{align}
 We can expand $f(x,y,z)$ as follows:
 \begin{align*}
--f(x,y,z)&=\frac{\sin^{d-2}(\theta_2+\theta_1)
+-f(x,y,z)=&\frac{\sin^{d-2}(\theta_2+\theta_1)
 + \sin^{d-2}(\theta_2 - \theta_1)}{z\sin\theta_1}\\
 &+\frac{\sin^{d-2}(\theta_2+\theta_1)
 - \sin^{d-2}(\theta_2 - \theta_1)}{y\sin\theta_2} \\
-&=\frac{2}{z\sin\theta_1}\sum_{k \textrm{ is even}}
+=&\frac{2}{z\sin\theta_1}\sum_{k \textrm{ is even}}
 \binom{d-2}{k} (\sin\theta_2\cos\theta_1)^{d-2-k}\\
 &\cdot(\cos\theta_2 \sin\theta_1)^k \\
 &+\frac{2}{y\sin\theta_2} \sum_{k \textrm{ is odd}}
@@ -1100,7 +1100,7 @@ we obtain
 \begin{align}
      \int_u^z (1-\frac{u^2}{x^2})^{\frac{d-3}{2}}
      |f(x,y,z)|\d x
-     &= \frac{1}{y^{d-2}z^{d-2}}h(d-2, \sqrt{a/b}) \notag\\
+     =& \frac{1}{y^{d-2}z^{d-2}}h(d-2, \sqrt{a/b}) \notag\\
      &\cdot(1-c^2)^{\frac{n+1}{2}}b^{\frac{n}{2}}\label{eq:int_u_x_f_x}
 \end{align}
 After simplification of \eqref{eq:int_u_x_f_x}, we obtain \eqref{eq:ref_prove_integration}.
@@ -1145,10 +1145,10 @@ whose distance to the origin is $y$. The subspace perpendicular to this hyperpla
 and this hyperplane shrinks to a point $P'$ in this 2-D subspace.
 Similar to (1.9) of \cite{carnal1970konvexe}, we have
 \begin{align}
-     H(x) &= \frac{2}{\pi}\int_x^{+\infty}|\d F_1(y)|\notag\\
+     H(x) =& \frac{2}{\pi}\int_x^{+\infty}|\d F_1(y)|\notag\\
      &\cdot\left[ \int_x^y \arccos\frac{x}{z}|\d K(z)|
      +\int_y^{+\infty}\arccos\frac{x}{y} |\d K(z)|\right]\notag\\
-     &=\frac{2}{\pi}\int_x^{+\infty} \arccos\frac{x}{z}
+     =&\frac{2}{\pi}\int_x^{+\infty} \arccos\frac{x}{z}
      F_1(z)|\d K(z)|\notag \\
      &+\frac{2}{\pi}\int_{x}^{+\infty} K(y)F_1(y)\arccos\frac{x}{y}|\d F_1(y)| \label{eq:H_eq_n_arccos_geometric}
  \end{align}
@@ -1178,16 +1178,17 @@ as follows:
 \end{align*}
 Then applying Theorem \ref{thm:H}, we obtain
 \begin{align*}
-     H(x) &= \frac{2}{\pi}
+     H(x) =& \frac{2}{\pi}
      \int_x^{\infty} \arccos\frac{x}{y}
      |\d K^d(y)| \\
-     &\sim \frac{2}{\pi}\left(\frac{d-2}{2}\right)^d
-     B^d\left(\frac{k+2}{2}, \frac{d}{2}-1\right)
-     \int_x^{\infty} \frac{x}{y \sqrt{y^2-x^2}} F^d(y) \d y \\
-     &\sim \frac{2}{\pi}\left(\frac{d-2}{2}\right)^d
-     B^d\left(\frac{k+2}{2}, \frac{d}{2}-1\right) \frac{1}{2}
+     \sim& \frac{2}{\pi}\left(\frac{d-2}{2}\right)^d
+     B^d\left(\frac{k+2}{2}, \frac{d}{2}-1\right)\\
+     &\cdot\int_x^{\infty} \frac{x}{y \sqrt{y^2-x^2}} F^d(y) \d y \\
+     \sim& \frac{2}{\pi}\left(\frac{d-2}{2}\right)^d
+     B^d\left(\frac{k+2}{2}, \frac{d}{2}-1\right) \\
+     &\cdot\frac{1}{2}
      B\left(\frac{1}{2}, \frac{dk+1}{2}\right)L^d(x) x^{-dk} \\
-     &\sim \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
+     \sim& \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
      \Gamma(\frac{dk+1}{2})}{
          \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)} G(x)^d 
 \end{align*}
@@ -1273,19 +1274,21 @@ where $A$ is an arbitrary constant.
 \end{align*}
 Similar techniques can be applied to compute the asymptotic value of $H(x)$.
 \begin{align*}
-    H(x) & = \frac{2}{\pi} \int_x^{+\infty}\frac{x K^d(y)}{y^2 \sqrt{1-\frac{x^2}{y^2}}}\d y\\
-    &=\frac{2}{\pi}\left[2^{\frac{d}{2}-1} \Gamma\left(\frac{d}{2}\right)\right]^d
-    \int_s^{+\infty}\frac{L(s) \epsilon^{1+\frac{d(d-2)}{2}}(\sigma)}{L(\sigma) \sqrt{1-\frac{L^2(s)}{L^2(\sigma)}}\sigma^{d+1}} \d \sigma
-    \textrm{ since } \d y=L(\sigma)\frac{\epsilon(\sigma)}{\sigma}\d \sigma \\
-    &\sim  \frac{\sqrt{2}}{\pi}
+    H(x) = \frac{2}{\pi} \int_x^{+\infty}\frac{x K^d(y)}{y^2 \sqrt{1-\frac{x^2}{y^2}}}\d y
+\end{align*}
+Since $\d y=L(\sigma)\frac{\epsilon(\sigma)}{\sigma}\d \sigma $, we further have
+\begin{align*}
+   H(x) =&\frac{2}{\pi}\left[2^{\frac{d}{2}-1} \Gamma\left(\frac{d}{2}\right)\right]^d
+    \int_s^{+\infty}\frac{L(s) \epsilon^{1+\frac{d(d-2)}{2}}(\sigma)}{L(\sigma) \sqrt{1-\frac{L^2(s)}{L^2(\sigma)}}\sigma^{d+1}} \d \sigma \\   
+    \sim&  \frac{\sqrt{2}}{\pi}
     \left[2^{\frac{d}{2}-1} \Gamma\left(\frac{d}{2}\right)\right]^d
-    \epsilon^{\frac{d(d-2)+1}{2}}(s)
-    \int_s^{+\infty} \left(\log\frac{\sigma}{s}
+    \epsilon^{\frac{d(d-2)+1}{2}}(s) \\
+    &\cdot\int_s^{+\infty} \left(\log\frac{\sigma}{s}
     \right)^{-\frac{1}{2}}
     \sigma^{-(d+1)}\d \sigma \\
-    &= \frac{\sqrt{2}}{\sqrt{\pi d}}\left[2^{\frac{d}{2}-1} \Gamma\left(\frac{d}{2}\right)\right]^d
+    =& \frac{\sqrt{2}}{\sqrt{\pi d}}\left[2^{\frac{d}{2}-1} \Gamma\left(\frac{d}{2}\right)\right]^d
     \epsilon^{\frac{d(d-2)+1}{2}}(s)s^{-d}\\
-    &= \frac{2^{\frac{d(d-2)+1}{2}}}{\sqrt{\pi d}}\Gamma^d\left(\frac{d}{2}\right)
+    =& \frac{2^{\frac{d(d-2)+1}{2}}}{\sqrt{\pi d}}\Gamma^d\left(\frac{d}{2}\right)
     v^{\frac{d(d-2)+1}{2}}(x)F^d(x)
 \end{align*}
 From \eqref{eq:G_x_exp}, we obtain \eqref{eq:H_x_exp}.
@@ -1344,17 +1347,18 @@ First we compute $K(x)$ as follows
 Then using $\arccos x \sim \sqrt{2(1-x)}$ as $x\to 0^+$,
 we have
 \begin{align*}
-     H(1-x) & = \frac{2}{\pi} \int_{1-x}^{1}
+     H(1-x)  =& \frac{2}{\pi} \int_{1-x}^{1}
      \arccos\frac{1-x}{y}
      |\d K^d(y)| \\
-     &\sim \frac{2}{\pi}\int_0^x \sqrt{2}\sqrt{x-y} |\d K^d(1-y)| \\
-     &\sim \frac{\sqrt{2}}{\pi} k^d
-     2^{d(\frac{d}{2}-1)} B^d(k, \frac{d}{2})
-      \int_0^x \frac{1}{\sqrt{x-y}} y^{d(k+\frac{d}{2}-1)} L^d(1/y) \d y\\
-     &\sim \frac{k^d}{\pi}
+     \sim& \frac{2}{\pi}\int_0^x \sqrt{2}\sqrt{x-y} |\d K^d(1-y)| \\
+     \sim& \frac{\sqrt{2}}{\pi} k^d
+     2^{d(\frac{d}{2}-1)} B^d(k, \frac{d}{2})\\
+     &\cdot \int_0^x \frac{1}{\sqrt{x-y}} y^{d(k+\frac{d}{2}-1)} L^d(1/y) \d y\\
+     \sim &\frac{k^d}{\pi}
      2^{\frac{1}{2} + d(\frac{d}{2}-1)} B^d(k, \frac{d}{2})
      B\left( \frac{1}{2},
-     d(k+\frac{d}{2} -1)+1 \right) L^d(1/x) x^{d(k+\frac{d}{2}-1)+\frac{1}{2}}
+     d(k+\frac{d}{2} -1)+1 \right) \\
+     &\cdot L^d(1/x) x^{d(k+\frac{d}{2}-1)+\frac{1}{2}}
 \end{align*}
 which is \eqref{eq:truncated_H_1_x}.
 
@@ -1371,14 +1375,15 @@ Finally,
 we apply the Abel-Tauber theorem
 \cite{omey1989abelian}, and from \eqref{eq:E_F_N_d_sim} we obtain
 \begin{align}
-    \E[F_N] &= \binom{N}{d}\int_0^1 (1 - G(1-x))^{N-d} |\d H(1-x)| 
+    \E[F_N] =& \binom{N}{d}\int_0^1 (1 - G(1-x))^{N-d} |\d H(1-x)| 
     \notag \\
-    & \sim \binom{N}{d} \frac{b}{a^d} \int_0^{1/2} \exp(-(N-d)w) \d [w^d (\frac{w}{a} L(w^{-1}))^{\frac{1-d}{2k+d-1}} ]
+     \sim &\binom{N}{d} \frac{b}{a^d} \int_0^{1/2} \exp(-(N-d)w)\\
+     & \cdot \d [w^d (\frac{w}{a} L(w^{-1}))^{\frac{1-d}{2k+d-1}} ]
     \notag \\
-    &\sim \frac{\binom{N}{d}}{(N-d)^d} ba^{-d+\frac{d-1}{2k+d-1}}
+    \sim &\frac{\binom{N}{d}}{(N-d)^d} ba^{-d+\frac{d-1}{2k+d-1}}
     \Gamma 
-    \left(d+1-\frac{d-1}{2k+d-1}\right)
-    (N-d)^{\frac{d-1}{2k+d-1}}
+    \left(d+1-\frac{d-1}{2k+d-1}\right)\\
+    &\cdot(N-d)^{\frac{d-1}{2k+d-1}}
     L(N-d)
     ^{\frac{d-1}{2k+d-1}}
     \label{eq:intermediate_efn_truncated}

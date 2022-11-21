@@ -166,29 +166,44 @@ training data. Under such interpretation, we are prone to think that state-of-th
 algorithms work well in high dimensional space because the models can interpolate training data well. 
 However, Balestriero et al. \cite{balestriero2021learning}
 argues that this is a misconception and the interpolation almost surely never occurs in high-dimensional spaces.
-In the terminology of Balestriero, the interpolation error is made whenever a sample does not belong to the convex hull of the dataset.
+Their logic is as follows: assuming the training data follows a certain distribution. Take $N$ samples from such a distribution
+and consider whether the new or ($N+1$)-th sample falls in the convex hull of the first $N$ samples. 
+Under certain conditions they find that the new sample falls outside with high probability.
+In their terminology, the interpolation occurs whenever a new sample belongs to the convex hull of previous samples.
+By citing previous theoretical studies on this ideal geometric statistical model and extensive simulation,
+they justify their assertion on why interpolation almost surely never occurs.
+Further experiments on other real dataset \cite{yousefzadeh2022extent} also show that
+test dataset mostly fall out of the
+convex hull of training dataset and augment the statement of Balestriero.
 
-Inspired by Balestriero, we investigate under which condition the interpolation error converges to zero,
-as the sample size and the dimension tend to infinity simultaneously. In our work, we give
-an asymptotic upper bound of the interpolation error and obtain the sample complexity of interpolation in
-high dimensional learning. We show that when the training data are sampled from polynomial, exponential and truncated distribution families,
-we need exponentially large number of samples for efficient learning. Our result is consistent with the common sense
-that direct learning
-without dimension reduction is impractical. Besides the relationship between $N$ and $d$,
-we also reveal the dependency between $N$ and the decaying rate of the distribution.
+Following the geometric statistical model described above, we can derive the sample size which makes
+interpolation almost surely occurs.
+This sample size, or sample complexity, can be used to evaluate the task difficulty for a given distribution
+and dimension before the computational extensive experiments.
+Technically speaking the sample complexity is obtained when we let the sample size and the dimension tend to infinity simultaneously and
+then investigate the condition under which the interpolation error converges to zero.
+In our work, we give
+an asymptotic upper bound of the interpolation error and then obtain the sample complexity of the interpolation in
+high dimensional learning.
+We show that when the training data are sampled from polynomial,
+exponential and truncated distribution families,
+we need exponentially large number of samples for vanishing interpolation error.
+Due to the exponential dependency of the sample size on the dimension, we recommend dimension reduction or feature extraction
+before applying machine learning model. Besides the relationship between the sample size $N$ and the dimension $d$,
+we also reveal the dependency of $N$ on the decaying rate of the distribution.
 
 The study of interpolation error $p_{N,d}$ is closely related with the quantity $\E[F_N]$,
-which is the expectation of the number of facets of the convex hull. Loosely speaking,
+the expectation of the number of facets of the convex hull. Loosely speaking,
 the inequality relationship $p_{N,d} \leq \frac{\E[F_N]}{Nd}$ holds. Therefore, the asymptotic
 value of $\E[F_N]$ gives an upper bound of $p_{N,d}$.
 The study of $\E[F_N]$
-is an old topic in stochastic geometry. The recent advance dates to Dwyer's work on the estimation of $\E[F_N]$,
+is an old topic in stochastic geometry. As far as we know, the recent advance dates to Dwyer's work on the estimation of $\E[F_N]$,
 in which the order of $\E[F_N]$ about $N$ is obtained \cite{dwyer1991convex}. In our paper, we will extend Dwyer's work
 to get a more accurate asymptotic value of $\E[F_N]$ in $\R^d$.
 
 The organization of this paper is as follows: In Section \ref{sec:int_f}, we develop a method of obtaining $\E[F_N]$ by generalizing Carnal's integration formula
 % of $H(x)=P(d_{12}\geq x)$ 
-from $d=2$ to higher dimensions.
+from two dimensional space to higher dimensions.
 In Section \ref{sec:three_distriutions}, we then derive the explicit asymptotic
 expressions of $\E[F_N]$ and the sufficient condition for $p_{N,d}\to 0$ as $N,d \to \infty$
 for three different distribution families.
@@ -204,18 +219,24 @@ Let $X=(X^{(1)},\dots, X^{(d)})$ follow such a distribution.
 Then we use $F(x)=P(|X|\geq x)$ to denote the probability that a random point lies outside
 a $d$-sphere ($d$-dimensional sphere centered at origin) with radius $x$.
 The marginal distribution of each component of $X$ is determined by $G(x)=P(X^{(1)}\geq x)$.
-Let $dist$ represent the distance from the origin to the hyperplane spanned by $X_1, \dots, X_d$.
+Let $\dist$ represent the distance from the origin to the hyperplane spanned by $X_1, \dots, X_d$.
 Specifically, in 2-D, the hyperplane is the straight line passing through $X_1$ and $X_2$.
 We use $H(x)=P(\dist\geq x)$ to denote the probability that $\dist$ is larger than $x$.
 When $n$ tends to infinity, the functions $f(n)$ and $g(n)$ are asymptotic equivalent if $\lim_{n\to \infty} \frac{f(n)}{g(n)}=1$.
 We denote this relationship as $f(n) \sim g(n)$.
+
 \section{Related work}
+Since the interpolation error is bounded by
+asymptotic value of $\E[F_N]$,
+in this section we give a brief overview on the topic of studying $\E[F_N]$.
 
 The asymptotic expression of $\E[F_N]$ as $N\to \infty$
 was studied initially by R{\'e}nyi and Sulanke \cite{renyi1963konvexe}.
 They considered
 bivariate Gaussian distribution and uniform distribution
 in a planar convex region.
+Following the derivation of R{\'e}nyi, for $d=2,3$, Efron \cite{efron1965convex} obtained the explicit integration formula for $\E[F_N]$ and $p_{N,d}$ 
+when samples follow Gaussian distribution or uniform distribution within a unit sphere.
 Later on,  R{\'e}nyi's work was generalized by
 Carnal \cite{carnal1970konvexe}, who
 classified symmetric 2-D distributions
@@ -237,11 +258,10 @@ Afterwards, following Carnal, Dwyer \cite{dwyer1991convex}
 estimated the order of $\E[F_N]$ about $N$
 for three different distribution families.
 
-Below we list some other related works which are not mentioned in the previous section.
-For $d=2,3$, Efron \cite{efron1965convex} obtained the explicit integration formula for $\E[F_N]$ and $p_{N,d}$ 
-when samples follow Gaussian distribution or uniform distribution within a unit sphere.
 
-Davis et al. \cite{davis1987convex} found the relationship between the distributions with algebraic tails $F(x) \sim x^{-k}$ and Poisson random process.
+For studies focusing on an specific distribution family,
+Davis et al. \cite{davis1987convex} found the relationship
+between the distributions with algebraic tails $F(x) \sim x^{-k}$ and Poisson random process.
 They showed that for $k>0, d=2$,
 $\mathrm{H}_N$ converges to the convex hull of a Poisson random process,
 and

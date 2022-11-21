@@ -152,9 +152,10 @@
 \begin{abstract}
   This paper estimates the sample complexity for interpolation in high dimensional space.
   To be specific, we model the learning task as interpolation of convex hull consisting of i.i.d. sampled data
-  , and the sample complexity is the number of training data which make the probability measure of the convex hull
-  tend to one. It is shown that the sample complexity has exponential relationship with the dimension parameter for all the distribution families
-  considered in this paper, which gives insight on why high dimensional learning is difficult in a general sense. 
+  , and the sample complexity is the number of training data which guarantees that
+  the probability measure of the convex hull
+  tends to one. It is shown that the sample complexity has exponential relationship with the feature dimension for various distribution families
+  considered in this paper, which sheds insight on the difficulty of  high dimensional learning in a general sense. 
 \end{abstract}
 
 
@@ -169,7 +170,7 @@ In the terminology of Balestriero, the interpolation error is made whenever a sa
 
 Inspired by Balestriero, we investigate under which condition the interpolation error converges to zero,
 as the sample size and the dimension tend to infinity simultaneously. In our work, we give
-an asymptotic upper bound of the interpolation error and obtain the sample complexity of this kind of
+an asymptotic upper bound of the interpolation error and obtain the sample complexity of interpolation in
 high dimensional learning. We show that when the training data are sampled from polynomial, exponential and truncated distribution families,
 we need exponentially large number of samples for efficient learning. Our result is consistent with the common sense
 that direct learning

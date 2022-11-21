@@ -197,18 +197,20 @@ the expectation of the number of facets of the convex hull. Loosely speaking,
 the inequality relationship $p_{N,d} \leq \frac{\E[F_N]}{Nd}$ holds. Therefore, the asymptotic
 value of $\E[F_N]$ gives an upper bound of $p_{N,d}$.
 The study of $\E[F_N]$
-is an old topic in stochastic geometry. As far as we know, the recent advance dates to Dwyer's work on the estimation of $\E[F_N]$,
+is an old topic in stochastic geometry. As far as we know, the recent advance dates back to Dwyer's work on the estimation of $\E[F_N]$,
 in which the order of $\E[F_N]$ about $N$ is obtained \cite{dwyer1991convex}. In our paper, we will extend Dwyer's work
 to get a more accurate asymptotic value of $\E[F_N]$ in $\R^d$.
 
 The organization of this paper is as follows: In Section \ref{sec:int_f}, we develop a method of obtaining $\E[F_N]$ by generalizing Carnal's integration formula
 % of $H(x)=P(d_{12}\geq x)$ 
 from two dimensional space to higher dimensions.
-In Section \ref{sec:three_distriutions}, we then derive the explicit asymptotic
-expressions of $\E[F_N]$ and the sufficient condition for $p_{N,d}\to 0$ as $N,d \to \infty$
-for three different distribution families.
-The main contribution of this paper, which is summarized in Section \ref{sec:conclusion},
-is to provide a complete integration formula for $\E[F_N]$,
+In Section \ref{sec:three_distriutions}, for three different distribution families we then derive the explicit asymptotic
+expressions of $\E[F_N]$ and the sufficient condition for $p_{N,d}\to 0$, as $N,d \to \infty$. The sample complexity follows from the sufficient condition
+in each case.
+The main contribution of this paper,
+which is summarized in Section \ref{sec:conclusion},
+is to give the sample complexity for the vanishing interpolation error.
+We also obtain a complete integration formula for $\E[F_N]$,
 and following the classification of distributions of previous authors \cite{carnal1970konvexe,dwyer1991convex},
 we derive the asymptotic expression
 of $\E[F_N]$ for each category.
@@ -777,8 +779,8 @@ For other two tails, the faster $F(x)$ decays, the larger $N$ becomes.
 \label{sec:conclusion}
 In this paper, we derive the sample complexity to interpolate
 the convex hull of i.i.d. samples. Our work gives the sufficient
-condition for the convergence of the error rate to zero. Further
-study on the necessity condition is still an open problem.
+condition for the convergence of the interpolation error to zero.
+Further study on the necessary condition is still an open problem.
 As a byproduct, we get the asymptotic value of the number of facets
 in three categories of distributions, which can also be applied
 to other fields such as estimation of time complexity of algorithms

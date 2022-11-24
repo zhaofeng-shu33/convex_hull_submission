@@ -63,6 +63,7 @@
 \hyphenation{op-tical net-works semi-conduc-tor}
 \usepackage{amsthm}
 \usepackage{amsfonts}
+
 \DeclareMathOperator{\dist}{dist}
 \def\E{\mathbb{E}}
 \def\R{\mathbb{R}}
@@ -72,6 +73,7 @@
 \newtheorem{definition}{Definition}
 \newtheorem{theorem}{Theorem}
 % -------------------------------------------------------------------------
+
 \begin{document}
 
 \title{On the Sample Complexity of High Dimensional Learning with Interpolation of Dataset}
@@ -339,7 +341,7 @@ where $\kappa(r)$ is the fraction of the surface area of a unit $d$-sphere
 cut off by a plane at distance $r$ from the origin.
 
 We cannot compute $\E[F_N]$ from $F(x)$ yet, since no formula for $H(x)$ with respect to $F(x)$ is given in previous studies.
-Our main theorem solves this problem by giving the integration formula for $H(x)$ in $d\geq 2$:
+The following theorem solves this problem by giving the integration formula for $H(x)$ in $d\geq 2$:
 \begin{theorem}\label{thm:H}
 For $d\geq 2$, the integration formula for $H(x)$ is given as
 \begin{equation}
@@ -475,6 +477,30 @@ From above, we get the asymptotic relation $H(x) \sim \frac{2 \Gamma(\frac{kd+1}
 x^{-kd}$ as $x\to \infty$, which is equivalent to \eqref{eq:H_poly_tail_exp}.
 
 \end{example}
+From \eqref{eq:efn_poly_second_deri}, we also see that
+the asymptotic value of $\E[F_N]$ is an increasing function of $d$.
+As $d$ increases, from \eqref{eq:p_N_d_bound}, we need more and more $N$ to control $p_{N,d}$.
+The following theorem gives an estimation on the sample complexity $N$,
+which is the function of dimension $d$, the error bound $\epsilon$ and the distribution parameter $k$.
+\begin{theorem}\label{thm:poly_tail_sample_complexity}
+  For distributions with polynomial tails with $k>0$, given $\epsilon \in (0,1)$,
+  when the following condition is satisfied
+\begin{equation}\label{eq:N_c_d_3_2}
+  N = \frac{c^d}{k^{1/2}d^{3/2} \epsilon}, \textrm{ where } c=\frac{\sqrt{\pi}k\Gamma(k/2)}{\Gamma(\frac{k+1}{2})}>1  
+\end{equation}
+the interpolation error $p_{N,d} < \epsilon$ as $d\to \infty$.
+\end{theorem}
+From the above theorem, to guarantee the interpolation error is no more than a given precision $\epsilon$,
+we require that $N$ has exponential relationship with $d$.
+The higher the dimension is, the more samples are needed.
+Besides, the decaying rate of the distribution also has influence on the sample size $N$.
+Since $c$ is an increasing function with $k$,
+larger $k$ (faster decay) also leads to more samples.
+Finally, if we treat $\epsilon$ as a function of $d$ and $\lim_{d\to\infty}\epsilon \to 0$.
+Theorem \ref{thm:poly_tail_sample_complexity} implies that $\lim_{d\to\infty} p_{N,d} = 0$.
+For example, we can choose $\epsilon=\frac{1}{d}$.
+
+\begin{proof}[Proof of Theorem \ref{thm:poly_tail_sample_complexity}]
 When we allow $d\to \infty$, we treat $N$ as a function of $d$.
 If the condition $N/d^2 \to \infty$ is satisfied, we have
 \begin{equation}\label{eq:poly_E_F_N_d_infty}
@@ -483,22 +509,16 @@ If the condition $N/d^2 \to \infty$ is satisfied, we have
      {\Gamma(\frac{k+1}{2})}
  \right)^d \textrm{ for } k>0
 \end{equation}
-Then the sufficient condition for $p_{N,d} \to 0$ is obtained
-from the estimation inequality \eqref{eq:p_N_d_bound},
-combined with the asymptotic expressions for polynomial distribution families in \eqref{eq:poly_E_F_N_d_infty}.
-\begin{theorem}
-  For distributions with polynomial tails with $k>0$,
-  when the following condition is satisfied
-\begin{equation}
-  N \gg \frac{c^d}{d^{3/2}}, \textrm{ where } c=\frac{\sqrt{\pi}k\Gamma(k/2)}{\Gamma(\frac{k+1}{2})}>1  
-\end{equation}
-the interpolation error $p_{N,d} \to 0$ as $N,d\to \infty$.
-\end{theorem}
-From the above theorem, we see that $N$ has exponential relationship with $d$.
-The higher the dimension is, the more samples are needed.
-Besides, the decaying rate of the distribution also has influence on the sample size $N$.
-Since $c$ is an increasing function with $k$,
-larger $k$ (faster decay) also leads to more samples.
+Since $N$ in \eqref{eq:N_c_d_3_2} satisfies the assumption $N/d^2 \to \infty$,
+it follows from \eqref{eq:p_N_d_bound}
+\begin{align*}
+p_{N,d} \leq &\frac{d^{1/2}k^{1/2}}{c^d} \E[F_N]\epsilon
+\leq \sqrt{\frac{2}{\pi}}\epsilon \leq \epsilon
+\end{align*}
+%Then the sufficient condition for $p_{N,d} \to 0$ is obtained
+%from the estimation inequality \eqref{eq:p_N_d_bound},
+%combined with the asymptotic expressions for polynomial distribution families in \eqref{eq:poly_E_F_N_d_infty}.
+\end{proof}
 
 \subsection{Distributions with exponential tails}
 In this subsection, we first give the definition of distributions with exponential tails.
@@ -556,18 +576,20 @@ Similar to the analysis of polynomial tails, we obtain the
 sufficient condition for $p_{N,d} \to 0$ from
 \eqref{eq:p_N_d_bound} and \eqref{eq:d_infty_exp_E_F_N}.
 \begin{theorem}\label{thm:exp_tails_sample}
-  For distributions with exponential tails, when the following condition is satisfied
-  \begin{equation}
-    N\cdot \epsilon(N)^{(d-1)/2} \gg \frac{(2\pi)^{d/2}}{d^{3/2}},
+  For distributions with exponential tails, given $\epsilon \in (0,1)$, when the following condition is satisfied
+  \begin{equation}\label{N_d_relationship_exp_tail}
+    N\cdot \epsilon(N)^{(d-1)/2} = \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{d^{3/2} \epsilon},
   \end{equation}
-  the interpolation error $p_{N,d} \to 0$ as $N,d\to \infty$.
+  the interpolation error $p_{N,d} < \epsilon$ as $d\to \infty$.
 \end{theorem}
-For the special case of exponential distribution
-of the form $F(x) \sim C(k)\exp(-x^k)$, we obtain from \eqref{eq:epsilon_s}
+For any given $d$, we can obtain $N$ from the implicit relationship in \eqref{N_d_relationship_exp_tail}.
+When $d\to \infty$, \eqref{N_d_relationship_exp_tail} implies $N\to \infty$.
+To better illustrate Theorem \ref{thm:exp_tails_sample},
+we consider an special exponential distribution of the form $F(x) \sim C(k)\exp(-x^k)$, we obtain from \eqref{eq:epsilon_s}
 that $\epsilon(s)=(k\log s)^{-1}$.
 Then from Theorem \ref{thm:exp_tails_sample},
 we can estimate that
-$N(d)$ grows faster than $c^d$ for any constant $c$ but slower than $\exp(d^2)$.
+$N$ grows faster than $c^d$ for any constant $c$ but slower than $\exp(d^2)$.
 Besides, $N$ increases with $k$ for fixed $d$.
 In other words, larger $k$ (faster decay) leads to more samples.
 
@@ -639,7 +661,7 @@ When $N\to \infty$ and $d$ is fixed, we have
  For uniform distribution with $k=1, L(N)=d$, we can verify that
  \eqref{eq:efn_truncated_formula} is equivalent with (1.1)
  of \cite{raynaud1970enveloppe}.
- \begin{example}
+ \begin{example}\label{ex:beta_typed}
   We consider a special distribution with truncated tail called
   beta-typed distribution. Its density function is defined as:
   \begin{equation}\label{eq:pxy_beta_t}
@@ -679,18 +701,21 @@ which is equivalent to \eqref{eq:truncated_H_1_x}.
  the following theorem:
  \begin{theorem}\label{thm:truncated_tails_sample}
   For distributions with truncated tails,
+  given $\epsilon \in (0,1)$,
   when the following condition is satisfied
   \begin{equation}
     \frac{N^{2k/d}}{L(N)^{\frac{d-1}{2k+d-1}}}
-        \gg (2\pi)^{d/2}d^{(d-5)/2},
+        =\frac{(2\pi)^{d/2}d^{(d-5)/2}}{\epsilon},
   \end{equation}
-  the interpolation error $p_{N,d} \to 0$ as $N,d\to \infty$.
+  the interpolation error $p_{N,d} < \epsilon$ as $d\to \infty$.
 \end{theorem}
 From Theorem \ref{thm:truncated_tails_sample}, as
 distributions with exponential tails, we see that
 the sample size $N$ also has super-exponential relationship
 with $d$ for distribution with truncated tails.
-For beta-typed distribution, using \eqref{eq:beta_typed_L_N},
+To illustrate this point, we consider the beta-typed distribution introduced
+in Example \ref{ex:beta_typed}.
+Using \eqref{eq:beta_typed_L_N},
 we obtain that $N(d)$
 grows faster than $\exp(cd^2)$ for any constant $c$.
 
@@ -839,7 +864,7 @@ for constructing a representation of convex hulls.
 %% in combination with further \section-commands can be used.
 %%%%%%
 
-\section{Proof of Theorem \ref{thm:H}}\label{app:th}
+\subsection{Proof of Theorem \ref{thm:H}}\label{app:th}
 \begin{lemma}\label{lem:F_0}
      Let $F_0$ represent the
 probability that the distance from the origin to the straight line
@@ -1184,8 +1209,7 @@ we reduce \eqref{eq:H_eq_n_arccos_geometric} to
  which is exactly \eqref{eq:H_expression_d_dim}.
  
 \end{proof}
-\section{Computations involved in three distribution tails}
-\subsection{Computations involved in polynomial tails}
+\subsection{Proof of Theorem \ref{thm:poly_tails}}
 The techniques used in this subsection are similar to the derivation of $G(x)$
 in (2.3) of \cite{carnal1970konvexe}.
 
@@ -1273,9 +1297,9 @@ we obtain \eqref{eq:N_N_d_d}.
 Combining \eqref{eq:Gamma_ratio} with \eqref{eq:N_N_d_d}, we obtain \eqref{eq:poly_E_F_N_d_infty}
 from \eqref{eq:Ngd}.
 
-\subsection{Computations involved in exponential tails}
+\subsection{Proof of Theorem \ref{thm:exponential_tails}}
 
-\begin{proof}[Proof of Theorem \ref{thm:exponential_tails}]
+\begin{proof}
 For exponential tails, following Carnal \cite{carnal1970konvexe},
 we make
 the substitution $x=L(s), y=L(\sigma)$, then $\sigma=1/F(y)$.
@@ -1356,8 +1380,8 @@ By Lemma \ref{lem:ratio_epsilon}, we can show that
 $\epsilon(N-d)^{\frac{-d+1}{2}}\sim \epsilon(N)^{\frac{-d+1}{2}}$.
 When $d\to\infty$ and $N/d^2\to \infty$, we further obtain \eqref{eq:d_infty_exp_E_F_N}.
  
-\subsection{Computations involved in truncated tails}
-\begin{proof}[Proof of Theorem \ref{thm:truncated_tails}]
+\subsection{Proof of Theorem \ref{thm:truncated_tails}}
+\begin{proof}
 First we compute $K(x)$ as follows
 \begin{align*}
     K(1-x)  & = \int_{1-x}^1 \left(1-\frac{(1-x)^2}{y^2}\right)^{\frac{d-2}{2}} |\d F(y)| \\

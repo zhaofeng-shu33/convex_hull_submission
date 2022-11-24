@@ -429,20 +429,23 @@ expression of $H(x)$ and $\E[F_N]$, which is
 summarized in the following theorem:
 \begin{theorem}\label{thm:poly_tails}
      For distributions with polynomial tails defined in \eqref{eq:F_poly_tail},
-     we have
-\begin{equation}\label{eq:H_poly_tail_exp}
-     H(x) \sim \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
-     \Gamma(\frac{dk+1}{2})}{
-         \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)} G(x)^d 
-         \textrm{ as } x\to \infty
-\end{equation}
-and 
+     we have the following statements:
+     \begin{itemize}
+          \item If $N \to \infty$ and $d$ is fixed,
 \begin{equation}\label{eq:efn_poly_second_deri}
     \E[F_N] \sim \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
     \Gamma(\frac{dk+1}{2})}{
         \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)}
-        \textrm{ as } N \to \infty, d \textrm { is fixed}
 \end{equation}
+\item
+If $N$ is a function of $d$, and the condition $N/d^2 \to \infty$ is satisfied, then
+\begin{equation}\label{eq:poly_E_F_N_d_infty}
+\E[F_N] \sim \sqrt{\frac{2}{\pi dk}}\left(
+      \frac{\sqrt{\pi}k \Gamma(k/2)}
+     {\Gamma(\frac{k+1}{2})}
+ \right)^d \textrm{ for } k>0
+\end{equation}
+\end{itemize}
 \end{theorem}
 Equation \eqref{eq:efn_poly_second_deri} tells
 us that $\E[F_N]$ converges to a constant as $N \to \infty$.
@@ -501,16 +504,10 @@ Theorem \ref{thm:poly_tail_sample_complexity} implies that $\lim_{d\to\infty} p_
 For example, we can choose $\epsilon=\frac{1}{d}$.
 
 \begin{proof}[Proof of Theorem \ref{thm:poly_tail_sample_complexity}]
-When we allow $d\to \infty$, we treat $N$ as a function of $d$.
-If the condition $N/d^2 \to \infty$ is satisfied, we have
-\begin{equation}\label{eq:poly_E_F_N_d_infty}
-\E[F_N] \sim \sqrt{\frac{2}{\pi dk}}\left(
-      \frac{\sqrt{\pi}k \Gamma(k/2)}
-     {\Gamma(\frac{k+1}{2})}
- \right)^d \textrm{ for } k>0
-\end{equation}
+%When we allow $d\to \infty$, we treat $N$ as a function of $d$.
+
 Since $N$ in \eqref{eq:N_c_d_3_2} satisfies the assumption $N/d^2 \to \infty$,
-it follows from \eqref{eq:p_N_d_bound}
+it follows from \eqref{eq:p_N_d_bound} and \eqref{eq:poly_E_F_N_d_infty} that
 \begin{align*}
 p_{N,d} \leq &\frac{d^{1/2}k^{1/2}}{c^d} \E[F_N]\epsilon
 \leq \sqrt{\frac{2}{\pi}}\epsilon \leq \epsilon
@@ -545,7 +542,7 @@ Dwyer \cite{dwyer1991convex} obtains the expression of $G(x)$ as:
 We make the analysis complete by giving the following theorem.
 \begin{theorem}\label{thm:exponential_tails}
      Suppose there exists a slowly
-     varying function $L(x)$ such that \linebreak $x=L(1/F(x))$,
+     varying function $L(x)$ such that $x=L(1/F(x))$,
      and $\epsilon(s)$ is defined in \eqref{eq:epsilon_s}, then
 \begin{equation}\label{eq:H_x_exp}
      H(x) \sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}}v^{\frac{-d+1}{2}}(x)G^d(x)
@@ -1210,10 +1207,7 @@ we reduce \eqref{eq:H_eq_n_arccos_geometric} to
  
 \end{proof}
 \subsection{Proof of Theorem \ref{thm:poly_tails}}
-The techniques used in this subsection are similar to the derivation of $G(x)$
-in (2.3) of \cite{carnal1970konvexe}.
-
-\begin{proof}[Proof of Theorem \ref{thm:poly_tails}]
+\begin{proof}
 For polynomial tails defined in \eqref{eq:F_poly_tail},
 we first compute the asymptotic value of $K(x)$
 as follows:
@@ -1223,7 +1217,9 @@ as follows:
      (y=x/t) &= (d-2)x^{-k} \int_0^{1} L(x/t) t^{k+1} (1-t^2)^{(d-4)/2}\d t \\
      & \sim F(x) \frac{d-2}{2} B\left(\frac{k+2}{2}, \frac{d}{2}-1\right) 
 \end{align*}
-Then applying Theorem \ref{thm:H}, we obtain
+The techniques used to derive $H(x)$ are similar to the derivation of $G(x)$
+in (2.3) of \cite{carnal1970konvexe}.
+To be more specific, applying Theorem \ref{thm:H}, we obtain
 \begin{align*}
      H(x) =& \frac{2}{\pi}
      \int_x^{\infty} \arccos\frac{x}{y}
@@ -1239,6 +1235,14 @@ Then applying Theorem \ref{thm:H}, we obtain
      \Gamma(\frac{dk+1}{2})}{
          \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)} G(x)^d 
 \end{align*}
+That is
+\begin{equation}\label{eq:H_poly_tail_exp}
+     H(x) \sim \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
+     \Gamma(\frac{dk+1}{2})}{
+         \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)} G(x)^d 
+         \textrm{ as } x\to \infty
+\end{equation}
+
 To simplify the notation, we denote $g(d)=\frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
 \Gamma(\frac{dk+1}{2})}{
     \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)}$.
@@ -1294,7 +1298,8 @@ when $N/d^2 \to \infty$.
 From the condition $N/d^2 \to \infty$,
 we obtain \eqref{eq:N_N_d_d}.
 \end{proof}
-Combining \eqref{eq:Gamma_ratio} with \eqref{eq:N_N_d_d}, we obtain \eqref{eq:poly_E_F_N_d_infty}
+The derivation of \eqref{eq:Ngd} is also valid if $N/d^2\to \infty$.
+Therefore, combining \eqref{eq:Gamma_ratio} with \eqref{eq:N_N_d_d}, we obtain \eqref{eq:poly_E_F_N_d_infty}
 from \eqref{eq:Ngd}.
 
 \subsection{Proof of Theorem \ref{thm:exponential_tails}}

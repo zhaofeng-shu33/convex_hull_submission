@@ -76,7 +76,7 @@
 \usepackage{hyperref}
 \begin{document}
 
-\title{On the Sample Complexity of High Dimensional Learning with Interpolation of Dataset}
+\title{On the Sample Complexity of High Dimensional Learning with Data Interpolation}
 
 %%%%%%
 \author{%
@@ -153,8 +153,8 @@
 %%
 \begin{abstract}
   This paper estimates the sample complexity for interpolation in high dimensional space.
-  To be specific, we model the learning task as interpolation of convex hull consisting of i.i.d. sampled data
-  , and the sample complexity is the number of training data which guarantees that
+  To be specific, we model the learning task as interpolation of convex hull consisting of i.i.d. sampled data,
+  and the sample complexity is the number of training data which guarantees that
   the probability measure of the convex hull
   tends to one. It is shown that the sample complexity has exponential relationship with the feature dimension for various distribution families
   considered in this paper, which sheds insight on the difficulty of  high dimensional learning in a general sense. 
@@ -179,10 +179,10 @@ test dataset mostly fall out of the
 convex hull of training dataset and augment the statement of Balestriero.
 
 Following the geometric statistical model described above, we can derive the sample size which makes
-interpolation almost surely occurs.
+interpolation almost surely occurs if the distribution is spherically symmetric.
 This sample size, or sample complexity, can be used to evaluate the task difficulty for a given distribution
-and dimension before the computational extensive experiments.
-Technically speaking the sample complexity is obtained when we let the sample size and the dimension tend to infinity simultaneously and
+before the computational extensive experiments.
+Technically speaking, the sample complexity is obtained when we let the sample size and the dimension tend to infinity simultaneously and
 then investigate the condition under which the interpolation error converges to zero.
 In our work, we give
 an asymptotic upper bound of the interpolation error and then obtain the sample complexity of the interpolation in
@@ -694,15 +694,14 @@ which is equivalent to \eqref{eq:truncated_H_1_x}.
  \end{example}
 
 
- Similar to the previous analysis, from
- \eqref{eq:p_N_d_bound} and \eqref{eq:truncated_d_inf} we obtain
- the following theorem:
+ Similar to the previous analysis,
+ the following theorem gives the sample complexity for truncated tails.
  \begin{theorem}\label{thm:truncated_tails_sample}
   For distributions with truncated tails,
   given $\epsilon \in (0,1)$,
   when the following condition is satisfied
-  \begin{equation}
-    \frac{N^{2k/d}}{L(N)^{\frac{d-1}{2k+d-1}}}
+  \begin{equation}\label{eq:N_truncated_tail_eps_relation}
+    \frac{N^{\frac{2k}{2k+d-1}}}{L(N)^{\frac{d-1}{2k+d-1}}} 
         =\frac{(2\pi)^{d/2}d^{(d-5)/2}}{\epsilon},
   \end{equation}
   the interpolation error $p_{N,d} < \epsilon$ as $d\to \infty$.
@@ -713,10 +712,17 @@ the sample size $N$ also has super-exponential relationship
 with $d$ for distribution with truncated tails.
 To illustrate this point, we consider the beta-typed distribution introduced
 in Example \ref{ex:beta_typed}.
-Using \eqref{eq:beta_typed_L_N},
-we obtain that $N(d)$
-grows faster than $\exp(cd^2)$ for any constant $c$.
-
+From \eqref{eq:beta_typed_L_N}, $L(N)$ does not depend on $N$.
+We then obtain that $N$ grows faster than $\exp(cd^2)$ for any constant $c$.
+\begin{proof}[Proof of Theorem \ref{thm:truncated_tails_sample}]
+     Since $N$ in \eqref{eq:N_truncated_tail_eps_relation} satisfies the assumption $N/d^2 \to \infty$,
+     it follows from \eqref{eq:p_N_d_bound} and Theorem \ref{thm:truncated_tails} that
+     \begin{align*}
+     p_{N,d} \leq &\frac{\E[F_N]\epsilon}{(2\pi)^{d/2} d^{(d-3)/2} (NL(N))^{(d-1)/(2k+d-1)}}\\
+     \leq & \frac{2^k k\Gamma(k)e^k}{\pi d^k} \epsilon \leq \epsilon
+     \end{align*}
+     The last inequality holds when $d$ is sufficiently large.
+\end{proof}
 From the discussion of three kinds of tails, we see that the sample complexity of $N$ is the smallest for algebraic tails and the largest
 for truncated tails. This is directly related with its convergent rate of $F(x)$.
 For truncated tails, $F(x)$ becomes zero beyond the unit sphere, therefore it has the largest sample complexity.

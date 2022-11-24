@@ -67,13 +67,13 @@
 \DeclareMathOperator{\dist}{dist}
 \def\E{\mathbb{E}}
 \def\R{\mathbb{R}}
-\def\d{\mathrm{d}}
+\def\dd{\mathrm{d}}
+\newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
 \newtheorem{example}{Example}
 \newtheorem{definition}{Definition}
-\newtheorem{theorem}{Theorem}
 % -------------------------------------------------------------------------
-
+\usepackage{hyperref}
 \begin{document}
 
 \title{On the Sample Complexity of High Dimensional Learning with Interpolation of Dataset}
@@ -356,7 +356,7 @@ where the auxiliary function $K(x)$ is defined in the following way:
      K(x) :&=P\left(\sqrt{(X^{(1)})^2+(X^{(2)})^2}>x \right)\notag \\
      &=
      \int_x^{+\infty} 
-     \lambda_d \left(\frac{x}{y} \right)|\d F(y)|
+     \lambda_d \left(\frac{x}{y} \right)|\dd F(y)|
      \label{eq:K_x}
 \end{align}
 \end{theorem}
@@ -375,7 +375,7 @@ term $G(x)^{N-d}$ decays at an exponential rate as $N-d\to \infty$.
 As a result, we obtain
 \begin{align}
      \E[F_N] \sim \binom{N}{d} \int_0^{+\infty} 
-      (1-G(x))^{N-d} |\d H(x)| \textrm{ as } N-d\to \infty
+      (1-G(x))^{N-d} |\dd H(x)| \textrm{ as } N-d\to \infty
      \label{eq:E_F_N_d_sim}
 \end{align}
 Let $\E[V_N]$ represent the expected number of
@@ -474,7 +474,7 @@ After simplification, \eqref{eq:eq_dv} is the same as \eqref{eq:g_poly_tail}.
 On the other hand, using similar techniques as (1.4) in \cite{raynaud1970enveloppe},
 we can obtain the pdf of the distance of the hyperplane to the origin as
 \begin{equation}\label{eq:dH_dx_t_distribution}
-     \frac{\d H(x)}{\d x} =  \frac{2}{\sqrt{k} B(\frac{kd}{2},\frac{1}{2})} \left(1 + \frac{x^2}{k} \right)^{-\frac{kd+1}{2}} 
+     \frac{\dd H(x)}{\dd x} =  \frac{2}{\sqrt{k} B(\frac{kd}{2},\frac{1}{2})} \left(1 + \frac{x^2}{k} \right)^{-\frac{kd+1}{2}} 
 \end{equation}
 From above, we get the asymptotic relation $H(x) \sim \frac{2 \Gamma(\frac{kd+1}{2}) k^{kd/2-1}}{d\sqrt{\pi} \Gamma(\frac{kd}{2})}
 x^{-kd}$ as $x\to \infty$, which is equivalent to \eqref{eq:H_poly_tail_exp}.
@@ -527,12 +527,12 @@ In this subsection, we first give the definition of distributions with exponenti
 Following Carnal \cite{carnal1970konvexe},
 we define the following utility functions:
 \begin{align}
-     \epsilon(s) & = s (\log (L(s)))' \label{eq:epsilon_s}\\
+     \gamma(s) & = s (\log (L(s)))' \label{eq:epsilon_s}\\
      v(u) &= -\frac{1}{u} \frac{1}{(\log F(u))'}    
 \end{align}
 The prime notation represents the symbol for differentiation. When $v(u)$ satisfies
 certain regularity conditions prescribed in (2.15) of \cite{carnal1970konvexe},
-we can obtain that $\epsilon(s)$ is a slowly varying function.
+we can obtain that $\gamma(s)$ is a slowly varying function.
 Dwyer \cite{dwyer1991convex} obtains the expression of $G(x)$ as:
 \begin{equation}\label{eq:G_x_exp}
      G(x) \sim \frac{2^{(d-3)/2}}{\sqrt{\pi}}\Gamma\left(\frac{d}{2}\right)
@@ -543,39 +543,36 @@ We make the analysis complete by giving the following theorem.
 \begin{theorem}\label{thm:exponential_tails}
      Suppose there exists a slowly
      varying function $L(x)$ such that $x=L(1/F(x))$,
-     and $\epsilon(s)$ is defined in \eqref{eq:epsilon_s}, then
-\begin{equation}\label{eq:H_x_exp}
-     H(x) \sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}}v^{\frac{-d+1}{2}}(x)G^d(x)
-     \textrm{ as } x\to \infty
-\end{equation}
- and
- \begin{equation}\label{eq:exp_e_f_n}
-     \E[F_N]\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} (\epsilon(N))^{-\frac{d-1}{2}}
-     \textrm{ as } N \to \infty, d \textrm { is fixed}
+     and $\gamma(s)$ is defined in \eqref{eq:epsilon_s}, then
+  equation
+  \begin{equation}\label{eq:exp_e_f_n}
+     \E[F_N]\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} (\gamma(N))^{-\frac{d-1}{2}},
  \end{equation}
+ holds either of the following two conditions is satisfied:
+  \begin{itemize}
+     \item $N \to \infty$ and $d$ is fixed,     
+     \item  $d\to\infty$ and $N/d^2\to \infty$.
+  \end{itemize}
 \end{theorem}
  Using \eqref{eq:epsilon_s}, we note that the term
- $(\epsilon(N))^{-\frac{d-1}{2}}$
+ $(\gamma(N))^{-\frac{d-1}{2}}$
  is obtained in Dwyer's Theorem 2 \cite{dwyer1991convex}.
  Our improvement on the asymptotic value of $\E[F_N]$ is that we obtain its preceding term only involving $d$.
  When $d=2$, equation \eqref{eq:exp_e_f_n} is consistent with (2.20) of \cite{carnal1970konvexe}.
  For standard $d$-dimensional Gaussian distribution, we have $L(s)=\sqrt{2\log s}$.
- From \eqref{eq:epsilon_s}, $\epsilon(s) = (2\log s)^{-1}$. And we obtain from \eqref{eq:exp_e_f_n}
+ From \eqref{eq:epsilon_s}, $\gamma(s) = (2\log s)^{-1}$. And we obtain from \eqref{eq:exp_e_f_n}
  that $\E[F_N]\sim \frac{2^d}{\sqrt{d}}(\pi \log N)^{\frac{d-1}{2}}$,
  which is consistent with (1.11) of \cite{raynaud1970enveloppe}.
 
- If $d\to\infty$ and $N/d^2\to \infty$, we have
-\begin{align}\label{eq:d_infty_exp_E_F_N}
-      \E[F_N]\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} \epsilon(N)^{\frac{-d+1}{2}}
-\end{align}
+
 
 Similar to the analysis of polynomial tails, we obtain the
-sufficient condition for $p_{N,d} \to 0$ from
-\eqref{eq:p_N_d_bound} and \eqref{eq:d_infty_exp_E_F_N}.
+sufficient condition for $p_{N,d} < \epsilon$,
+which is summarized in the following theorem.
 \begin{theorem}\label{thm:exp_tails_sample}
   For distributions with exponential tails, given $\epsilon \in (0,1)$, when the following condition is satisfied
   \begin{equation}\label{N_d_relationship_exp_tail}
-    N\cdot \epsilon(N)^{(d-1)/2} = \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{d^{3/2} \epsilon},
+    N\cdot \gamma(N)^{(d-1)/2} = \frac{(2\pi)^{d/2} }{d^{3/2} \epsilon},
   \end{equation}
   the interpolation error $p_{N,d} < \epsilon$ as $d\to \infty$.
 \end{theorem}
@@ -583,13 +580,21 @@ For any given $d$, we can obtain $N$ from the implicit relationship in \eqref{N_
 When $d\to \infty$, \eqref{N_d_relationship_exp_tail} implies $N\to \infty$.
 To better illustrate Theorem \ref{thm:exp_tails_sample},
 we consider an special exponential distribution of the form $F(x) \sim C(k)\exp(-x^k)$, we obtain from \eqref{eq:epsilon_s}
-that $\epsilon(s)=(k\log s)^{-1}$.
+that $\gamma(s)=(k\log s)^{-1}$.
 Then from Theorem \ref{thm:exp_tails_sample},
 we can estimate that
 $N$ grows faster than $c^d$ for any constant $c$ but slower than $\exp(d^2)$.
 Besides, $N$ increases with $k$ for fixed $d$.
 In other words, larger $k$ (faster decay) leads to more samples.
-
+\begin{proof}[Proof of Theorem \ref{thm:exp_tails_sample}]
+     Since $N$ in \eqref{N_d_relationship_exp_tail} satisfies the assumption $N/d^2 \to \infty$,
+     it follows from \eqref{eq:p_N_d_bound} and Theorem \ref{thm:exponential_tails} that
+     \begin{align*}
+     p_{N,d} \leq &\frac{d^{1/2}\gamma(N)^{(d-1)/2}}{(2\pi)^{d/2}}
+     \E[F_N]\epsilon
+     \leq \sqrt{\frac{2}{\pi}}\epsilon \leq \epsilon
+     \end{align*}
+\end{proof}
 \subsection{Distributions with truncated tails}
 In this subsection, let $L(x)$ also represent a slowly varying function, and we consider the distribution which satisfies
 the following conditions:
@@ -622,32 +627,32 @@ a &=\frac{2^{\frac{d-1}{2}} k \Gamma(\frac{d}{2})}
 Below, we give the theorem in regards to the asymptotic value of $H(1-x)$ and $\E[F_N]$:
 \begin{theorem}\label{thm:truncated_tails}
      For distributions with truncated tails
-     defined in \eqref{eq:F_truncated},
-     we have
-\begin{align}
-     H(1-x)  \sim b
-     L^d(1/x) x^{d(k+\frac{d}{2}-1)+\frac{1}{2}} 
-     \textrm{ as } x \to 0^+ \label{eq:truncated_H_1_x}
-\end{align}
-where
-\begin{align}
-     b =  \frac{k^d}{\pi}
-     2^{\frac{1}{2} + d(\frac{d}{2}-1)} B^d\left(k, \frac{d}{2}\right)
-     B\left( \frac{1}{2},
-     d\left(k+\frac{d}{2} -1 \right)+1 \right)
-     \label{eq:b}
- \end{align}
-When $N\to \infty$ and $d$ is fixed, we have
- \begin{align}\label{eq:efn_truncated_formula}
-     \E[F_N] \sim &\frac{b}{d!}a^{-d+\frac{d-1}{2k+d-1}}
-     \Gamma 
-     \left(d+1-\frac{d-1}{2k+d-1}\right)
-     \notag\\
-     &\cdot N^{\frac{d-1}{2k+d-1}}
-     L(N)
-     ^{\frac{d-1}{2k+d-1}}
- \end{align}
- where the parameter $a$ is defined in \eqref{eq:a}.
+     defined in \eqref{eq:F_truncated}, we further define
+     the auxiliary parameter $b$ as
+     \begin{align}
+          b =  \frac{k^d}{\pi}
+          2^{\frac{1}{2} + d(\frac{d}{2}-1)} B^d\left(k, \frac{d}{2}\right)
+          B\left( \frac{1}{2},
+          d\left(k+\frac{d}{2} -1 \right)+1 \right)
+          \label{eq:b}
+      \end{align}     
+     Then we have
+ the following statements:
+\begin{itemize}
+     \item When $N\to \infty$ and $d$ is fixed, we have
+     \begin{align}\label{eq:efn_truncated_formula}
+          \E[F_N] \sim &\frac{b}{d!}a^{-d+\frac{d-1}{2k+d-1}}
+          \Gamma 
+          \left(d+1-\frac{d-1}{2k+d-1}\right)
+          \notag\\
+          &\cdot (NL(N))^{\frac{d-1}{2k+d-1}}
+      \end{align}
+     \item  When we allow $d\to \infty$ and $N/d^2 \to \infty$, then
+     \begin{equation}\label{eq:truncated_d_inf}
+      \E[F_N] \sim 2^{\frac{d+2k}{2}}\pi^{\frac{d-2}{2}} k\Gamma(k)e^k d^{\frac{d-3}{2}-k}
+      (NL(N))^{\frac{d-1}{2k+d-1}}
+     \end{equation}    
+\end{itemize}
 \end{theorem}
  The leading polynomial term $N^{\frac{d-1}{2k+d-1}}$ in \eqref{eq:efn_truncated_formula}
  is the same with that in Dwyer's Theorem 3
@@ -677,7 +682,7 @@ When $N\to \infty$ and $d$ is fixed, we have
  Besides, similar to \eqref{eq:dH_dx_t_distribution},
  we can obtain the pdf of the distance of the hyperplane to the origin as
 \begin{equation}
-     \frac{\d H(x)}{\d x} = \frac{2}{B(\frac{1}{2}, d(k+\frac{d}{2}-1)+\frac{1}{2})}\left(1 -x^2\right)^{d(k+\frac{d}{2}-1)-\frac{1}{2}} 
+     \frac{\dd H(x)}{\dd x} = \frac{2}{B(\frac{1}{2}, d(k+\frac{d}{2}-1)+\frac{1}{2})}\left(1 -x^2\right)^{d(k+\frac{d}{2}-1)-\frac{1}{2}} 
 \end{equation}
 From above, we get the asymptotic relation $H(x) \sim \frac{2^{\mu}}{\mu B(1/2, \mu)}
 x^{\mu}$ with $\mu=d(k+\frac{d}{2}-1)+\frac{1}{2}$ as $x\to \infty$,
@@ -687,11 +692,7 @@ which is equivalent to \eqref{eq:truncated_H_1_x}.
  \eqref{eq:efn_truncated_formula} is equivalent with the expression of $c_3$
  in (3.3) of \cite{affentranger1991convex}.
  \end{example}
- When we allow $d\to \infty$ and $N/d^2 \to \infty$, we obtain
- \begin{equation}\label{eq:truncated_d_inf}
-  \E[F_N] \sim 2^{\frac{d+2k}{2}}\pi^{\frac{d-2}{2}} k\Gamma(k)e^k d^{\frac{d-3}{2}-k}
-  N^{\frac{d-1}{2k+d-1}} L(N)^{\frac{d-1}{2k+d-1}}
- \end{equation}
+
 
  Similar to the previous analysis, from
  \eqref{eq:p_N_d_bound} and \eqref{eq:truncated_d_inf} we obtain
@@ -870,10 +871,10 @@ Then
 \begin{align}\label{eq:F_0_expression}
      F_0(x)=&\frac{2\Gamma(\frac{d}{2})}
      {\sqrt{\pi}\Gamma(\frac{d-1}{2})}
-     \int_x^{\infty} |\d F(y)|
-     \int_x^{y} |\d F(z)| 
+     \int_x^{\infty} |\dd F(y)|
+     \int_x^{y} |\dd F(z)| 
      \notag\\
-     &\cdot \int_{a_2/z}^{a_1 /z} (1-u^2)^{\frac{d-3}{2}} \d u
+     &\cdot \int_{a_2/z}^{a_1 /z} (1-u^2)^{\frac{d-3}{2}} \dd u
  \end{align}
 where
 \begin{align}
@@ -903,11 +904,11 @@ then
      \caption{The length of red line represents $a_1$ while the green line corresponds to $|a_2|$.}
      \label{fig:a1a2}
 \end{figure}
-When $d=2$, using $\int \frac{\d x}{\sqrt{1-x^2}} = -\arccos x + C$,
+When $d=2$, using $\int \frac{\dd x}{\sqrt{1-x^2}} = -\arccos x + C$,
 we obtain
 $$
-F_0(x)=\frac{4}{\pi} \int_x^{\infty} \arccos\frac{x}{z}|\d F(y)|
-\int_x^{y} |\d F(z)|\d z
+F_0(x)=\frac{4}{\pi} \int_x^{\infty} \arccos\frac{x}{z}|\dd F(y)|
+\int_x^{y} |\dd F(z)|\dd z
 $$
 which is the same with \eqref{eq:H_expression_2_dim}.
 \begin{proof}[Proof of Lemma \ref{lem:F_0}]
@@ -923,7 +924,7 @@ where $\kappa$ is defined in \eqref{eq:kappa_r}.
 
 \end{proof}
 To show 
-$K(x) = \int_x^{+\infty} \lambda_d(\frac{x}{y})|\d F(y)|$
+$K(x) = \int_x^{+\infty} \lambda_d(\frac{x}{y})|\dd F(y)|$
 in \eqref{eq:K_x},
 we only need to connect $\lambda_d(r)$ with its geometric meaning,
 which is given in the following lemma:
@@ -939,13 +940,13 @@ which is given in the following lemma:
           \lambda_d(r) &=\frac{2}{\kappa_d} 
           \int_{\substack{x_1^2+x_2^2\geq r^2\\
           x_1^2+\dots+x_{d-1}^2\leq 1 }} 
-          \frac{\d x_1 \dots \d x_{d-1}}{\sqrt{1-x_1^2-\dots -x_{d-1}^2}} \\
-      &= \frac{4\pi}{\kappa_d} \int_r^1 x\d x \\
-      &\cdot\int_{x_3^2+\dots + x_{d-1}^2 \leq 1-x^2} \frac{\d x_3\dots \d x_{d-1}}
+          \frac{\dd x_1 \dots \dd x_{d-1}}{\sqrt{1-x_1^2-\dots -x_{d-1}^2}} \\
+      &= \frac{4\pi}{\kappa_d} \int_r^1 x\dd x \\
+      &\cdot\int_{x_3^2+\dots + x_{d-1}^2 \leq 1-x^2} \frac{\dd x_3\dots \dd x_{d-1}}
       {\sqrt{1-x^2-x_3^2-\dots -x_{d-1}^2}} \\
-      &=\frac{4\pi \kappa_{d-3}}{\kappa_d} \int_r^1 x\d x \int_0^{\sqrt{1-x^2}} \frac{y^{d-4}\d y}{\sqrt{1-x^2-y^2}}\\
-      &=\frac{4\pi \kappa_{d-3}}{\kappa_d} \int_0^{\sqrt{1-r^2}} y^{d-4}\d y \int_r^{\sqrt{1-y^2}} \frac{x\d x}{\sqrt{1-x^2-y^2}}\\
-      &=\frac{4\pi \kappa_{d-3}}{\kappa_d} \int_0^{\sqrt{1-r^2}} y^{d-4}\sqrt{1-r^2-y^2} \d y\\
+      &=\frac{4\pi \kappa_{d-3}}{\kappa_d} \int_r^1 x\dd x \int_0^{\sqrt{1-x^2}} \frac{y^{d-4}\dd y}{\sqrt{1-x^2-y^2}}\\
+      &=\frac{4\pi \kappa_{d-3}}{\kappa_d} \int_0^{\sqrt{1-r^2}} y^{d-4}\dd y \int_r^{\sqrt{1-y^2}} \frac{x\dd x}{\sqrt{1-x^2-y^2}}\\
+      &=\frac{4\pi \kappa_{d-3}}{\kappa_d} \int_0^{\sqrt{1-r^2}} y^{d-4}\sqrt{1-r^2-y^2} \dd y\\
       &=\frac{4\pi \kappa_{d-3}}{\kappa_d}  \frac{B(\frac{3}{2 }, \frac{d-3}{2})}{2}(1-r^2)^{(d-2)/2}\\
       &=  (1-r^2)^{(d-2)/2}
       \end{align*}
@@ -956,7 +957,7 @@ For $0<c<1$ and $n$ is a non-negative positive integer, we have
 \begin{align}
     &\int_0^{c}
     [\frac{1}{(1-t)^{n+1}}+\frac{1}{(1+t)^{n+1}}]
-    (c^2- t^2)^{(n-1)/2}\d t\notag\\
+    (c^2- t^2)^{(n-1)/2}\dd t\notag\\
     &=B(\frac{n+1}{2}, \frac{1}{2})
     \frac{c^n}{(1-c^2)^{(n+1)/2}}\label{eq:c_int_eq}
     \end{align}
@@ -964,8 +965,8 @@ For $0<c<1$ and $n$ is a non-negative positive integer, we have
 \begin{proof}[Proof of Lemma \ref{lem:cn_integration}]
      When $n=0$, the left hand side equals
      \begin{align*}
-          \int_0^c \frac{2}{(1-t^2)\sqrt{c^2-t^2}} \d t
-          = \int_0^{\sqrt{c}} \frac{1}{(1-t) \sqrt{t} \sqrt{c^2-t} }\d t
+          \int_0^c \frac{2}{(1-t^2)\sqrt{c^2-t^2}} \dd t
+          = \int_0^{\sqrt{c}} \frac{1}{(1-t) \sqrt{t} \sqrt{c^2-t} }\dd t
      \end{align*}     
      We make change of variables $x=\sqrt{t/(c^2-t)}$ and obtain
      the value $\frac{\pi}{(1-c^2)^{1/2}}$, which equals
@@ -977,7 +978,7 @@ For $0<c<1$ and $n$ is a non-negative positive integer, we have
 \begin{equation}\label{eq:f_n_c_def}
 h(n,c)=   \int_0^{c}
     [\frac{1}{(1-t)^{n+1}}+\frac{1}{(1+t)^{n+1}}]
-    (c^2- t^2)^{(n-1)/2}\d t
+    (c^2- t^2)^{(n-1)/2}\dd t
 \end{equation}
 When $n\geq 2$, by integration by parts 
 we have 
@@ -988,7 +989,7 @@ we have
     -\frac{1}{(1+t)^{n}}
     \right]
     t(c^2- t^2)^{(n-3)/2}
-    \d t
+    \dd t
 \end{equation}
 Let $t=\frac{(1+t)-(1-t)}{2}$ in the right hand side
 of \eqref{eq:tmp_n_u_d_f_n}, then
@@ -1001,7 +1002,7 @@ of \eqref{eq:tmp_n_u_d_f_n}, then
 +\frac{1-t}{(1+t)^{n}}
 \right]
 (c^2- t^2)^{(n-3)/2}
-\d t
+\dd t
 \end{align}
 On the other hand,
 From \eqref{eq:f_n_c_def},
@@ -1014,7 +1015,7 @@ $(c^2-t^2)^{(n-1)/2}
     +\frac{1-t}{(1+t)^{n}}
     \right]
     (c^2- t^2)^{(n-3)/2}
-    \d t
+    \dd t
 \end{align}
 Therefore,
 \begin{equation}\label{eq:sim_1tc}
@@ -1045,17 +1046,17 @@ Having defined $K(x), F_0(x)$, we find the following relationship holds:
 \begin{lemma}\label{lem:K_F_relationship}
 \begin{equation}\label{eq:F_0_integration}
      \int_u^{+\infty}
-     (1-\frac{u^2}{x^2})^{\frac{d-3}{2}} |\d F_0(x)| = K^2(u)
+     (1-\frac{u^2}{x^2})^{\frac{d-3}{2}} |\dd F_0(x)| = K^2(u)
 \end{equation}
 \end{lemma}
 \begin{proof}[Proof of Lemma \ref{lem:K_F_relationship}]
      By the chain rule, from \eqref{eq:a_1_a_2} we obtain
 \begin{align*}
-    \frac{\d}{\d x}\frac{a_1}{z} &
+    \frac{\dd }{\dd x}\frac{a_1}{z} &
     = \sin(\theta_2 - \theta_1)
     \left(\frac{-1}{z\sin\theta_1}
     +\frac{1}{y\sin \theta_2}\right)\\
-    \frac{\d}{\d x}\frac{a_2}{z} &
+    \frac{\dd }{\dd x}\frac{a_2}{z} &
     = \sin(\theta_2 + \theta_1)
     \left(\frac{1}{z\sin\theta_1}
     +\frac{1}{y\sin \theta_2}\right)
@@ -1063,9 +1064,9 @@ Having defined $K(x), F_0(x)$, we find the following relationship holds:
 where $\theta_1, \theta_2$ are defined in \eqref{eq:theta_1_theta_2}.
 Then from \eqref{eq:F_0_expression}
 \begin{align*}
-    \frac{\d F_0(x)}{\d x}  =\frac{2\Gamma(\frac{d}{2})}
+    \frac{\dd F_0(x)}{\dd x}  =\frac{2\Gamma(\frac{d}{2})}
     {\sqrt{\pi}\Gamma(\frac{d-1}{2})}
-    \int_x^{+\infty} |\d F(y)| \int_x^y |f(x,y,z)| |\d F(z)| 
+    \int_x^{+\infty} |\dd F(y)| \int_x^y |f(x,y,z)| |\dd F(z)| 
 \end{align*}
 where
 \begin{align*}
@@ -1076,7 +1077,7 @@ where
     \left(\frac{1}{z\sin\theta_1}
     +\frac{1}{y\sin \theta_2}\right)
 \end{align*}
-Comparing $\d F_0(x)$
+Comparing $\dd F_0(x)$
 with the expression of $K(x)$ in
 \eqref{eq:K_x},
 we only need to prove
@@ -1084,7 +1085,7 @@ we only need to prove
     \frac{2\Gamma(\frac{d}{2})}
     {\sqrt{\pi}\Gamma(\frac{d-1}{2})}
     \int_u^z (1-\frac{u^2}{x^2})^{\frac{d-3}{2}}
-    |f(x,y,z)|\d x &=
+    |f(x,y,z)|\dd x &=
     2(1-\frac{u^2}{y^2})^{\frac{d-2}{2}} \notag\\
     &\cdot (1-\frac{u^2}{z^2})^{\frac{d-2}{2}}
     \label{eq:ref_prove_integration}    
@@ -1118,7 +1119,7 @@ Therefore,
 Let $a=z^2-u^2, b=y^2-u^2$, then
 \begin{align*}
      &\int_u^z (1-\frac{u^2}{x^2})^{\frac{d-3}{2}}
-     |f(x,y,z)|\d x
+     |f(x,y,z)|\dd x
      =\frac{1}{y^{d-2}z^{d-2}}
      \int_0^a x^{\frac{d-3}{2}}\Big[ \\
      &\sum_{k \textrm{ is even}}
@@ -1127,24 +1128,24 @@ Let $a=z^2-u^2, b=y^2-u^2$, then
      &+ \sum_{k \textrm{ is odd}}
      \binom{d-2}{k} (a-x)^{\frac{k}{2}}
      (b-x)^{\frac{d-3-k}{2}}
-     \Big]\d x\\
+     \Big]\dd x\\
      &=\frac{1}{2y^{d-2}z^{d-2}}
      \int_0^a x^{\frac{d-3}{2}}\\
      &\cdot\Big[\frac{(\sqrt{b-x} + \sqrt{a-x})^{d-2}+(\sqrt{b-x} - \sqrt{a-x})^{d-2}}{\sqrt{a-x}}\\
-     &+\frac{(\sqrt{b-x} + \sqrt{a-x})^{d-2}-(\sqrt{b-x} - \sqrt{a-x})^{d-2}}{\sqrt{b-x}}\Big] \d x
+     &+\frac{(\sqrt{b-x} + \sqrt{a-x})^{d-2}-(\sqrt{b-x} - \sqrt{a-x})^{d-2}}{\sqrt{b-x}}\Big] \dd x
 \end{align*}
 Let $t=\sqrt{\frac{a-x}{b-x}}$, we then obtain
 \begin{align*}
      &\int_u^z (1-\frac{u^2}{x^2})^{\frac{d-3}{2}}
-     |f(x,y,z)|\d x= \frac{(b-a)^{\frac{d-1}{2}}}{y^{d-2}z^{d-2}}\\
+     |f(x,y,z)|\dd x= \frac{(b-a)^{\frac{d-1}{2}}}{y^{d-2}z^{d-2}}\\
      &\cdot\int_0^{\sqrt{a/b}}
-     \left[\frac{1}{(1-t)^{d-1}}+\frac{1}{(1+t)^{d-1}}\right](a-bt^2)^{\frac{d-3}{2}}\d t
+     \left[\frac{1}{(1-t)^{d-1}}+\frac{1}{(1+t)^{d-1}}\right](a-bt^2)^{\frac{d-3}{2}}\dd t
 \end{align*}
 Let $c=\sqrt{a/b}$ and $n=d-2\geq 0$ in the expression of $h(n,c)$ in \eqref{eq:f_n_c_expression},
 we obtain
 \begin{align}
      \int_u^z (1-\frac{u^2}{x^2})^{\frac{d-3}{2}}
-     |f(x,y,z)|\d x
+     |f(x,y,z)|\dd x
      =& \frac{1}{y^{d-2}z^{d-2}}h(d-2, \sqrt{a/b}) \notag\\
      &\cdot(1-c^2)^{\frac{n+1}{2}}b^{\frac{n}{2}}\label{eq:int_u_x_f_x}
 \end{align}
@@ -1168,7 +1169,7 @@ only depends on $d$,
 not on $d'$.
 Therefore, in $d'$-dimensional space,
 from \eqref{eq:K_x} we have $
-P(\dist(P_1, \dots, P_{d'-1})\geq x) = \int_{x}^{\infty} K^{d'-2}(x)\lambda_{d'}(x/y)|\d F(y)|
+P(\dist(P_1, \dots, P_{d'-1})\geq x) = \int_{x}^{\infty} K^{d'-2}(x)\lambda_{d'}(x/y)|\dd F(y)|
 $.
 Then the conditional probability $P(\dist(P_1,\dots, P_{d'-1})\geq x \Big\vert |OP_1|=y)
 =K^{d'-2}(x)\lambda_{d'}(x/y)$.
@@ -1181,7 +1182,7 @@ $P(\dist(P_1,\dots,P_{d-3},P')\geq x \Big\vert |OP'|=y)=
 K^{d-3}(x)\lambda_{d-1}(x/y)$,
 we have
 \begin{align*}
-    F_1(x) = \int_x^{+\infty} K^{d-3}(x) \lambda_{d-1}(\frac{x}{y})|\d F_0(y)|
+    F_1(x) = \int_x^{+\infty} K^{d-3}(x) \lambda_{d-1}(\frac{x}{y})|\dd F_0(y)|
 \end{align*}
 From Lemma \ref{lem:K_F_relationship} we obtain $F_1(x) = K^{d-1}(x)$.
 
@@ -1190,74 +1191,23 @@ whose distance to the origin is $y$. The subspace perpendicular to this hyperpla
 and this hyperplane shrinks to a point $P'$ in this 2-D subspace.
 Similar to (1.9) of \cite{carnal1970konvexe}, we have
 \begin{align}
-     H(x) =& \frac{2}{\pi}\int_x^{+\infty}|\d F_1(y)|\notag\\
-     &\cdot\left[ \int_x^y \arccos\frac{x}{z}|\d K(z)|
-     +\int_y^{+\infty}\arccos\frac{x}{y} |\d K(z)|\right]\notag\\
+     H(x) =& \frac{2}{\pi}\int_x^{+\infty}|\dd F_1(y)|\notag\\
+     &\cdot\left[ \int_x^y \arccos\frac{x}{z}|\dd K(z)|
+     +\int_y^{+\infty}\arccos\frac{x}{y} |\dd K(z)|\right]\notag\\
      =&\frac{2}{\pi}\int_x^{+\infty} \arccos\frac{x}{z}
-     F_1(z)|\d K(z)|\notag \\
-     &+\frac{2}{\pi}\int_{x}^{+\infty} K(y)F_1(y)\arccos\frac{x}{y}|\d F_1(y)| \label{eq:H_eq_n_arccos_geometric}
+     F_1(z)|\dd K(z)|\notag \\
+     &+\frac{2}{\pi}\int_{x}^{+\infty} K(y)F_1(y)\arccos\frac{x}{y}|\dd F_1(y)| \label{eq:H_eq_n_arccos_geometric}
  \end{align}
 Using $F_1(x)=K^{d-1}(x)$,
 we reduce \eqref{eq:H_eq_n_arccos_geometric} to
  $$
  H(x) = \frac{2}{\pi}\int_x^{+\infty}  \arccos\frac{x}{y}\cdot
- d\cdot  K^{d-1}(y) |\d K(y)|
+ d\cdot  K^{d-1}(y) |\dd K(y)|
  $$
  which is exactly \eqref{eq:H_expression_d_dim}.
  
 \end{proof}
 \subsection{Proof of Theorem \ref{thm:poly_tails}}
-\begin{proof}
-For polynomial tails defined in \eqref{eq:F_poly_tail},
-we first compute the asymptotic value of $K(x)$
-as follows:
-\begin{align*}
-     K(x) & = \int_x^{\infty} (1-\frac{x^2}{y^2})^{\frac{d-2}{2}} |\d F(y)| \\
-     &= (d-2)\int_x^{\infty} F(y)\frac{x^2}{y^3} (1-\frac{x^2}{y^2})^{\frac{d-4}{2}} \d y\\
-     (y=x/t) &= (d-2)x^{-k} \int_0^{1} L(x/t) t^{k+1} (1-t^2)^{(d-4)/2}\d t \\
-     & \sim F(x) \frac{d-2}{2} B\left(\frac{k+2}{2}, \frac{d}{2}-1\right) 
-\end{align*}
-The techniques used to derive $H(x)$ are similar to the derivation of $G(x)$
-in (2.3) of \cite{carnal1970konvexe}.
-To be more specific, applying Theorem \ref{thm:H}, we obtain
-\begin{align*}
-     H(x) =& \frac{2}{\pi}
-     \int_x^{\infty} \arccos\frac{x}{y}
-     |\d K^d(y)| \\
-     \sim& \frac{2}{\pi}\left(\frac{d-2}{2}\right)^d
-     B^d\left(\frac{k+2}{2}, \frac{d}{2}-1\right)\\
-     &\cdot\int_x^{\infty} \frac{x}{y \sqrt{y^2-x^2}} F^d(y) \d y \\
-     \sim& \frac{2}{\pi}\left(\frac{d-2}{2}\right)^d
-     B^d\left(\frac{k+2}{2}, \frac{d}{2}-1\right) \\
-     &\cdot\frac{1}{2}
-     B\left(\frac{1}{2}, \frac{dk+1}{2}\right)L^d(x) x^{-dk} \\
-     \sim& \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
-     \Gamma(\frac{dk+1}{2})}{
-         \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)} G(x)^d 
-\end{align*}
-That is
-\begin{equation}\label{eq:H_poly_tail_exp}
-     H(x) \sim \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
-     \Gamma(\frac{dk+1}{2})}{
-         \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)} G(x)^d 
-         \textrm{ as } x\to \infty
-\end{equation}
-
-To simplify the notation, we denote $g(d)=\frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
-\Gamma(\frac{dk+1}{2})}{
-    \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)}$.
-Let $G(x)=w$, then from \eqref{eq:E_F_N_d_sim}
-\begin{align}
-     \E[F_N] &\sim g(d)\binom{N}{d} \int_0^{+\infty} 
-      (1-G(x))^{N-d} |\d H(x)| \notag \\
-      &\sim g(d)\binom{N}{d}d\int_0^{1/2} \exp(-(N-d)w)w^{d-1}\d w
-      \notag \\
-      &\sim \frac{N!}{(N-d)! (N-d)^d}g(d) \label{eq:Ngd}
-\end{align}
-And \eqref{eq:efn_poly_second_deri} is obtained from \eqref{eq:Ngd}.
-\end{proof}
-
-The following part in this subsection discusses how to derive \eqref{eq:poly_E_F_N_d_infty}.
 We first give two lemmas, which are useful to handle the case when $d\to \infty$.
 \begin{lemma}\label{lem:Gamma_ratio}
      For fixed $v>0$, we have
@@ -1274,14 +1224,14 @@ We first give two lemmas, which are useful to handle the case when $d\to \infty$
      From the definition of beta function,
      we have
      \begin{align*}
-         B(n,v) &=\int_0^1 (1-x)^{n-1} x^{v-1} \d x \\
-         &\sim \int_0^{\epsilon} \exp(-nx) x^{v-1}\d x \textrm{ for given } \epsilon>0\\
-         & \sim n^{-v} \int_0^{n\epsilon} \exp(-x)x^{v-1}\d x\\
+         B(n,v) &=\int_0^1 (1-x)^{n-1} x^{v-1} \dd x \\
+         &\sim \int_0^{\epsilon} \exp(-nx) x^{v-1}\dd x \textrm{ for given } \epsilon>0\\
+         & \sim n^{-v} \int_0^{n\epsilon} \exp(-x)x^{v-1}\dd x\\
          &\sim \Gamma(v) n^{-v}
      \end{align*}
  \end{proof}
 We can use Stirling's formula to prove that
-\begin{lemma}
+\begin{lemma}\label{lem:NNdd}
 \begin{equation}\label{eq:N_N_d_d}
      \frac{N!}{(N-d)! (N-d)^d} \sim 1
 \end{equation}
@@ -1298,19 +1248,96 @@ when $N/d^2 \to \infty$.
 From the condition $N/d^2 \to \infty$,
 we obtain \eqref{eq:N_N_d_d}.
 \end{proof}
-The derivation of \eqref{eq:Ngd} is also valid if $N/d^2\to \infty$.
-Therefore, combining \eqref{eq:Gamma_ratio} with \eqref{eq:N_N_d_d}, we obtain \eqref{eq:poly_E_F_N_d_infty}
+\begin{proof}[Proof of Theorem \ref{thm:poly_tails}]
+For polynomial tails defined in \eqref{eq:F_poly_tail},
+we first compute the asymptotic value of $K(x)$
+as follows:
+\begin{align*}
+     K(x) & = \int_x^{\infty} (1-\frac{x^2}{y^2})^{\frac{d-2}{2}} |\dd F(y)| \\
+     &= (d-2)\int_x^{\infty} F(y)\frac{x^2}{y^3} (1-\frac{x^2}{y^2})^{\frac{d-4}{2}} \dd y\\
+     (y=x/t) &= (d-2)x^{-k} \int_0^{1} L(x/t) t^{k+1} (1-t^2)^{(d-4)/2}\dd t \\
+     & \sim F(x) \frac{d-2}{2} B\left(\frac{k+2}{2}, \frac{d}{2}-1\right) 
+\end{align*}
+The techniques used to derive $H(x)$ are similar to the derivation of $G(x)$
+in (2.3) of \cite{carnal1970konvexe}.
+To be more specific, applying Theorem \ref{thm:H}, we obtain
+\begin{align*}
+     H(x) =& \frac{2}{\pi}
+     \int_x^{\infty} \arccos\frac{x}{y}
+     |\dd K^d(y)| \\
+     \sim& \frac{2}{\pi}\left(\frac{d-2}{2}\right)^d
+     B^d\left(\frac{k+2}{2}, \frac{d}{2}-1\right)\\
+     &\cdot\int_x^{\infty} \frac{x}{y \sqrt{y^2-x^2}} F^d(y) \dd y \\
+     \sim& \frac{2}{\pi}\left(\frac{d-2}{2}\right)^d
+     B^d\left(\frac{k+2}{2}, \frac{d}{2}-1\right) \\
+     &\cdot\frac{1}{2}
+     B\left(\frac{1}{2}, \frac{dk+1}{2}\right)L^d(x) x^{-dk} \\
+     \sim& \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
+     \Gamma(\frac{dk+1}{2})}{
+         \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)} G(x)^d 
+\end{align*}
+That is
+\begin{equation}\label{eq:H_poly_tail_exp}
+     H(x) \sim \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
+     \Gamma(\frac{dk+1}{2})}{
+         \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)} G(x)^d 
+         \textrm{ as } x\to \infty
+\end{equation}
+
+We denote $g(d)=\frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
+\Gamma(\frac{dk+1}{2})}{
+    \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)}$
+and $G(x)=w$ to simplify the notation, then from \eqref{eq:E_F_N_d_sim}
+\begin{align}
+     \E[F_N] &\sim g(d)\binom{N}{d} \int_0^{+\infty} 
+      (1-G(x))^{N-d} |\dd H(x)| \notag \\
+      &\sim g(d)\binom{N}{d}d\int_0^{1/2} \exp(-(N-d)w)w^{d-1}\dd w
+      \notag \\
+      &\sim \frac{N!}{(N-d)! (N-d)^d}g(d) \label{eq:Ngd}
+\end{align}
+And \eqref{eq:efn_poly_second_deri} is obtained from \eqref{eq:Ngd}.
+
+We can verify that the derivation of \eqref{eq:Ngd} is also valid if $N/d^2\to \infty$.
+Therefore, combining the result of Lemma \ref{lem:Gamma_ratio}
+with that of Lemma \ref{lem:NNdd},
+we obtain \eqref{eq:poly_E_F_N_d_infty}
 from \eqref{eq:Ngd}.
+\end{proof}
 
 \subsection{Proof of Theorem \ref{thm:exponential_tails}}
-
+To obtain $\E[F_N]$ when $d\to \infty$,
+we need the following lemma.
+\begin{lemma}\label{lem:ratio_epsilon}
+     Suppose $\gamma(x)$ is a slowly varying function
+     and $N(d)\gg d^2$,
+     then $\gamma(N-d)^{d} \sim \gamma(N)^d$.
+\end{lemma}
 \begin{proof}
+     Since $\gamma(x)$ is slowly varying, there exists
+     a bounded function $u(x)$ such that
+     $\gamma(y)/\gamma(x)=\exp(\int_{x}^y \frac{u(t)}{t}\dd t)$.
+     Besides, $\lim_{x\to \infty} u(x) = 0$.
+     By the mean value theorem, there exists $\xi \in [x,y]$ such that
+     $\gamma(y)/\gamma(x)=\exp(u(\xi)\int_{x}^y \frac{1}{t}\dd t)
+     =\exp(u(\xi)\log(y/x))$. Let $x=N-d, y=N$, and we obtain
+     \begin{equation*}
+          \frac{\gamma(N)^d}{\gamma(N-d)^d}
+          = \exp \left(u(\xi) \log\left(\frac{N}{N-d} \right)d \right)
+     \end{equation*}
+     As $N-d\to \infty$, $u(\xi)\to 0$. In addition,
+     $\log(\frac{N}{N-d}) \sim \frac{d}{N-d} \sim \frac{d}{N}$.
+     Therefore,
+     $\frac{\gamma(N)^d}{\gamma(N-d)^d}\sim \exp(\frac{u(\xi)d^2}{N})
+     $. Since $N/d^2 \to \infty, \frac{u(\xi)d^2}{N} \to 0$ and
+     $\frac{\gamma(N)^d}{\gamma(N-d)^d}\to 1$.
+\end{proof}
+\begin{proof}[Proof of Theorem \ref{thm:exponential_tails}]
 For exponential tails, following Carnal \cite{carnal1970konvexe},
 we make
 the substitution $x=L(s), y=L(\sigma)$, then $\sigma=1/F(y)$.
 Substituting them into \eqref{eq:K_x}, we have
 \begin{align*}
-    K(x)  & = \int_s^{\infty} \left(1-\frac{L(s)^2}{L(\sigma)^2} \right)^{\frac{d-2}{2}} \frac{\d \sigma}{\sigma^2} \\
+    K(x)  & = \int_s^{\infty} \left(1-\frac{L(s)^2}{L(\sigma)^2} \right)^{\frac{d-2}{2}} \frac{\dd \sigma}{\sigma^2} \\
 \end{align*}
 As $x\to \infty$, $s\to \infty$,
 then $L(s)/L(\sigma) \to 1$ for $\sigma <As$,
@@ -1318,81 +1345,59 @@ where $A$ is an arbitrary constant.
 \begin{align*}
      K(x)& \sim 2^{\frac{d-2}{2}} 
      \int_s^{As} \left(1-\frac{L(s)}{L(\sigma)}\right)^{\frac{d-2}{2}}
-     \frac{\d \sigma}{\sigma^2} \\
+     \frac{\dd \sigma}{\sigma^2} \\
      \textrm{ (3.6) of \cite{dwyer1991convex} }& 
-     \sim  2^{\frac{d-2}{2}}  \int_s^{As} (\epsilon(s) \log\frac{\sigma}{s})^{\frac{d-2}{2}}\frac{\d \sigma}{\sigma^2}\\
-     &\sim 2^{\frac{d-2}{2}} \epsilon(s)^{\frac{d}{2}-1} \frac{1}{s} \int_1^{A} (\log x )^{\frac{d-2}{2}}\frac{\d x}{x^2}\\
+     \sim  2^{\frac{d-2}{2}}  \int_s^{As} (\gamma(s) \log\frac{\sigma}{s})^{\frac{d-2}{2}}\frac{\dd \sigma}{\sigma^2}\\
+     &\sim 2^{\frac{d-2}{2}} \gamma(s)^{\frac{d}{2}-1} \frac{1}{s} \int_1^{A} (\log x )^{\frac{d-2}{2}}\frac{\dd x}{x^2}\\
      & \sim 2^{\frac{d}{2}-1} \Gamma\left(\frac{d}{2}\right)F(x) v(x)^{\frac{d}{2}-1}    
 \end{align*}
 Similar techniques can be applied to compute the asymptotic value of $H(x)$.
 \begin{align*}
-    H(x) = \frac{2}{\pi} \int_x^{+\infty}\frac{x K^d(y)}{y^2 \sqrt{1-\frac{x^2}{y^2}}}\d y
+    H(x) = \frac{2}{\pi} \int_x^{+\infty}\frac{x K^d(y)}{y^2 \sqrt{1-\frac{x^2}{y^2}}}\dd y
 \end{align*}
-Since $\d y=L(\sigma)\frac{\epsilon(\sigma)}{\sigma}\d \sigma $, we further have
+Since $\dd y=L(\sigma)\frac{\gamma(\sigma)}{\sigma}\dd \sigma $, we further have
 \begin{align*}
    H(x) =&\frac{2}{\pi}\left[2^{\frac{d}{2}-1} \Gamma\left(\frac{d}{2}\right)\right]^d
-    \int_s^{+\infty}\frac{L(s) \epsilon^{1+\frac{d(d-2)}{2}}(\sigma)}{L(\sigma) \sqrt{1-\frac{L^2(s)}{L^2(\sigma)}}\sigma^{d+1}} \d \sigma \\   
+    \int_s^{+\infty}\frac{L(s) \epsilon^{1+\frac{d(d-2)}{2}}(\sigma)}{L(\sigma) \sqrt{1-\frac{L^2(s)}{L^2(\sigma)}}\sigma^{d+1}} \dd \sigma \\   
     \sim&  \frac{\sqrt{2}}{\pi}
     \left[2^{\frac{d}{2}-1} \Gamma\left(\frac{d}{2}\right)\right]^d
     \epsilon^{\frac{d(d-2)+1}{2}}(s) \\
     &\cdot\int_s^{+\infty} \left(\log\frac{\sigma}{s}
     \right)^{-\frac{1}{2}}
-    \sigma^{-(d+1)}\d \sigma \\
+    \sigma^{-(d+1)}\dd \sigma \\
     =& \frac{\sqrt{2}}{\sqrt{\pi d}}\left[2^{\frac{d}{2}-1} \Gamma\left(\frac{d}{2}\right)\right]^d
     \epsilon^{\frac{d(d-2)+1}{2}}(s)s^{-d}\\
     =& \frac{2^{\frac{d(d-2)+1}{2}}}{\sqrt{\pi d}}\Gamma^d\left(\frac{d}{2}\right)
     v^{\frac{d(d-2)+1}{2}}(x)F^d(x)
 \end{align*}
-From \eqref{eq:G_x_exp}, we obtain \eqref{eq:H_x_exp}.
-
-Dwyer \cite{dwyer1991convex} has shown that for exponential tails, $v(x) \sim \epsilon(1/G(x))$ as $x\to \infty$.
+From \eqref{eq:G_x_exp}, we obtain that:
+\begin{equation}\label{eq:H_x_exp}
+     H(x) \sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}}v^{\frac{-d+1}{2}}(x)G^d(x)
+     \textrm{ as } x\to \infty
+\end{equation}
+Dwyer \cite{dwyer1991convex} has shown that for exponential tails, $v(x) \sim \gamma(1/G(x))$ as $x\to \infty$.
 From \eqref{eq:E_F_N_d_sim},
 we use the Abel-Tauber theorem
 \cite{omey1989abelian} and obtain
 \begin{align*}
-    \E[F_N] & \sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}}\int_0^{1/2} \exp(-(N-d)w) \d [w^d \epsilon(1/w)^{\frac{-d+1}{2}}] \\
-    &\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} \binom{N}{d}\frac{\Gamma(d+1)}{(N-d)^d} \epsilon(N-d)^{\frac{-d+1}{2}}
+    \E[F_N] & \sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}}\int_0^{1/2} \exp(-(N-d)w) \dd [w^d \gamma(1/w)^{\frac{-d+1}{2}}] \\
+    &\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} \binom{N}{d}\frac{\Gamma(d+1)}{(N-d)^d} \gamma(N-d)^{\frac{-d+1}{2}}
 \end{align*}
 \end{proof}
 
-To obtain $\E[F_N]$ when $d\to \infty$,
-we need the following lemma.
-\begin{lemma}\label{lem:ratio_epsilon}
-     Suppose $\epsilon(x)$ is a slowly varying function
-     and $N(d)\gg d^2$,
-     then $\epsilon(N-d)^{d} \sim \epsilon(N)^d$.
-\end{lemma}
-\begin{proof}
-     Since $\epsilon(x)$ is slowly varying, there exists
-     a bounded function $u(x)$ such that
-     $\epsilon(y)/\epsilon(x)=\exp(\int_{x}^y \frac{u(t)}{t}\d t)$.
-     Besides, $\lim_{x\to \infty} u(x) = 0$.
-     By the mean value theorem, there exists $\xi \in [x,y]$ such that
-     $\epsilon(y)/\epsilon(x)=\exp(u(\xi)\int_{x}^y \frac{1}{t}\d t)
-     =\exp(u(\xi)\log(y/x))$. Let $x=N-d, y=N$, and we obtain
-     \begin{equation*}
-          \frac{\epsilon(N)^d}{\epsilon(N-d)^d}
-          = \exp \left(u(\xi) \log\left(\frac{N}{N-d} \right)d \right)
-     \end{equation*}
-     As $N-d\to \infty$, $u(\xi)\to 0$. In addition,
-     $\log(\frac{N}{N-d}) \sim \frac{d}{N-d} \sim \frac{d}{N}$.
-     Therefore,
-     $\frac{\epsilon(N)^d}{\epsilon(N-d)^d}\sim \exp(\frac{u(\xi)d^2}{N})
-     $. Since $N/d^2 \to \infty, \frac{u(\xi)d^2}{N} \to 0$ and
-     $\frac{\epsilon(N)^d}{\epsilon(N-d)^d}\to 1$.
-\end{proof}
+
 By Lemma \ref{lem:ratio_epsilon}, we can show that
-$\epsilon(N-d)^{\frac{-d+1}{2}}\sim \epsilon(N)^{\frac{-d+1}{2}}$.
-When $d\to\infty$ and $N/d^2\to \infty$, we further obtain \eqref{eq:d_infty_exp_E_F_N}.
+$\gamma(N-d)^{\frac{-d+1}{2}}\sim \gamma(N)^{\frac{-d+1}{2}}$.
+When $d\to\infty$ and $N/d^2\to \infty$, we further obtain \eqref{eq:exp_e_f_n}.
  
 \subsection{Proof of Theorem \ref{thm:truncated_tails}}
 \begin{proof}
 First we compute $K(x)$ as follows
 \begin{align*}
-    K(1-x)  & = \int_{1-x}^1 \left(1-\frac{(1-x)^2}{y^2}\right)^{\frac{d-2}{2}} |\d F(y)| \\
-    & \sim 2^{\frac{d-2}{2}} \int_{1-x}^1 (y-1+x)^{\frac{d-2}{2}} |\d F(y)| \\
-    & \sim 2^{\frac{d-2}{2}} \int_0^x (x-y)^{\frac{d-2}{2}} |\d F(1-y)| \\
-    & \sim 2^{\frac{d-2}{2}} \frac{d-2}{2} \int_0^x y^k L(1/y) (x-y)^{\frac{d-4}{2}} \d y\\
+    K(1-x)  & = \int_{1-x}^1 \left(1-\frac{(1-x)^2}{y^2}\right)^{\frac{d-2}{2}} |\dd F(y)| \\
+    & \sim 2^{\frac{d-2}{2}} \int_{1-x}^1 (y-1+x)^{\frac{d-2}{2}} |\dd F(y)| \\
+    & \sim 2^{\frac{d-2}{2}} \int_0^x (x-y)^{\frac{d-2}{2}} |\dd F(1-y)| \\
+    & \sim 2^{\frac{d-2}{2}} \frac{d-2}{2} \int_0^x y^k L(1/y) (x-y)^{\frac{d-4}{2}} \dd y\\
     & \sim (d-2)2^{\frac{d}{2}-2} B(k+1,\frac{d}{2}-1)x^{k+\frac{d}{2}-1}L(1/x)\\
     & = k 2^{\frac{d}{2}-1} B(k, \frac{d}{2}) x^{k+\frac{d}{2}-1} L(1/x) 
 \end{align*}
@@ -1401,19 +1406,24 @@ we have
 \begin{align*}
      H(1-x)  =& \frac{2}{\pi} \int_{1-x}^{1}
      \arccos\frac{1-x}{y}
-     |\d K^d(y)| \\
-     \sim& \frac{2}{\pi}\int_0^x \sqrt{2}\sqrt{x-y} |\d K^d(1-y)| \\
+     |\dd K^d(y)| \\
+     \sim& \frac{2}{\pi}\int_0^x \sqrt{2}\sqrt{x-y} |\dd K^d(1-y)| \\
      \sim& \frac{\sqrt{2}}{\pi} k^d
      2^{d(\frac{d}{2}-1)} B^d(k, \frac{d}{2})\\
-     &\cdot \int_0^x \frac{1}{\sqrt{x-y}} y^{d(k+\frac{d}{2}-1)} L^d(1/y) \d y\\
+     &\cdot \int_0^x \frac{1}{\sqrt{x-y}} y^{d(k+\frac{d}{2}-1)} L^d(1/y) \dd y\\
      \sim &\frac{k^d}{\pi}
      2^{\frac{1}{2} + d(\frac{d}{2}-1)} B^d(k, \frac{d}{2})
      B\left( \frac{1}{2},
      d(k+\frac{d}{2} -1)+1 \right) \\
      &\cdot L^d(1/x) x^{d(k+\frac{d}{2}-1)+\frac{1}{2}}
 \end{align*}
-which is \eqref{eq:truncated_H_1_x}.
-
+which is
+\begin{align}
+     H(1-x)  \sim b
+     L^d(1/x) x^{d(k+\frac{d}{2}-1)+\frac{1}{2}} 
+     \textrm{ as } x \to 0^+ \label{eq:truncated_H_1_x}
+\end{align}
+where $b$ is defined in \eqref{eq:b}.
 From \eqref{eq:truncated_G_1_x} and \eqref{eq:truncated_H_1_x}, it follows that
 \begin{equation}
     H(1-x) \sim ba^{-d} G(1-x)^d x^{\frac{1-d}{2}}
@@ -1427,10 +1437,10 @@ Finally,
 we apply the Abel-Tauber theorem
 \cite{omey1989abelian}, and from \eqref{eq:E_F_N_d_sim} we obtain
 \begin{align}
-    \E[F_N] =& \binom{N}{d}\int_0^1 (1 - G(1-x))^{N-d} |\d H(1-x)| 
+    \E[F_N] =& \binom{N}{d}\int_0^1 (1 - G(1-x))^{N-d} |\dd H(1-x)| 
     \notag \\
      \sim &\binom{N}{d} \frac{b}{a^d} \int_0^{1/2} \exp(-(N-d)w)\\
-     & \cdot \d [w^d (\frac{w}{a} L(w^{-1}))^{\frac{1-d}{2k+d-1}} ]
+     & \cdot \dd [w^d (\frac{w}{a} L(w^{-1}))^{\frac{1-d}{2k+d-1}} ]
     \notag \\
     \sim &\frac{\binom{N}{d}}{(N-d)^d} ba^{-d+\frac{d-1}{2k+d-1}}
     \Gamma 
@@ -1441,7 +1451,7 @@ we apply the Abel-Tauber theorem
     \label{eq:intermediate_efn_truncated}
 \end{align}
 When $N\to \infty$ and $d$ is a constant, we obtain \eqref{eq:efn_truncated_formula}.
-\end{proof}
+
 
 The asymptotic value of $\E[F_N]$ when $d\to \infty$
 is derived as follows:
@@ -1471,7 +1481,7 @@ L(N)
 ^{\frac{d-1}{2k+d-1}}$.
 Then by a slight simplification,
 \eqref{eq:truncated_d_inf} is obtained.
- 
+\end{proof}
 %If you include EPS (encapsulated postscript) figures in your paper,
 %then please use the following commands:
 %\begin{figure}

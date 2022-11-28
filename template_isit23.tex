@@ -153,11 +153,11 @@
 %%
 \begin{abstract}
   This paper estimates the sample complexity for data interpolation in high dimensional space.
-  To be specific, we model the learning task as interpolation of convex hull consisting of i.i.d. sampled data,
-  and the sample complexity is the number of training data which guarantees that
-  the probability measure of the convex hull
-  tends to one. It is shown that the sample complexity has exponential relationship with the feature dimension for various distribution families
-  considered in this paper, which sheds insight on the difficulty of  high dimensional learning in a general sense. 
+  To be specific, we model the learning task as interpolation of the convex hull consisting of i.i.d. sampled data,
+  and the sample complexity is the number of training data which ensures that
+  test samples fall into the convex hull
+  with large probability. It is shown that the sample complexity has exponential relationship with the feature dimension for various distribution families
+  considered in this paper. Our analytical form of the sample complexity also shows that more samples are needed if the distribution decays faster.
 \end{abstract}
 
 
@@ -174,18 +174,19 @@ Under certain conditions they find that the new sample falls outside with high p
 In their terminology, the interpolation occurs whenever a new sample belongs to the convex hull of previous samples.
 By citing previous theoretical studies on this ideal geometric statistical model and extensive simulation,
 they justify their assertion on why interpolation almost surely never occurs.
-Further experiments on other real dataset \cite{yousefzadeh2022extent} also show that
-test dataset mostly fall out of the
-convex hull of training dataset and augment the statement of Balestriero.
+Further experiments on other real datasets \cite{yousefzadeh2022extent} also show that
+the test dataset mostly falls out of the
+convex hull of training dataset, thus augmenting the statement of Balestriero.
 
 Following the geometric statistical model described above, we can derive the sample size which makes
 interpolation almost surely occurs if the distribution is spherically symmetric.
-This sample size, or sample complexity, can be used to evaluate the task difficulty for a given distribution
-before the computational extensive experiments.
+This sample size, or sample complexity, can be used to estimate the required sample size
+to achieve high precisions of the interpolation.
 Technically speaking, the sample complexity is obtained when we derive an upper bound for the interpolation error,
 which is the probability that the new sample falls out of the convex hull.
-It seems that the authors in \cite{balestriero2021learning} confuse the interpolation error
-with the probability of all samples in the convex position.
+It should be emphasized that the model considered in this paper is different from that of the convex position,
+which requires all samples are the vertices of the convex hull.
+It seems that the authors in \cite{balestriero2021learning} confuse the two models.
 We show that when the training data are sampled from polynomial,
 exponential and truncated distribution families,
 we need exponentially large number of samples for vanishing interpolation error.
@@ -193,10 +194,10 @@ Due to the exponential dependency of the sample size on the dimension, we recomm
 before applying machine learning models. Besides the relationship between the sample size $N$ and the dimension $d$,
 we also reveal the dependency of $N$ on the decaying rate of the distribution.
 
-The study of interpolation error $p_{N,d}$ is closely related with the quantity $\E[F_N]$,
-the expectation of the number of facets of the convex hull. Loosely speaking,
-the inequality relationship $p_{N,d} \leq \frac{\E[F_N]}{Nd}$ holds. Therefore, the asymptotic
-value of $\E[F_N]$ gives an upper bound of $p_{N,d}$.
+The study of the interpolation error $p_{N,d}$ is closely related with the quantity $\E[F_N]$,
+the expectation of the number of facets in the convex hull. Loosely speaking,
+the inequality relationship $p_{N,d} \leq \frac{\E[F_N]}{Nd}$ holds. Therefore, the expression
+involving $\E[F_N]$ gives an upper bound of $p_{N,d}$.
 The study of $\E[F_N]$
 is an old topic in stochastic geometry. As far as we know, the recent advance dates back to Dwyer's work on the estimation of $\E[F_N]$,
 in which the order of $\E[F_N]$ about $N$ is obtained \cite{dwyer1991convex}. In our paper, we will extend Dwyer's work
@@ -206,8 +207,8 @@ The organization of this paper is as follows: In Section \ref{sec:int_f}, we dev
 % of $H(x)=P(d_{12}\geq x)$ 
 from two dimensional space to higher dimensions.
 In Section \ref{sec:three_distriutions}, for three different distribution families we then derive the explicit asymptotic
-expressions of $\E[F_N]$ and the sufficient condition for $p_{N,d}\to 0$, as $N,d \to \infty$. The sample complexity follows from the sufficient condition
-in each case.
+expressions of $\E[F_N]$ and the sample complexity for $p_{N,d}<\epsilon$ as $d\to\infty$,
+where $\epsilon$ is a given precision.
 The main contribution of this paper,
 which is summarized in Section \ref{sec:conclusion},
 is to give the sample complexity for the vanishing interpolation error.
@@ -722,8 +723,8 @@ We then obtain that $N$ grows faster than $\exp(cd^2)$ for any constant $c$.
      \end{align*}
      The last inequality holds when $d$ is sufficiently large.
 \end{proof}
-From the discussion of three kinds of tails, we see that the sample complexity of $N$ is the smallest for algebraic tails and the largest
-for truncated tails. This is directly related with its convergent rate of $F(x)$.
+From the above discussion of three kinds of tails, we see that the sample complexity of $N$ is the smallest for algebraic tails and the largest
+for truncated tails. This is directly related with the decaying rate of $F(x)$.
 For truncated tails, $F(x)$ becomes zero beyond the unit sphere, therefore it has the largest sample complexity.
 For other two tails, the faster $F(x)$ decays, the larger $N$ becomes.
 

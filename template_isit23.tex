@@ -153,26 +153,26 @@
 %%
 \begin{abstract}
   This paper estimates the sample complexity for data interpolation in high dimensional space.
-  To be specific, we model the learning task as interpolation of the convex hull consisting of i.i.d. sampled data,
+  To be specific, we model the learning task as interpolation of the convex hull consisting of i.i.d. sampled training data,
   and the sample complexity is the number of training data which ensures that
   test samples fall into the convex hull
-  with large probability. It is shown that the sample complexity has exponential relationship with the feature dimension for various distribution families
-  considered in this paper. Our analytical form of the sample complexity also shows that more samples are needed if the distribution decays faster.
+  with large probability. It is shown that the sample complexity has an exponential relationship with the feature dimension for various distribution families
+  considered in this paper. Our analytical form of the sample complexity also shows that more samples are needed if the distribution tail decays faster.
 \end{abstract}
 
 
 \section{Introduction}
 \label{sec:intro}
 In machine learning, intuitively we model a learning task as interpolating the
-training data. Under such interpretation, we are prone to think that state-of-the-art
+training data. Under such an interpretation, we are prone to think that state-of-the-art
 algorithms work well in high dimensional space because the models can interpolate training data well. 
 However, Balestriero et al. \cite{balestriero2021learning}
 argues that this is a misconception and the interpolation almost surely never occurs in high-dimensional spaces.
-Their logic is as follows: assuming the training data follows a certain distribution. Take $N$ samples from such a distribution
+Their logic is as follows: Suppose that the training data follow a certain distribution. Then take $N$ samples from such a distribution
 and consider whether the new or ($N+1$)-th sample falls in the convex hull of the first $N$ samples. 
 Under certain conditions they find that the new sample falls outside with high probability.
 In their terminology, the interpolation occurs whenever a new sample belongs to the convex hull of previous samples.
-By citing previous theoretical studies on this ideal geometric statistical model and extensive simulation,
+By citing previous theoretical studies on this geometric statistical model and extensive simulation experiments,
 they justify their assertion on why interpolation almost surely never occurs.
 Further experiments on other real datasets \cite{yousefzadeh2022extent} also show that
 the test dataset mostly falls out of the

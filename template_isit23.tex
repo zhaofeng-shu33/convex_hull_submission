@@ -186,16 +186,19 @@ Technically speaking, the sample complexity is obtained when we derive an upper 
 which is the probability that the new sample falls out of the convex hull.
 It should be emphasized that the model considered in this paper is different from that of the convex position,
 which requires all samples are the vertices of the convex hull.
-It seems that the authors in \cite{balestriero2021learning} confuse the two models.
+It seems that the authors in \cite{balestriero2021learning} confuse the two models, which require
+different methods for theoretical analysis.x
 We show that when the training data are sampled from polynomial,
 exponential and truncated distribution families,
 we need exponentially large number of samples for vanishing interpolation error.
 Due to the exponential dependency of the sample size on the dimension, we recommend dimension reduction or feature extraction
-before applying machine learning models. Besides the relationship between the sample size $N$ and the dimension $d$,
-we also reveal the dependency of $N$ on the decaying rate of the distribution.
+before constructing interpolation representation of training samples.
+Besides the relationship between the sample size $N$ and the dimension $d$,
+we also reveal the dependency of $N$ on the decaying rate of the distribution tail.
 
 The study of the interpolation error $p_{N,d}$ is closely related with the quantity $\E[F_N]$,
-the expectation of the number of facets in the convex hull. Loosely speaking,
+the expectation of the number of facets in the convex hull. A facet of a $d$-dimensional object is one of its $(d-1)$-dimensional faces.
+Loosely speaking,
 the inequality relationship $p_{N,d} \leq \frac{\E[F_N]}{Nd}$ holds. Therefore, the expression
 involving $\E[F_N]$ gives an upper bound of $p_{N,d}$.
 The study of $\E[F_N]$
@@ -267,23 +270,23 @@ For studies focusing on an specific distribution family,
 Davis et al. \cite{davis1987convex} found the relationship
 between the distributions with algebraic tails $F(x) \sim x^{-k}$ and Poisson random process.
 They showed that for $k>0, d=2$,
-$\mathrm{H}_N$ converges to the convex hull of a Poisson random process,
+the convex hull of $N$ samples $\mathrm{H}_N$ converges to the convex hull of a Poisson random process,
 and
 the limit of $\E[F_N]$ can be derived from this random process.
 The special case $k=0, d=2$ is treated in a later paper, in which the
 limit distribution of $F_N$ is computed \cite{aldous1991number}.
 
 Studies related to distributions with exponential tails mainly focus on Gaussian distribution.
-Kabluchko et al. \cite{kabluchko2020absorption} obtained explicit expressions for $p_{N,d}$;
+Kabluchko et al. \cite{kabluchko2020absorption} obtained explicit integration expressions for $p_{N,d}$;
 Affentranger \cite{affentranger1991convex} derived $\E[F_N]$;
 Hueter et al. \cite{hueter1999limit} studied the concentration property of $F_N$ and obtained
-an upper bound for $\E[F_N]$ sharper than the bound in \cite{dwyer1991convex}.
+an upper bound for $\E[F_N]$ sharper than the bound derived in \cite{dwyer1991convex}.
 
 For truncated tails,
 Affentranger \cite{affentranger1991convex} studied one sub-category called beta-typed distribution and obtained
 the asymptotic value of $\E[F_N]$.
 
-Beside the number of facets $\E[F_N]$,
+Besides the number of facets $\E[F_N]$,
 the asymptotic value of other quantities related with $\mathrm{H}_N$, such as the volume, and the surface area,
 were systematically investigated in a general framework involving the property of facets
 \cite{schneider2008stochastic, barany2008random}.
@@ -298,9 +301,7 @@ and the interpolation error is defined as $p_{N,d}=P(X_{N+1} \not\in \mathrm{H}_
 
 To study $p_{N,d} \to 0$, we introduce two additional quantities of $H_N$: the number of vertices
 $V_N$ and the number of facets $F_N$.
-A facet of a $d$-dimensional object is one of its $(d-1)$-dimensional faces.
-Besides, 
-In this paper, we study the mathematical expectation
+Our main focus of study in this paper is the mathematical expectation
 of $F_N$, denoted as $\E[F_N]$, and we consider its asymptotic value as $N\to \infty$.
 
 The starting point is the integration formula for $\E[F_N]$.

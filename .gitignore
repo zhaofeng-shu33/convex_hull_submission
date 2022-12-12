@@ -1,3 +1,4 @@
 build
 *Guide.pdf
 .vscode
+.DS_Store

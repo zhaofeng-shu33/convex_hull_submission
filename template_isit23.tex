@@ -316,7 +316,7 @@ which is given as follows:
 \end{align}
 The integration formula of $\E[F_N]$ involves the function $G(x)$ and $H(x)$,
 whose definitions are given at the end of Section \ref{sec:intro}.
-Both functions are expressed with $F(x)$ in the following way:
+Both functions can be expressed with $F(x)$ in the following way:
 \begin{align}
    G(x) &=\frac{1}{\pi} \int_x^{\infty}\arccos\frac{x}{y} |\mathrm{d} F(y)| \\
      H(x) &= \frac{2}{\pi} \int_x^{\infty} \arccos \frac{x}{y} |\mathrm{d}(F^2(y))|
@@ -329,7 +329,7 @@ For $d\geq 2$ and $N\geq d+1$, the formula is given as
     \label{eq:E_F_N_d}
 \end{align}
 Formula \eqref{eq:E_F_N_d} first appeared in the proof section of \cite{raynaud1970enveloppe}
-and can further be generalized to compute other combinatorial properties of $\mathrm{H}_N$ (like surface area and volume)
+and can further be generalized to compute other combinatorial properties of $\mathrm{H}_N$ (like the surface area and the volume)
 \cite{barany2008random}.
 Dwyer obtained the integration formula for $G(x)$ in $d\geq 2$ as:
 \begin{align}\label{eq:G_d_kappa}
@@ -341,7 +341,7 @@ Dwyer obtained the integration formula for $G(x)$ in $d\geq 2$ as:
 where $\kappa(r)$ is the fraction of the surface area of a unit $d$-sphere
 cut off by a plane at distance $r$ from the origin.
 
-We cannot compute $\E[F_N]$ from $F(x)$ yet, since no formula for $H(x)$ with respect to $F(x)$ is given in previous studies.
+We cannot compute $\E[F_N]$ from $F(x)$ yet, since no general formula for $H(x)$ with respect to $F(x)$ is given in previous studies.
 The following theorem solves this problem by giving the integration formula for $H(x)$ in $d\geq 2$:
 \begin{theorem}\label{thm:H}
 For $d\geq 2$, the integration formula for $H(x)$ is given as
@@ -364,28 +364,30 @@ where the auxiliary function $K(x)$ is defined in the following way:
 %It is easy to observe that \eqref{eq:H_expression_d_dim} reduces to 
 %\eqref{eq:H_expression_2_dim} when $d=2$.
 For standard Gaussian distribution in $\R^d$,
-$X_1, X_2$ are independent
+$X^{(1)}, X^{(2)}$ are independent
 Gaussian random variables, and we can verify that \eqref{eq:K_x} holds with $K(x) = e^{-x^2/2}$.
 In fact, $1-K(x)$ is the CDF of Rayleigh distribution.
 %For general spherical distributions, the function $K(x)$ itself is irreverent with the dimension $d$.
 The proof of Theorem \ref{thm:H}
 is provided in Appendix \ref{app:th}.
 \section{Three distribution families}\label{sec:three_distriutions}
-Notice that in \eqref{eq:E_F_N_d}, $G(x)<\frac{1}{2}$ for $x>0$. Therefore the
-term $G(x)^{N-d}$ decays at an exponential rate as $N-d\to \infty$.
+Since the distribution we considered is symmetric,
+for $x>0$ we have $G(x)<\frac{1}{2}$. Therefore the
+term $G(x)^{N-d}$ in \eqref{eq:E_F_N_d} decays at an exponential rate as $N-d\to \infty$.
 As a result, we obtain
 \begin{align}
      \E[F_N] \sim \binom{N}{d} \int_0^{+\infty} 
       (1-G(x))^{N-d} |\dd H(x)| \textrm{ as } N-d\to \infty
      \label{eq:E_F_N_d_sim}
 \end{align}
-Let $\E[V_N]$ represent the expected number of
+Similar to the definition of $\E[F_N]$,
+we let $\E[V_N]$ represent the expected number of
 vertices of $\mathrm{H}_N$.
 By far it is not clear whether there exist explicit relations
 between $\E[F_N]$ and $\E[V_N]$
 for general spherical symmetric distributions.
-However, we can give some estimations by inequality.
-Using Corollary 19.6 of \cite{brondsted2012introduction}, we have the following
+However, we can give some inequalities involving these two
+quantities. Using Corollary 19.6 of \cite{brondsted2012introduction}, we have the following
 inequality:
 \begin{equation}\label{eq:F_V_upper}
      F_N \geq (d-1) V_N - (d+1)(d-2)

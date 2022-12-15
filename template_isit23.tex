@@ -392,7 +392,7 @@ inequality:
 \begin{equation}\label{eq:F_V_upper}
      F_N \geq (d-1) V_N - (d+1)(d-2)
  \end{equation}
-Combined with $p_{N,d} = \frac{\E[V_{N+1}]}{N+1}$, which comes from
+Combining \eqref{eq:F_V_upper} with $p_{N,d} = \frac{\E[V_{N+1}]}{N+1}$, which comes from
 \cite{efron1965convex}, we have the following upper bound for $p_{N,d}$:
 \begin{equation}\label{eq:p_N_d_bound}
     p_{N,d} \leq \frac{\E[F_N]}{d N} \textrm{ as } N \gg d
@@ -400,10 +400,10 @@ Combined with $p_{N,d} = \frac{\E[V_{N+1}]}{N+1}$, which comes from
 
 We use the symbol $a \gg b$ if $a$ is a function of $b$ and $\lim_{b\to \infty} \frac{a}{b} = \infty$.
 Based on \eqref{eq:E_F_N_d_sim}, in the following
-we derive the asymptotic expression of $\E[F_N]$
+the asymptotic expression of $\E[F_N]$ is derived
 for three different distribution families.
 
-To precisely define these distribution families, we introduce the concept of slowly varying function.
+To precisely define these distribution families, we firstly introduce the concept of slowly varying function.
 \begin{definition}
 A function $L(x)$ is
 slowly varying as $x\to \infty$
@@ -416,7 +416,7 @@ holds.
 
 With the help of a slowly varying function $L(x)$,
 distributions with polynomial tails are written
-in the following form:
+in the following form.
 \begin{equation}\label{eq:F_poly_tail}
      F(x) = x^{-k} L(x), k\geq 0
 \end{equation}
@@ -429,17 +429,26 @@ Dwyer\cite{dwyer1991convex} has obtained $G(x)$ as:
 
 From Theorem \ref{thm:H}, we obtain the asymptotic
 expression of $H(x)$ and $\E[F_N]$, which is
-summarized in the following theorem:
+summarized in the following theorem.
 \begin{theorem}\label{thm:poly_tails}
      For distributions with polynomial tails defined in \eqref{eq:F_poly_tail},
-     we have the following statements:
+     the asymptotic value of the auxiliary function $H(x)$ is given as follows.
+     \begin{equation}\label{eq:H_poly_tail_exp}
+          H(x) \sim \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
+          \Gamma(\frac{dk+1}{2})}{
+              \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)} G(x)^d 
+              \textrm{ as } x\to \infty
+     \end{equation}
+     Besides, depending on whether $d$ is a constant or increases to infinity,
+     we have the following statement on
+     the asymptotic value of $\E[F_N]$.
      \begin{itemize}
-          \item If $N \to \infty$ and $d$ is fixed,
-\begin{equation}\label{eq:efn_poly_second_deri}
+          \item If $N \to \infty$ and $d$ is fixed, then
+     \begin{equation}\label{eq:efn_poly_second_deri}
     \E[F_N] \sim \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
     \Gamma(\frac{dk+1}{2})}{
         \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)}
-\end{equation}
+     \end{equation}
 \item
 If $N$ is a function of $d$, and the condition $N/d^2 \to \infty$ is satisfied, then
 \begin{equation}\label{eq:poly_E_F_N_d_infty}
@@ -454,7 +463,7 @@ Equation \eqref{eq:efn_poly_second_deri} tells
 us that $\E[F_N]$ converges to a constant as $N \to \infty$.
 Without consideration of the actual constant, the result of
 Theorem \ref{thm:poly_tails} is an refinement to Dwyer's Theorem 1 for the expected number of facets \cite{dwyer1991convex}.
-When $d=2$, the result was obtained in (2.4) of \cite{carnal1970konvexe}
+The special result of $d=2$ was obtained in (2.4) of \cite{carnal1970konvexe}
 and Theorem 4.4 of \cite{davis1987convex}.
 \begin{example}
      We consider a special case of polynomial tail called multivariate t-distribution.
@@ -479,7 +488,7 @@ we can obtain the pdf of the distance of the hyperplane to the origin as
 \begin{equation}\label{eq:dH_dx_t_distribution}
      \frac{\dd H(x)}{\dd x} =  \frac{2}{\sqrt{k} B(\frac{kd}{2},\frac{1}{2})} \left(1 + \frac{x^2}{k} \right)^{-\frac{kd+1}{2}} 
 \end{equation}
-From above, we get the asymptotic relation $H(x) \sim \frac{2 \Gamma(\frac{kd+1}{2}) k^{kd/2-1}}{d\sqrt{\pi} \Gamma(\frac{kd}{2})}
+From \eqref{eq:dH_dx_t_distribution}, we further get the asymptotic relation $H(x) \sim \frac{2 \Gamma(\frac{kd+1}{2}) k^{kd/2-1}}{d\sqrt{\pi} \Gamma(\frac{kd}{2})}
 x^{-kd}$ as $x\to \infty$, which is equivalent to \eqref{eq:H_poly_tail_exp}.
 
 \end{example}
@@ -641,9 +650,15 @@ Below, we give the theorem in regards to the asymptotic value of $H(1-x)$ and $\
           B\left( \frac{1}{2},
           d\left(k+\frac{d}{2} -1 \right)+1 \right)
           \label{eq:b}
-      \end{align}     
-     Then we have
- the following statements:
+      \end{align}
+      Then the asymptotic value of $H(x)$ has the following form.
+      \begin{align}
+          H(1-x)  \sim b
+          L^d(1/x) x^{d(k+\frac{d}{2}-1)+\frac{1}{2}} 
+          \textrm{ as } x \to 0^+ \label{eq:truncated_H_1_x}
+     \end{align}     
+     Besides, we have
+ the following statements about $\E[F_N]$:
 \begin{itemize}
      \item When $N\to \infty$ and $d$ is fixed, we have
      \begin{align}\label{eq:efn_truncated_formula}
@@ -1288,13 +1303,7 @@ To be more specific, applying Theorem \ref{thm:H}, we obtain
      \Gamma(\frac{dk+1}{2})}{
          \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)} G(x)^d 
 \end{align*}
-That is
-\begin{equation}\label{eq:H_poly_tail_exp}
-     H(x) \sim \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
-     \Gamma(\frac{dk+1}{2})}{
-         \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)} G(x)^d 
-         \textrm{ as } x\to \infty
-\end{equation}
+That is, we obtain \eqref{eq:H_poly_tail_exp}.
 
 We denote $g(d)=\frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
 \Gamma(\frac{dk+1}{2})}{
@@ -1429,13 +1438,8 @@ we have
      d(k+\frac{d}{2} -1)+1 \right) \\
      &\cdot L^d(1/x) x^{d(k+\frac{d}{2}-1)+\frac{1}{2}}
 \end{align*}
-which is
-\begin{align}
-     H(1-x)  \sim b
-     L^d(1/x) x^{d(k+\frac{d}{2}-1)+\frac{1}{2}} 
-     \textrm{ as } x \to 0^+ \label{eq:truncated_H_1_x}
-\end{align}
-where $b$ is defined in \eqref{eq:b}.
+which is \eqref{eq:truncated_H_1_x}.
+
 From \eqref{eq:truncated_G_1_x} and \eqref{eq:truncated_H_1_x}, it follows that
 \begin{equation}
     H(1-x) \sim ba^{-d} G(1-x)^d x^{\frac{1-d}{2}}

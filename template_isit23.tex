@@ -223,11 +223,12 @@ of $\E[F_N]$ for each category.
 Below we define some notations to be used throughout this paper.
 Without specific emphasis, all $d$-dimensional distributions considered in this paper are spherically symmetric.
 Let $X=(X^{(1)},\dots, X^{(d)})$ follow such a distribution.
-Then we use $F(x)=P(|X|\geq x)$ to denote the probability that a random point lies outside
+Then we introduce three distribution tail functions $F(x),G(x),H(x)$,
+which are used frequently in this paper. To be specific, we use $F(x)=P(|X|\geq x)$ to denote the probability that a random point lies outside
 a $d$-sphere ($d$-dimensional sphere centered at origin) with radius $x$.
 The marginal distribution of each component of $X$ is determined by $G(x)=P(X^{(1)}\geq x)$.
 Let $\dist$ represent the distance from the origin to the hyperplane spanned by $X_1, \dots, X_d$.
-Specifically, in 2-D, the hyperplane is the straight line passing through $X_1$ and $X_2$.
+Specifically, the hyperplane in 2-D space is the straight line passing through $X_1$ and $X_2$.
 We use $H(x)=P(\dist\geq x)$ to denote the probability that $\dist$ is larger than $x$.
 When $n$ tends to infinity, the functions $f(n)$ and $g(n)$ are asymptotic equivalent if $\lim_{n\to \infty} \frac{f(n)}{g(n)}=1$.
 We denote this relationship as $f(n) \sim g(n)$.
@@ -466,15 +467,15 @@ Theorem \ref{thm:poly_tails} is an refinement to Dwyer's Theorem 1 for the expec
 The special result of $d=2$ was obtained in (2.4) of \cite{carnal1970konvexe}
 and Theorem 4.4 of \cite{davis1987convex}.
 \begin{example}
-     We consider a special case of polynomial tail called multivariate t-distribution.
-     Its pdf is given by
+     We consider a special distribution with polynomial tails called multivariate t-distribution.
+     Its pdf is given by the following equation.
      \begin{equation}\label{eq:pxy_student_t}
           p(x) = \frac{\Gamma((k+d)/2)}{\Gamma(k/2)(k\pi)^{d/2}}
           \left(1+\frac{1}{k}||x||^2
           \right)^{-\frac{k+d}{2}}, x \in \mathbb{R}^d
       \end{equation}
-      The parameter $k$ is the degree of freedom for this distribution.
-      We can obtain the radius distribution
+      The parameter $k$ in \eqref{eq:pxy_student_t} is the degree of freedom for multivariate t-distribution.
+      We can obtain the tail distribution function
       $F(x)$ as $F(x) \sim \frac{2\Gamma(\frac{k+d}{2})}{\Gamma(k/2)\Gamma(d/2)} k^{k/2-1} x^{-k}$.
       The marginal distribution is Student's t-distribution. To obtain $G(x)$, which is just the tail area
 of the t-distribution, we use an existing asymptotic result found in \cite{andrew1976}.
@@ -494,26 +495,27 @@ x^{-kd}$ as $x\to \infty$, which is equivalent to \eqref{eq:H_poly_tail_exp}.
 \end{example}
 From \eqref{eq:efn_poly_second_deri}, we also see that
 the asymptotic value of $\E[F_N]$ is an increasing function of $d$.
-As $d$ increases, from \eqref{eq:p_N_d_bound}, we need more and more $N$ to control $p_{N,d}$.
+As $d$ increases, from \eqref{eq:p_N_d_bound} we see that larger $N$ is needed to control $p_{N,d}$.
 The following theorem gives an estimation on the sample complexity $N$,
 which is the function of dimension $d$, the error bound $\epsilon$ and the distribution parameter $k$.
 \begin{theorem}\label{thm:poly_tail_sample_complexity}
   For distributions with polynomial tails with $k>0$, given $\epsilon \in (0,1)$,
-  when the following condition is satisfied
+  when the following condition is satisfied, the interpolation error $p_{N,d} < \epsilon$ as $d\to \infty$.
 \begin{equation}\label{eq:N_c_d_3_2}
   N = \frac{c^d}{k^{1/2}d^{3/2} \epsilon}, \textrm{ where } c=\frac{\sqrt{\pi}k\Gamma(k/2)}{\Gamma(\frac{k+1}{2})}>1  
 \end{equation}
-the interpolation error $p_{N,d} < \epsilon$ as $d\to \infty$.
 \end{theorem}
-The use of error bound $\epsilon$ is inspired by the formulation of Chernoff-Stein Lemma \cite{cover1999elements},
-where the error exponent of one type of error is obtained on condition that the another type of error is controlled by $\epsilon$.
+In our formulation of Theorem \ref{thm:poly_tail_sample_complexity},
+the use of error bound $\epsilon$ is inspired by Chernoff-Stein Lemma \cite{cover1999elements},
+in which the error exponent of one type of error is obtained on condition that the another type of error is upper bounded by $\epsilon$.
 
-From the above theorem, to guarantee the interpolation error is no more than a given precision $\epsilon$,
-we require that $N$ has exponential relationship with $d$.
-The higher the dimension is, the more samples are needed.
-Besides, the decaying rate of the distribution also has influence on the sample size $N$.
-Since $c$ is an increasing function with $k$,
-larger $k$ (faster decay) also leads to more samples.
+From the above theorem, we see that in order to guarantee the interpolation error is no more than a given precision $\epsilon$,
+The sample size $N$ has an exponential relationship with the dimension $d$.
+Besides, the decaying rate of the distribution tails also has an influence on the sample size $N$.
+It is seen from \eqref{eq:F_poly_tail} that $F(x)$ decays faster if the parameter $k$
+becomes larger.
+Since $c$ is an increasing function about $k$,
+we conclude that faster decay leads to more samples.
 Finally, if we treat $\epsilon$ as a function of $d$ and $\lim_{d\to\infty}\epsilon \to 0$.
 Theorem \ref{thm:poly_tail_sample_complexity} implies that $\lim_{d\to\infty} p_{N,d} = 0$.
 For example, we can choose $\epsilon=\frac{1}{d}$.
@@ -535,9 +537,10 @@ p_{N,d} \leq &\frac{d^{1/2}k^{1/2}}{c^d} \E[F_N]\epsilon
 \subsection{Distributions with exponential tails}
 In this subsection, we first give the definition of distributions with exponential tails.
 \begin{definition}
-  For a radius distribution $F(x)$, if we could find
+  If we could find
   a slowly varying function $L(x)$ such that
-  $x = L(1/F(x))$, we say that the distribution has exponential tails.
+  $x = L(1/F(x))$ holds for the given tail distribution function $F(x)$,
+  we say that the distribution has exponential tails.
 \end{definition}
 Following Carnal \cite{carnal1970konvexe},
 we define the following utility functions:

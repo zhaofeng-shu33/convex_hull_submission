@@ -356,9 +356,8 @@ where the auxiliary function $K(x)$ can be computed in the following way.
 \begin{align}
      \lambda_d(x)  :&=(1-x^2)^{\frac{d-2}{2}}
      \label{eq:lambda_r}\\
-     K(x) :&=P\left(\sqrt{(X^{(1)})^2+(X^{(2)})^2}>x \right)\notag \\
-     &=
-     \int_x^{+\infty} 
+     K(x)&=
+        \int_x^{+\infty} 
      \lambda_d \left(\frac{x}{y} \right)|\dd F(y)|
      \label{eq:K_x}
 \end{align}
@@ -511,8 +510,10 @@ In our formulation of Theorem \ref{thm:poly_tail_sample_complexity},
 the use of error bound $\epsilon$ is inspired by Chernoff-Stein Lemma \cite{cover1999elements},
 in which the error exponent of one type of error is obtained on condition that the another type of error is upper bounded by $\epsilon$.
 
-From the above theorem, we see that in order to guarantee the interpolation error is no more than a given precision $\epsilon$,
-The sample size $N$ has an exponential relationship with the dimension $d$.
+From the above theorem, we see that the interpolation error is no more than a given precision $\epsilon$,
+when the sample size $N$ takes the value $\lceil \frac{c^d}{k^{1/2}d^{3/2} \epsilon}\rceil$
+and the dimension $d$ is large enough.
+The relationship between $N$ and $d$ is exponential, as seen from \eqref{eq:N_c_d_3_2}.
 Besides, the decaying rate of the distribution tails also has an influence on the sample size $N$.
 It is seen from \eqref{eq:F_poly_tail} that $F(x)$ decays faster if the parameter $k$
 becomes larger.

@@ -187,7 +187,7 @@ which is the probability that the new sample falls out of the convex hull.
 It should be emphasized that the model considered in this paper is different from that of the convex position,
 which requires all samples are the vertices of the convex hull.
 It seems that the authors in \cite{balestriero2021learning} confuse the two models, which require
-different methods for theoretical analysis.x
+different methods for theoretical analysis.
 We show that when the training data are sampled from polynomial,
 exponential and truncated distribution families,
 we need exponentially large number of samples for vanishing interpolation error.
@@ -196,37 +196,38 @@ before constructing interpolation representation of training samples.
 Besides the relationship between the sample size $N$ and the dimension $d$,
 we also reveal the dependency of $N$ on the decaying rate of the distribution tail.
 
-The study of the interpolation error $p_{N,d}$ is closely related with the quantity $\E[F_N]$,
+The study of the interpolation error $p_{N,d}$ is closely related with the quantity $\E[F_{N,d}]$,
 the expectation of the number of facets in the convex hull. A facet of a $d$-dimensional object is one of its $(d-1)$-dimensional faces.
 Loosely speaking,
-the inequality relationship $p_{N,d} \leq \frac{\E[F_N]}{Nd}$ holds. Therefore, the expression
-involving $\E[F_N]$ gives an upper bound of $p_{N,d}$.
-The study of $\E[F_N]$
-is an old topic in stochastic geometry. As far as we know, the recent advance dates back to Dwyer's work on the estimation of $\E[F_N]$,
-in which the order of $\E[F_N]$ about $N$ is obtained \cite{dwyer1991convex}. In our paper, we will extend Dwyer's work
-to get a more accurate asymptotic value of $\E[F_N]$ in $\R^d$.
+the inequality relationship $p_{N,d} \leq \frac{\E[F_{N,d}]}{Nd}$ holds. Therefore, the expression
+involving $\E[F_{N,d}]$ gives an upper bound of $p_{N,d}$.
+The study of $\E[F_{N,d}]$
+is an old topic in stochastic geometry. As far as we know, the recent advance dates back to Dwyer's work on the estimation of $\E[F_{N,d}]$,
+in which the order of $\E[F_{N,d}]$ about $N$ is obtained \cite{dwyer1991convex}. In our paper, we will extend Dwyer's work
+to get a more accurate asymptotic value of $\E[F_{N,d}]$ in $\R^d$.
 
-The organization of this paper is as follows: In Section \ref{sec:int_f}, we develop a method of obtaining $\E[F_N]$ by generalizing Carnal's integration formula
+The organization of this paper is as follows: In Section \ref{sec:int_f}, we develop a method of obtaining $\E[F_{N,d}]$ by generalizing Carnal's integration formula
 % of $H(x)=P(d_{12}\geq x)$ 
 from two dimensional space to higher dimensions.
 In Section \ref{sec:three_distriutions}, for three different distribution families we then derive the explicit asymptotic
-expressions of $\E[F_N]$ and the sample complexity for $p_{N,d}<\epsilon$ as $d\to\infty$,
+expressions of $\E[F_{N,d}]$ and the sample complexity for $p_{N,d}<\epsilon$ as $d\to\infty$,
 where $\epsilon$ is a given precision.
 The main contribution of this paper,
 which is summarized in Section \ref{sec:conclusion},
 is to give the sample complexity for the vanishing interpolation error.
-We also obtain a complete integration formula for $\E[F_N]$,
+We also obtain a complete integration formula for $\E[F_{N,d}]$,
 and following the classification of distributions of previous authors \cite{carnal1970konvexe,dwyer1991convex},
 we derive the asymptotic expression
-of $\E[F_N]$ for each category.
+of $\E[F_{N,d}]$ for each category.
 
 Below we define some notations to be used throughout this paper.
 Without specific emphasis, all $d$-dimensional distributions considered in this paper are spherically symmetric.
 Let $X=(X^{(1)},\dots, X^{(d)})$ follow such a distribution.
-Then we introduce three distribution tail functions $F(x),G(x),H(x)$,
+Then we introduce four distribution tail functions $F(x),G(x),K(x),H(x)$,
 which are used frequently in this paper. To be specific, we use $F(x)=P(|X|\geq x)$ to denote the probability that a random point lies outside
 a $d$-sphere ($d$-dimensional sphere centered at origin) with radius $x$.
 The marginal distribution of each component of $X$ is determined by $G(x)=P(X^{(1)}\geq x)$.
+The tail distribution of the projection of $X$ in a 2-D plane, is denoted as $K(x)=P(\sqrt{(X^{(1)})^2+(X^{(2)})^2}>x)$.
 Let $\dist$ represent the distance from the origin to the hyperplane spanned by $X_1, \dots, X_d$.
 Specifically, the hyperplane in 2-D space is the straight line passing through $X_1$ and $X_2$.
 We use $H(x)=P(\dist\geq x)$ to denote the probability that $\dist$ is larger than $x$.
@@ -235,35 +236,35 @@ We denote this relationship as $f(n) \sim g(n)$.
 
 \section{Related work}
 Since the interpolation error is bounded by
-asymptotic value of $\E[F_N]$,
-in this section we give a brief overview on the topic of studying $\E[F_N]$.
+asymptotic value of $\E[F_{N,d}]$,
+in this section we give a brief overview on the topic of studying $\E[F_{N,d}]$.
 
-The asymptotic expression of $\E[F_N]$ as $N\to \infty$
+The asymptotic expression of $\E[F_{N,d}]$ as $N\to \infty$
 was studied initially by R{\'e}nyi and Sulanke \cite{renyi1963konvexe}.
 They considered
 bivariate Gaussian distribution and uniform distribution
 in a planar convex region.
-Following the derivation of R{\'e}nyi, for $d=2,3$, Efron \cite{efron1965convex} obtained the explicit integration formula for $\E[F_N]$ and $p_{N,d}$ 
+Following the derivation of R{\'e}nyi, for $d=2,3$, Efron \cite{efron1965convex} obtained the explicit integration formula for $\E[F_{N,d}]$ and $p_{N,d}$ 
 when samples follow Gaussian distribution or uniform distribution within a unit sphere.
 Later on,  R{\'e}nyi's work was generalized by
 Carnal \cite{carnal1970konvexe}, who
 classified symmetric 2-D distributions
 into three categories according to their tails:
 polynomial, exponential, and truncated tails.
-Then he obtained the asymptotic expression of $\E[F_N]$
+Then he obtained the asymptotic expression of $\E[F_{N,d}]$
 for each category of distributions.
 
 
 
 
-The study of $\E[F_N]$ for $d>2$ was made firstly by
+The study of $\E[F_{N,d}]$ for $d>2$ was made firstly by
 Raynaud
 \cite{raynaud1970enveloppe}.
-He obtained the asymptotic formula of $\E[F_N]$
+He obtained the asymptotic formula of $\E[F_{N,d}]$
 for uniform distribution in a hyperball
 and standard Gaussian distribution in $\mathbb{R}^d$.
 Afterwards, following Carnal, Dwyer \cite{dwyer1991convex}
-estimated the order of $\E[F_N]$ about $N$
+estimated the order of $\E[F_{N,d}]$ about $N$
 for three different distribution families.
 
 
@@ -273,21 +274,21 @@ between the distributions with algebraic tails $F(x) \sim x^{-k}$ and Poisson ra
 They showed that for $k>0, d=2$,
 the convex hull of $N$ samples $\mathrm{H}_N$ converges to the convex hull of a Poisson random process,
 and
-the limit of $\E[F_N]$ can be derived from this random process.
+the limit of $\E[F_{N,d}]$ can be derived from this random process.
 The special case $k=0, d=2$ is treated in a later paper, in which the
-limit distribution of $F_N$ is computed \cite{aldous1991number}.
+limit distribution of $F_{N,d}$ is computed \cite{aldous1991number}.
 
 Studies related to distributions with exponential tails mainly focus on Gaussian distribution.
 Kabluchko et al. \cite{kabluchko2020absorption} obtained explicit integration expressions for $p_{N,d}$;
-Affentranger \cite{affentranger1991convex} derived $\E[F_N]$;
-Hueter et al. \cite{hueter1999limit} studied the concentration property of $F_N$ and obtained
-an upper bound for $\E[F_N]$ sharper than the bound derived in \cite{dwyer1991convex}.
+Affentranger \cite{affentranger1991convex} derived $\E[F_{N,d}]$;
+Hueter et al. \cite{hueter1999limit} studied the concentration property of $F_{N,d}$ and obtained
+an upper bound for $\E[F_{N,d}]$ sharper than the bound derived in \cite{dwyer1991convex}.
 
 For truncated tails,
 Affentranger \cite{affentranger1991convex} studied one sub-category called beta-typed distribution and obtained
-the asymptotic value of $\E[F_N]$.
+the asymptotic value of $\E[F_{N,d}]$.
 
-Besides the number of facets $\E[F_N]$,
+Besides the number of facets $\E[F_{N,d}]$,
 the asymptotic value of other quantities related with $\mathrm{H}_N$, such as the volume, and the surface area,
 were systematically investigated in a general framework involving the property of facets
 \cite{schneider2008stochastic, barany2008random}.
@@ -301,21 +302,21 @@ Let $\mathrm{H}_N$ denote the convex hull of $\mathcal{X}_N$,
 and the interpolation error is defined as $p_{N,d}=P(X_{N+1} \not\in \mathrm{H}_N)$.
 
 To study $p_{N,d} \to 0$, we introduce two additional quantities of $H_N$: the number of vertices
-$V_N$ and the number of facets $F_N$.
+$V_{N,d}$ and the number of facets $F_{N,d}$.
 Our main focus of study in this paper is the mathematical expectation
-of $F_N$, denoted as $\E[F_N]$, and we consider its asymptotic value as $N\to \infty$.
+of $F_{N,d}$, denoted as $\E[F_{N,d}]$, and we consider its asymptotic value as $N\to \infty$.
 
-The starting point is the integration formula for $\E[F_N]$.
+The starting point is the integration formula for $\E[F_{N,d}]$.
 Carnal \cite{carnal1970konvexe}
 obtained
 this formula for 2-D distributions,
 which is given as follows:
 \begin{align}
-     \E[F_N] &= \binom{N}{2} \int_0^{\infty} 
+     \E[F_{N,d}] &= \binom{N}{2} \int_0^{\infty} 
      \left[G(x)^{N-2} + (1-G(x))^{N-2} \right]|\mathrm{d} H(x)| 
-     \label{eq:E_F_N_2_d}
+     \label{eq:E_F_{N,d}_2_d}
 \end{align}
-The integration formula of $\E[F_N]$ involves the function $G(x)$ and $H(x)$,
+The integration formula of $\E[F_{N,d}]$ involves the function $G(x)$ and $H(x)$,
 whose definitions are given at the end of Section \ref{sec:intro}.
 Both functions can be expressed with $F(x)$ in the following way:
 \begin{align}
@@ -325,11 +326,11 @@ Both functions can be expressed with $F(x)$ in the following way:
 \end{align}
 For $d\geq 2$ and $N\geq d+1$, the formula is given as
 \begin{align}
-     \E[F_N] &= \binom{N}{d} \int_0^{\infty} 
+     \E[F_{N,d}] &= \binom{N}{d} \int_0^{\infty} 
      \left[G(x)^{N-d} + (1-G(x))^{N-d} \right]|\mathrm{d} H(x)| 
-    \label{eq:E_F_N_d}
+    \label{eq:E_F_{N,d}_d}
 \end{align}
-Formula \eqref{eq:E_F_N_d} first appeared in the proof section of \cite{raynaud1970enveloppe}
+Formula \eqref{eq:E_F_{N,d}_d} first appeared in the proof section of \cite{raynaud1970enveloppe}
 and can further be generalized to compute other combinatorial properties of $\mathrm{H}_N$ (like the surface area and the volume)
 \cite{barany2008random}.
 Dwyer obtained the integration formula for $G(x)$ in $d\geq 2$ as:
@@ -340,9 +341,9 @@ Dwyer obtained the integration formula for $G(x)$ in $d\geq 2$ as:
      (1-u^2)^{(d-3)/2}\mathrm{d}u\label{eq:kappa_r}
 \end{align}
 where $\kappa(r)$ is the fraction of the surface area of a unit $d$-sphere
-cut off by a plane at distance $r$ from the origin.
+cut off by a plane at distance $r$ from the origin \cite{dwyer1991convex}.
 
-We cannot compute $\E[F_N]$ from $F(x)$ yet, since no general formula for $H(x)$ with respect to $F(x)$ is given in previous studies.
+We cannot compute $\E[F_{N,d}]$ from $F(x)$ yet, since no general formula for $H(x)$ with respect to $F(x)$ is given in previous studies.
 The following theorem solves this problem by giving the integration formula for $H(x)$ in $d\geq 2$:
 \begin{theorem}\label{thm:H}
 For $d\geq 2$, the integration formula for $H(x)$ is given as
@@ -351,7 +352,7 @@ For $d\geq 2$, the integration formula for $H(x)$ is given as
      \int_x^{+\infty} \arccos\frac{x}{y}
      |\mathrm{d} (K^d(y))|\label{eq:H_expression_d_dim}
 \end{equation}
-where the auxiliary function $K(x)$ is defined in the following way:
+where the auxiliary function $K(x)$ can be computed in the following way.
 \begin{align}
      \lambda_d(x)  :&=(1-x^2)^{\frac{d-2}{2}}
      \label{eq:lambda_r}\\
@@ -374,34 +375,34 @@ is provided in Appendix \ref{app:th}.
 \section{Three distribution families}\label{sec:three_distriutions}
 Since the distribution we considered is symmetric,
 for $x>0$ we have $G(x)<\frac{1}{2}$. Therefore the
-term $G(x)^{N-d}$ in \eqref{eq:E_F_N_d} decays at an exponential rate as $N-d\to \infty$.
+term $G(x)^{N-d}$ in \eqref{eq:E_F_{N,d}_d} decays at an exponential rate as $N-d\to \infty$.
 As a result, we obtain
 \begin{align}
-     \E[F_N] \sim \binom{N}{d} \int_0^{+\infty} 
+     \E[F_{N,d}] \sim \binom{N}{d} \int_0^{+\infty} 
       (1-G(x))^{N-d} |\dd H(x)| \textrm{ as } N-d\to \infty
-     \label{eq:E_F_N_d_sim}
+     \label{eq:E_F_{N,d}_d_sim}
 \end{align}
-Similar to the definition of $\E[F_N]$,
-we let $\E[V_N]$ represent the expected number of
+Similar to the definition of $\E[F_{N,d}]$,
+we let $\E[V_{N,d}]$ represent the expected number of
 vertices of $\mathrm{H}_N$.
 By far it is not clear whether there exist explicit relations
-between $\E[F_N]$ and $\E[V_N]$
+between $\E[F_{N,d}]$ and $\E[V_{N,d}]$
 for general spherical symmetric distributions.
 However, we can give some inequalities involving these two
 quantities. Using Corollary 19.6 of \cite{brondsted2012introduction}, we have the following
 inequality:
 \begin{equation}\label{eq:F_V_upper}
-     F_N \geq (d-1) V_N - (d+1)(d-2)
+     F_{N,d} \geq (d-1) V_{N,d} - (d+1)(d-2)
  \end{equation}
 Combining \eqref{eq:F_V_upper} with $p_{N,d} = \frac{\E[V_{N+1}]}{N+1}$, which comes from
 \cite{efron1965convex}, we have the following upper bound for $p_{N,d}$:
 \begin{equation}\label{eq:p_N_d_bound}
-    p_{N,d} \leq \frac{\E[F_N]}{d N} \textrm{ as } N \gg d
+    p_{N,d} \leq \frac{\E[F_{N,d}]}{d N} \textrm{ as } N \gg d
 \end{equation}
 
 We use the symbol $a \gg b$ if $a$ is a function of $b$ and $\lim_{b\to \infty} \frac{a}{b} = \infty$.
-Based on \eqref{eq:E_F_N_d_sim}, in the following
-the asymptotic expression of $\E[F_N]$ is derived
+Based on \eqref{eq:E_F_{N,d}_d_sim}, in the following
+the asymptotic expression of $\E[F_{N,d}]$ is derived
 for three different distribution families.
 
 To precisely define these distribution families, we firstly introduce the concept of slowly varying function.
@@ -429,7 +430,7 @@ Dwyer\cite{dwyer1991convex} has obtained $G(x)$ as:
 \end{equation}
 
 From Theorem \ref{thm:H}, we obtain the asymptotic
-expression of $H(x)$ and $\E[F_N]$, which is
+expression of $H(x)$ and $\E[F_{N,d}]$, which is
 summarized in the following theorem.
 \begin{theorem}\label{thm:poly_tails}
      For distributions with polynomial tails defined in \eqref{eq:F_poly_tail},
@@ -437,23 +438,23 @@ summarized in the following theorem.
      \begin{equation}\label{eq:H_poly_tail_exp}
           H(x) \sim \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
           \Gamma(\frac{dk+1}{2})}{
-              \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)} G(x)^d 
+              \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)} G^d (x)
               \textrm{ as } x\to \infty
      \end{equation}
      Besides, depending on whether $d$ is a constant or increases to infinity,
      we have the following statement on
-     the asymptotic value of $\E[F_N]$.
+     the asymptotic value of $\E[F_{N,d}]$.
      \begin{itemize}
           \item If $N \to \infty$ and $d$ is fixed, then
      \begin{equation}\label{eq:efn_poly_second_deri}
-    \E[F_N] \sim \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
+    \E[F_{N,d}] \sim \frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
     \Gamma(\frac{dk+1}{2})}{
         \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)}
      \end{equation}
 \item
 If $N$ is a function of $d$, and the condition $N/d^2 \to \infty$ is satisfied, then
-\begin{equation}\label{eq:poly_E_F_N_d_infty}
-\E[F_N] \sim \sqrt{\frac{2}{\pi dk}}\left(
+\begin{equation}\label{eq:poly_E_F_{N,d}_d_infty}
+\E[F_{N,d}] \sim \sqrt{\frac{2}{\pi dk}}\left(
       \frac{\sqrt{\pi}k \Gamma(k/2)}
      {\Gamma(\frac{k+1}{2})}
  \right)^d \textrm{ for } k>0
@@ -461,7 +462,7 @@ If $N$ is a function of $d$, and the condition $N/d^2 \to \infty$ is satisfied, 
 \end{itemize}
 \end{theorem}
 Equation \eqref{eq:efn_poly_second_deri} tells
-us that $\E[F_N]$ converges to a constant as $N \to \infty$.
+us that $\E[F_{N,d}]$ converges to a constant as $N \to \infty$.
 Without consideration of the actual constant, the result of
 Theorem \ref{thm:poly_tails} is an refinement to Dwyer's Theorem 1 for the expected number of facets \cite{dwyer1991convex}.
 The special result of $d=2$ was obtained in (2.4) of \cite{carnal1970konvexe}
@@ -494,15 +495,16 @@ x^{-kd}$ as $x\to \infty$, which is equivalent to \eqref{eq:H_poly_tail_exp}.
 
 \end{example}
 From \eqref{eq:efn_poly_second_deri}, we also see that
-the asymptotic value of $\E[F_N]$ is an increasing function of $d$.
+the asymptotic value of $\E[F_{N,d}]$ is an increasing function of $d$.
 As $d$ increases, from \eqref{eq:p_N_d_bound} we see that larger $N$ is needed to control $p_{N,d}$.
 The following theorem gives an estimation on the sample complexity $N$,
 which is the function of dimension $d$, the error bound $\epsilon$ and the distribution parameter $k$.
 \begin{theorem}\label{thm:poly_tail_sample_complexity}
   For distributions with polynomial tails with $k>0$, given $\epsilon \in (0,1)$,
-  when the following condition is satisfied, the interpolation error $p_{N,d} < \epsilon$ as $d\to \infty$.
+  when the following condition is satisfied,
+  we have $\limsup_{d\to\infty} p_{N,d} < \epsilon$.
 \begin{equation}\label{eq:N_c_d_3_2}
-  N = \frac{c^d}{k^{1/2}d^{3/2} \epsilon}, \textrm{ where } c=\frac{\sqrt{\pi}k\Gamma(k/2)}{\Gamma(\frac{k+1}{2})}>1  
+  N  \geq \frac{c^d}{k^{1/2}d^{3/2} \epsilon}, \textrm{ where } c=\frac{\sqrt{\pi}k\Gamma(k/2)}{\Gamma(\frac{k+1}{2})}>1  
 \end{equation}
 \end{theorem}
 In our formulation of Theorem \ref{thm:poly_tail_sample_complexity},
@@ -524,14 +526,14 @@ For example, we can choose $\epsilon=\frac{1}{d}$.
 %When we allow $d\to \infty$, we treat $N$ as a function of $d$.
 
 Since $N$ in \eqref{eq:N_c_d_3_2} satisfies the assumption $N/d^2 \to \infty$,
-it follows from \eqref{eq:p_N_d_bound} and \eqref{eq:poly_E_F_N_d_infty} that
+it follows from \eqref{eq:p_N_d_bound} and \eqref{eq:poly_E_F_{N,d}_d_infty} that
 \begin{align*}
-p_{N,d} \leq &\frac{d^{1/2}k^{1/2}}{c^d} \E[F_N]\epsilon
+p_{N,d} \leq &\frac{d^{1/2}k^{1/2}}{c^d} \E[F_{N,d}]\epsilon
 \leq \sqrt{\frac{2}{\pi}}\epsilon \leq \epsilon
 \end{align*}
 %Then the sufficient condition for $p_{N,d} \to 0$ is obtained
 %from the estimation inequality \eqref{eq:p_N_d_bound},
-%combined with the asymptotic expressions for polynomial distribution families in \eqref{eq:poly_E_F_N_d_infty}.
+%combined with the asymptotic expressions for polynomial distribution families in \eqref{eq:poly_E_F_{N,d}_d_infty}.
 \end{proof}
 
 \subsection{Distributions with exponential tails}
@@ -564,7 +566,7 @@ We make the analysis complete by giving the following theorem.
      and $\gamma(s)$ is defined in \eqref{eq:epsilon_s}, then
   equation
   \begin{equation}\label{eq:exp_e_f_n}
-     \E[F_N]\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} (\gamma(N))^{-\frac{d-1}{2}},
+     \E[F_{N,d}]\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} (\gamma(N))^{-\frac{d-1}{2}},
  \end{equation}
  holds either of the following two conditions is satisfied:
   \begin{itemize}
@@ -575,11 +577,11 @@ We make the analysis complete by giving the following theorem.
  Using \eqref{eq:epsilon_s}, we note that the term
  $(\gamma(N))^{-\frac{d-1}{2}}$
  is obtained in Dwyer's Theorem 2 \cite{dwyer1991convex}.
- Our improvement on the asymptotic value of $\E[F_N]$ is that we obtain its preceding term only involving $d$.
+ Our improvement on the asymptotic value of $\E[F_{N,d}]$ is that we obtain its preceding term only involving $d$.
  When $d=2$, equation \eqref{eq:exp_e_f_n} is consistent with (2.20) of \cite{carnal1970konvexe}.
  For standard $d$-dimensional Gaussian distribution, we have $L(s)=\sqrt{2\log s}$.
  From \eqref{eq:epsilon_s}, $\gamma(s) = (2\log s)^{-1}$. And we obtain from \eqref{eq:exp_e_f_n}
- that $\E[F_N]\sim \frac{2^d}{\sqrt{d}}(\pi \log N)^{\frac{d-1}{2}}$,
+ that $\E[F_{N,d}]\sim \frac{2^d}{\sqrt{d}}(\pi \log N)^{\frac{d-1}{2}}$,
  which is consistent with (1.11) of \cite{raynaud1970enveloppe}.
 
 
@@ -588,11 +590,11 @@ Similar to the analysis of polynomial tails, we obtain the
 sufficient condition for $p_{N,d} < \epsilon$,
 which is summarized in the following theorem.
 \begin{theorem}\label{thm:exp_tails_sample}
-  For distributions with exponential tails, given $\epsilon \in (0,1)$, when the following condition is satisfied
+  For distributions with exponential tails, given $\epsilon \in (0,1)$, when the following condition is satisfied,
   \begin{equation}\label{N_d_relationship_exp_tail}
-    N\cdot \gamma(N)^{(d-1)/2} = \frac{(2\pi)^{d/2} }{d^{3/2} \epsilon},
+    N\cdot \gamma(N)^{(d-1)/2} \geq \frac{(2\pi)^{d/2} }{d^{3/2} \epsilon},
   \end{equation}
-  the interpolation error $p_{N,d} < \epsilon$ as $d\to \infty$.
+  we have $ \limsup_{d\to\infty} p_{N,d} < \epsilon$.
 \end{theorem}
 For any given $d$, we can obtain $N$ from the implicit relationship in \eqref{N_d_relationship_exp_tail}.
 When $d\to \infty$, \eqref{N_d_relationship_exp_tail} implies $N\to \infty$.
@@ -608,8 +610,8 @@ In other words, larger $k$ (faster decay) leads to more samples.
      Since $N$ in \eqref{N_d_relationship_exp_tail} satisfies the assumption $N/d^2 \to \infty$,
      it follows from \eqref{eq:p_N_d_bound} and Theorem \ref{thm:exponential_tails} that
      \begin{align*}
-     p_{N,d} \leq &\frac{d^{1/2}\gamma(N)^{(d-1)/2}}{(2\pi)^{d/2}}
-     \E[F_N]\epsilon
+     p_{N,d} \leq &\frac{d^{1/2}[\gamma(N)]^{(d-1)/2}}{(2\pi)^{d/2}}
+     \E[F_{N,d}]\epsilon
      \leq \sqrt{\frac{2}{\pi}}\epsilon \leq \epsilon
      \end{align*}
 \end{proof}
@@ -642,7 +644,7 @@ a &=\frac{2^{\frac{d-1}{2}} k \Gamma(\frac{d}{2})}
     {\sqrt{\pi} \Gamma\left(k+\frac{d+1}{2}\right)}
     \label{eq:a}
 \end{align}
-Below, we give the theorem in regards to the asymptotic value of $H(1-x)$ and $\E[F_N]$:
+Below, we give the theorem in regards to the asymptotic value of $H(1-x)$ and $\E[F_{N,d}]$:
 \begin{theorem}\label{thm:truncated_tails}
      For distributions with truncated tails
      defined in \eqref{eq:F_truncated}, we further define
@@ -661,11 +663,11 @@ Below, we give the theorem in regards to the asymptotic value of $H(1-x)$ and $\
           \textrm{ as } x \to 0^+ \label{eq:truncated_H_1_x}
      \end{align}     
      Besides, we have
- the following statements about $\E[F_N]$:
+ the following statements about $\E[F_{N,d}]$:
 \begin{itemize}
      \item When $N\to \infty$ and $d$ is fixed, we have
      \begin{align}\label{eq:efn_truncated_formula}
-          \E[F_N] \sim &\frac{b}{d!}a^{-d+\frac{d-1}{2k+d-1}}
+          \E[F_{N,d}] \sim &\frac{b}{d!}a^{-d+\frac{d-1}{2k+d-1}}
           \Gamma 
           \left(d+1-\frac{d-1}{2k+d-1}\right)
           \notag\\
@@ -673,7 +675,7 @@ Below, we give the theorem in regards to the asymptotic value of $H(1-x)$ and $\
       \end{align}
      \item  When we allow $d\to \infty$ and $N/d^2 \to \infty$, then
      \begin{equation}\label{eq:truncated_d_inf}
-      \E[F_N] \sim 2^{\frac{d+2k}{2}}\pi^{\frac{d-2}{2}} k\Gamma(k)e^k d^{\frac{d-3}{2}-k}
+      \E[F_{N,d}] \sim 2^{\frac{d+2k}{2}}\pi^{\frac{d-2}{2}} k\Gamma(k)e^k d^{\frac{d-3}{2}-k}
       (NL(N))^{\frac{d-1}{2k+d-1}}
      \end{equation}    
 \end{itemize}
@@ -682,7 +684,7 @@ Below, we give the theorem in regards to the asymptotic value of $H(1-x)$ and $\
  is the same with that in Dwyer's Theorem 3
  but other coefficients are missing in Dwyer's result
  \cite{dwyer1991convex}. Therefore, we say that Dwyer only made the order estimation
- of $\E[F_N]$ while we obtain its asymptotic value.
+ of $\E[F_{N,d}]$ while we obtain its asymptotic value.
  When $d=2$, equation \eqref{eq:efn_truncated_formula} reduces to (3.4) of \cite{carnal1970konvexe}.
  For uniform distribution with $k=1, L(N)=d$, we can verify that
  \eqref{eq:efn_truncated_formula} is equivalent with (1.1)
@@ -723,12 +725,12 @@ which is equivalent to \eqref{eq:truncated_H_1_x}.
  \begin{theorem}\label{thm:truncated_tails_sample}
   For distributions with truncated tails,
   given $\epsilon \in (0,1)$,
-  when the following condition is satisfied
+  when the following condition is satisfied,
   \begin{equation}\label{eq:N_truncated_tail_eps_relation}
     \frac{N^{\frac{2k}{2k+d-1}}}{L(N)^{\frac{d-1}{2k+d-1}}} 
-        =\frac{(2\pi)^{d/2}d^{(d-5)/2}}{\epsilon},
+         \geq \frac{(2\pi)^{d/2}d^{(d-5)/2}}{\epsilon},
   \end{equation}
-  the interpolation error $p_{N,d} < \epsilon$ as $d\to \infty$.
+  we have $ \limsup_{d\to \infty} p_{N,d} < \epsilon$.
 \end{theorem}
 From Theorem \ref{thm:truncated_tails_sample}, as
 distributions with exponential tails, we see that
@@ -742,7 +744,7 @@ We then obtain that $N$ grows faster than $\exp(cd^2)$ for any constant $c$.
      Since $N$ in \eqref{eq:N_truncated_tail_eps_relation} satisfies the assumption $N/d^2 \to \infty$,
      it follows from \eqref{eq:p_N_d_bound} and Theorem \ref{thm:truncated_tails} that
      \begin{align*}
-     p_{N,d} \leq &\frac{\E[F_N]\epsilon}{(2\pi)^{d/2} d^{(d-3)/2} (NL(N))^{(d-1)/(2k+d-1)}}\\
+     p_{N,d} \leq &\frac{\E[F_{N,d}]\epsilon}{(2\pi)^{d/2} d^{(d-3)/2} (NL(N))^{(d-1)/(2k+d-1)}}\\
      \leq & \frac{2^k k\Gamma(k)e^k}{\pi d^k} \epsilon \leq \epsilon
      \end{align*}
      The last inequality holds when $d$ is sufficiently large.
@@ -1311,9 +1313,9 @@ That is, we obtain \eqref{eq:H_poly_tail_exp}.
 We denote $g(d)=\frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
 \Gamma(\frac{dk+1}{2})}{
     \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)}$
-and $G(x)=w$ to simplify the notation, then from \eqref{eq:E_F_N_d_sim}
+and $G(x)=w$ to simplify the notation, then from \eqref{eq:E_F_{N,d}_d_sim}
 \begin{align}
-     \E[F_N] &\sim g(d)\binom{N}{d} \int_0^{+\infty} 
+     \E[F_{N,d}] &\sim g(d)\binom{N}{d} \int_0^{+\infty} 
       (1-G(x))^{N-d} |\dd H(x)| \notag \\
       &\sim g(d)\binom{N}{d}d\int_0^{1/2} \exp(-(N-d)w)w^{d-1}\dd w
       \notag \\
@@ -1324,12 +1326,12 @@ And \eqref{eq:efn_poly_second_deri} is obtained from \eqref{eq:Ngd}.
 We can verify that the derivation of \eqref{eq:Ngd} is also valid if $N/d^2\to \infty$.
 Therefore, combining the result of Lemma \ref{lem:Gamma_ratio}
 with that of Lemma \ref{lem:NNdd},
-we obtain \eqref{eq:poly_E_F_N_d_infty}
+we obtain \eqref{eq:poly_E_F_{N,d}_d_infty}
 from \eqref{eq:Ngd}.
 \end{proof}
 
 \subsection{Proof of Theorem \ref{thm:exponential_tails}}
-To obtain $\E[F_N]$ when $d\to \infty$,
+To obtain $\E[F_{N,d}]$ when $d\to \infty$,
 we need the following lemma.
 \begin{lemma}\label{lem:ratio_epsilon}
      Suppose $\gamma(x)$ is a slowly varying function
@@ -1400,11 +1402,11 @@ From \eqref{eq:G_x_exp}, we obtain that:
      \textrm{ as } x\to \infty
 \end{equation}
 Dwyer \cite{dwyer1991convex} has shown that for exponential tails, $v(x) \sim \gamma(1/G(x))$ as $x\to \infty$.
-From \eqref{eq:E_F_N_d_sim},
+From \eqref{eq:E_F_{N,d}_d_sim},
 we use the Abel-Tauber theorem
 \cite{omey1989abelian} and obtain
 \begin{align*}
-    \E[F_N] & \sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}}\int_0^{1/2} \exp(-(N-d)w) \dd [w^d \gamma(1/w)^{\frac{-d+1}{2}}] \\
+    \E[F_{N,d}] & \sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}}\int_0^{1/2} \exp(-(N-d)w) \dd [w^d \gamma(1/w)^{\frac{-d+1}{2}}] \\
     &\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} \binom{N}{d}\frac{\Gamma(d+1)}{(N-d)^d} \gamma(N-d)^{\frac{-d+1}{2}}
 \end{align*}
 \end{proof}
@@ -1454,9 +1456,9 @@ Let $G(1-x)=w$, similar to the analysis in (2.7) of
 \end{equation*}
 Finally, 
 we apply the Abel-Tauber theorem
-\cite{omey1989abelian}, and from \eqref{eq:E_F_N_d_sim} we obtain
+\cite{omey1989abelian}, and from \eqref{eq:E_F_{N,d}_d_sim} we obtain
 \begin{align}
-    \E[F_N] =& \binom{N}{d}\int_0^1 (1 - G(1-x))^{N-d} |\dd H(1-x)| 
+    \E[F_{N,d}] =& \binom{N}{d}\int_0^1 (1 - G(1-x))^{N-d} |\dd H(1-x)| 
     \notag \\
      \sim &\binom{N}{d} \frac{b}{a^d} \int_0^{1/2} \exp(-(N-d)w)\\
      & \cdot \dd [w^d (\frac{w}{a} L(w^{-1}))^{\frac{1-d}{2k+d-1}} ]
@@ -1472,7 +1474,7 @@ we apply the Abel-Tauber theorem
 When $N\to \infty$ and $d$ is a constant, we obtain \eqref{eq:efn_truncated_formula}.
 
 
-The asymptotic value of $\E[F_N]$ when $d\to \infty$
+The asymptotic value of $\E[F_{N,d}]$ when $d\to \infty$
 is derived as follows:
 
 From \eqref{eq:a} and \eqref{eq:b}, it follows that
@@ -1495,7 +1497,7 @@ From \eqref{eq:a} and \eqref{eq:b}, it follows that
 
 When $d\to \infty$ and $N/d^2\to \infty$,
 from \eqref{eq:intermediate_efn_truncated}
-we have $\E[F_N] \sim ba^{-d} a N^{\frac{d-1}{2k+d-1}}
+we have $\E[F_{N,d}] \sim ba^{-d} a N^{\frac{d-1}{2k+d-1}}
 L(N)
 ^{\frac{d-1}{2k+d-1}}$.
 Then by a slight simplification,

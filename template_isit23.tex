@@ -230,7 +230,7 @@ The marginal distribution of each component of $X$ is determined by $G(x)=P(X^{(
 The tail distribution of the projection of $X$ in a 2-D plane, is denoted as $K(x)=P(\sqrt{(X^{(1)})^2+(X^{(2)})^2}>x)$.
 Let $\dist$ represent the distance from the origin to the hyperplane spanned by $X_1, \dots, X_d$.
 Specifically, the hyperplane in 2-D space is the straight line passing through $X_1$ and $X_2$.
-We use $H(x)=P(\dist\geq x)$ to denote the probability that $\dist$ is larger than $x$.
+We use $H(x)=P(\dist\geq x)$ to designate the probability that $\dist$ is larger than $x$.
 When $n$ tends to infinity, the functions $f(n)$ and $g(n)$ are asymptotic equivalent if $\lim_{n\to \infty} \frac{f(n)}{g(n)}=1$.
 We denote this relationship as $f(n) \sim g(n)$.
 
@@ -297,7 +297,7 @@ were systematically investigated in a general framework involving the property o
 \label{sec:int_f}
 
 Let $\mathcal{X}_N = \{X_1, X_2, \dots, X_N\}$ be a set of i.i.d. random points generated from
-a spherically symmetric distribution in $\mathbb{R}^d$.
+a spherically symmetric distribution $\mathcal{F}$ in $\mathbb{R}^d$.
 Let $\mathrm{H}_N$ denote the convex hull of $\mathcal{X}_N$,
 and the interpolation error is defined as $p_{N,d}=P(X_{N+1} \not\in \mathrm{H}_N)$.
 
@@ -511,15 +511,18 @@ the use of error bound $\epsilon$ is inspired by Chernoff-Stein Lemma \cite{cove
 in which the error exponent of one type of error is obtained on condition that the another type of error is upper bounded by $\epsilon$.
 
 From the above theorem, we see that the interpolation error is no more than a given precision $\epsilon$,
-when the sample size $N$ takes the value $\lceil \frac{c^d}{k^{1/2}d^{3/2} \epsilon}\rceil$
+when the sample size $N$ takes the following value
 and the dimension $d$ is large enough.
-The relationship between $N$ and $d$ is exponential, as seen from \eqref{eq:N_c_d_3_2}.
+\begin{equation}\label{eq:N_special_note}
+   N = \Big\lceil \frac{c^d}{k^{1/2}d^{3/2} \epsilon} \Big\rceil
+\end{equation}
+In the case of \eqref{eq:N_special_note}, the relationship between $N$ and $d$ is exponential.
 Besides, the decaying rate of the distribution tails also has an influence on the sample size $N$.
 It is seen from \eqref{eq:F_poly_tail} that $F(x)$ decays faster if the parameter $k$
 becomes larger.
 Since $c$ is an increasing function about $k$,
 we conclude that faster decay leads to more samples.
-Finally, if we treat $\epsilon$ as a function of $d$ and $\lim_{d\to\infty}\epsilon \to 0$.
+Finally, if we treat $\epsilon$ as a function of $d$ and let $\lim_{d\to\infty}\epsilon \to 0$.
 Theorem \ref{thm:poly_tail_sample_complexity} implies that $\lim_{d\to\infty} p_{N,d} = 0$.
 For example, we can choose $\epsilon=\frac{1}{d}$.
 
@@ -540,10 +543,10 @@ p_{N,d} \leq &\frac{d^{1/2}k^{1/2}}{c^d} \E[F_{N,d}]\epsilon
 \subsection{Distributions with exponential tails}
 In this subsection, we first give the definition of distributions with exponential tails.
 \begin{definition}
-  If we could find
-  a slowly varying function $L(x)$ such that
-  $x = L(1/F(x))$ holds for the given tail distribution function $F(x)$,
-  we say that the distribution has exponential tails.
+ The distribution $\mathcal{F}$ is said to have exponential tails,
+ if we could find
+ a slowly varying function $L(x)$ such that
+ $x = L(1/F(x))$ holds for the tail distribution function $F(x)$ of $\mathcal{F}$.
 \end{definition}
 Following Carnal \cite{carnal1970konvexe},
 we define the following utility functions:
@@ -551,7 +554,7 @@ we define the following utility functions:
      \gamma(s) & = s (\log (L(s)))' \label{eq:epsilon_s}\\
      v(u) &= -\frac{1}{u} \frac{1}{(\log F(u))'}    
 \end{align}
-The prime notation represents the symbol for differentiation. When $v(u)$ satisfies
+The prime symbol represents a derivative. When $v(u)$ satisfies
 certain regularity conditions prescribed in (2.15) of \cite{carnal1970konvexe},
 we can obtain that $\gamma(s)$ is a slowly varying function.
 Dwyer \cite{dwyer1991convex} obtains the expression of $G(x)$ as:

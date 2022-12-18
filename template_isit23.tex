@@ -153,10 +153,10 @@
 %%
 \begin{abstract}
   This paper estimates the sample complexity for data interpolation in high dimensional space.
-  To be specific, we model the learning task as interpolation of the convex hull consisting of i.i.d. sampled training data,
+  To be specific, we model the learning task as the interpolation of a new sample with i.i.d. sampled training data,
   and the sample complexity is the number of training data which ensures that
-  test samples fall into the convex hull
-  with large probability. It is shown that the sample complexity has an exponential relationship with the feature dimension for various distribution families
+  the test sample fall into the interpolation region, i.e., the convex hull
+  of the training data with large probability. It is shown that the sample complexity has an exponential relationship with the data dimension for various distribution families
   considered in this paper. Our analytical form of the sample complexity also shows that more samples are needed if the distribution tail decays faster.
 \end{abstract}
 
@@ -485,7 +485,7 @@ of the t-distribution, we use an existing asymptotic result found in \cite{andre
 \end{equation}
 After simplification, \eqref{eq:eq_dv} is the same as \eqref{eq:g_poly_tail}.
 On the other hand, using similar techniques as (1.4) in \cite{raynaud1970enveloppe},
-we can obtain the pdf of the distance of the hyperplane to the origin as
+we can obtain the derivative of the distribution tail function $H(x)$ as
 \begin{equation}\label{eq:dH_dx_t_distribution}
      \frac{\dd H(x)}{\dd x} =  \frac{2}{\sqrt{k} B(\frac{kd}{2},\frac{1}{2})} \left(1 + \frac{x^2}{k} \right)^{-\frac{kd+1}{2}} 
 \end{equation}
@@ -635,7 +635,7 @@ In this subsection, we first give the definition of distributions with truncated
 In \eqref{eq:F_truncated}, $x \to 0^+$ means that $x\to 0$ from the right hand side of $0$.
 
 As mentioned by Dwyer \cite{dwyer1991convex}, uniform distribution
-in the unit ball satisfies \eqref{eq:F_truncated} with
+in the unit ball $||x||\leq 1$ satisfies \eqref{eq:F_truncated} with
 $F(1-x) \sim d\cdot x$.
 
 After simplification of (4.1) in \cite{dwyer1991convex}, we obtain
@@ -654,7 +654,7 @@ a &=\frac{2^{\frac{d-1}{2}} k \Gamma(\frac{d}{2})}
     {\sqrt{\pi} \Gamma\left(k+\frac{d+1}{2}\right)}
     \label{eq:a}
 \end{align}
-Below, we give the theorem in regards to the asymptotic value of $H(1-x)$ and $\E[F_{N,d}]$:
+Below, we give the theorem in regards to the asymptotic value of $H(x)$ and $\E[F_{N,d}]$:
 \begin{theorem}\label{thm:truncated_tails}
      For distributions with truncated tails
      defined in \eqref{eq:F_truncated}, we further define
@@ -706,13 +706,15 @@ Below, we give the theorem in regards to the asymptotic value of $H(1-x)$ and $\
     p(x) = \frac{\Gamma(\frac{d}{2}+ k)}{\pi^{d/2} \Gamma(k)} (1-||x||^2)^{k-1},
     ||x|| <1, x \in \mathbb{R}^d
 \end{equation}
- $p(x)=0$ for $||x||\geq 1$.
- The so-called beta-typed distribution first appeared in \cite{affentranger1991convex}.
- In Equation (3.1) of Affentranger's formulation,
- he uses the symbol $q$, which has the relationship  $k=q+1$ with our symbol $k$.
- From \eqref{eq:pxy_beta_t} and \eqref{eq:F_truncated}, we can obtain
+ For $||x||\geq 1$, $p(x)=0$.
+ The so-called beta-typed distribution first appeared in Affentranger's work
+ \cite{affentranger1991convex}.
+ In his formulation,
+ he uses the symbol $q$ in Equation (3.1), which has the relationship  $k=q+1$ with our symbol $k$.
+ From \eqref{eq:pxy_beta_t} and \eqref{eq:F_truncated}, we can obtain the slowly varying function of beta-typed distribution
+ as
  \begin{equation}\label{eq:beta_typed_L_N}
-  L(N)=\frac{2^k}{kB(d/2,k)},
+  L(N)=\frac{2^k}{kB(d/2,k)}.
  \end{equation}
  which is irrelevant with $N$.
  Besides, similar to \eqref{eq:dH_dx_t_distribution},
@@ -720,8 +722,8 @@ Below, we give the theorem in regards to the asymptotic value of $H(1-x)$ and $\
 \begin{equation}
      \frac{\dd H(x)}{\dd x} = \frac{2}{B(\frac{1}{2}, d(k+\frac{d}{2}-1)+\frac{1}{2})}\left(1 -x^2\right)^{d(k+\frac{d}{2}-1)-\frac{1}{2}} 
 \end{equation}
-From above, we get the asymptotic relation $H(x) \sim \frac{2^{\mu}}{\mu B(1/2, \mu)}
-x^{\mu}$ with $\mu=d(k+\frac{d}{2}-1)+\frac{1}{2}$ as $x\to \infty$,
+From above, we get the asymptotic relation $H(1-x) \sim \frac{2^{\mu}}{\mu B(1/2, \mu)}
+x^{\mu}$ with $\mu=d(k+\frac{d}{2}-1)+\frac{1}{2}$ as $x\to 0^+$,
 which is equivalent to \eqref{eq:truncated_H_1_x}.
 
  We can further verify that
@@ -730,26 +732,26 @@ which is equivalent to \eqref{eq:truncated_H_1_x}.
  \end{example}
 
 
- Similar to the previous analysis,
- the following theorem gives the sample complexity for truncated tails.
+ Similar to previous analyses,
+ the following theorem gives the sample complexity of interpolation for truncated tails.
  \begin{theorem}\label{thm:truncated_tails_sample}
   For distributions with truncated tails,
   given $\epsilon \in (0,1)$,
   when the following condition is satisfied,
+  we have $ \limsup_{d\to \infty} p_{N,d} < \epsilon$.
   \begin{equation}\label{eq:N_truncated_tail_eps_relation}
     \frac{N^{\frac{2k}{2k+d-1}}}{L(N)^{\frac{d-1}{2k+d-1}}} 
-         \geq \frac{(2\pi)^{d/2}d^{(d-5)/2}}{\epsilon},
-  \end{equation}
-  we have $ \limsup_{d\to \infty} p_{N,d} < \epsilon$.
+         \geq \frac{(2\pi)^{d/2}d^{(d-5)/2}}{\epsilon}
+  \end{equation}  
 \end{theorem}
-From Theorem \ref{thm:truncated_tails_sample}, as
-distributions with exponential tails, we see that
+From Theorem \ref{thm:truncated_tails_sample}, we see that
 the sample size $N$ also has super-exponential relationship
-with $d$ for distribution with truncated tails.
+with $d$ for distribution with truncated tails, similar to
+exponential tails.
 To illustrate this point, we consider the beta-typed distribution introduced
 in Example \ref{ex:beta_typed}.
 From \eqref{eq:beta_typed_L_N}, $L(N)$ does not depend on $N$.
-We then obtain that $N$ grows faster than $\exp(cd^2)$ for any constant $c$.
+We then obtain from \eqref{eq:N_truncated_tail_eps_relation} that $N$ grows faster than $\exp(cd^2)$ for any constant $c$.
 \begin{proof}[Proof of Theorem \ref{thm:truncated_tails_sample}]
      Since $N$ in \eqref{eq:N_truncated_tail_eps_relation} satisfies the assumption $N/d^2 \to \infty$,
      it follows from \eqref{eq:p_N_d_bound} and Theorem \ref{thm:truncated_tails} that
@@ -759,9 +761,12 @@ We then obtain that $N$ grows faster than $\exp(cd^2)$ for any constant $c$.
      \end{align*}
      The last inequality holds when $d$ is sufficiently large.
 \end{proof}
-From the above discussion of three kinds of tails, we see that the sample complexity of $N$ is the smallest for algebraic tails and the largest
-for truncated tails. This is directly related with the decaying rate of $F(x)$.
-For truncated tails, $F(x)$ becomes zero beyond the unit sphere, therefore it has the largest sample complexity.
+Among the three kinds of tails discussed above, we see that the smallest sample complexity $N$
+is achievable for algebraic tails while 
+truncated tails has the largest sample complexity.
+This phenomenon is closely related with the decaying rate of $F(x)$.
+For truncated tails, $F(x)$ becomes zero beyond the unit sphere, therefore it has the fastest decaying rate,
+along with the largest sample complexity.
 For other two tails, the faster $F(x)$ decays, the larger $N$ becomes.
 
 %%%%%%
@@ -842,12 +847,14 @@ For other two tails, the faster $F(x)$ decays, the larger $N$ becomes.
 
 \section{Conclusion}
 \label{sec:conclusion}
-In this paper, we derive the sample complexity to interpolate
-the convex hull of i.i.d. samples. Our work gives the sufficient
+In this paper, we derive the sample complexity of data interpolation,
+assuming all data are i.i.d. sampled from a spherically symmetric distribution.
+Our work gives the sufficient
 condition for the convergence of the interpolation error to zero.
 Further study on the necessary condition is still an open problem.
-As a byproduct, we get the asymptotic value of the number of facets
-in three categories of distributions, which can also be applied
+As a byproduct, we also get the asymptotic value of the expected
+number of facets for the convex hull in three categories of distributions.
+This result can be applied
 to other fields such as estimation of time complexity of algorithms
 for constructing a representation of convex hulls.
 

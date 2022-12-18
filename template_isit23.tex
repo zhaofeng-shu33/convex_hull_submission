@@ -350,7 +350,7 @@ For $d\geq 2$, the integration formula for $H(x)$ is given as
 \begin{equation}
      H(x) = \frac{2}{\pi}
      \int_x^{+\infty} \arccos\frac{x}{y}
-     |\mathrm{d} (K^d(y))|\label{eq:H_expression_d_dim}
+     |\mathrm{d} (K^d(y))|, \label{eq:H_expression_d_dim}
 \end{equation}
 where the auxiliary function $K(x)$ can be computed in the following way.
 \begin{align}
@@ -379,7 +379,7 @@ As a result, we obtain
 \begin{align}
      \E[F_{N,d}] \sim \binom{N}{d} \int_0^{+\infty} 
       (1-G(x))^{N-d} |\dd H(x)| \textrm{ as } N-d\to \infty
-     \label{eq:E_F_{N,d}_d_sim}
+     \label{eq:E_F_N_d_d_sim}
 \end{align}
 Similar to the definition of $\E[F_{N,d}]$,
 we let $\E[V_{N,d}]$ represent the expected number of
@@ -400,7 +400,7 @@ Combining \eqref{eq:F_V_upper} with $p_{N,d} = \frac{\E[V_{N+1}]}{N+1}$, which c
 \end{equation}
 
 We use the symbol $a \gg b$ if $a$ is a function of $b$ and $\lim_{b\to \infty} \frac{a}{b} = \infty$.
-Based on \eqref{eq:E_F_{N,d}_d_sim}, in the following
+Based on \eqref{eq:E_F_N_d_d_sim}, in the following
 the asymptotic expression of $\E[F_{N,d}]$ is derived
 for three different distribution families.
 
@@ -428,9 +428,9 @@ Dwyer\cite{dwyer1991convex} has obtained $G(x)$ as:
      B\left(\frac{k+1}{2}, \frac{d-1}{2}\right) F(x)  \textrm{ as } x\to \infty
 \end{equation}
 
-From Theorem \ref{thm:H}, we obtain the asymptotic
-expression of $H(x)$ and $\E[F_{N,d}]$, which is
-summarized in the following theorem.
+To complete the analysis of $\E[F_{N,d}]$ with the help of \eqref{eq:E_F_N_d_d_sim},
+we introduce the following theorem, which also gives the asymptotic
+expression of $H(x)$ using the result of Theorem \ref{thm:H}.
 \begin{theorem}\label{thm:poly_tails}
      For distributions with polynomial tails defined in \eqref{eq:F_poly_tail},
      the asymptotic value of the auxiliary function $H(x)$ is given as follows.
@@ -460,7 +460,7 @@ If $N$ is a function of $d$, and the condition $N/d^2 \to \infty$ is satisfied, 
 \end{equation}
 \end{itemize}
 \end{theorem}
-Equation \eqref{eq:efn_poly_second_deri} tells
+In the above theorem, \eqref{eq:efn_poly_second_deri} tells
 us that $\E[F_{N,d}]$ converges to a constant as $N \to \infty$.
 Without consideration of the actual constant, the result of
 Theorem \ref{thm:poly_tails} is an refinement to Dwyer's Theorem 1 for the expected number of facets \cite{dwyer1991convex}.
@@ -563,34 +563,34 @@ Dwyer \cite{dwyer1991convex} obtains the expression of $G(x)$ as:
      v^{(d-1)/2}(x) F(x)
       \textrm{ as } x\to \infty
 \end{equation}
-We make the analysis complete by giving the following theorem.
+Using \eqref{eq:G_x_exp}, we further obtain the following theorem.
 \begin{theorem}\label{thm:exponential_tails}
-     Suppose there exists a slowly
-     varying function $L(x)$ such that $x=L(1/F(x))$,
-     and $\gamma(s)$ is defined in \eqref{eq:epsilon_s}, then
-  equation
+     For distribution with exponential tails, the associated slowly varying
+     function is $L(x)$, and $\gamma(s)$ is defined in \eqref{eq:epsilon_s}. Then
+     the asymptotic value of $\E[F_{N,d}]$ is given as
   \begin{equation}\label{eq:exp_e_f_n}
      \E[F_{N,d}]\sim \frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}} (\gamma(N))^{-\frac{d-1}{2}},
  \end{equation}
- holds either of the following two conditions is satisfied:
+ if either of the following two conditions is satisfied.
   \begin{itemize}
      \item $N \to \infty$ and $d$ is fixed,     
      \item  $d\to\infty$ and $N/d^2\to \infty$.
   \end{itemize}
 \end{theorem}
- Using \eqref{eq:epsilon_s}, we note that the term
- $(\gamma(N))^{-\frac{d-1}{2}}$
+ From \eqref{eq:epsilon_s}, we note that the term
+ $(\gamma(N))^{-\frac{d-1}{2}}=(\frac{L(N)}{NL'(N)})^{\frac{d-1}{2}}$
  is obtained in Dwyer's Theorem 2 \cite{dwyer1991convex}.
- Our improvement on the asymptotic value of $\E[F_{N,d}]$ is that we obtain its preceding term only involving $d$.
- When $d=2$, equation \eqref{eq:exp_e_f_n} is consistent with (2.20) of \cite{carnal1970konvexe}.
- For standard $d$-dimensional Gaussian distribution, we have $L(s)=\sqrt{2\log s}$.
- From \eqref{eq:epsilon_s}, $\gamma(s) = (2\log s)^{-1}$. And we obtain from \eqref{eq:exp_e_f_n}
+ Our improvement on the asymptotic property of $\E[F_{N,d}]$ is that
+ we obtain the asymptotic value including the term $\frac{\pi^{\frac{d-1}{2}} 2^{\frac{d+1}{2}}}{\sqrt{d}}$, which only involves $d$.
+ For the low dimensional special case $d=2$, \eqref{eq:exp_e_f_n} reduces to (2.20) of \cite{carnal1970konvexe}.
+ For the standard Gaussian distribution in $\mathbb{R}^d$, we have $L(s)=\sqrt{2\log s}$.
+ Then it follows from \eqref{eq:epsilon_s} that $\gamma(s) = (2\log s)^{-1}$, and we obtain from \eqref{eq:exp_e_f_n}
  that $\E[F_{N,d}]\sim \frac{2^d}{\sqrt{d}}(\pi \log N)^{\frac{d-1}{2}}$,
  which is consistent with (1.11) of \cite{raynaud1970enveloppe}.
 
 
 
-Similar to the analysis of polynomial tails, we obtain the
+Similar to the analysis of polynomial tails, in the next step we obtain the
 sufficient condition for $p_{N,d} < \epsilon$,
 which is summarized in the following theorem.
 \begin{theorem}\label{thm:exp_tails_sample}
@@ -600,15 +600,16 @@ which is summarized in the following theorem.
   \end{equation}
   we have $ \limsup_{d\to\infty} p_{N,d} < \epsilon$.
 \end{theorem}
-For any given $d$, we can obtain $N$ from the implicit relationship in \eqref{N_d_relationship_exp_tail}.
+For any given $d$, we can obtain $N$ as the function of $d$ satisfying the implicit relationship in \eqref{N_d_relationship_exp_tail}.
 When $d\to \infty$, \eqref{N_d_relationship_exp_tail} implies $N\to \infty$.
 To better illustrate Theorem \ref{thm:exp_tails_sample},
-we consider an special exponential distribution of the form $F(x) \sim C(k)\exp(-x^k)$, we obtain from \eqref{eq:epsilon_s}
-that $\gamma(s)=(k\log s)^{-1}$.
+we consider a special exponential distribution of the form $F(x) \sim C(k)\exp(-x^k)$, we obtain from \eqref{eq:epsilon_s}
+that $\gamma(s) \sim (k\log s)^{-1}$.
 Then from Theorem \ref{thm:exp_tails_sample},
-we can estimate that
-$N$ grows faster than $c^d$ for any constant $c$ but slower than $\exp(d^2)$.
-Besides, $N$ increases with $k$ for fixed $d$.
+there exists
+a function $d \to N$ in which $N$ grows faster than $c^d$ for any constant $c$ but slower than $\exp(d^2)$,
+such that \eqref{N_d_relationship_exp_tail} is satisfied.
+Besides, in such a function parameterized by $k$, $N$ increases with $k$ for fixed $d$.
 In other words, larger $k$ (faster decay) leads to more samples.
 \begin{proof}[Proof of Theorem \ref{thm:exp_tails_sample}]
      Since $N$ in \eqref{N_d_relationship_exp_tail} satisfies the assumption $N/d^2 \to \infty$,
@@ -620,12 +621,17 @@ In other words, larger $k$ (faster decay) leads to more samples.
      \end{align*}
 \end{proof}
 \subsection{Distributions with truncated tails}
-In this subsection, let $L(x)$ also represent a slowly varying function, and we consider the distribution which satisfies
-the following conditions:
-\begin{equation}\label{eq:F_truncated}
-     F(1-x) \sim x^k L\left(\frac{1}{x} \right)  \text{ as } x \to 0^+, k> 0,
-     F(x) = 0 \text{ for } x \geq 1
-\end{equation}
+In this subsection, we first give the definition of distributions with truncated tails.
+\begin{definition}
+     Let $L(x)$ also represent a slowly varying function. When the distribution 
+     $\mathcal{F}$ satisfies
+     the following conditions, we call it distributions with truncated tails.
+     \begin{equation}\label{eq:F_truncated}
+          F(1-x) \sim x^k L\left(\frac{1}{x} \right)  \text{ as } x \to 0^+, k> 0,
+          F(x) = 0 \text{ for } x \geq 1
+     \end{equation}
+\end{definition}
+
 In \eqref{eq:F_truncated}, $x \to 0^+$ means that $x\to 0$ from the right hand side of $0$.
 
 As mentioned by Dwyer \cite{dwyer1991convex}, uniform distribution
@@ -1317,7 +1323,7 @@ That is, we obtain \eqref{eq:H_poly_tail_exp}.
 We denote $g(d)=\frac{2^d \pi^{(d-1)/2}\Gamma^d(\frac{k}{2}+1)
 \Gamma(\frac{dk+1}{2})}{
     \Gamma^d(\frac{k+1}{2}) \Gamma(\frac{dk}{2}+1)}$
-and $G(x)=w$ to simplify the notation, then from \eqref{eq:E_F_{N,d}_d_sim}
+and $G(x)=w$ to simplify the notation, then from \eqref{eq:E_F_N_d_d_sim}
 \begin{align}
      \E[F_{N,d}] &\sim g(d)\binom{N}{d} \int_0^{+\infty} 
       (1-G(x))^{N-d} |\dd H(x)| \notag \\
@@ -1406,7 +1412,7 @@ From \eqref{eq:G_x_exp}, we obtain that:
      \textrm{ as } x\to \infty
 \end{equation}
 Dwyer \cite{dwyer1991convex} has shown that for exponential tails, $v(x) \sim \gamma(1/G(x))$ as $x\to \infty$.
-From \eqref{eq:E_F_{N,d}_d_sim},
+From \eqref{eq:E_F_N_d_d_sim},
 we use the Abel-Tauber theorem
 \cite{omey1989abelian} and obtain
 \begin{align*}
@@ -1460,7 +1466,7 @@ Let $G(1-x)=w$, similar to the analysis in (2.7) of
 \end{equation*}
 Finally, 
 we apply the Abel-Tauber theorem
-\cite{omey1989abelian}, and from \eqref{eq:E_F_{N,d}_d_sim} we obtain
+\cite{omey1989abelian}, and from \eqref{eq:E_F_N_d_d_sim} we obtain
 \begin{align}
     \E[F_{N,d}] =& \binom{N}{d}\int_0^1 (1 - G(1-x))^{N-d} |\dd H(1-x)| 
     \notag \\

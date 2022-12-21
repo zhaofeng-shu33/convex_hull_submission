@@ -153,12 +153,12 @@
 %%
 \begin{abstract}
   This paper estimates the sample complexity for data interpolation in high-dimensional spaces.
-  To be specific, we model the learning task as the interpolation of a test sample with i.i.d. sampled training data,
-  and the sample complexity is the number of training data which ensures that
+  Specifically, we model the learning task as the interpolation of a test sample with i.i.d. sampled training data.
+  Then the sample complexity is the number of training data which ensures that
   the test sample falls into the interpolation regime, i.e., the convex hull
-  of the training data, with large probability. It is shown that the sample complexity has an exponential relationship with the data dimension for various distribution families
+  of the training data, with a high probability. It is shown that the sample complexity has an exponential relationship with the data dimension for various distribution families
   considered in this paper. The analytical form of the sample complexity also reveals that more samples are needed if the distribution tail decays faster.
-  Therefore, our results provide the theoretical justification for methods of dimension reduction and data transformation to reduce the sample complexity.
+  Therefore, our results provide the theoretical justification for dimension reduction and data transformation to reduce the sample complexity.
 \end{abstract}
 
 
@@ -177,17 +177,17 @@ In addition to their empirical study, further experiments on other real datasets
 the test dataset mostly falls out of the
 convex hull of training dataset.
 
-The above background motivate us to investigate when the interpolation occurs
-with large probability as we increase the training sample size.
-To solve this problem quantitatively, we follow the geometric statistical model described above, and then derive the sample size which makes
+The above background motivates us to investigate when the interpolation occurs
+with a high probability as we increase the training sample size.
+To solve this problem quantitatively, we follow the geometric statistical model described above and then derive the sample size, which makes
 interpolation almost surely occurs if the distribution is spherically symmetric.
 This sample size, or sample complexity, can be used to estimate the required number of samples
 to achieve high precisions of the interpolation.
 We show that when the training data are sampled from polynomial,
 exponential and truncated distribution families,
-we need exponentially large number of samples for vanishing interpolation error.
+we need an exponentially large number of samples for vanishing interpolation error.
 Due to the exponential dependency of the sample size on the dimension, we recommend dimension reduction or feature extraction
-before constructing interpolation representation of training samples.
+before constructing an interpolation representation of training samples.
 Besides the relationship between the sample size $N$ and the dimension $d$,
 we also reveal the dependency of $N$ on the decaying rate of the distribution tail.
 As a result, it is beneficial to apply some non-linear transformations to flatten the data

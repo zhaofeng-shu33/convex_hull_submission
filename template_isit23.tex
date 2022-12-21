@@ -177,9 +177,9 @@ In addition to their empirical study, further experiments on other real datasets
 the test dataset mostly falls out of the
 convex hull of training dataset.
 
-The above background motivate us to investigate how to make interpolation ``work''.
-A naive way is to increase the training sample size. Then it is natural to ask how many samples are needed.
-To quantitatively determine the sample size, we follow the geometric statistical model described above, and then derive the sample size which makes
+The above background motivate us to investigate when the interpolation occurs
+with large probability as we increase the training sample size.
+To solve this problem quantitatively, we follow the geometric statistical model described above, and then derive the sample size which makes
 interpolation almost surely occurs if the distribution is spherically symmetric.
 This sample size, or sample complexity, can be used to estimate the required number of samples
 to achieve high precisions of the interpolation.
@@ -190,7 +190,7 @@ Due to the exponential dependency of the sample size on the dimension, we recomm
 before constructing interpolation representation of training samples.
 Besides the relationship between the sample size $N$ and the dimension $d$,
 we also reveal the dependency of $N$ on the decaying rate of the distribution tail.
-As a result, it is beneficial to apply some non-linear transformation to flatten the data
+As a result, it is beneficial to apply some non-linear transformations to flatten the data
 in the preprocessing step.
 
 Technically speaking, the sample complexity is obtained when we derive an upper bound for the interpolation error,
@@ -294,7 +294,7 @@ a spherically symmetric distribution $\mathcal{F}$ in $\mathbb{R}^d$.
 Let $\mathrm{H}_N$ denote the convex hull of $\mathcal{X}_N$,
 and the interpolation error is defined as $p_{N,d}=P(X_{N+1} \not\in \mathrm{H}_N)$.
 
-It should be emphasized that the probability considered above is different from that of the convex position,
+It should be noted that the probability considered above is different from that of the convex position,
 which requires all samples are the vertices of the convex hull \cite{Valtr1995}. The latter probability decreases much faster
 than $p_{N,d}$ as $N$ increases.
 %It seems that the authors in \cite{balestriero2021learning} confuse the two models, which require

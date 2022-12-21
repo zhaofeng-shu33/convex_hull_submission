@@ -157,7 +157,7 @@
   and the sample complexity is the number of training data which ensures that
   the test sample falls into the interpolation regime, i.e., the convex hull
   of the training data, with large probability. It is shown that the sample complexity has an exponential relationship with the data dimension for various distribution families
-  considered in this paper. The analytical form of the sample complexity also reveals that more samples are needed if the distribution tail decays faster,
+  considered in this paper. The analytical form of the sample complexity also reveals that more samples are needed if the distribution tail decays faster.
   Therefore, our results provide the theoretical justification for methods of dimension reduction and data transformation to reduce the sample complexity.
 \end{abstract}
 
@@ -294,7 +294,8 @@ a spherically symmetric distribution $\mathcal{F}$ in $\mathbb{R}^d$.
 Let $\mathrm{H}_N$ denote the convex hull of $\mathcal{X}_N$,
 and the interpolation error is defined as $p_{N,d}=P(X_{N+1} \not\in \mathrm{H}_N)$.
 
-It should be noted that the probability considered above is different from that of the convex position,
+It should be noted that the probability $p_{N,d}$ considered above
+is different from that of the convex position,
 which requires all samples are the vertices of the convex hull \cite{Valtr1995}. The latter probability decreases much faster
 than $p_{N,d}$ as $N$ increases.
 %It seems that the authors in \cite{balestriero2021learning} confuse the two models, which require
@@ -370,9 +371,13 @@ In fact, $1-K(x)$ is the CDF of Rayleigh distribution.
 %For general spherical distributions, the function $K(x)$ itself is irreverent with the dimension $d$.
 The proof of Theorem \ref{thm:H}
 is provided in Appendix \ref{app:th}.
-\section{Three distribution families}\label{sec:three_distriutions}
+
+Though the closed-form expression of $\E[F_{N,d}]$
+for finite $N$ is unapproachable,
+we can obtain the
+asymptotic value of $\E[F_{N,d}]$ starting from \eqref{eq:E_F_{N,d}_d}.
 Since the distribution we considered is symmetric,
-for $x>0$ we have $G(x)<\frac{1}{2}$. Therefore the
+for $x>0$ we have $G(x)<\frac{1}{2}$. Therefore, the
 term $G(x)^{N-d}$ in \eqref{eq:E_F_{N,d}_d} decays at an exponential rate as $N-d\to \infty$.
 As a result, we obtain
 \begin{align}
@@ -388,21 +393,23 @@ between $\E[F_{N,d}]$ and $\E[V_{N,d}]$
 for general spherical symmetric distributions.
 However, we can give some inequalities involving these two
 quantities. Using Corollary 19.6 of \cite{brondsted2012introduction}, we have the following
-inequality:
+inequality.
 \begin{equation}\label{eq:F_V_upper}
      F_{N,d} \geq (d-1) V_{N,d} - (d+1)(d-2)
- \end{equation}
+\end{equation}
+
 Combining \eqref{eq:F_V_upper} with $p_{N,d} = \frac{\E[V_{N+1}]}{N+1}$, which comes from
-\cite{efron1965convex}, we have the following upper bound for $p_{N,d}$:
+\cite{efron1965convex}, we have the following upper bound for $p_{N,d}$.
 \begin{equation}\label{eq:p_N_d_bound}
     p_{N,d} \leq \frac{\E[F_{N,d}]}{d N} \textrm{ as } N \gg d
 \end{equation}
 
 We use the symbol $a \gg b$ if $a$ is a function of $b$ and $\lim_{b\to \infty} \frac{a}{b} = \infty$.
-Based on \eqref{eq:E_F_N_d_d_sim}, in the following
-the asymptotic expression of $\E[F_{N,d}]$ is derived
+Based on \eqref{eq:E_F_N_d_d_sim}, in the following section
+the asymptotic expressions of $\E[F_{N,d}]$ are derived
 for three different distribution families.
 
+\section{Three distribution families}\label{sec:three_distriutions}
 To precisely define these distribution families, we firstly introduce the concept of slowly varying function.
 \begin{definition}
 A function $L(x)$ is

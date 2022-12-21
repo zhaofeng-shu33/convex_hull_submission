@@ -155,7 +155,7 @@
   This paper estimates the sample complexity for data interpolation in high-dimensional spaces.
   To be specific, we model the learning task as the interpolation of a test sample with i.i.d. sampled training data,
   and the sample complexity is the number of training data which ensures that
-  the test sample falls into the interpolation region, i.e., the convex hull
+  the test sample falls into the interpolation regime, i.e., the convex hull
   of the training data, with large probability. It is shown that the sample complexity has an exponential relationship with the data dimension for various distribution families
   considered in this paper. The analytical form of the sample complexity also shows that more samples are needed if the distribution tail decays faster,
   Therefore, our results provide the theoretical justification for methods of dimension reduction and data transformation to reduce the sample complexity.
@@ -164,31 +164,25 @@
 
 \section{Introduction}
 \label{sec:intro}
-In machine learning, intuitively we model a learning task as interpolating the
+In the field of machine learning, intuitively we model a learning task as interpolating the
 training data. Under this interpretation, we are prone to think that state-of-the-art
 algorithms work well in high-dimensional spaces because the models can interpolate training data well. 
 However, Balestriero et al. \cite{balestriero2021learning}
 argues that this is a misconception and the interpolation almost surely never occurs in high-dimensional spaces.
-Their logic is as follows: Suppose that the training data follow a certain distribution. Then take $N$ samples from such a distribution
+Their logic is as follows. Take $N$ samples from a certain distribution
 and consider whether the new or ($N+1$)-th sample falls in the convex hull of the first $N$ samples. 
 Under certain conditions they find that the new sample falls outside with high probability.
 In their terminology, the interpolation occurs whenever a new sample belongs to the convex hull of previous samples.
-By citing previous theoretical studies on this geometric statistical model and extensive simulation experiments,
-they justify their assertion on why interpolation almost surely never occurs.
-Further experiments on other real datasets \cite{yousefzadeh2022extent} also show that
+In addition to their empirical study, further experiments on other real datasets \cite{yousefzadeh2022extent} also show that
 the test dataset mostly falls out of the
-convex hull of training dataset, thus augmenting the statement of Balestriero.
+convex hull of training dataset.
 
-Following the geometric statistical model described above, we can derive the sample size which makes
+The above background motivate us to investigate how to make interpolation ``work''.
+A naive way is to increase the training sample size. Then it is natural to ask how many samples are needed.
+To quantitatively determine the sample size, we follow the geometric statistical model described above, and then derive the sample size which makes
 interpolation almost surely occurs if the distribution is spherically symmetric.
-This sample size, or sample complexity, can be used to estimate the required sample size
+This sample size, or sample complexity, can be used to estimate the required number of samples
 to achieve high precisions of the interpolation.
-Technically speaking, the sample complexity is obtained when we derive an upper bound for the interpolation error,
-which is the probability that the new sample falls out of the convex hull.
-It should be emphasized that the model considered in this paper is different from that of the convex position,
-which requires all samples are the vertices of the convex hull.
-It seems that the authors in \cite{balestriero2021learning} confuse the two models, which require
-different methods for theoretical analysis.
 We show that when the training data are sampled from polynomial,
 exponential and truncated distribution families,
 we need exponentially large number of samples for vanishing interpolation error.
@@ -196,23 +190,23 @@ Due to the exponential dependency of the sample size on the dimension, we recomm
 before constructing interpolation representation of training samples.
 Besides the relationship between the sample size $N$ and the dimension $d$,
 we also reveal the dependency of $N$ on the decaying rate of the distribution tail.
+As a result, it is beneficial to apply some non-linear transformation to flatten the data
+in the preprocessing step.
 
-The study of the interpolation error $p_{N,d}$ is closely related with the quantity $\E[F_{N,d}]$,
+Technically speaking, the sample complexity is obtained when we derive an upper bound for the interpolation error,
+which is the probability that the new sample falls out of the convex hull.
+Moreover, the upper bound is closely related with the quantity $\E[F_{N,d}]$,
 the expectation of the number of facets in the convex hull. A facet of a $d$-dimensional object is one of its $(d-1)$-dimensional faces.
 Loosely speaking,
-the inequality relationship $p_{N,d} \leq \frac{\E[F_{N,d}]}{Nd}$ holds. Therefore, the expression
-involving $\E[F_{N,d}]$ gives an upper bound of $p_{N,d}$.
-The study of $\E[F_{N,d}]$
-is an old topic in stochastic geometry. As far as we know, the recent advance dates back to Dwyer's work on the estimation of $\E[F_{N,d}]$,
-in which the order of $\E[F_{N,d}]$ about $N$ is obtained \cite{dwyer1991convex}. In our paper, we will extend Dwyer's work
-to get a more accurate asymptotic value of $\E[F_{N,d}]$ in $\R^d$.
+the inequality relationship $p_{N,d} \leq \frac{\E[F_{N,d}]}{Nd}$ holds. 
+Therefore, by studying the asymptotic value of $\E[F_{N,d}]$ we can obtain an estimation of $N$ which makes $p_{N,d}<\epsilon$ holds
+for a given precision $\epsilon$.
 
 The organization of this paper is as follows. In Section \ref{sec:int_f}, we develop a method of obtaining $\E[F_{N,d}]$ by generalizing Carnal's integration formula
 % of $H(x)=P(d_{12}\geq x)$ 
 from two dimensional space to higher dimensions.
 In Section \ref{sec:three_distriutions}, for three different distribution families we then derive the explicit asymptotic
-expressions of $\E[F_{N,d}]$ and the sample complexity for $p_{N,d}<\epsilon$ as $d\to\infty$,
-where $\epsilon$ is a given precision.
+expressions of $\E[F_{N,d}]$ and the sample complexity for $p_{N,d}<\epsilon$ as $d\to\infty$ and $N$ is a function of $d$.
 The main contribution of this paper,
 which is summarized in Section \ref{sec:conclusion},
 is to give the sample complexity for the vanishing interpolation error.
@@ -237,7 +231,7 @@ We denote this relationship as $f(n) \sim g(n)$.
 
 \section{Related work}
 Since the interpolation error is bounded by
-asymptotic value of $\E[F_{N,d}]$,
+the asymptotic value of $\E[F_{N,d}]$,
 in this section we give a brief overview on the topic of studying $\E[F_{N,d}]$.
 
 The asymptotic expression of $\E[F_{N,d}]$ as $N\to \infty$
@@ -255,9 +249,6 @@ polynomial, exponential, and truncated tails.
 Then he obtained the asymptotic expression of $\E[F_{N,d}]$
 for each category of distributions.
 
-
-
-
 The study of $\E[F_{N,d}]$ for $d>2$ was made firstly by
 Raynaud
 \cite{raynaud1970enveloppe}.
@@ -267,7 +258,8 @@ and standard Gaussian distribution in $\mathbb{R}^d$.
 Afterwards, following Carnal, Dwyer \cite{dwyer1991convex}
 estimated the order of $\E[F_{N,d}]$ about $N$
 for three different distribution families.
-
+In our paper, we will extend the work of Carnal, Raynaud and Dwyer
+to get a more accurate asymptotic value of $\E[F_{N,d}]$ in $\R^d$.
 
 For studies focusing on an specific distribution family,
 Davis et al. \cite{davis1987convex} found the relationship
@@ -301,6 +293,12 @@ Let $\mathcal{X}_N = \{X_1, X_2, \dots, X_N\}$ be a set of i.i.d. random points 
 a spherically symmetric distribution $\mathcal{F}$ in $\mathbb{R}^d$.
 Let $\mathrm{H}_N$ denote the convex hull of $\mathcal{X}_N$,
 and the interpolation error is defined as $p_{N,d}=P(X_{N+1} \not\in \mathrm{H}_N)$.
+
+It should be emphasized that the probability considered above is different from that of the convex position,
+which requires all samples are the vertices of the convex hull \cite{Valtr1995}. The latter probability decreases much faster
+than $p_{N,d}$ as $N$ increases.
+%It seems that the authors in \cite{balestriero2021learning} confuse the two models, which require
+%different methods for theoretical analysis.
 
 To study $p_{N,d} \to 0$, we introduce two additional quantities of $H_N$: the number of vertices
 $V_{N,d}$ and the number of facets $F_{N,d}$.

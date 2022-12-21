@@ -157,7 +157,7 @@
   and the sample complexity is the number of training data which ensures that
   the test sample falls into the interpolation regime, i.e., the convex hull
   of the training data, with large probability. It is shown that the sample complexity has an exponential relationship with the data dimension for various distribution families
-  considered in this paper. The analytical form of the sample complexity also shows that more samples are needed if the distribution tail decays faster,
+  considered in this paper. The analytical form of the sample complexity also reveals that more samples are needed if the distribution tail decays faster,
   Therefore, our results provide the theoretical justification for methods of dimension reduction and data transformation to reduce the sample complexity.
 \end{abstract}
 
@@ -206,7 +206,7 @@ The organization of this paper is as follows. In Section \ref{sec:int_f}, we dev
 % of $H(x)=P(d_{12}\geq x)$ 
 from two dimensional space to higher dimensions.
 In Section \ref{sec:three_distriutions}, for three different distribution families we then derive the explicit asymptotic
-expressions of $\E[F_{N,d}]$ and the sample complexity for $p_{N,d}<\epsilon$ as $d\to\infty$ and $N$ is a function of $d$.
+expressions of $\E[F_{N,d}]$ and the sample complexity to achieve $p_{N,d}<\epsilon$ as $d\to\infty$ and $N$ is a function of $d$.
 The main contribution of this paper,
 which is summarized in Section \ref{sec:conclusion},
 is to give the sample complexity for the vanishing interpolation error.
@@ -300,10 +300,10 @@ than $p_{N,d}$ as $N$ increases.
 %It seems that the authors in \cite{balestriero2021learning} confuse the two models, which require
 %different methods for theoretical analysis.
 
-To study $p_{N,d} \to 0$, we introduce two additional quantities of $H_N$: the number of vertices
+To study $p_{N,d}$, we introduce two additional quantities of $H_N$: the number of vertices
 $V_{N,d}$ and the number of facets $F_{N,d}$.
-Our main focus of study in this paper is the mathematical expectation
-of $F_{N,d}$, denoted as $\E[F_{N,d}]$, and we consider its asymptotic value as $N\to \infty$.
+The mathematical expectation
+of $F_{N,d}$ with respect to $\mathcal{X}_N$ is denoted as $\E[F_{N,d}]$, and we consider its asymptotic value as $N, d\to \infty$.
 
 The starting point is the integration formula for $\E[F_{N,d}]$.
 Carnal \cite{carnal1970konvexe}

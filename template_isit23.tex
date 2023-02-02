@@ -195,9 +195,10 @@ we also reveal the dependency of $N$ on the decaying rate of the distribution ta
 As a result, it is beneficial to apply some non-linear transformations to flatten the data
 in the preprocessing step.
 
-Technically speaking, the sample complexity is obtained when we derive an upper bound for the interpolation error,
+Technically speaking, the sample complexity is obtained when we derive an upper bound for the interpolation error
+$p_{N,d}$,
 which is the probability that the new sample falls out of the convex hull.
-Moreover, the upper bound is closely related with the quantity $\E[F_{N,d}]$,
+Moreover, this upper bound is closely related with the quantity $\E[F_{N,d}]$,
 the expectation of the number of facets in the convex hull. A facet of a $d$-dimensional object is one of its $(d-1)$-dimensional faces.
 Loosely speaking,
 the inequality relationship $p_{N,d} \leq \frac{\E[F_{N,d}]}{Nd}$ holds. 
@@ -207,7 +208,7 @@ for a given precision $\epsilon$.
 The organization of this paper is as follows. In Section \ref{sec:int_f}, we develop a method of obtaining $\E[F_{N,d}]$ by generalizing Carnal's integration formula
 % of $H(x)=P(d_{12}\geq x)$ 
 from two dimensional space to higher dimensions.
-In Section \ref{sec:three_distriutions}, for three different distribution families we then derive the explicit asymptotic
+In Section \ref{sec:three_distriutions}, we discuss three different distribution families, and then derive the explicit asymptotic
 expressions of $\E[F_{N,d}]$ and the sample complexity to achieve $p_{N,d}<\epsilon$ as $d\to\infty$ and $N$ is a function of $d$.
 The main contribution of this paper,
 which is summarized in Section \ref{sec:conclusion},
@@ -385,10 +386,10 @@ asymptotic value of $\E[F_{N,d}]$ starting from \eqref{eq:E_F_{N,d}_d}.
 Since the distribution we considered is symmetric,
 for $x>0$ we have $G(x)<\frac{1}{2}$. Therefore, the
 term $G(x)^{N-d}$ in \eqref{eq:E_F_{N,d}_d} decays at an exponential rate as $N-d\to \infty$.
-As a result, we obtain
+As a result, under the condition $N-d\to \infty$, we obtain
 \begin{align}
      \E[F_{N,d}] \sim \binom{N}{d} \int_0^{+\infty} 
-      (1-G(x))^{N-d} |\dd H(x)| \textrm{ as } N-d\to \infty
+      (1-G(x))^{N-d} |\dd H(x)| \textrm{ as } 
      \label{eq:E_F_N_d_d_sim}
 \end{align}
 Similar to the definition of $\E[F_{N,d}]$,

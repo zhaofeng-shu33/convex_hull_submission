@@ -170,7 +170,7 @@ Under this interpretation, we are prone to think that state-of-the-art
 algorithms work well in high-dimensional spaces because the models can interpolate training data well. 
 However, some researchers also argue against this view from different perspectives.
 For example, Balestriero et al. \cite{balestriero2021learning}
-thinks that this is a misconception and that interpolation almost surely never occurs in high-dimensional spaces.
+think that this is a misconception and that interpolation almost surely never occurs in high-dimensional spaces.
 In their terminology, interpolation occurs whenever a new sample belongs to the convex hull of previous samples.
 In additional to their statistical models,
 experimental studies on real datasets \cite{yousefzadeh2022extent} also show that
@@ -179,9 +179,9 @@ convex hull of the training dataset.
 
 The above background motivates us to investigate when interpolation occurs
 with a high probability as we increase the training sample size.
-To solve this problem analytically, we follow the geometric statistical model described above and then derive the sample size, which makes
+To address this issue analytically, we follow the geometric statistical model described above and then derive the sample size, which makes
 interpolation almost surely occurs if the distribution is spherically symmetric.
-This sample size, or sample complexity, can be used to estimate the required number of samples
+This sample size, or sample complexity, can be used to determine the required number of samples
 to achieve high precisions of the interpolation. Differing from previous
 studies which mostly consider special distributions, we obtain the results of sample complexity
 in three distribution families, which cover mostly common used statistical models.
@@ -201,7 +201,7 @@ Moreover, the upper bound is closely related with the quantity $\E[F_{N,d}]$,
 the expectation of the number of facets in the convex hull. A facet of a $d$-dimensional object is one of its $(d-1)$-dimensional faces.
 Loosely speaking,
 the inequality relationship $p_{N,d} \leq \frac{\E[F_{N,d}]}{Nd}$ holds. 
-Therefore, by studying the asymptotic value of $\E[F_{N,d}]$ we can obtain an estimation of $N$ which makes $p_{N,d}<\epsilon$ holds
+Therefore, by studying the asymptotic value of $\E[F_{N,d}]$ we can obtain an estimation of $N$, which makes $p_{N,d}<\epsilon$ holds
 for a given precision $\epsilon$.
 
 The organization of this paper is as follows. In Section \ref{sec:int_f}, we develop a method of obtaining $\E[F_{N,d}]$ by generalizing Carnal's integration formula

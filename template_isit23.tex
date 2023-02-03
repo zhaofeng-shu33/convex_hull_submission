@@ -166,7 +166,7 @@
 \label{sec:intro}
 Notions of interpolation and extrapolation are frequently used to illustrate the generalization
 abilities of machine learning algorithms \cite{webb2020learning}. For example,
-an image recognition system trained on dog species cannot distinguish different species of cat since
+an image recognition system trained on dog species cannot distinguish different cat species since
 the data of cat lies in the extrapolation region of the data of dog.
 Using geometric terminology, interpolation occurs whenever a new sample belongs to the convex hull of training samples;
 and extrapolation occurs when the sample falls outside.
@@ -174,8 +174,8 @@ In recent years, some researchers quantitatively explore when interpolation or e
 For example, Balestriero et al. \cite{balestriero2021learning}
 think that interpolation almost surely never occurs in high-dimensional spaces.
 When they take $N$ samples from Gaussian distribution,
-they find that the newly generated or ($N+1$)-th sample falls in the convex hull of the first $N$ samples
-with high probability.
+they find that the $N$-th sample falls in the convex hull of the first $N-1$ samples
+with low probability.
 In additional to their statistical models,
 experimental studies on real datasets \cite{yousefzadeh2022extent} also show that
 test dataset mostly falls out of the
@@ -187,10 +187,10 @@ to make interpolation occurs, and
 their analyses are limited to specific distributions.
 To address the former issue, we derive the analytic form of the sample size, which makes
 interpolation almost surely occurs if the distribution is spherically symmetric.
-This result can be used to determine the required number of samples
-to make interpolation occur almost surely.
+%This result can be used to determine the required number of samples
+%to make interpolation occur almost surely.
 To address the latter issue,
-we consider three distribution families, which cover mostly commonly used statistical models:
+we consider three distribution families, which cover commonly used statistical models:
 polynomial,
 exponential and truncated distribution families.
 Though the analytic expression for the sample size in each distribution families
@@ -198,7 +198,7 @@ is different, we find that at least exponentially large number of samples is nee
 The exponential dependency means that the sample size $N$ increases exponentially fast as $d$ increases.
 Furthermore, we also reveal the dependency of $N$ on the decaying rate of the distribution tail.
 From these two dependencies, our work sheds insights on
-the functionality of dimension reduction and non-linear transformations in machine learning pipeline.
+the functionality of dimension reduction and non-linear transformations in machine learning pipelines.
 
 
 Technically speaking, the sample complexity is obtained when we derive an upper bound for the interpolation error
@@ -291,10 +291,10 @@ For truncated tails,
 Affentranger \cite{affentranger1991convex} studied one sub-category called beta-typed distribution and obtained
 the asymptotic value of $\E[F_{N,d}]$.
 
-Besides the number of facets $\E[F_{N,d}]$,
-the asymptotic value of other quantities related with $\mathrm{H}_N$, such as the volume, and the surface area,
-were systematically investigated in a general framework involving the property of facets
-\cite{schneider2008stochastic, barany2008random}.
+%Besides the number of facets $\E[F_{N,d}]$,
+%the asymptotic value of other quantities related with $\mathrm{H}_N$, such as the volume, and the surface area,
+%were systematically investigated in a general framework involving the property of facets
+%\cite{schneider2008stochastic, barany2008random}.
 
 \section{Mathematic Models}
 \label{sec:int_f}

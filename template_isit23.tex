@@ -165,24 +165,24 @@
 \section{Introduction}
 \label{sec:intro}
 Notions of interpolation and extrapolation are frequently used to illustrate the generalization
-abilities of machine learning algorithms \cite{webb2020learning}.
-Under this interpretation, interpolation occurs whenever a new sample belongs to the convex hull of training samples;
+abilities of machine learning algorithms \cite{webb2020learning}. For example,
+an image recognition system trained on dog species cannot distinguish different species of cat since
+the data of cat lies in the extrapolation region of the data of dog.
+Using geometric terminology, interpolation occurs whenever a new sample belongs to the convex hull of training samples;
 and extrapolation occurs when the sample falls outside.
-Many researchers agree that
-without careful design, the ability of these algorithms is limited to interpolation between training data points.
-However, in recent years some researchers argue against this view from geometric understanding of the data distribution.
+In recent years, some researchers quantitatively explore when interpolation or extrapolation occurs.
 For example, Balestriero et al. \cite{balestriero2021learning}
-think that this is a misconception and that interpolation almost surely never occurs in high-dimensional spaces.
-When they take $N$ samples from a certain distribution,
-they found the new or ($N+1$)-th sample falls in the convex hull of the first $N$ samples
-with high probability. Therefore, extrapolation occurs in prediction regardless of algorithms in use.
+think that interpolation almost surely never occurs in high-dimensional spaces.
+When they take $N$ samples from Gaussian distribution,
+they find that the newly generated or ($N+1$)-th sample falls in the convex hull of the first $N$ samples
+with high probability.
 In additional to their statistical models,
 experimental studies on real datasets \cite{yousefzadeh2022extent} also show that
 test dataset mostly falls out of the
 convex hull of the training dataset.
 
 Though existing studies on geometric evidence of extrapolation are though-provoking,
-we find that they are ambivalent on the actual data dimension
+we find that they are ambivalent on the actual sample size
 to make interpolation occurs, and
 their analyses are limited to specific distributions.
 To address the former issue, we derive the analytic form of the sample size, which makes
@@ -190,18 +190,16 @@ interpolation almost surely occurs if the distribution is spherically symmetric.
 This result can be used to determine the required number of samples
 to make interpolation occur almost surely.
 To address the latter issue,
-we consider three distribution families, which cover mostly common used statistical models:
+we consider three distribution families, which cover mostly commonly used statistical models:
 polynomial,
 exponential and truncated distribution families.
 Though the analytic expression for the sample size in each distribution families
 is different, we find that at least exponentially large number of samples is needed to make interpolation occurs.
 The exponential dependency means that the sample size $N$ increases exponentially fast as $d$ increases.
-Apart from augmenting the anti-interpolation view in the last paragraph,
-our work also sheds insights on
+Furthermore, we also reveal the dependency of $N$ on the decaying rate of the distribution tail.
+From these two dependencies, our work sheds insights on
 the functionality of dimension reduction and non-linear transformations in machine learning pipeline.
-In high dimensional spaces, the relationship between $N$ and $d$,
-Besides, it is beneficial to apply some non-linear transformations to flatten the data
-in the preprocessing step. we also reveal the dependency of $N$ on the decaying rate of the distribution tail.
+
 
 Technically speaking, the sample complexity is obtained when we derive an upper bound for the interpolation error
 $p_{N,d}$,
@@ -306,14 +304,14 @@ a spherically symmetric distribution $\mathcal{F}$ in $\mathbb{R}^d$.
 Let $\mathrm{H}_N$ denote the convex hull of $\mathcal{X}_N$,
 and the interpolation error is defined as $p_{N,d}=P(X_{N+1} \not\in \mathrm{H}_N)$.
 
-It should be noted that the probability $p_{N,d}$ considered above
-is different from that of the convex position,
-which requires all samples are the vertices of the convex hull \cite{Valtr1995}. The latter probability decreases much faster
-than $p_{N,d}$ as $N$ increases.
+It should be noted that the interpolation error considered above
+is different from that in numerical analysis,
+which measures the difference between the interpolation function and the data points.
+Our notion of interpolation error focuses on the volume of the convex hull with respect to the probability measure.
 %It seems that the authors in \cite{balestriero2021learning} confuse the two models, which require
 %different methods for theoretical analysis.
 
-To study $p_{N,d}$, we introduce two additional quantities of $H_N$: the number of vertices
+To study $p_{N,d}$, we introduce two additional quantities of $\mathrm{H}_N$: the number of vertices
 $V_{N,d}$ and the number of facets $F_{N,d}$.
 The mathematical expectation
 of $F_{N,d}$ with respect to $\mathcal{X}_N$ is denoted as $\E[F_{N,d}]$, and we consider its asymptotic value as $N, d\to \infty$.

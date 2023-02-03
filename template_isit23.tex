@@ -167,8 +167,8 @@
 Notions of interpolation and extrapolation are frequently used to illustrate the generalization
 abilities of machine learning algorithms \cite{webb2020learning}. For example,
 an image recognition system trained on dog species cannot distinguish different cat species since
-the data of cat lies in the extrapolation region of the data of dog.
-Using geometric terminology, interpolation occurs whenever a new sample belongs to the convex hull of training samples;
+the data of cats lies in the extrapolation region of the data of dogs.
+Under geometric terminology, interpolation occurs whenever a new sample belongs to the convex hull of training samples;
 and extrapolation occurs when the sample falls outside.
 In recent years, some researchers quantitatively explore when interpolation or extrapolation occurs.
 For example, Balestriero et al. \cite{balestriero2021learning}
@@ -176,25 +176,23 @@ think that interpolation almost surely never occurs in high-dimensional spaces.
 When they take $N$ samples from Gaussian distribution,
 they find that the $N$-th sample falls in the convex hull of the first $N-1$ samples
 with low probability.
-In additional to their statistical models,
+In addition to their statistical models,
 experimental studies on real datasets \cite{yousefzadeh2022extent} also show that
 test dataset mostly falls out of the
 convex hull of the training dataset.
 
 Though existing studies on geometric evidence of extrapolation are thought-provoking,
-we find that they are ambivalent on the actual sample size
+we find that they are ambiguous regarding the actual sample size
 to make interpolation occurs, and
 their analyses are limited to specific distributions.
 To address the former issue, we derive the analytic form of the sample size, which makes
 interpolation almost surely occurs if the distribution is spherically symmetric.
-%This result can be used to determine the required number of samples
-%to make interpolation occur almost surely.
 To address the latter issue,
 we consider three distribution families, which cover commonly used statistical models:
 polynomial,
 exponential and truncated distribution families.
-While the analytic expression for the sample size in each distribution families
-is different, we find that at least exponentially large number of samples is needed to make interpolation occurs.
+While the analytic expression for the sample size in each distribution family
+has different form, we find that at least an exponentially large number of samples is needed to make interpolation occurs.
 The exponential dependency means that the sample size $N$ increases exponentially fast as $d$ increases.
 Furthermore, we also reveal the dependency of $N$ on the decaying rate of the distribution tail.
 From these two dependencies, our work sheds insights on
